@@ -1,0 +1,26 @@
+{
+  "name": "orchestrator-agent",
+  "version": "1.0.0",
+  "description": "Task distribution, agent coordination, progress monitoring - executes architect's plans via subagents",
+  "author": {
+    "name": "Emasoft",
+    "email": "713559+Emasoft@users.noreply.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Emasoft/orchestrator-agent"
+  },
+  "license": "MIT",
+  "engines": {
+    "claude-code": ">=1.0.0"
+  },
+  "agents": [
+    "./agents/orch-main.md",
+    "./agents/orch-team-orchestrator.md",
+    "./agents/orch-task-summarizer.md",
+    "./agents/orch-checklist-compiler.md",
+    "./agents/orch-devops-expert.md",
+    "./agents/orch-docker-container-expert.md"
+  ],
+  "skills": "./skills/"
+}
