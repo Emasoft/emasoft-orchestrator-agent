@@ -1,5 +1,5 @@
 ---
-name: ao-module-management-commands
+name: orch-module-management-commands
 description: Documents all module management commands for dynamic module manipulation during Orchestration Phase. Covers adding, modifying, removing, prioritizing, and reassigning modules. Enforces the critical rule that every module maps 1:1 to a GitHub Issue.
 license: Apache-2.0
 compatibility: Cross-platform compatible. Requires Python 3.8+ and PyYAML for scripts. Requires gh CLI for GitHub Issue operations. Works with AI Maestro messaging for agent notifications.

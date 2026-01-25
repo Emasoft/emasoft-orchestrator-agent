@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-main.py - Main entry point for ATLAS Orchestrator Stop Hook (Modular Version).
+main.py - Main entry point for Orchestrator Agent Stop Hook (Modular Version).
 
-This is the refactored version of atlas_orchestrator_stop_check.py, split into
+This is the refactored version of orch_orchestrator_stop_check.py, split into
 focused modules for maintainability. The hook checks multiple task sources
 before allowing the orchestrator to exit.
 
 Usage:
-    python -m atlas_stop_check.main < hook_input.json
+    python -m orch_stop_check.main < hook_input.json
 
 The hook reads JSON from stdin and outputs a decision to stdout.
 """
@@ -109,7 +109,7 @@ def main() -> int:
     # Get script directory for helper scripts
     script_path = Path(__file__).resolve()
     hook_dir = script_path.parent
-    script_dir = hook_dir.parent  # Parent of atlas_stop_check is scripts/
+    script_dir = hook_dir.parent  # Parent of orch_stop_check is scripts/
 
     if not script_dir.is_dir():
         warn(f"Scripts directory not found: {script_dir}")

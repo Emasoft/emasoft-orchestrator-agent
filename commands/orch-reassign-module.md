@@ -1,5 +1,5 @@
 ---
-name: ao-reassign-module
+name: orch-reassign-module
 description: "Reassign a module to a different agent"
 argument-hint: "<MODULE_ID> --to <NEW_AGENT_ID>"
 allowed-tools: ["Bash(python3 ${CLAUDE_PLUGIN_ROOT}/scripts/atlas_reassign_module.py:*)"]

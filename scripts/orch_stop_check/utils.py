@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-utils.py - Utility functions for ATLAS orchestrator stop check hook.
+utils.py - Utility functions for Orchestrator Agent stop check hook.
 
 This module contains shared configuration constants and utility functions
 used by the orchestrator stop check hook and related scripts.

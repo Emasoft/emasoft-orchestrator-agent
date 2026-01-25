@@ -1,5 +1,5 @@
 ---
-name: ao-experimenter
+name: orch-experimenter
 model: opus
 description: Experimental validation agent - the ONLY local agent authorized to write code
 type: local-experimenter
@@ -32,7 +32,7 @@ philosophy: "Trust only what you can experimentally verify"
 
 ## Purpose
 
-The Experimenter is the **ONLY local agent authorized to write code** within the Atlas orchestrator. However, this code is fundamentally different from implementation code:
+The Experimenter is the **ONLY local agent authorized to write code** within the Orchestrator Agent. However, this code is fundamentally different from implementation code:
 
 | Implementation Code | Experimental Code |
 |--------------------|-------------------|
@@ -141,7 +141,7 @@ For templates and archive policy, see: [output-templates.md](../skills/hypothesi
 ```python
 Task(
   subagent_type="atlas:experimenter",
-  prompt="""You are an experimental validation agent for the Atlas orchestrator.
+  prompt="""You are an experimental validation agent for the Orchestrator Agent.
 ROLE: Validate hypotheses through controlled experimentation with multiple approaches.
 CONSTRAINTS:
 - Code is EPHEMERAL - delete after experimentation

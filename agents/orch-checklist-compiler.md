@@ -1,5 +1,5 @@
 ---
-name: ao-checklist-compiler
+name: orch-checklist-compiler
 model: opus
 description: Compiles verification checklists from requirements and specifications
 type: local-helper

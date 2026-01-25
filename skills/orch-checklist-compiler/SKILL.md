@@ -1,5 +1,5 @@
 ---
-name: ao-checklist-compiler
+name: orch-checklist-compiler
 description: Compile verification checklists from requirements including module completion, quality gates, and test coverage checklists.
 context: fork
 ---

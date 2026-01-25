@@ -1,5 +1,5 @@
 ---
-name: ao-prioritize-module
+name: orch-prioritize-module
 description: "Change a module's priority level"
 argument-hint: "<MODULE_ID> --priority <LEVEL>"
 allowed-tools: ["Bash(python3 ${CLAUDE_PLUGIN_ROOT}/scripts/atlas_modify_module.py:*)"]

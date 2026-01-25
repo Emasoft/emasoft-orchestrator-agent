@@ -1,5 +1,5 @@
 ---
-name: ao-assign-module
+name: orch-assign-module
 description: "Assign a module to a registered agent with Instruction Verification Protocol"
 argument-hint: "<MODULE_ID> <AGENT_ID>"
 allowed-tools: ["Bash(python3 ${CLAUDE_PLUGIN_ROOT}/scripts/atlas_assign_module.py:*)"]

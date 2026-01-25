@@ -1,5 +1,5 @@
 ---
-name: ao-verification-patterns
+name: orch-verification-patterns
 description: "Teaches evidence-based verification techniques for proving that code, systems, and operations work correctly. Covers four core patterns: evidence-based verification (collecting measurable proof), exit code proof (using process exit codes), end-to-end testing (verifying complete workflows), and integration verification (testing component interactions)."
 license: Apache-2.0
 compatibility: "Requires Python 3.8+, Bash shell, Git. Supports Windows, macOS, and Linux. Optional dependencies: Selenium for E2E browser testing, Docker for service orchestration, SQLite/PostgreSQL for database examples."

@@ -1,5 +1,5 @@
 """
-phase.py - Two-phase mode checking for ATLAS Orchestrator Stop Hook.
+phase.py - Two-phase mode checking for Orchestrator Agent Stop Hook.
 
 This module handles the Plan Phase and Orchestration Phase state checking,
 instruction verification, and config feedback request validation.

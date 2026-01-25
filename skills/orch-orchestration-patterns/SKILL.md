@@ -1,5 +1,5 @@
 ---
-name: ao-orchestration-patterns
+name: orch-orchestration-patterns
 description: Teaches how to coordinate work among multiple developers using orchestration patterns. Covers multi-developer coordination, Claude Code native Tasks management, progress monitoring, and escalation procedures for blocked tasks. Includes task decomposition, assignment strategies, status tracking, and handling blocked tasks. Workflow follows five phases - task decomposition, task assignment, progress monitoring, escalation and unblocking, integration and verification.
 license: Apache-2.0
 compatibility: Requires multiple developers or task agents, task tracking system (GitHub issues or similar), clear task definitions with success criteria, and communication channel for status updates.

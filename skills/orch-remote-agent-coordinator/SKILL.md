@@ -1,6 +1,6 @@
 ---
-name: ao-remote-agent-coordinator
-description: Enables the ATLAS-ORCHESTRATOR to delegate coding tasks to remote AI agents and human developers via AI Maestro messaging. The orchestrator NEVER writes code - it creates precise instructions and sends them to remote agents who execute the coding work. Use when onboarding agents, assigning tasks, coordinating multiple agents, or reviewing reports.
+name: orch-remote-agent-coordinator
+description: Enables the Orchestrator Agent to delegate coding tasks to remote AI agents and human developers via AI Maestro messaging. The orchestrator NEVER writes code - it creates precise instructions and sends them to remote agents who execute the coding work. Use when onboarding agents, assigning tasks, coordinating multiple agents, or reviewing reports.
 license: Apache-2.0
 compatibility: Requires AI Maestro messaging system (configurable via AIMAESTRO_API env var, default http://localhost:23000). Python 3.9+ for LSP management scripts.
 metadata:

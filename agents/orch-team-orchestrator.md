@@ -1,5 +1,5 @@
 ---
-name: ao-team-orchestrator
+name: orch-team-orchestrator
 model: opus
 description: Coordinates multiple developer agents working in parallel on features using GitHub Projects and AI Maestro messaging for task management and team coordination
 type: planner

@@ -1,5 +1,5 @@
 ---
-name: ao-modify-module
+name: orch-modify-module
 description: "Modify a module's specifications during Orchestration Phase"
 argument-hint: "<MODULE_ID> [--name NAME] [--criteria TEXT] [--priority LEVEL]"
 allowed-tools: ["Bash(python3 ${CLAUDE_PLUGIN_ROOT}/scripts/atlas_modify_module.py:*)"]

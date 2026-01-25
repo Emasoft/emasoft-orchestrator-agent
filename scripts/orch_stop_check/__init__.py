@@ -1,7 +1,7 @@
 """
-atlas_stop_check - Modular orchestrator stop check system.
+orch_stop_check - Modular orchestrator stop check system.
 
-This package provides the stop hook functionality for ATLAS-ORCHESTRATOR,
+This package provides the stop hook functionality for Orchestrator Agent,
 split into focused modules for maintainability.
 
 Modules:

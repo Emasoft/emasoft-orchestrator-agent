@@ -1,5 +1,5 @@
 ---
-name: ao-remove-module
+name: orch-remove-module
 description: "Remove a pending module from Orchestration Phase (only if not started)"
 argument-hint: "<MODULE_ID> [--force]"
 allowed-tools: ["Bash(python3 ${CLAUDE_PLUGIN_ROOT}/scripts/atlas_modify_module.py:*)"]

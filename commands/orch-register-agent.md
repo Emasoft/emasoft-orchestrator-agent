@@ -1,5 +1,5 @@
 ---
-name: ao-register-agent
+name: orch-register-agent
 description: "Register a remote agent (AI or human) for module assignment"
 argument-hint: "<TYPE> <AGENT_ID> [--session NAME]"
 allowed-tools: ["Bash(python3 ${CLAUDE_PLUGIN_ROOT}/scripts/atlas_register_agent.py:*)"]

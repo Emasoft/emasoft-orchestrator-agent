@@ -1,6 +1,6 @@
 ---
-name: ao-shared
-description: Shared reference documents used across multiple Atlas Orchestrator skills.
+name: orch-shared
+description: Shared reference documents used across multiple Orchestrator Agent skills.
 license: Apache-2.0
 metadata:
   author: Anthropic

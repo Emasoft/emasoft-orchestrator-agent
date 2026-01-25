@@ -1,6 +1,6 @@
 ---
-name: ao-orchestration-commands
-description: "Documents all orchestration phase commands for ATLAS. Covers starting orchestration, monitoring status, checking the orchestrator loop, and cancellation. Explains stop hook integration that prevents premature exit until all modules are complete."
+name: orch-orchestration-commands
+description: "Documents all orchestration phase commands for Orchestrator Agent. Covers starting orchestration, monitoring status, checking the orchestrator loop, and cancellation. Explains stop hook integration that prevents premature exit until all modules are complete."
 license: Apache-2.0
 compatibility: "Requires Python 3.8+, PyYAML, GitHub CLI. Works with AI Maestro for remote agent communication."
 metadata:
@@ -14,7 +14,7 @@ context: fork
 
 ## Overview
 
-This skill teaches how to use the orchestration phase commands in the ATLAS Tool-Chain. These commands manage the execution loop that coordinates remote agents to implement approved plans.
+This skill teaches how to use the orchestration phase commands in the Orchestrator Agent plugin. These commands manage the execution loop that coordinates remote agents to implement approved plans.
 
 ## When to Use This Skill
 

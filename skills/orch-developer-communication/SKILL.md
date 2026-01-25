@@ -1,5 +1,5 @@
 ---
-name: ao-developer-communication
+name: orch-developer-communication
 description: Effective communication patterns for interacting with human developers in code reviews, issues, technical discussions, and status updates
 license: Apache-2.0
 metadata:

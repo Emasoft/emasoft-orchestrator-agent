@@ -1,6 +1,6 @@
 ---
-name: ao-agent-management-commands
-description: "Documents commands for managing remote agents (AI agents and human developers) in ATLAS. Covers registration, module assignment, progress polling, and the mandatory Instruction Verification Protocol."
+name: orch-agent-management-commands
+description: "Documents commands for managing remote agents (AI agents and human developers) in Orchestrator Agent. Covers registration, module assignment, progress polling, and the mandatory Instruction Verification Protocol."
 license: Apache-2.0
 compatibility: "Requires Python 3.8+, PyYAML, GitHub CLI. Requires AI Maestro for inter-agent messaging."
 metadata:

@@ -1,5 +1,5 @@
 ---
-name: ao-two-phase-mode
+name: orch-two-phase-mode
 description: Comprehensive Two-Phase Mode workflow for orchestration. Phase 1 (Plan Phase) writes requirements before implementation. Phase 2 (Orchestration Phase) directs remote agents module by module. Includes Instruction Verification Protocol, Instruction Update Verification Protocol, Proactive Progress Polling, Configuration Feedback Loop, Claude Tasks Scheduling Principle, Issue Handling Workflow, and completion enforcement via stop hooks.
 license: Apache-2.0
 compatibility: Requires AI Maestro messaging system, GitHub CLI (gh), remote agents registered by user, and YAML frontmatter state files.

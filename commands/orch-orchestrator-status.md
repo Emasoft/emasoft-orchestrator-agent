@@ -1,5 +1,5 @@
 ---
-name: ao-orchestrator-status
+name: orch-orchestrator-status
 description: "Check orchestrator loop status and pending tasks"
 allowed-tools: ["Bash(python3 ${CLAUDE_PLUGIN_ROOT}/scripts/atlas_check_orchestrator_status.py:*)"]
 ---

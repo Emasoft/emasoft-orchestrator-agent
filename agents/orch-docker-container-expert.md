@@ -1,5 +1,5 @@
 ---
-name: ao-docker-container-expert
+name: orch-docker-container-expert
 model: opus
 description: Manages Docker containers for cross-platform development and isolated testing
 type: local-helper

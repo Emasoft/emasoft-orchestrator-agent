@@ -1,5 +1,5 @@
 ---
-name: ao-add-module
+name: orch-add-module
 description: "Add a new module during Orchestration Phase (dynamic flexibility)"
 argument-hint: "<NAME> --criteria <TEXT> [--priority LEVEL]"
 allowed-tools: ["Bash(python3 ${CLAUDE_PLUGIN_ROOT}/scripts/atlas_modify_module.py:*)"]

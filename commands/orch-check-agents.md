@@ -1,5 +1,5 @@
 ---
-name: ao-check-agents
+name: orch-check-agents
 description: "Poll all active remote agents for progress with MANDATORY questions"
 argument-hint: "[--agent AGENT_ID]"
 allowed-tools: ["Bash(python3 ${CLAUDE_PLUGIN_ROOT}/scripts/atlas_check_remote_agents.py:*)"]

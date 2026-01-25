@@ -1,5 +1,5 @@
 ---
-name: ao-task-summarizer
+name: orch-task-summarizer
 model: opus
 description: Summarizes verbose task outputs into minimal reports for orchestrator consumption
 type: local-helper

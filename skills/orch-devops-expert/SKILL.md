@@ -1,5 +1,5 @@
 ---
-name: ao-devops-expert
+name: orch-devops-expert
 description: Design and configure CI/CD pipelines, GitHub Actions workflows, cross-platform build automation, secret management, and release processes. Use when setting up CI/CD, configuring GitHub Actions, managing secrets, automating multi-platform releases, debugging failing workflows, or enforcing TDD in pipelines. Outputs workflow YAML files, pipeline configurations, and deployment specifications. IRON RULE - NO CODE EXECUTION, produces configurations only.
 license: Apache-2.0
 compatibility: Requires GitHub Actions, GitHub CLI (gh), and understanding of CI/CD concepts. Supports macOS, Windows, Linux, iOS, Android build automation.

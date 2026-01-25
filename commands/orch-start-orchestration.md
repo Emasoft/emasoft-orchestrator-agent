@@ -1,5 +1,5 @@
 ---
-name: ao-start-orchestration
+name: orch-start-orchestration
 description: "Enter Orchestration Phase - begin coordinating remote agents for implementation"
 argument-hint: "[--project-id ID]"
 allowed-tools: ["Bash(python3 ${CLAUDE_PLUGIN_ROOT}/scripts/atlas_start_orchestration.py:*)"]

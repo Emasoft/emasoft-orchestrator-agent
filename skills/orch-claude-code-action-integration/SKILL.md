@@ -1,5 +1,5 @@
 ---
-name: ao-claude-code-action-integration
+name: orch-claude-code-action-integration
 description: Set up Claude Code in GitHub Actions for automated PR reviews, @claude mention responses, and issue triage.
 agent: deploy-agent
 context: fork
