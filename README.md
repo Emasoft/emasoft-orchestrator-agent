@@ -1,4 +1,4 @@
-# Orchestrator Agent (orch-)
+# Orchestrator Agent (eoa-)
 
 **Version**: 1.0.0
 
@@ -20,54 +20,54 @@ The Orchestrator Agent handles **task distribution, agent coordination, and prog
 
 | Agent | Description |
 |-------|-------------|
-| `orch-main.md` | Main orchestrator agent |
-| `orch-team-orchestrator.md` | Coordinates team of agents |
-| `orch-task-summarizer.md` | Summarizes task progress |
-| `orch-checklist-compiler.md` | Creates verification checklists |
-| `orch-devops-expert.md` | Handles DevOps tasks |
-| `orch-docker-container-expert.md` | Docker and container expertise |
+| `eoa-main.md` | Main orchestrator agent |
+| `eoa-team-orchestrator.md` | Coordinates team of agents |
+| `eoa-task-summarizer.md` | Summarizes task progress |
+| `eoa-checklist-compiler.md` | Creates verification checklists |
+| `eoa-devops-expert.md` | Handles DevOps tasks |
+| `eoa-docker-container-expert.md` | Docker and container expertise |
 
 ### Commands
 
 | Command | Description |
 |---------|-------------|
-| `orch-start-orchestration` | Start orchestration phase |
-| `orch-register-agent` | Register remote agent |
-| `orch-assign-module` | Assign module to agent |
-| `orch-reassign-module` | Reassign module |
-| `orch-check-agents` | Check agent status |
-| `orch-add-module` | Add new module |
-| `orch-modify-module` | Modify module |
-| `orch-remove-module` | Remove module |
-| `orch-prioritize-module` | Change module priority |
-| `orch-orchestrator-loop` | Start orchestration loop |
-| `orch-orchestrator-status` | Check orchestrator status |
-| `orch-cancel-orchestrator` | Cancel orchestration |
+| `eoa-start-orchestration` | Start orchestration phase |
+| `eoa-register-agent` | Register remote agent |
+| `eoa-assign-module` | Assign module to agent |
+| `eoa-reassign-module` | Reassign module |
+| `eoa-check-agents` | Check agent status |
+| `eoa-add-module` | Add new module |
+| `eoa-modify-module` | Modify module |
+| `eoa-remove-module` | Remove module |
+| `eoa-prioritize-module` | Change module priority |
+| `eoa-orchestrator-loop` | Start orchestration loop |
+| `eoa-orchestrator-status` | Check orchestrator status |
+| `eoa-cancel-orchestrator` | Cancel orchestration |
 
 ### Skills
 
 | Skill | Description |
 |-------|-------------|
-| `orch-two-phase-mode` | Two-phase orchestration mode |
-| `orch-orchestration-commands` | Orchestration command patterns |
-| `orch-orchestration-patterns` | Orchestration best practices |
-| `orch-remote-agent-coordinator` | Remote agent coordination |
-| `orch-agent-management` | Agent lifecycle management |
-| `orch-module-management` | Module CRUD operations |
-| `orch-verification-patterns` | Instruction verification |
-| `orch-developer-communication` | Developer comm patterns |
-| `orch-devops-expert` | DevOps expertise |
-| `orch-checklist-compiler` | Checklist generation |
-| `orch-shared` | Shared utilities |
+| `eoa-two-phase-mode` | Two-phase orchestration mode |
+| `eoa-orchestration-commands` | Orchestration command patterns |
+| `eoa-orchestration-patterns` | Orchestration best practices |
+| `eoa-remote-agent-coordinator` | Remote agent coordination |
+| `eoa-agent-management` | Agent lifecycle management |
+| `eoa-module-management` | Module CRUD operations |
+| `eoa-verification-patterns` | Instruction verification |
+| `eoa-developer-communication` | Developer comm patterns |
+| `eoa-devops-expert` | DevOps expertise |
+| `eoa-checklist-compiler` | Checklist generation |
+| `eoa-shared` | Shared utilities |
 
 ### Hooks
 
 | Hook | Event | Description |
 |------|-------|-------------|
-| `orch-orchestrator-stop` | Stop | Block exit until tasks complete |
-| `orch-instruction-verification-check` | PreToolUse | Verify instructions before work |
-| `orch-polling-reminder` | UserPromptSubmit | Remind to poll progress |
-| `orch-file-tracker` | PostToolUse | Track file modifications |
+| `eoa-orchestrator-stop` | Stop | Block exit until tasks complete |
+| `eoa-instruction-verification-check` | PreToolUse | Verify instructions before work |
+| `eoa-polling-reminder` | UserPromptSubmit | Remind to poll progress |
+| `eoa-file-tracker` | PostToolUse | Track file modifications |
 
 ## Workflow
 
@@ -89,5 +89,5 @@ claude --plugin-dir ./OUTPUT_SKILLS/orchestrator-agent
 
 ```bash
 cd OUTPUT_SKILLS/orchestrator-agent
-uv run python scripts/orch_validate_plugin.py --verbose
+uv run python scripts/eoa_validate_plugin.py --verbose
 ```

@@ -4,12 +4,12 @@
   "hooks": {
     "Stop": [
       {
-        "_id": "orch-orchestrator-stop",
+        "_id": "eoa-orchestrator-stop",
         "_description": "Blocks premature exit until all tasks are complete",
         "hooks": [
           {
             "type": "command",
-            "command": "python3 -m orch_stop_check.main",
+            "command": "python3 -m eoa_stop_check.main",
             "cwd": "${CLAUDE_PLUGIN_ROOT}/scripts"
           }
         ]
@@ -17,13 +17,13 @@
     ],
     "PreToolUse": [
       {
-        "_id": "orch-instruction-verification-check",
+        "_id": "eoa-instruction-verification-check",
         "_description": "MANDATORY: Blocks agent work reports if instruction verification incomplete",
         "matcher": "Task",
         "hooks": [
           {
             "type": "command",
-            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/scripts/orch_check_verification_status.py",
+            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/scripts/eoa_check_verification_status.py",
             "timeout": 10
           }
         ]
@@ -31,12 +31,12 @@
     ],
     "UserPromptSubmit": [
       {
-        "_id": "orch-polling-reminder",
+        "_id": "eoa-polling-reminder",
         "_description": "MANDATORY: Reminds orchestrator when progress polling is overdue",
         "hooks": [
           {
             "type": "command",
-            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/scripts/orch_check_polling_due.py",
+            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/scripts/eoa_check_polling_due.py",
             "timeout": 5
           }
         ]
@@ -44,13 +44,13 @@
     ],
     "PostToolUse": [
       {
-        "_id": "orch-file-tracker",
+        "_id": "eoa-file-tracker",
         "_description": "Track file modifications for orchestration context",
         "matcher": "Edit|MultiEdit|Write",
         "hooks": [
           {
             "type": "command",
-            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/scripts/orch_file_tracker.py"
+            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/scripts/eoa_file_tracker.py"
           }
         ]
       }

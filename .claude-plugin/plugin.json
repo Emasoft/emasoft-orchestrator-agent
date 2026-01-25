@@ -15,13 +15,13 @@
     "claude-code": ">=1.0.0"
   },
   "agents": [
-    "./agents/orch-main.md",
-    "./agents/orch-team-orchestrator.md",
-    "./agents/orch-task-summarizer.md",
-    "./agents/orch-checklist-compiler.md",
-    "./agents/orch-devops-expert.md",
-    "./agents/orch-docker-container-expert.md",
-    "./agents/orch-experimenter.md"
+    "./agents/eoa-main.md",
+    "./agents/eoa-team-orchestrator.md",
+    "./agents/eoa-task-summarizer.md",
+    "./agents/eoa-checklist-compiler.md",
+    "./agents/eoa-devops-expert.md",
+    "./agents/eoa-docker-container-expert.md",
+    "./agents/eoa-experimenter.md"
   ],
   "skills": "./skills/"
 }
