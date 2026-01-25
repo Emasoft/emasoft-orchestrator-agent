@@ -1,0 +1,125 @@
+# Inter-Agent Communication Protocols
+
+This document defines the protocols for communication between agents in the atlas-orchestrator system.
+
+---
+
+## Table of Contents
+
+- 1. Communication Hierarchy
+  - 1.1 When communicating in a multi-agent system
+  - 1.2 Orchestrator-exclusive communications (RULE 16)
+- 2. Message Routing Protocol
+  - 2.1 If sending messages to remote agents
+  - 2.2 If receiving messages from orchestrator
+- 3. Acknowledgment Protocol
+  - 3.1 When acknowledgment is required
+  - 3.2 Acknowledgment timing requirements
+- 4. Escalation Protocol
+  - 4.1 If encountering blockers
+  - 4.2 If requiring clarification
+
+---
+
+## 1. Communication Hierarchy
+
+### 1.1 When communicating in a multi-agent system
+
+The communication hierarchy follows strict rules:
+
+```
+USER
+  ↓↑
+ORCHESTRATOR (central hub)
+  ↓↑
+REMOTE AGENTS (leaf nodes)
+```
+
+**Rule**: Remote agents NEVER communicate directly with each other. All communication flows through the orchestrator.
+
+### 1.2 Orchestrator-exclusive communications (RULE 16)
+
+Per RULE 16, only the orchestrator can:
+- Send external messages (AI Maestro, email, notifications)
+- Receive and process incoming messages
+- Route messages between agents
+- Commit and push changes
+
+Sub-agents prepare content but NEVER send externally.
+
+---
+
+## 2. Message Routing Protocol
+
+### 2.1 If sending messages to remote agents
+
+The orchestrator sends messages via AI Maestro:
+
+```bash
+curl -X POST "http://localhost:23000/api/messages" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "agent-session-name",
+    "subject": "Subject",
+    "priority": "normal|high|urgent",
+    "content": {"type": "request|assignment|approval", "message": "..."}
+  }'
+```
+
+### 2.2 If receiving messages from orchestrator
+
+Remote agents check their inbox:
+
+```bash
+curl -s "http://localhost:23000/api/messages?agent=$SESSION_NAME&action=list&status=unread"
+```
+
+---
+
+## 3. Acknowledgment Protocol
+
+### 3.1 When acknowledgment is required
+
+Acknowledgment is MANDATORY for:
+- Task delegations
+- Priority messages
+- Assignment changes
+- Escalation requests
+
+Acknowledgment is NOT required for:
+- Status inquiries
+- Conversational messages
+- FYI notifications
+
+### 3.2 Acknowledgment timing requirements
+
+| Message Priority | ACK Required Within |
+|------------------|---------------------|
+| URGENT | 30 seconds |
+| HIGH | 2 minutes |
+| NORMAL | 5 minutes |
+
+---
+
+## 4. Escalation Protocol
+
+### 4.1 If encountering blockers
+
+1. Document blocker in status report
+2. Send BLOCKED status to orchestrator
+3. Wait for orchestrator response
+4. Do NOT attempt workarounds
+
+### 4.2 If requiring clarification
+
+1. Send CLARIFICATION_NEEDED acknowledgment
+2. List specific questions
+3. Continue other work if possible
+4. Wait for orchestrator guidance
+
+---
+
+## See Also
+
+- [agent-communication-formats.md](agent-communication-formats.md) - Message format specifications
+- [templates-for-humans.md](templates-for-humans.md) - Human-facing communication templates

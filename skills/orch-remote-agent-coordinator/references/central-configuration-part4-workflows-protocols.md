@@ -1,0 +1,311 @@
+# Central Configuration - Part 4: Workflows and Protocols
+
+## Table of Contents
+
+1. [If you need to reference configs in task messages](#reference-based-sharing)
+   - [How Task Instructions Reference Configs](#how-task-instructions-reference-configs)
+   - [Agent Workflow for Reading Configs](#agent-workflow-for-reading-configs)
+   - [Example Agent Flow](#example-agent-flow)
+2. [If you need to update a configuration file](#config-update-protocol)
+   - [When Configuration Changes](#when-configuration-changes)
+   - [Change Notification Message](#change-notification-message)
+   - [Agent Response to Config Change](#agent-response-to-config-change)
+   - [Handling Config Update Conflicts](#handling-config-update-conflicts)
+3. [If config changes affect active agents](#integration-with-change-notification)
+   - [Reference to Change Notification Protocol](#reference-to-change-notification-protocol)
+   - [Config Changes Trigger Notifications](#config-changes-trigger-notifications)
+4. [If you want to follow best practices for config management](#best-practices)
+5. [If config management is not working as expected](#troubleshooting)
+6. [If you need to understand related protocols and systems](#related-documentation)
+
+---
+
+## Reference-Based Sharing
+
+### How Task Instructions Reference Configs
+
+**WRONG** (embedding config in message):
+
+```json
+{
+  "to": "dev-agent-1",
+  "content": {
+    "instructions": "Use Python 3.12, uv for packages, ruff for formatting with line length 88, pytest for tests, write docstrings for all functions, use snake_case for functions..."
+  }
+}
+```
+
+**Size**: 500+ tokens per message × 20 agents = 10,000 tokens wasted
+
+---
+
+**CORRECT** (referencing central config):
+
+```json
+{
+  "to": "dev-agent-1",
+  "content": {
+    "instructions": "Implement user authentication according to `.atlas/specs/requirements.md` feature GH-101. Follow toolchain in `.atlas/config/toolchain.md` and standards in `.atlas/config/standards.md`."
+  }
+}
+```
+
+**Size**: 50 tokens per message × 20 agents = 1,000 tokens
+
+**Savings**: 90% reduction in message size
+
+### Agent Workflow for Reading Configs
+
+1. **Receive task message** with config references
+2. **Read referenced config files** from `.atlas/config/` and `.atlas/specs/`
+3. **Apply configuration** to task execution
+4. **Report deviations** if config cannot be followed
+
+### Example Agent Flow
+
+```bash
+# Agent receives task: "Implement GH-101 per .atlas/specs/requirements.md"
+
+# Step 1: Read requirement
+cat .atlas/specs/requirements.md | grep -A 20 "GH-101"
+
+# Step 2: Read toolchain config
+cat .atlas/config/toolchain.md
+
+# Step 3: Read code standards
+cat .atlas/config/standards.md
+
+# Step 4: Execute task following all configs
+uv venv --python 3.12
+source .venv/bin/activate
+# ... implement feature ...
+
+# Step 5: Report back
+curl -X POST "$AIMAESTRO_API/api/messages" -d '{
+  "to": "orchestrator-master",
+  "content": {
+    "type": "task-completion",
+    "status": "success",
+    "configs_followed": [
+      ".atlas/config/toolchain.md",
+      ".atlas/config/standards.md",
+      ".atlas/specs/requirements.md"
+    ]
+  }
+}'
+```
+
+---
+
+## Config Update Protocol
+
+### When Configuration Changes
+
+1. **Orchestrator updates config file** in `.atlas/config/`
+2. **Orchestrator records change** in config file header:
+   ```markdown
+   **Last Updated**: 2025-12-31 04:15:00
+   **Updated By**: orchestrator-master
+   **Change Summary**: Updated Python version from 3.11 to 3.12
+   ```
+3. **Orchestrator sends change notification** to all active agents (see Change Notification Protocol)
+4. **Agents acknowledge** and re-read config
+5. **Orchestrator logs acknowledgments** in `.atlas/memory/progress.md`
+
+### Change Notification Message
+
+```json
+{
+  "to": "all-active-agents",
+  "subject": "CONFIG UPDATE: Toolchain configuration changed",
+  "priority": "high",
+  "content": {
+    "type": "config-change-notification",
+    "changed_files": [
+      ".atlas/config/toolchain.md"
+    ],
+    "change_summary": "Updated Python version from 3.11 to 3.12",
+    "action_required": "Re-read config before starting next task",
+    "effective_immediately": true
+  }
+}
+```
+
+### Agent Response to Config Change
+
+**Agent must**:
+1. **Acknowledge receipt** via echo acknowledgment protocol
+2. **Re-read changed config files**
+3. **Apply new config** to current/future tasks
+4. **Report conflicts** if current task cannot comply with new config
+
+**Acknowledgment message**:
+
+```json
+{
+  "to": "orchestrator-master",
+  "subject": "ACK: Config update received",
+  "content": {
+    "type": "echo-acknowledgment",
+    "original_subject": "CONFIG UPDATE: Toolchain configuration changed",
+    "configs_reread": [
+      ".atlas/config/toolchain.md"
+    ],
+    "status": "applied|conflict",
+    "conflict_details": "Currently using Python 3.11, will switch for next task"
+  }
+}
+```
+
+### Handling Config Update Conflicts
+
+**If agent has task in progress**:
+
+1. **Minor changes** (formatting, linting): Apply immediately
+2. **Major changes** (language version, framework): Complete current task with old config, apply new config to next task
+3. **Breaking changes** (incompatible requirements): Report conflict, wait for orchestrator decision
+
+**Conflict report**:
+
+```json
+{
+  "to": "orchestrator-master",
+  "subject": "CONFIG CONFLICT: Cannot apply update to current task",
+  "priority": "high",
+  "content": {
+    "type": "config-conflict",
+    "task_id": "GH-101",
+    "changed_config": ".atlas/config/toolchain.md",
+    "conflict": "Task started with Python 3.11, new config requires 3.12",
+    "options": [
+      "A: Complete task with 3.11, apply 3.12 to next task",
+      "B: Restart task with 3.12",
+      "C: Rollback config change"
+    ],
+    "recommendation": "A",
+    "awaiting_decision": true
+  }
+}
+```
+
+---
+
+## Integration with Change Notification
+
+### Reference to Change Notification Protocol
+
+See `change-notification-protocol.md` for complete details on:
+
+- **Broadcast mechanism** for notifying all agents
+- **Echo acknowledgment pattern** for confirming receipt
+- **Retry logic** for agents that don't acknowledge
+- **Timeout handling** for offline agents
+
+### Config Changes Trigger Notifications
+
+Every update to any file in `.atlas/config/` or `.atlas/specs/` MUST trigger a change notification to all active agents.
+
+**Orchestrator workflow**:
+
+```bash
+# 1. Update config file
+echo "Updated content" >> .atlas/config/toolchain.md
+
+# 2. Send change notification
+curl -X POST "$AIMAESTRO_API/api/messages" -d '{
+  "to": "broadcast:all-active",
+  "subject": "CONFIG UPDATE: toolchain.md changed",
+  "priority": "high",
+  "content": {
+    "type": "config-change-notification",
+    "changed_files": [".atlas/config/toolchain.md"],
+    "change_summary": "Updated Python to 3.12",
+    "action_required": "Re-read config",
+    "acknowledge_required": true
+  }
+}'
+
+# 3. Monitor for acknowledgments
+# (See change-notification-protocol.md for ack tracking)
+```
+
+---
+
+## Best Practices
+
+### DO
+
+- **Keep configs small and focused**: Each file addresses one concern
+- **Document every change**: Update header with timestamp, author, summary
+- **Reference, don't embed**: Always point agents to config files
+- **Version control configs**: Commit all `.atlas/` changes to git
+- **Notify on updates**: Use change notification protocol
+- **Track acknowledgments**: Ensure all agents received updates
+
+### DON'T
+
+- **Embed configuration in messages**: Use references instead
+- **Skip change notifications**: Always notify when configs change
+- **Allow config drift**: Enforce single source of truth
+- **Update without documenting**: Every change needs rationale
+- **Ignore conflicts**: Address agent conflicts promptly
+
+---
+
+## Troubleshooting
+
+### Problem: Agent uses outdated configuration
+
+**Symptoms**: Agent reports using old tool version or standard
+
+**Solution**:
+1. Check if change notification was sent
+2. Verify agent acknowledged notification
+3. Resend notification if not acknowledged
+4. Check agent's `.atlas/memory/config-snapshot.md` for what it read
+
+### Problem: Config files grow too large
+
+**Symptoms**: Config files exceed 5000 tokens
+
+**Solution**:
+1. Split into multiple focused files
+2. Create subdirectories: `.atlas/config/python/`, `.atlas/config/typescript/`
+3. Update references in task messages
+
+### Problem: Multiple agents report same config conflict
+
+**Symptoms**: Multiple agents blocked on same config change
+
+**Solution**:
+1. Review changed config for compatibility
+2. Consider rollback if change is breaking
+3. Provide migration guide in config file
+4. Update task instructions to handle transition period
+
+### Problem: Config changes not reflected in agent output
+
+**Symptoms**: Agent output doesn't match current config
+
+**Solution**:
+1. Verify agent acknowledged config update
+2. Check timestamp of agent's config read vs. update time
+3. Force agent to re-read: send explicit "re-read config" message
+4. If persistent, check if agent is caching config locally (shouldn't)
+
+---
+
+## Related Documentation
+
+- `change-notification-protocol.md` - How to broadcast config updates
+- `echo-acknowledgment-protocol.md` - How agents confirm receipt
+- `messaging-protocol.md` - Base messaging system
+- `task-instruction-format.md` - How to reference configs in tasks
+
+---
+
+## Related Parts
+
+- **Part 1**: [Overview and Structure](central-configuration-part1-overview-structure.md) - Why config matters, directory layout
+- **Part 2**: [Tooling Templates](central-configuration-part2-tooling-templates.md) - toolchain.md, standards.md, environment.md templates
+- **Part 3**: [Spec Templates](central-configuration-part3-spec-templates.md) - decisions.md, requirements.md, architecture.md, interfaces.md templates

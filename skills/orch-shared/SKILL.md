@@ -1,8 +1,23 @@
 ---
-name: orch-shared
-description: orch-shared skill for Orchestrator Agent
+name: ao-shared
+description: Shared reference documents used across multiple Atlas Orchestrator skills.
+license: Apache-2.0
+metadata:
+  author: Anthropic
+  version: 1.0.0
+context: fork
 ---
 
-# orch-shared
+# Shared References
 
-Placeholder skill file. Content will be added during component distribution phase.
+This skill provides shared reference documents that are used across multiple Atlas Orchestrator skills.
+
+## Reference Documents
+
+### Handoff Protocols ([references/handoff-protocols.md](references/handoff-protocols.md))
+
+Standard protocols for handing off work between agents:
+
+- When you need to transfer context between agents → Handoff Format
+- If you need to document session state → Session State Schema
+- When coordinating multi-agent workflows → Coordination Patterns

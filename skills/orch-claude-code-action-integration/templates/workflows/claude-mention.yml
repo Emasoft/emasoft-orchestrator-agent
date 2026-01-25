@@ -1,0 +1,83 @@
+---
+# Claude Mention Response Workflow
+# Copy this file to .github/workflows/claude-mention.yml
+#
+# This workflow responds to @claude mentions in issues and PR comments
+# It can answer questions, explain code, and help with development tasks
+#
+# Required secrets:
+# - ANTHROPIC_API_KEY: Your Anthropic API key
+#
+# Required permissions in your repository:
+# - Settings > Actions > General > Workflow permissions
+# - Enable: Read and write permissions
+
+name: Claude Mention Response
+
+on:
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+  pull_request_review:
+    types: [submitted]
+  issues:
+    types: [opened, assigned]
+
+# Prevent concurrent responses to the same context
+concurrency:
+  group: claude-mention-${{ github.event.issue.number || github.event.pull_request.number }}-${{ github.event.comment.id || github.event.review.id || 'issue' }}
+  cancel-in-progress: false
+
+jobs:
+  respond:
+    # Only run if @claude is mentioned
+    if: |
+      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
+      (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+
+      - name: Respond to @claude mention
+        id: claude-respond
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+
+          # The action automatically provides context about the mention
+          # including the comment body, issue/PR details, etc.
+
+          claude_args: |
+            --allowedTools "mcp__github_inline_comment__create_inline_comment,Bash(gh pr comment:*),Bash(gh issue comment:*),Bash(gh pr diff:*),Bash(gh pr view:*),Bash(gh issue view:*),Read,Write,Edit,Glob,Grep,Bash(bun:*),Bash(npm:*),Bash(git diff:*),Bash(git log:*),Bash(git show:*)"
+            --model "claude-sonnet-4-20250514"
+
+      - name: Post response summary
+        if: always()
+        run: |
+          echo "## Claude Mention Response" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Event**: ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ github.event_name }}" == "issue_comment" ]; then
+            echo "- **Issue**: #${{ github.event.issue.number }}" >> $GITHUB_STEP_SUMMARY
+            echo "- **Commenter**: @${{ github.event.comment.user.login }}" >> $GITHUB_STEP_SUMMARY
+          elif [ "${{ github.event_name }}" == "pull_request_review_comment" ]; then
+            echo "- **PR**: #${{ github.event.pull_request.number }}" >> $GITHUB_STEP_SUMMARY
+            echo "- **Commenter**: @${{ github.event.comment.user.login }}" >> $GITHUB_STEP_SUMMARY
+          elif [ "${{ github.event_name }}" == "issues" ]; then
+            echo "- **Issue**: #${{ github.event.issue.number }}" >> $GITHUB_STEP_SUMMARY
+            echo "- **Author**: @${{ github.event.issue.user.login }}" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "- **Status**: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY

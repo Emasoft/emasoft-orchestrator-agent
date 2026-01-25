@@ -1,0 +1,123 @@
+---
+# Claude PR Review Workflow
+# Copy this file to .github/workflows/claude-pr-review.yml
+#
+# This workflow automatically reviews pull requests using claude-code-action
+# It triggers on PR open and new commits, providing comprehensive code review
+#
+# Required secrets:
+# - ANTHROPIC_API_KEY: Your Anthropic API key
+#
+# Required permissions in your repository:
+# - Settings > Actions > General > Workflow permissions
+# - Enable: Read and write permissions
+
+name: Claude PR Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review, reopened]
+
+# Prevent concurrent reviews of the same PR
+concurrency:
+  group: claude-pr-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    # Skip draft PRs unless they become ready for review
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      pull-requests: write
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0 # Full history for better diff analysis
+
+      - name: PR Review with Claude
+        id: claude-review
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          track_progress: true # Enable visual progress tracking
+
+          prompt: |
+            REPO: ${{ github.repository }}
+            PR_NUMBER: ${{ github.event.pull_request.number }}
+            PR_TITLE: ${{ github.event.pull_request.title }}
+            PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+            BASE_BRANCH: ${{ github.event.pull_request.base.ref }}
+            HEAD_BRANCH: ${{ github.event.pull_request.head.ref }}
+
+            Please review this pull request comprehensively:
+
+            ## Review Focus Areas
+
+            ### 1. Code Quality
+            - Follow established patterns in the codebase
+            - Variable and function naming conventions
+            - Code organization and modularity
+            - Avoid code duplication (DRY principle)
+            - Proper error handling
+
+            ### 2. Potential Bugs
+            - Null/undefined handling
+            - Edge cases and boundary conditions
+            - Resource leaks (memory, file handles, connections)
+            - Race conditions in concurrent code
+            - Type mismatches
+
+            ### 3. Security
+            - Input validation and sanitization
+            - SQL/NoSQL injection vulnerabilities
+            - XSS vulnerabilities
+            - Authentication and authorization issues
+            - Sensitive data exposure
+            - Dependency vulnerabilities
+
+            ### 4. Performance
+            - Algorithm complexity (time and space)
+            - Database query optimization
+            - Unnecessary computations in loops
+            - Memory allocation patterns
+            - Caching opportunities
+
+            ### 5. Testing
+            - Test coverage for new code
+            - Edge case testing
+            - Mock usage appropriateness
+            - Test clarity and maintainability
+
+            ## Instructions
+
+            1. First, get the PR diff with: `gh pr diff ${{ github.event.pull_request.number }}`
+            2. Analyze each changed file
+            3. Use inline comments (`mcp__github_inline_comment__create_inline_comment`) for specific code issues
+            4. Post a summary comment using `gh pr comment`
+
+            ## Output Format
+
+            Post a summary comment with:
+            - Overall assessment (Approve/Request Changes/Comment)
+            - Key findings by category
+            - Specific recommendations
+            - Questions for the author (if any)
+
+          claude_args: |
+            --allowedTools "mcp__github_inline_comment__create_inline_comment,Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*),Read,Glob,Grep"
+            --model "claude-sonnet-4-20250514"
+
+      - name: Post review summary
+        if: always()
+        run: |
+          echo "## Claude PR Review" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **PR**: #${{ github.event.pull_request.number }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Author**: @${{ github.event.pull_request.user.login }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Status**: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY

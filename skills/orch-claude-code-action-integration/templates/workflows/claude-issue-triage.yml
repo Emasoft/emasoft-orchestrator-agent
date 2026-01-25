@@ -1,0 +1,119 @@
+---
+# Claude Issue Triage Workflow
+# Copy this file to .github/workflows/claude-issue-triage.yml
+#
+# This workflow automatically triages new issues using claude-code-action
+# It analyzes issue content and applies appropriate labels
+#
+# Required secrets:
+# - ANTHROPIC_API_KEY: Your Anthropic API key
+#
+# Required permissions in your repository:
+# - Settings > Actions > General > Workflow permissions
+# - Enable: Read and write permissions
+
+name: Claude Issue Triage
+
+on:
+  issues:
+    types: [opened]
+
+# Prevent concurrent triage of the same issue
+concurrency:
+  group: claude-issue-triage-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      issues: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0 # Full history to understand codebase structure
+
+      - name: Triage Issue with Claude
+        id: claude-triage
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          allowed_non_write_users: "*" # Allow issues from external contributors
+
+          prompt: |
+            REPO: ${{ github.repository }}
+            ISSUE_NUMBER: ${{ github.event.issue.number }}
+            ISSUE_TITLE: ${{ github.event.issue.title }}
+            ISSUE_BODY: ${{ github.event.issue.body }}
+            ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
+
+            Please triage this newly opened issue:
+
+            ## Triage Steps
+
+            ### 1. Classify Issue Type
+            Determine if this is:
+            - `bug` - Something is broken or not working as expected
+            - `feature` - Request for new functionality
+            - `enhancement` - Improvement to existing functionality
+            - `documentation` - Documentation improvements or fixes
+            - `question` - User needs help or clarification
+            - `duplicate` - Already reported (check existing issues)
+            - `invalid` - Not a valid issue (spam, off-topic, etc.)
+
+            ### 2. Assess Priority
+            Based on impact and urgency:
+            - `priority: critical` - System down, data loss, security vulnerability
+            - `priority: high` - Major functionality broken, affects many users
+            - `priority: medium` - Important but workaround exists
+            - `priority: low` - Minor inconvenience, cosmetic issues
+
+            ### 3. Identify Components
+            Based on the codebase structure, apply component labels:
+            - `area: frontend` - UI/UX related
+            - `area: backend` - Server/API related
+            - `area: database` - Data storage related
+            - `area: infrastructure` - DevOps/deployment related
+            - `area: testing` - Test-related issues
+            - `area: security` - Security-related issues
+
+            ### 4. Check for Duplicates
+            Search existing issues: `gh issue list -s all -L 100`
+            If duplicate found, add `duplicate` label and reference original issue.
+
+            ### 5. Check for Reproduction Info (for bugs)
+            If bug report lacks reproduction steps:
+            - Add `needs: reproduction` label
+            - Comment asking for more details
+
+            ## Actions to Take
+
+            1. Apply labels using:
+               `gh issue edit ${{ github.event.issue.number }} --add-label "label1,label2"`
+
+            2. If duplicate, comment with:
+               `gh issue comment ${{ github.event.issue.number }} --body "This appears to be a duplicate of #<original_issue>"`
+
+            3. If needs more info, comment with:
+               `gh issue comment ${{ github.event.issue.number }} --body "Thank you for the report. Could you please provide: <specific details needed>"`
+
+            4. For valid issues, add a welcoming comment:
+               `gh issue comment ${{ github.event.issue.number }} --body "Thank you for reporting this! We've triaged it as <type> with <priority> priority."`
+
+          claude_args: |
+            --allowedTools "Bash(gh issue:*),Bash(gh search:*),Read,Glob"
+            --model "claude-sonnet-4-20250514"
+
+      - name: Post triage summary
+        if: always()
+        run: |
+          echo "## Claude Issue Triage" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Issue**: #${{ github.event.issue.number }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Title**: ${{ github.event.issue.title }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Author**: @${{ github.event.issue.user.login }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Status**: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY

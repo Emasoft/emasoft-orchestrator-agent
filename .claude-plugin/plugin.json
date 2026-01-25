@@ -20,7 +20,8 @@
     "./agents/orch-task-summarizer.md",
     "./agents/orch-checklist-compiler.md",
     "./agents/orch-devops-expert.md",
-    "./agents/orch-docker-container-expert.md"
+    "./agents/orch-docker-container-expert.md",
+    "./agents/orch-experimenter.md"
   ],
   "skills": "./skills/"
 }
