@@ -195,11 +195,44 @@ Complete reference for all Two-Phase Mode Python scripts.
 
 | Section | Scripts |
 |---------|---------|
-| 1. Plan Phase Scripts (4) | eoa_start_planning.py <!-- TODO: Script not implemented -->, eoa_planning_status.py <!-- TODO: Script not implemented -->, eoa_modify_requirement.py <!-- TODO: Script not implemented -->, eoa_approve_plan.py <!-- TODO: Script not implemented --> |
-| 2. Orchestration Phase Scripts (14) | eoa_start_orchestration.py, eoa_orchestration_status.py <!-- TODO: Script not implemented -->, eoa_register_agent.py, eoa_assign_module.py, eoa_modify_module.py, eoa_reassign_module.py, eoa_check_remote_agents.py, eoa_notify_agent.py <!-- TODO: Script not implemented -->, eoa_check_plan_phase.py <!-- TODO: Script not implemented -->, eoa_check_orchestration_phase.py <!-- TODO: Script not implemented -->, eoa_sync_github_issues.py <!-- TODO: Script not implemented -->, eoa_verify_instructions.py, eoa_poll_agent.py, eoa_update_verification.py <!-- TODO: Script not implemented --> |
-| 3. Modified Scripts (1) | eoa_orchestrator_stop_check.py <!-- TODO: Script not implemented --> (phase-aware) |
+| 1. Plan Phase Scripts (4) | eoa_start_planning.py, eoa_planning_status.py, eoa_modify_requirement.py, eoa_approve_plan.py |
+| 2. Orchestration Phase Scripts (14) | eoa_start_orchestration.py, eoa_orchestration_status.py, eoa_register_agent.py, eoa_assign_module.py, eoa_modify_module.py, eoa_reassign_module.py, eoa_check_remote_agents.py, eoa_notify_agent.py, eoa_check_plan_phase.py, eoa_check_orchestration_phase.py, eoa_sync_github_issues.py, eoa_verify_instructions.py, eoa_poll_agent.py, eoa_update_verification.py |
+| 3. Design & GitHub Scripts (5) | eoa_init_design_folders.py, eoa_compile_handoff.py, eoa_design_search.py, eoa_sync_kanban.py, eoa_create_module_issues.py |
+| 4. Modified Scripts (1) | eoa_orchestrator_stop_check.py (phase-aware) |
 
 **When to use:** Understanding script functionality, debugging, learning parameters.
+
+---
+
+### Design & GitHub Scripts Usage Examples
+
+**Initialize design folder structure:**
+```bash
+python3 eoa_init_design_folders.py --platforms web ios android
+```
+
+**Compile handoff for agent:**
+```bash
+python3 eoa_compile_handoff.py auth-core implementer-1 --platform web --include-context decision-001
+```
+
+**Search design documents:**
+```bash
+python3 eoa_design_search.py --keyword "auth" --type requirements
+python3 eoa_design_search.py --uuid abc12345
+python3 eoa_design_search.py --recent 10
+```
+
+**Sync with GitHub Projects kanban:**
+```bash
+python3 eoa_sync_kanban.py --project-id PVT_kwDOBxxxxxx --create-missing
+```
+
+**Create GitHub issues for modules:**
+```bash
+python3 eoa_create_module_issues.py --all --project-id PVT_kwDOBxxxxxx
+python3 eoa_create_module_issues.py --module auth-core
+```
 
 ---
 
@@ -300,7 +333,7 @@ Solutions for common issues in Two-Phase Mode.
 
 ## Stop Hook Enforcement
 
-The stop hook (`eoa_orchestrator_stop_check.py` <!-- TODO: Script not implemented -->) is **phase-aware** and enforces:
+The stop hook (`eoa_orchestrator_stop_check.py`) is **phase-aware** and enforces:
 
 | Phase | Blocks Exit If |
 |-------|---------------|

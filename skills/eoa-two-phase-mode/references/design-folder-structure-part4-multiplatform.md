@@ -9,9 +9,7 @@ Multi-platform project organization, state file integration, and script support.
   - 6.2 Platform-specific customization
 - 7. State File Integration
 - 8. Script Support
-  - 8.1 eoa_init_design_folders.py <!-- TODO: Script not implemented -->
-  - 8.2 eoa_compile_handoff.py <!-- TODO: Script not implemented -->
-- 9. Checklists
+  - 8.1 eoa_init_design_folders.py   - 8.2 eoa_compile_handoff.py - 9. Checklists
   - 9.1 Design Folder Setup Checklist
   - 9.2 Per-Module Design Checklist
 
@@ -101,8 +99,7 @@ active_assignments:
 
 ## 8. Script Support
 
-### 8.1 eoa_init_design_folders.py <!-- TODO: Script not implemented -->
-
+### 8.1 eoa_init_design_folders.py 
 Creates standardized folder structure:
 
 ```bash
@@ -127,8 +124,7 @@ python3 eoa_init_design_folders.py <!-- TODO: Script not implemented --> --platf
 # design/archive/
 ```
 
-### 8.2 eoa_compile_handoff.py <!-- TODO: Script not implemented -->
-
+### 8.2 eoa_compile_handoff.py 
 Compiles template to handoff:
 
 ```bash

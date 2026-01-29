@@ -8,12 +8,13 @@ This document serves as an index to the detailed script documentation.
 
 ## Overview
 
-Two-Phase Mode includes **21 scripts** organized into three categories:
+Two-Phase Mode includes **24 scripts** organized into four categories:
 
 | Category | Script Count | Purpose |
 |----------|--------------|---------|
 | Plan Phase | 4 | Planning and requirements management |
 | Orchestration Phase | 16 | Execution and agent coordination |
+| Design & GitHub Scripts | 5 | Design documents and GitHub integration |
 | Modified Scripts | 1 | Phase-aware stop hook |
 
 ---
@@ -114,19 +115,59 @@ Advanced orchestration operations (2.9-2.16):
   - Update types: requirement_change, design_update, spec_clarification, etc.
   - 5-stage verification: pending_receipt -> awaiting_feasibility -> addressing_concerns -> ready_to_resume -> resumed
 
-- **2.15 eoa_init_design_folders.py** <!-- TODO: Script not implemented --> - Initializing design folder structure
-  - Creates design/ with designs/, config/, handoffs/, archive/
+- **2.15 eoa_init_design_folders.py** - Initializing design folder structure
+  - Creates design/ with requirements/, memory/, handoffs/, config/, archive/
   - Generates templates for each platform
+  - Creates index.yaml for tracking documents
 
-- **2.16 eoa_compile_handoff.py** <!-- TODO: Script not implemented --> - Compiling template to handoff document
-  - Fills placeholders with module and agent data
+- **2.16 eoa_compile_handoff.py** - Compiling template to handoff document
+  - Reads module spec from design/requirements/
+  - Includes context from design/memory/
   - Outputs to design/handoffs/{agent-id}/
 
 ---
 
-## Part 4: Modified Scripts
+## Part 4: Design & GitHub Scripts
 
-**File:** [script-reference-part4-modified.md](script-reference-part4-modified.md)
+**File:** [script-reference-part4-design-github.md](script-reference-part4-design-github.md)
+
+Scripts for design document management and GitHub integration:
+
+- **4.1 eoa_init_design_folders.py** - Initialize design folder structure
+  - Creates design/memory/, design/handoffs/, design/requirements/
+  - Creates template files in each folder
+  - Initializes index.yaml for tracking documents
+  - Usage: `python3 eoa_init_design_folders.py --platforms web ios android`
+
+- **4.2 eoa_compile_handoff.py** - Compile handoff document for agent
+  - Reads module specification from design/requirements/
+  - Reads relevant context from design/memory/
+  - Generates compiled handoff in design/handoffs/{agent-id}/
+  - Usage: `python3 eoa_compile_handoff.py auth-core implementer-1 --platform web`
+
+- **4.3 eoa_design_search.py** - Search design documents
+  - Search by UUID, type, status, or keyword
+  - Supports all design/*/ subfolders
+  - Returns structured results
+  - Usage: `python3 eoa_design_search.py --keyword "auth" --type requirements`
+
+- **4.4 eoa_sync_kanban.py** - Sync modules with GitHub Projects kanban
+  - Reads active modules from orchestration state
+  - Creates/updates GitHub Project items for each module
+  - Updates item status based on module status
+  - Usage: `python3 eoa_sync_kanban.py --project-id PVT_kwDOBxxxxxx --create-missing`
+
+- **4.5 eoa_create_module_issues.py** - Create GitHub issues for modules
+  - Reads module specifications from state file
+  - Creates GitHub issue for each module
+  - Updates module with issue number
+  - Usage: `python3 eoa_create_module_issues.py --all --project-id PVT_kwDOBxxxxxx`
+
+---
+
+## Part 5: Modified Scripts
+
+**File:** [script-reference-part5-modified.md](script-reference-part5-modified.md)
 
 Scripts modified for Two-Phase Mode:
 
@@ -171,7 +212,10 @@ scripts/
 ├── eoa_verify_instructions.py
 ├── eoa_poll_agent.py
 ├── eoa_update_verification.py      # TODO: Script not implemented
-├── eoa_init_design_folders.py      # TODO: Script not implemented
-├── eoa_compile_handoff.py          # TODO: Script not implemented
+├── eoa_init_design_folders.py      # Design folder initialization
+├── eoa_compile_handoff.py          # Handoff document compilation
+├── eoa_design_search.py            # Design document search
+├── eoa_sync_kanban.py              # GitHub Projects kanban sync
+├── eoa_create_module_issues.py     # GitHub issue creation for modules
 └── eoa_orchestrator_stop_check.py  # TODO: Script not implemented
 ```
