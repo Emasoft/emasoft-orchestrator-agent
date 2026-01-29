@@ -197,9 +197,8 @@ def main() -> int:
 
     # Check if already assigned
     if module.get("assigned_to"):
-        print(
-            f"ERROR: Module '{args.module_id}' already assigned to {module.get('assigned_to')}"
-        )
+        assigned = module.get("assigned_to")
+        print(f"ERROR: Module '{args.module_id}' already assigned to {assigned}")
         print("Use /reassign-module to change assignment")
         return 1
 

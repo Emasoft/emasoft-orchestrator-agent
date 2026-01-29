@@ -35,7 +35,7 @@ def parse_frontmatter(file_path: Path) -> tuple[dict, str]:
         return {}, content
 
     yaml_content = content[3:end_index].strip()
-    body = content[end_index + 3:].strip()
+    body = content[end_index + 3 :].strip()
 
     try:
         data = yaml.safe_load(yaml_content) or {}
@@ -47,7 +47,9 @@ def parse_frontmatter(file_path: Path) -> tuple[dict, str]:
 def write_state_file(file_path: Path, data: dict, body: str) -> bool:
     """Write a state file with YAML frontmatter."""
     try:
-        yaml_content = yaml.dump(data, default_flow_style=False, allow_unicode=True, sort_keys=False)
+        yaml_content = yaml.dump(
+            data, default_flow_style=False, allow_unicode=True, sort_keys=False
+        )
         content = f"---\n{yaml_content}---\n\n{body}"
         file_path.write_text(content, encoding="utf-8")
         return True
@@ -67,11 +69,9 @@ def register_ai_agent(data: dict, agent_id: str, session_name: str) -> bool:
             print(f"ERROR: AI agent '{agent_id}' already registered")
             return False
 
-    ai_agents.append({
-        "agent_id": agent_id,
-        "session_name": session_name,
-        "assigned_by_user": True
-    })
+    ai_agents.append(
+        {"agent_id": agent_id, "session_name": session_name, "assigned_by_user": True}
+    )
 
     agents["ai_agents"] = ai_agents
     data["registered_agents"] = agents
@@ -93,10 +93,7 @@ def register_human_developer(data: dict, agent_id: str) -> bool:
             print(f"ERROR: Human developer '{agent_id}' already registered")
             return False
 
-    human_devs.append({
-        "github_username": agent_id,
-        "assigned_by_user": True
-    })
+    human_devs.append({"github_username": agent_id, "assigned_by_user": True})
 
     agents["human_developers"] = human_devs
     data["registered_agents"] = agents
@@ -110,18 +107,10 @@ def main() -> int:
     parser = argparse.ArgumentParser(
         description="Register a remote agent for module assignment"
     )
+    parser.add_argument("type", choices=["ai", "human"], help="Agent type")
+    parser.add_argument("agent_id", help="Unique identifier for the agent")
     parser.add_argument(
-        "type",
-        choices=["ai", "human"],
-        help="Agent type"
-    )
-    parser.add_argument(
-        "agent_id",
-        help="Unique identifier for the agent"
-    )
-    parser.add_argument(
-        "--session", "-s",
-        help="AI Maestro session name (required for AI agents)"
+        "--session", "-s", help="AI Maestro session name (required for AI agents)"
     )
 
     args = parser.parse_args()

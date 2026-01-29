@@ -120,7 +120,7 @@ def check_verification_status() -> tuple[bool, str]:
                 }
             )
 
-    # GAP 2 FIX: Also check instruction_updates for pending mid-implementation verifications
+    # GAP 2 FIX: Also check instruction_updates for pending mid-impl verifications
     # This ensures update verifications are completed before agents report progress
     instruction_updates = state.get("instruction_updates", [])
     for update in instruction_updates:
@@ -205,8 +205,10 @@ def main() -> None:
             "hookSpecificOutput": {
                 "hookEventName": "PreToolUse",
                 "permissionDecision": "deny",
-                "permissionDecisionReason": f"INSTRUCTION VERIFICATION PROTOCOL: {message}. "
-                "Complete the verification protocol before proceeding with work.",
+                "permissionDecisionReason": (
+                    f"INSTRUCTION VERIFICATION PROTOCOL: {message}. "
+                    "Complete the verification protocol before proceeding."
+                ),
             },
             "systemMessage": f"⚠️ INSTRUCTION VERIFICATION REQUIRED: {message}\n\n"
             "The Instruction Verification Protocol is MANDATORY.\n"

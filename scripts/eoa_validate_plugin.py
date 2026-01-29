@@ -171,19 +171,37 @@ def validate_plugin(plugin_dir: Path, _verbose: bool = False) -> ValidationResul
                                 if "command" in hook:
                                     cmd = hook["command"]
                                     # Replace variable and extract script path
-                                    cmd = cmd.replace("${CLAUDE_PLUGIN_ROOT}", str(plugin_dir))
+                                    cmd = cmd.replace(
+                                        "${CLAUDE_PLUGIN_ROOT}", str(plugin_dir)
+                                    )
                                     # Skip interpreter (python3, bash, etc.) and get actual script
                                     parts = cmd.split()
-                                    script_part = parts[1] if len(parts) > 1 and parts[0] in ("python3", "python", "bash", "sh") else parts[0]
+                                    script_part = (
+                                        parts[1]
+                                        if len(parts) > 1
+                                        and parts[0]
+                                        in ("python3", "python", "bash", "sh")
+                                        else parts[0]
+                                    )
                                     # Handle -m module syntax
-                                    if parts[0] == "python3" and len(parts) > 1 and parts[1] == "-m":
-                                        result.success(f"Hook uses module: {parts[2] if len(parts) > 2 else 'unknown'}")
+                                    if (
+                                        parts[0] == "python3"
+                                        and len(parts) > 1
+                                        and parts[1] == "-m"
+                                    ):
+                                        result.success(
+                                            f"Hook uses module: {parts[2] if len(parts) > 2 else 'unknown'}"
+                                        )
                                         continue
                                     cmd_path = Path(script_part.split()[0])
                                     if cmd_path.exists():
-                                        result.success(f"Hook script exists: {cmd_path.name}")
+                                        result.success(
+                                            f"Hook script exists: {cmd_path.name}"
+                                        )
                                     else:
-                                        result.error(f"Hook script not found: {cmd_path}")
+                                        result.error(
+                                            f"Hook script not found: {cmd_path}"
+                                        )
         except json.JSONDecodeError as e:
             result.error(f"hooks.json is invalid JSON: {e}")
     else:

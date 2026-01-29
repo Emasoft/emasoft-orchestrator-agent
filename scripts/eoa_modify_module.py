@@ -38,7 +38,7 @@ def parse_frontmatter(file_path: Path) -> tuple[dict, str]:
         return {}, content
 
     yaml_content = content[3:end_index].strip()
-    body = content[end_index + 3:].strip()
+    body = content[end_index + 3 :].strip()
 
     try:
         data = yaml.safe_load(yaml_content) or {}
@@ -50,7 +50,9 @@ def parse_frontmatter(file_path: Path) -> tuple[dict, str]:
 def write_state_file(file_path: Path, data: dict, body: str) -> bool:
     """Write a state file with YAML frontmatter."""
     try:
-        yaml_content = yaml.dump(data, default_flow_style=False, allow_unicode=True, sort_keys=False)
+        yaml_content = yaml.dump(
+            data, default_flow_style=False, allow_unicode=True, sort_keys=False
+        )
         content = f"---\n{yaml_content}---\n\n{body}"
         file_path.write_text(content, encoding="utf-8")
         return True
@@ -65,7 +67,9 @@ def normalize_id(name: str) -> str:
     return normalized.strip("-")
 
 
-def create_github_issue(module_name: str, criteria: str, priority: str, plan_id: str) -> str | None:
+def create_github_issue(
+    module_name: str, criteria: str, priority: str, plan_id: str
+) -> str | None:
     """Create a GitHub Issue for a new module."""
     body = f"""## Module: {module_name}
 
@@ -87,13 +91,20 @@ Implementation of the {module_name} module (added during orchestration).
 
     try:
         result = subprocess.run(
-            ["gh", "issue", "create",
-             "--title", f"[Module] {module_name}",
-             "--body", body,
-             "--label", labels],
+            [
+                "gh",
+                "issue",
+                "create",
+                "--title",
+                f"[Module] {module_name}",
+                "--body",
+                body,
+                "--label",
+                labels,
+            ],
             capture_output=True,
             text=True,
-            timeout=30
+            timeout=30,
         )
 
         if result.returncode == 0:
@@ -129,7 +140,7 @@ def add_module(data: dict, name: str, criteria: str, priority: str) -> bool:
         "pr": None,
         "verification_loops": 0,
         "acceptance_criteria": criteria,
-        "priority": priority
+        "priority": priority,
     }
 
     modules.append(new_module)
@@ -153,7 +164,7 @@ def modify_module(
     module_id: str,
     new_name: str | None,
     new_criteria: str | None,
-    new_priority: str | None
+    new_priority: str | None,
 ) -> bool:
     """Modify an existing module."""
     modules = data.get("modules_status", [])
@@ -215,7 +226,9 @@ def remove_module(data: dict, module_id: str, force: bool) -> bool:
 
             # Also remove from active assignments
             assignments = data.get("active_assignments", [])
-            data["active_assignments"] = [a for a in assignments if a.get("module") != module_id]
+            data["active_assignments"] = [
+                a for a in assignments if a.get("module") != module_id
+            ]
 
             print(f"✓ Removed module: {module_id}")
 
@@ -225,9 +238,16 @@ def remove_module(data: dict, module_id: str, force: bool) -> bool:
                 try:
                     issue_num = issue.replace("#", "")
                     subprocess.run(
-                        ["gh", "issue", "close", issue_num, "-c", "Module removed from plan"],
+                        [
+                            "gh",
+                            "issue",
+                            "close",
+                            issue_num,
+                            "-c",
+                            "Module removed from plan",
+                        ],
                         capture_output=True,
-                        timeout=10
+                        timeout=10,
                     )
                     print(f"  Closed GitHub Issue: {issue}")
                 except Exception:
@@ -244,18 +264,22 @@ def main() -> int:
         description="Add, modify, or remove modules during orchestration"
     )
     parser.add_argument(
-        "action",
-        choices=["add", "modify", "remove"],
-        help="Action to perform"
+        "action", choices=["add", "modify", "remove"], help="Action to perform"
     )
     parser.add_argument(
-        "name_or_id",
-        help="Module name (for add) or ID (for modify/remove)"
+        "name_or_id", help="Module name (for add) or ID (for modify/remove)"
     )
     parser.add_argument("--criteria", "-c", help="Acceptance criteria")
-    parser.add_argument("--priority", "-p", choices=["critical", "high", "medium", "low"], default="medium")
+    parser.add_argument(
+        "--priority",
+        "-p",
+        choices=["critical", "high", "medium", "low"],
+        default="medium",
+    )
     parser.add_argument("--name", "-n", help="New name (for modify)")
-    parser.add_argument("--force", "-f", action="store_true", help="Force the operation")
+    parser.add_argument(
+        "--force", "-f", action="store_true", help="Force the operation"
+    )
 
     args = parser.parse_args()
 
@@ -278,7 +302,13 @@ def main() -> int:
         success = add_module(data, args.name_or_id, args.criteria, args.priority)
 
     elif args.action == "modify":
-        success = modify_module(data, args.name_or_id, args.name, args.criteria, args.priority if args.priority != "medium" else None)
+        success = modify_module(
+            data,
+            args.name_or_id,
+            args.name,
+            args.criteria,
+            args.priority if args.priority != "medium" else None,
+        )
 
     elif args.action == "remove":
         success = remove_module(data, args.name_or_id, args.force)

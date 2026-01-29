@@ -133,8 +133,6 @@ def check_claude_tasks(transcript_path: str) -> tuple[int, list[str]]:
         return (0, [])
 
 
-
-
 def check_github_projects(script_dir: Path, project_id: str) -> tuple[int, list[str]]:
     """Check GitHub Projects for pending items.
 

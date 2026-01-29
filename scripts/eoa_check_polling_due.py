@@ -30,6 +30,7 @@ POLLING_WARNING_MINUTES = 10  # Warn when approaching poll interval
 def log_error(message: str) -> None:
     """Log error message to stderr."""
     import sys
+
     print(f"[ERROR] eoa_check_polling_due: {message}", file=sys.stderr)
 
 
@@ -59,6 +60,7 @@ def parse_frontmatter(file_path: Path) -> tuple[dict, bool]:
 
     try:
         import yaml
+
         result = yaml.safe_load(content[3:end_idx]) or {}
         return result, True
     except ImportError:
@@ -119,18 +121,21 @@ def check_polling_status() -> tuple[list, list]:
 
         # If no polling data, consider it overdue
         if not last_poll_str:
-            overdue.append({
-                "agent": agent,
-                "module": module,
-                "minutes_overdue": "never polled",
-                "poll_count": polling.get("poll_count", 0)
-            })
+            overdue.append(
+                {
+                    "agent": agent,
+                    "module": module,
+                    "minutes_overdue": "never polled",
+                    "poll_count": polling.get("poll_count", 0),
+                }
+            )
             continue
 
         # Parse timestamps
         try:
             if next_poll_due_str:
-                next_poll_due = datetime.fromisoformat(next_poll_due_str.replace("Z", "+00:00"))
+                iso_str = next_poll_due_str.replace("Z", "+00:00")
+                next_poll_due = datetime.fromisoformat(iso_str)
                 if next_poll_due.tzinfo:
                     next_poll_due = next_poll_due.replace(tzinfo=None)
             else:
@@ -141,12 +146,14 @@ def check_polling_status() -> tuple[list, list]:
                 next_poll_due = last_poll + timedelta(minutes=POLLING_INTERVAL_MINUTES)
         except (ValueError, TypeError):
             # If timestamp parsing fails, add to overdue
-            overdue.append({
-                "agent": agent,
-                "module": module,
-                "minutes_overdue": "timestamp error",
-                "poll_count": polling.get("poll_count", 0)
-            })
+            overdue.append(
+                {
+                    "agent": agent,
+                    "module": module,
+                    "minutes_overdue": "timestamp error",
+                    "poll_count": polling.get("poll_count", 0),
+                }
+            )
             continue
 
         # Check if overdue or approaching
@@ -154,20 +161,24 @@ def check_polling_status() -> tuple[list, list]:
 
         if time_diff > 0:
             # Overdue
-            overdue.append({
-                "agent": agent,
-                "module": module,
-                "minutes_overdue": round(time_diff, 1),
-                "poll_count": polling.get("poll_count", 0)
-            })
+            overdue.append(
+                {
+                    "agent": agent,
+                    "module": module,
+                    "minutes_overdue": round(time_diff, 1),
+                    "poll_count": polling.get("poll_count", 0),
+                }
+            )
         elif time_diff > -POLLING_WARNING_MINUTES:
             # Approaching poll interval (within warning window)
-            warning.append({
-                "agent": agent,
-                "module": module,
-                "minutes_until_due": round(-time_diff, 1),
-                "poll_count": polling.get("poll_count", 0)
-            })
+            warning.append(
+                {
+                    "agent": agent,
+                    "module": module,
+                    "minutes_until_due": round(-time_diff, 1),
+                    "poll_count": polling.get("poll_count", 0),
+                }
+            )
 
     return overdue, warning
 
@@ -179,12 +190,18 @@ def format_reminder(overdue: list, warning: list) -> str:
     if overdue:
         lines.append("🚨 POLLING OVERDUE - MANDATORY ACTION REQUIRED:")
         for item in overdue:
-            lines.append(f"  • {item['agent']} ({item['module']}): "
-                        f"{item['minutes_overdue']} min overdue, "
-                        f"{item['poll_count']} polls so far")
+            lines.append(
+                f"  • {item['agent']} ({item['module']}): "
+                f"{item['minutes_overdue']} min overdue, "
+                f"{item['poll_count']} polls so far"
+            )
         lines.append("")
-        lines.append("The Proactive Progress Polling protocol requires polling every 10-15 minutes.")
-        lines.append("Use /check-agents now to poll all active agents with the 6 MANDATORY questions:")
+        lines.append(
+            "The Proactive Progress Polling protocol requires polling every 10-15 min."
+        )
+        lines.append(
+            "Use /check-agents now to poll active agents with the 6 MANDATORY questions:"
+        )
         lines.append("  1. Current progress (% complete, what's done)")
         lines.append("  2. Next steps (what working on now)")
         lines.append("  3. Are there any issues or problems?")
@@ -196,8 +213,10 @@ def format_reminder(overdue: list, warning: list) -> str:
     if warning:
         lines.append("⚠️ POLLING DUE SOON:")
         for item in warning:
-            lines.append(f"  • {item['agent']} ({item['module']}): "
-                        f"due in {item['minutes_until_due']} min")
+            lines.append(
+                f"  • {item['agent']} ({item['module']}): "
+                f"due in {item['minutes_until_due']} min"
+            )
         lines.append("")
 
     return "\n".join(lines)
@@ -226,7 +245,7 @@ def main():
         "status": "ok",
         "overdue_count": len(overdue),
         "warning_count": len(warning),
-        "timestamp": datetime.now().isoformat()
+        "timestamp": datetime.now().isoformat(),
     }
 
     # Add reminder if there are overdue or warning items

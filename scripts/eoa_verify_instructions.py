@@ -41,7 +41,7 @@ def parse_frontmatter(file_path: Path) -> tuple[dict, str]:
         return {}, content
 
     yaml_content = content[3:end_index].strip()
-    body = content[end_index + 3:].strip()
+    body = content[end_index + 3 :].strip()
 
     try:
         data = yaml.safe_load(yaml_content) or {}
@@ -53,7 +53,9 @@ def parse_frontmatter(file_path: Path) -> tuple[dict, str]:
 def write_state_file(file_path: Path, data: dict, body: str) -> bool:
     """Write a state file with YAML frontmatter."""
     try:
-        yaml_content = yaml.dump(data, default_flow_style=False, allow_unicode=True, sort_keys=False)
+        yaml_content = yaml.dump(
+            data, default_flow_style=False, allow_unicode=True, sort_keys=False
+        )
         content = f"---\n{yaml_content}---\n\n{body}"
         file_path.write_text(content, encoding="utf-8")
         return True
@@ -86,16 +88,24 @@ def send_message(session: str, subject: str, message: str) -> bool:
             "to": session,
             "subject": subject,
             "priority": "high",
-            "content": {"type": "instruction_verification", "message": message}
+            "content": {"type": "instruction_verification", "message": message},
         }
         api_url = os.getenv("AIMAESTRO_API", "http://localhost:23000")
         result = subprocess.run(
-            ["curl", "-s", "-X", "POST", f"{api_url}/api/messages",
-             "-H", "Content-Type: application/json",
-             "-d", json.dumps(payload)],
+            [
+                "curl",
+                "-s",
+                "-X",
+                "POST",
+                f"{api_url}/api/messages",
+                "-H",
+                "Content-Type: application/json",
+                "-d",
+                json.dumps(payload),
+            ],
             capture_output=True,
             text=True,
-            timeout=10
+            timeout=10,
         )
         return result.returncode == 0
     except Exception:
@@ -117,8 +127,12 @@ def show_status(data: dict, agent_id: str) -> int:
     print(f"Task UUID: {assignment.get('task_uuid')}")
     print()
     print(f"Status: {verification.get('status', 'pending')}")
-    print(f"Repetition received: {'Yes' if verification.get('repetition_received') else 'No'}")
-    print(f"Repetition correct: {'Yes' if verification.get('repetition_correct') else 'No'}")
+    print(
+        f"Repetition received: {'Yes' if verification.get('repetition_received') else 'No'}"
+    )
+    print(
+        f"Repetition correct: {'Yes' if verification.get('repetition_correct') else 'No'}"
+    )
     print(f"Questions asked: {verification.get('questions_asked', 0)}")
     print(f"Questions answered: {verification.get('questions_answered', 0)}")
 
@@ -173,7 +187,7 @@ def record_repetition(data: dict, body: str, agent_id: str, correct: bool) -> in
             send_message(
                 session,
                 f"RE: [TASK] Module: {module} - CORRECTION NEEDED",
-                "Your understanding summary has issues. Please revise and confirm again."
+                "Your understanding summary has issues. Please revise and confirm again.",
             )
 
     assignment["instruction_verification"] = verification
@@ -184,7 +198,9 @@ def record_repetition(data: dict, body: str, agent_id: str, correct: bool) -> in
     return 0
 
 
-def record_questions(data: dict, body: str, agent_id: str, count: int, answered: int) -> int:
+def record_questions(
+    data: dict, body: str, agent_id: str, count: int, answered: int
+) -> int:
     """Record questions asked by agent."""
     assignment = find_assignment(data, agent_id)
     if not assignment:
@@ -258,9 +274,7 @@ def authorize_agent(data: dict, body: str, agent_id: str) -> int:
 Begin work now."""
 
         send_message(
-            session,
-            f"RE: [TASK] Module: {module} - AUTHORIZED TO PROCEED",
-            message
+            session, f"RE: [TASK] Module: {module} - AUTHORIZED TO PROCEED", message
         )
         print(f"✓ Authorization message sent to {agent_id}")
 
@@ -281,12 +295,16 @@ def main() -> int:
     parser.add_argument(
         "action",
         choices=["status", "record-repetition", "record-questions", "authorize"],
-        help="Action to perform"
+        help="Action to perform",
     )
     parser.add_argument("agent_id", help="Agent identifier")
     parser.add_argument("--correct", action="store_true", help="Repetition was correct")
-    parser.add_argument("--count", type=int, default=0, help="Number of questions asked")
-    parser.add_argument("--answered", type=int, default=0, help="Number of questions answered")
+    parser.add_argument(
+        "--count", type=int, default=0, help="Number of questions asked"
+    )
+    parser.add_argument(
+        "--answered", type=int, default=0, help="Number of questions answered"
+    )
 
     args = parser.parse_args()
 
