@@ -6,8 +6,8 @@ Activates Orchestration Phase Mode after plan approval.
 Sets up module tracking and prepares for agent assignment.
 
 Usage:
-    python3 atlas_start_orchestration.py
-    python3 atlas_start_orchestration.py --project-id PVT_kwDOBxxxxxx
+    python3 eoa_start_orchestration.py
+    python3 eoa_start_orchestration.py --project-id PVT_kwDOBxxxxxx
 """
 
 import argparse
@@ -84,7 +84,7 @@ def main() -> int:
         return 1
 
     # Load and update orchestration state
-    exec_data, exec_body = parse_frontmatter(EXEC_STATE_FILE)
+    exec_data, _ = parse_frontmatter(EXEC_STATE_FILE)
     if not exec_data:
         print("ERROR: Could not parse orchestration state file")
         return 1

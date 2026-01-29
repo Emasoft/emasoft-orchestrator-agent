@@ -45,7 +45,7 @@
 {
   "to": "dev-agent-1",
   "content": {
-    "instructions": "Implement user authentication according to `.atlas/specs/requirements.md` feature GH-101. Follow toolchain in `.atlas/config/toolchain.md` and standards in `.atlas/config/standards.md`."
+    "instructions": "Implement user authentication according to `design/specs/requirements.md` feature GH-101. Follow toolchain in `design/config/toolchain.md` and standards in `design/config/standards.md`."
   }
 }
 ```
@@ -57,23 +57,23 @@
 ### Agent Workflow for Reading Configs
 
 1. **Receive task message** with config references
-2. **Read referenced config files** from `.atlas/config/` and `.atlas/specs/`
+2. **Read referenced config files** from `design/config/` and `design/specs/`
 3. **Apply configuration** to task execution
 4. **Report deviations** if config cannot be followed
 
 ### Example Agent Flow
 
 ```bash
-# Agent receives task: "Implement GH-101 per .atlas/specs/requirements.md"
+# Agent receives task: "Implement GH-101 per design/specs/requirements.md"
 
 # Step 1: Read requirement
-cat .atlas/specs/requirements.md | grep -A 20 "GH-101"
+cat design/specs/requirements.md | grep -A 20 "GH-101"
 
 # Step 2: Read toolchain config
-cat .atlas/config/toolchain.md
+cat design/config/toolchain.md
 
 # Step 3: Read code standards
-cat .atlas/config/standards.md
+cat design/config/standards.md
 
 # Step 4: Execute task following all configs
 uv venv --python 3.12
@@ -87,9 +87,9 @@ curl -X POST "$AIMAESTRO_API/api/messages" -d '{
     "type": "task-completion",
     "status": "success",
     "configs_followed": [
-      ".atlas/config/toolchain.md",
-      ".atlas/config/standards.md",
-      ".atlas/specs/requirements.md"
+      "design/config/toolchain.md",
+      "design/config/standards.md",
+      "design/specs/requirements.md"
     ]
   }
 }'
@@ -101,7 +101,7 @@ curl -X POST "$AIMAESTRO_API/api/messages" -d '{
 
 ### When Configuration Changes
 
-1. **Orchestrator updates config file** in `.atlas/config/`
+1. **Orchestrator updates config file** in `design/config/`
 2. **Orchestrator records change** in config file header:
    ```markdown
    **Last Updated**: 2025-12-31 04:15:00
@@ -110,7 +110,7 @@ curl -X POST "$AIMAESTRO_API/api/messages" -d '{
    ```
 3. **Orchestrator sends change notification** to all active agents (see Change Notification Protocol)
 4. **Agents acknowledge** and re-read config
-5. **Orchestrator logs acknowledgments** in `.atlas/memory/progress.md`
+5. **Orchestrator logs acknowledgments** in `design/memory/progress.md`
 
 ### Change Notification Message
 
@@ -122,7 +122,7 @@ curl -X POST "$AIMAESTRO_API/api/messages" -d '{
   "content": {
     "type": "config-change-notification",
     "changed_files": [
-      ".atlas/config/toolchain.md"
+      "design/config/toolchain.md"
     ],
     "change_summary": "Updated Python version from 3.11 to 3.12",
     "action_required": "Re-read config before starting next task",
@@ -149,7 +149,7 @@ curl -X POST "$AIMAESTRO_API/api/messages" -d '{
     "type": "echo-acknowledgment",
     "original_subject": "CONFIG UPDATE: Toolchain configuration changed",
     "configs_reread": [
-      ".atlas/config/toolchain.md"
+      "design/config/toolchain.md"
     ],
     "status": "applied|conflict",
     "conflict_details": "Currently using Python 3.11, will switch for next task"
@@ -175,7 +175,7 @@ curl -X POST "$AIMAESTRO_API/api/messages" -d '{
   "content": {
     "type": "config-conflict",
     "task_id": "GH-101",
-    "changed_config": ".atlas/config/toolchain.md",
+    "changed_config": "design/config/toolchain.md",
     "conflict": "Task started with Python 3.11, new config requires 3.12",
     "options": [
       "A: Complete task with 3.11, apply 3.12 to next task",
@@ -203,13 +203,13 @@ See `change-notification-protocol.md` for complete details on:
 
 ### Config Changes Trigger Notifications
 
-Every update to any file in `.atlas/config/` or `.atlas/specs/` MUST trigger a change notification to all active agents.
+Every update to any file in `design/config/` or `design/specs/` MUST trigger a change notification to all active agents.
 
 **Orchestrator workflow**:
 
 ```bash
 # 1. Update config file
-echo "Updated content" >> .atlas/config/toolchain.md
+echo "Updated content" >> design/config/toolchain.md
 
 # 2. Send change notification
 curl -X POST "$AIMAESTRO_API/api/messages" -d '{
@@ -218,7 +218,7 @@ curl -X POST "$AIMAESTRO_API/api/messages" -d '{
   "priority": "high",
   "content": {
     "type": "config-change-notification",
-    "changed_files": [".atlas/config/toolchain.md"],
+    "changed_files": ["design/config/toolchain.md"],
     "change_summary": "Updated Python to 3.12",
     "action_required": "Re-read config",
     "acknowledge_required": true
@@ -238,7 +238,7 @@ curl -X POST "$AIMAESTRO_API/api/messages" -d '{
 - **Keep configs small and focused**: Each file addresses one concern
 - **Document every change**: Update header with timestamp, author, summary
 - **Reference, don't embed**: Always point agents to config files
-- **Version control configs**: Commit all `.atlas/` changes to git
+- **Version control configs**: Commit all `design/` changes to git
 - **Notify on updates**: Use change notification protocol
 - **Track acknowledgments**: Ensure all agents received updates
 
@@ -262,7 +262,7 @@ curl -X POST "$AIMAESTRO_API/api/messages" -d '{
 1. Check if change notification was sent
 2. Verify agent acknowledged notification
 3. Resend notification if not acknowledged
-4. Check agent's `.atlas/memory/config-snapshot.md` for what it read
+4. Check agent's `design/memory/config-snapshot.md` for what it read
 
 ### Problem: Config files grow too large
 
@@ -270,7 +270,7 @@ curl -X POST "$AIMAESTRO_API/api/messages" -d '{
 
 **Solution**:
 1. Split into multiple focused files
-2. Create subdirectories: `.atlas/config/python/`, `.atlas/config/typescript/`
+2. Create subdirectories: `design/config/python/`, `design/config/typescript/`
 3. Update references in task messages
 
 ### Problem: Multiple agents report same config conflict

@@ -17,7 +17,7 @@ Detailed specification of all file types used in the design folder structure.
 
 ### 3.1 Templates (compilable documents)
 
-**Location**: `.atlas/designs/{platform}/templates/`
+**Location**: `design/requirements/{platform}/templates/`
 
 Templates contain placeholders to be compiled before sending to implementers.
 
@@ -50,7 +50,7 @@ Templates contain placeholders to be compiled before sending to implementers.
 
 ### 3.2 Handoffs (compiled communication files)
 
-**Location**: `.atlas/handoffs/{agent-id}/`
+**Location**: `design/handoffs/{agent-id}/`
 
 Handoffs are compiled from templates with all placeholders filled.
 
@@ -65,7 +65,7 @@ Handoffs are compiled from templates with all placeholders filled.
 
 ### 3.3 RDD files (Requirements-Driven Design)
 
-**Location**: `.atlas/designs/{platform}/rdd/`
+**Location**: `design/requirements/{platform}/rdd/`
 
 RDD documents link requirements to design decisions.
 
@@ -95,7 +95,7 @@ RDD documents link requirements to design decisions.
 
 ### 3.4 Config files (implementer configuration)
 
-**Location**: `.atlas/config/{platform}/`
+**Location**: `design/config/{platform}/`
 
 Configuration files needed by implementers.
 
@@ -109,7 +109,7 @@ Configuration files needed by implementers.
 
 ### 3.5 Specs (technical specifications)
 
-**Location**: `.atlas/designs/{platform}/specs/`
+**Location**: `design/requirements/{platform}/specs/`
 
 Technical specifications for each module.
 

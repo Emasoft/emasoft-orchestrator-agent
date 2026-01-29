@@ -164,7 +164,7 @@ Standardized folder structure for design documents, templates, handoffs, and RDD
 | Section | Topics |
 |---------|--------|
 | 1. Why a Standardized Structure | Git tracking, per-platform organization, single source of truth |
-| 2. Folder Structure Specification | Root location (.atlas/), per-platform structure, directory tree |
+| 2. Folder Structure Specification | Root location (design/), per-platform structure, directory tree |
 | 3. File Types and Locations | Templates, handoffs, RDD files, config files, specs |
 | 4. Usage Workflow | Creating files, compiling templates, storing responses |
 | 5. Git Tracking Rules | What to track, what to gitignore |
@@ -195,9 +195,9 @@ Complete reference for all Two-Phase Mode Python scripts.
 
 | Section | Scripts |
 |---------|---------|
-| 1. Plan Phase Scripts (4) | atlas_start_planning.py, atlas_planning_status.py, atlas_modify_requirement.py, atlas_approve_plan.py |
-| 2. Orchestration Phase Scripts (14) | atlas_start_orchestration.py, atlas_orchestration_status.py, atlas_register_agent.py, atlas_assign_module.py, atlas_modify_module.py, atlas_reassign_module.py, atlas_check_remote_agents.py, atlas_notify_agent.py, atlas_check_plan_phase.py, atlas_check_orchestration_phase.py, atlas_sync_github_issues.py, atlas_verify_instructions.py, atlas_poll_agent.py, atlas_update_verification.py |
-| 3. Modified Scripts (1) | atlas_orchestrator_stop_check.py (phase-aware) |
+| 1. Plan Phase Scripts (4) | eoa_start_planning.py <!-- TODO: Script not implemented -->, eoa_planning_status.py <!-- TODO: Script not implemented -->, eoa_modify_requirement.py <!-- TODO: Script not implemented -->, eoa_approve_plan.py <!-- TODO: Script not implemented --> |
+| 2. Orchestration Phase Scripts (14) | eoa_start_orchestration.py, eoa_orchestration_status.py <!-- TODO: Script not implemented -->, eoa_register_agent.py, eoa_assign_module.py, eoa_modify_module.py, eoa_reassign_module.py, eoa_check_remote_agents.py, eoa_notify_agent.py <!-- TODO: Script not implemented -->, eoa_check_plan_phase.py <!-- TODO: Script not implemented -->, eoa_check_orchestration_phase.py <!-- TODO: Script not implemented -->, eoa_sync_github_issues.py <!-- TODO: Script not implemented -->, eoa_verify_instructions.py, eoa_poll_agent.py, eoa_update_verification.py <!-- TODO: Script not implemented --> |
+| 3. Modified Scripts (1) | eoa_orchestrator_stop_check.py <!-- TODO: Script not implemented --> (phase-aware) |
 
 **When to use:** Understanding script functionality, debugging, learning parameters.
 
@@ -230,7 +230,7 @@ Complete workflow for handling implementer-reported issues.
 |---------|--------|
 | 1. When to Trigger | AI Maestro messages, progress polls, code review, test failures |
 | 2. Issue Categories | BUG, BLOCKER, QUESTION, ENHANCEMENT, CONFIG, INVESTIGATION |
-| 3. Creating Issue Tasks | /create-issue-tasks command, atlas_create_issue_tasks.py |
+| 3. Creating Issue Tasks | /create-issue-tasks command, eoa_create_issue_tasks.py <!-- TODO: Script not implemented --> |
 | 4. Standard Task Workflow | Assessment, triage, investigation, test creation, GitHub workflow, resolution |
 | 5. Category-Specific Workflows | BUG, BLOCKER, QUESTION, ENHANCEMENT, CONFIG, INVESTIGATION workflows |
 | 6. Integration with Stop Hook | Issue task file checking, open issue blocking |
@@ -300,7 +300,7 @@ Solutions for common issues in Two-Phase Mode.
 
 ## Stop Hook Enforcement
 
-The stop hook (`atlas_orchestrator_stop_check.py`) is **phase-aware** and enforces:
+The stop hook (`eoa_orchestrator_stop_check.py` <!-- TODO: Script not implemented -->) is **phase-aware** and enforces:
 
 | Phase | Blocks Exit If |
 |-------|---------------|
@@ -324,7 +324,7 @@ two-phase-mode/
     ├── instruction-verification-protocol.md    (8-step initial verification)
     ├── instruction-update-verification-protocol.md  (5-step mid-impl updates)
     ├── proactive-progress-polling.md           (6 mandatory questions)
-    ├── design-folder-structure.md              (.atlas/ folder organization)
+    ├── design-folder-structure.md              (design/ folder organization)
     ├── state-file-formats.md                   (YAML schemas)
     ├── command-reference.md                    (all 16 commands)
     ├── script-reference.md                     (all 16+ scripts)

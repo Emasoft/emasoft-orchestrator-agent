@@ -6,8 +6,8 @@ Sends a MANDATORY progress poll with all 6 required questions.
 Tracks poll history and issues reported.
 
 Usage:
-    python3 atlas_poll_agent.py implementer-1
-    python3 atlas_poll_agent.py implementer-1 --record-response --issues "Token expiry unclear"
+    python3 eoa_poll_agent.py implementer-1
+    python3 eoa_poll_agent.py implementer-1 --record-response --issues "Token expiry unclear"
 """
 
 import argparse
@@ -83,7 +83,7 @@ def find_agent_session(data: dict[str, Any], agent_id: str) -> str | None:
     return None
 
 
-def create_poll_message(module_name: str, poll_number: int) -> str:
+def create_poll_message(_: str, poll_number: int) -> str:
     """Create the MANDATORY poll message with all 6 required questions."""
     return f"""## Status Request - Poll #{poll_number}
 

@@ -10,10 +10,10 @@
 Each remote agent stores downloaded documents under:
 
 ```
-{{PROJECT_ROOT}}/.atlas/received/
+{{PROJECT_ROOT}}/design/received/
 ```
 
-**Note**: The `.atlas/` directory is gitignored and NOT committed.
+**Note**: The `design/` directory is gitignored and NOT committed.
 
 ---
 
@@ -22,7 +22,7 @@ Each remote agent stores downloaded documents under:
 Received task delegations and assignments from orchestrator.
 
 ```
-.atlas/received/tasks/
+design/received/tasks/
 ├── {{TASK_ID}}/
 │   ├── delegation.md           # Original TASK_DELEGATION_TEMPLATE
 │   ├── toolchain-spec.md       # Compiled toolchain template
@@ -40,7 +40,7 @@ Received task delegations and assignments from orchestrator.
 Toolchain specs, platform configs, and project templates.
 
 ```
-.atlas/received/specs/
+design/received/specs/
 ├── toolchains/
 │   ├── {{LANGUAGE}}_toolchain.md
 │   └── metadata.json
@@ -62,7 +62,7 @@ Toolchain specs, platform configs, and project templates.
 Design documents, implementation plans, code reviews.
 
 ```
-.atlas/received/plans/
+design/received/plans/
 ├── {{TASK_ID}}/
 │   ├── design/
 │   │   ├── YYYYMMDD_HHMMSS_design.md
@@ -85,7 +85,7 @@ Design documents, implementation plans, code reviews.
 Cross-agent synchronization and project state reports.
 
 ```
-.atlas/received/sync/
+design/received/sync/
 ├── YYYYMMDD_HHMMSS_project_sync.md
 ├── YYYYMMDD_HHMMSS_kanban_sync.md
 └── metadata.json

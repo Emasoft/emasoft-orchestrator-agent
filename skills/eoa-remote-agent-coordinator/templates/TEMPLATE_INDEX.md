@@ -52,7 +52,7 @@ Templates defining language-specific development environments with LSP, formatte
 - Orchestrator enforces with `scripts/enforce_delivery_protocol.py`
 
 **Key Storage Rules**:
-- All downloaded docs stored in `.atlas/received/{category}/{task_id}/`
+- All downloaded docs stored in `design/received/{category}/{task_id}/`
 - Files set to READ-ONLY immediately after download (`chmod 444`)
 - SHA256 hash stored in metadata.json for integrity verification
 - Categories: `tasks`, `reports`, `acks`, `specs`, `plans`, `sync`

@@ -25,7 +25,7 @@ def get_project_root() -> Path:
 
 def init_orchestrator_storage(project_root: Path) -> dict:
     """Initialize orchestrator storage structure."""
-    atlas_root = project_root / ".atlas"
+    atlas_root = project_root / "design"
 
     # Directory structure for orchestrator
     directories = [
@@ -74,7 +74,7 @@ def init_orchestrator_storage(project_root: Path) -> dict:
 
     # Update .gitignore if needed
     gitignore_path = project_root / ".gitignore"
-    atlas_pattern = ".atlas/"
+    atlas_pattern = "design/"
 
     if gitignore_path.exists():
         content = gitignore_path.read_text()

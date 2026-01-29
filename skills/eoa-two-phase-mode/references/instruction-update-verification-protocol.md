@@ -59,7 +59,7 @@ This protocol is split into multiple parts for easier navigation:
   - 6.4 State file tracking for config requests
 
 - **7. Script Usage**
-  - Commands for `atlas_update_verification.py`
+  - Commands for `eoa_update_verification.py <!-- TODO: Script not implemented -->`
   - Send updates, record receipts, resolve concerns, authorize resume
 
 - **8. Troubleshooting**

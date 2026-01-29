@@ -158,11 +158,11 @@ The following scripts implement the orchestration commands. Located in the plugi
 
 | Script | Purpose | Used By |
 |--------|---------|---------|
-| `atlas_start_orchestration.py` | Activates orchestration phase | `/start-orchestration` |
-| `atlas_orchestration_status.py` | Displays phase status | `/orchestration-status` |
-| `atlas_check_orchestrator_status.py` | Shows loop state | `/orchestrator-status` |
-| `atlas_setup_orchestrator_loop.py` | Creates loop state file | `/orchestrator-loop` |
-| `atlas_orchestrator_stop_check.py` | Stop hook enforcement | Hook event |
+| `eoa_start_orchestration.py` | Activates orchestration phase | `/start-orchestration` |
+| `eoa_orchestration_status.py` <!-- TODO: Script not implemented --> | Displays phase status | `/orchestration-status` |
+| `eoa_check_orchestrator_status.py` <!-- TODO: Script not implemented --> | Shows loop state | `/orchestrator-status` |
+| `eoa_setup_orchestrator_loop.py` | Creates loop state file | `/orchestrator-loop` |
+| `eoa_orchestrator_stop_check.py` <!-- TODO: Script not implemented --> | Stop hook enforcement | Hook event |
 
 ---
 
@@ -277,7 +277,7 @@ The following scripts implement the orchestration commands. Located in the plugi
 
 ## Stop Hook Behavior
 
-The orchestrator stop hook (`atlas_orchestrator_stop_check.py`) enforces completion requirements:
+The orchestrator stop hook (`eoa_orchestrator_stop_check.py` <!-- TODO: Script not implemented -->) enforces completion requirements:
 
 **Blocking conditions**:
 - Plan Phase incomplete (requirements not documented, plan not approved)

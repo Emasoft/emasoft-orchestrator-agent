@@ -47,17 +47,17 @@ Implementers must know exactly where to find:
 ### 2.1 Root location
 
 ```
-.atlas/
+design/
 ```
 
-The `.atlas/` folder is the root for ALL orchestration design artifacts.
+The `design/` folder is the root for ALL orchestration design artifacts.
 
 **IMPORTANT**: This folder is **NOT gitignored**. All contents are tracked by git.
 
 ### 2.2 Per-platform structure
 
 ```
-.atlas/
+design/
 ├── designs/                    # All design documents
 │   ├── shared/                 # Cross-platform shared resources
 │   ├── web/                    # Web platform
@@ -72,7 +72,7 @@ The `.atlas/` folder is the root for ALL orchestration design artifacts.
 ### 2.3 Complete directory tree
 
 ```
-.atlas/
+design/
 ├── designs/
 │   ├── shared/
 │   │   ├── ARCHITECTURE.md                  # System architecture

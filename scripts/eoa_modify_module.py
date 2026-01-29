@@ -6,9 +6,9 @@ Handles add, modify, and remove operations for modules during
 Orchestration Phase. Supports dynamic flexibility.
 
 Usage:
-    python3 atlas_modify_module.py add "Password Reset" --criteria "Reset via email"
-    python3 atlas_modify_module.py modify auth-core --priority critical
-    python3 atlas_modify_module.py remove legacy-api
+    python3 eoa_modify_module.py add "Password Reset" --criteria "Reset via email"
+    python3 eoa_modify_module.py modify auth-core --priority critical
+    python3 eoa_modify_module.py remove legacy-api
 """
 
 import argparse

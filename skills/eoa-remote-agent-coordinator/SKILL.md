@@ -312,7 +312,7 @@ Documents are NEVER embedded in AI Maestro messages - only GitHub issue comment 
 
 | Document | Use When |
 |----------|----------|
-| [central-configuration.md](./references/central-configuration.md) | Setting up `.atlas/` directory structure |
+| [central-configuration.md](./references/central-configuration.md) | Setting up `design/` directory structure |
 | [change-notification-protocol.md](./references/change-notification-protocol.md) | Notifying agents of config changes |
 | [artifact-sharing-protocol.md](./references/artifact-sharing-protocol.md) | Sharing build artifacts between agents |
 | [bug-reporting-protocol.md](./references/bug-reporting-protocol.md) | Receiving and handling bug reports |
@@ -393,11 +393,11 @@ remote-agent-coordinator/
 +-- scripts/
 |   +-- install_lsp.py                    # LSP installation
 |   +-- validate_skill.py                 # Skill validation
-|   +-- atlas_orchestrator_init.py        # Init storage
-|   +-- atlas_register_agent.py           # Register agents
-|   +-- atlas_orchestrator_download.py    # Download from agents
-|   +-- atlas_search.py                   # Cross-agent search
-|   +-- atlas_download.py                 # Basic download
+|   +-- atlas_orchestrator_init.py <!-- TODO: Rename to eoa_orchestrator_init.py -->        # Init storage
+|   +-- atlas_register_agent.py <!-- TODO: Rename to eoa_register_agent.py -->           # Register agents
+|   +-- atlas_orchestrator_download.py <!-- TODO: Rename to eoa_orchestrator_download.py -->    # Download from agents
+|   +-- atlas_search.py <!-- TODO: Rename to eoa_search.py -->                   # Cross-agent search
+|   +-- atlas_download.py <!-- TODO: Rename to eoa_download.py -->                 # Basic download
 +-- templates/
     +-- protocols/
         +-- DOCUMENT_DELIVERY_PROTOCOL.md

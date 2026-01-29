@@ -80,7 +80,7 @@ ls -la .claude/orchestrator-exec-phase.local.md
 echo $CLAUDE_PLUGIN_ROOT
 
 # Verify script exists
-ls -la "${CLAUDE_PLUGIN_ROOT}/scripts/atlas_setup_orchestrator_loop.py"
+ls -la "${CLAUDE_PLUGIN_ROOT}/scripts/eoa_setup_orchestrator_loop.py"
 
 # Check script is executable
 chmod +x "${CLAUDE_PLUGIN_ROOT}/scripts/"*.py
@@ -123,17 +123,17 @@ cat .claude/orchestrator-hook.log
 
 ```bash
 # Verify script exists and is executable
-ls -la "${CLAUDE_PLUGIN_ROOT}/scripts/atlas_orchestrator_stop_check.py"
+ls -la "${CLAUDE_PLUGIN_ROOT}/scripts/eoa_orchestrator_stop_check.py <!-- TODO: Script not implemented -->"
 
 # Test script manually
-echo '{}' | python3 "${CLAUDE_PLUGIN_ROOT}/scripts/atlas_orchestrator_stop_check.py"
+echo '{}' | python3 "${CLAUDE_PLUGIN_ROOT}/scripts/eoa_orchestrator_stop_check.py <!-- TODO: Script not implemented -->"
 ```
 
 ### Step 5: Check for Python Errors
 
 ```bash
 # Look for Python syntax errors
-python3 -m py_compile "${CLAUDE_PLUGIN_ROOT}/scripts/atlas_orchestrator_stop_check.py"
+python3 -m py_compile "${CLAUDE_PLUGIN_ROOT}/scripts/eoa_orchestrator_stop_check.py <!-- TODO: Script not implemented -->"
 ```
 
 ### Common Hook Issues
@@ -156,7 +156,7 @@ python3 -m py_compile "${CLAUDE_PLUGIN_ROOT}/scripts/atlas_orchestrator_stop_che
 **Debugging**:
 ```bash
 # Run task check manually
-python3 "${CLAUDE_PLUGIN_ROOT}/scripts/atlas_check_tasks.py"
+python3 "${CLAUDE_PLUGIN_ROOT}/scripts/eoa_check_tasks.py <!-- TODO: Script not implemented -->"
 
 # Check TaskList API access
 # Verify TaskList API is available
@@ -442,7 +442,7 @@ cat .claude/orchestrator-exec-phase.local.md
 
 ```bash
 # Test each component
-python3 "${CLAUDE_PLUGIN_ROOT}/scripts/atlas_check_orchestrator_status.py" --verbose
+python3 "${CLAUDE_PLUGIN_ROOT}/scripts/eoa_check_orchestrator_status.py <!-- TODO: Script not implemented -->" --verbose
 ```
 
 ### 5. Check for Errors in Claude Code

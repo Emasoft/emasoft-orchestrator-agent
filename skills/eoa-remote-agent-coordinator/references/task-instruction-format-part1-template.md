@@ -131,15 +131,15 @@ Response:
 
 ## Project Configuration
 
-**Config Location**: `.atlas/config/`
+**Config Location**: `design/config/`
 **Config Version**: [TIMESTAMP]
 
 ### Required Config Files
-- `.atlas/config/toolchain.md` - Tools, versions, commands
-- `.atlas/config/standards.md` - Code standards, naming, formatting
-- `.atlas/config/environment.md` - Environment variables
-- `.atlas/specs/architecture.md` - System architecture
-- `.atlas/specs/requirements.md` - Requirements for GH-[NUMBER]
+- `design/config/toolchain.md` - Tools, versions, commands
+- `design/config/standards.md` - Code standards, naming, formatting
+- `design/config/environment.md` - Environment variables
+- `design/specs/architecture.md` - System architecture
+- `design/specs/requirements.md` - Requirements for GH-[NUMBER]
 
 **IMPORTANT**: Read ALL config files before starting. Do NOT rely on this summary alone.
 

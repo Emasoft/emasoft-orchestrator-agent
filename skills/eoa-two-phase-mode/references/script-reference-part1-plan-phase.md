@@ -4,22 +4,22 @@ This document covers the 4 scripts used during Plan Phase.
 
 ## Contents
 
-- 1.1 atlas_start_planning.py - Initializing Plan Phase Mode
-- 1.2 atlas_planning_status.py - Displaying Plan Phase progress
-- 1.3 atlas_modify_requirement.py - Adding, modifying, or removing requirements
-- 1.4 atlas_approve_plan.py - Validating plan and creating GitHub Issues
+- 1.1 eoa_start_planning.py <!-- TODO: Script not implemented --> - Initializing Plan Phase Mode
+- 1.2 eoa_planning_status.py <!-- TODO: Script not implemented --> - Displaying Plan Phase progress
+- 1.3 eoa_modify_requirement.py <!-- TODO: Script not implemented --> - Adding, modifying, or removing requirements
+- 1.4 eoa_approve_plan.py <!-- TODO: Script not implemented --> - Validating plan and creating GitHub Issues
 
 ---
 
-## 1.1 atlas_start_planning.py
+## 1.1 eoa_start_planning.py <!-- TODO: Script not implemented -->
 
 **Purpose:** Initialize Plan Phase Mode.
 
-**Location:** `scripts/atlas_start_planning.py`
+**Location:** `scripts/eoa_start_planning.py <!-- TODO: Script not implemented -->`
 
 **Usage:**
 ```bash
-python3 atlas_start_planning.py "User's project goal"
+python3 eoa_start_planning.py <!-- TODO: Script not implemented --> "User's project goal"
 ```
 
 **Arguments:**
@@ -37,16 +37,16 @@ python3 atlas_start_planning.py "User's project goal"
 
 ---
 
-## 1.2 atlas_planning_status.py
+## 1.2 eoa_planning_status.py <!-- TODO: Script not implemented -->
 
 **Purpose:** Display Plan Phase progress.
 
-**Location:** `scripts/atlas_planning_status.py`
+**Location:** `scripts/eoa_planning_status.py <!-- TODO: Script not implemented -->`
 
 **Usage:**
 ```bash
-python3 atlas_planning_status.py
-python3 atlas_planning_status.py --json
+python3 eoa_planning_status.py <!-- TODO: Script not implemented -->
+python3 eoa_planning_status.py <!-- TODO: Script not implemented --> --json
 ```
 
 **Arguments:**
@@ -65,22 +65,22 @@ python3 atlas_planning_status.py --json
 
 ---
 
-## 1.3 atlas_modify_requirement.py
+## 1.3 eoa_modify_requirement.py <!-- TODO: Script not implemented -->
 
 **Purpose:** Add, modify, or remove requirements/modules.
 
-**Location:** `scripts/atlas_modify_requirement.py`
+**Location:** `scripts/eoa_modify_requirement.py <!-- TODO: Script not implemented -->`
 
 **Usage:**
 ```bash
 # Add requirement
-python3 atlas_modify_requirement.py add --name "Module Name" --description "Description" --priority high
+python3 eoa_modify_requirement.py <!-- TODO: Script not implemented --> add --name "Module Name" --description "Description" --priority high
 
 # Modify requirement
-python3 atlas_modify_requirement.py modify <module-id> --add-criteria "New criteria"
+python3 eoa_modify_requirement.py <!-- TODO: Script not implemented --> modify <module-id> --add-criteria "New criteria"
 
 # Remove requirement
-python3 atlas_modify_requirement.py remove <module-id>
+python3 eoa_modify_requirement.py <!-- TODO: Script not implemented --> remove <module-id>
 ```
 
 **Actions (add):**
@@ -104,16 +104,16 @@ python3 atlas_modify_requirement.py remove <module-id>
 
 ---
 
-## 1.4 atlas_approve_plan.py
+## 1.4 eoa_approve_plan.py <!-- TODO: Script not implemented -->
 
 **Purpose:** Validate plan and create GitHub Issues.
 
-**Location:** `scripts/atlas_approve_plan.py`
+**Location:** `scripts/eoa_approve_plan.py <!-- TODO: Script not implemented -->`
 
 **Usage:**
 ```bash
-python3 atlas_approve_plan.py
-python3 atlas_approve_plan.py --dry-run
+python3 eoa_approve_plan.py <!-- TODO: Script not implemented -->
+python3 eoa_approve_plan.py <!-- TODO: Script not implemented --> --dry-run
 ```
 
 **Arguments:**

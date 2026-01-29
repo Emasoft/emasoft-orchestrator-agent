@@ -69,30 +69,30 @@ two-phase-mode/
 
 ### Plan Phase Scripts (4)
 
-- `atlas_start_planning.py` - Initialize Plan Phase
-- `atlas_planning_status.py` - Display planning progress
-- `atlas_modify_requirement.py` - Add/modify/remove requirements
-- `atlas_approve_plan.py` - Validate plan, create GitHub Issues
+- `eoa_start_planning.py` - Initialize Plan Phase <!-- TODO: Script not implemented -->
+- `eoa_planning_status.py` - Display planning progress <!-- TODO: Script not implemented -->
+- `eoa_modify_requirement.py` - Add/modify/remove requirements <!-- TODO: Script not implemented -->
+- `eoa_approve_plan.py` - Validate plan, create GitHub Issues <!-- TODO: Script not implemented -->
 
 ### Orchestration Phase Scripts (13)
 
-- `atlas_start_orchestration.py` - Initialize Orchestration Phase
-- `atlas_orchestration_status.py` - Display orchestration progress
-- `atlas_register_agent.py` - Register remote agent
-- `atlas_assign_module.py` - Assign module to agent
-- `atlas_modify_module.py` - Add/modify/remove/prioritize modules
-- `atlas_reassign_module.py` - Reassign module to different agent
-- `atlas_check_remote_agents.py` - Poll active AI agents
-- `atlas_notify_agent.py` - Send AI Maestro message
-- `atlas_check_plan_phase.py` - Check plan phase completion
-- `atlas_check_orchestration_phase.py` - Check orchestration phase completion
-- `atlas_sync_github_issues.py` - Sync with GitHub Issues
-- `atlas_verify_instructions.py` - Instruction Verification Protocol
-- `atlas_poll_agent.py` - Proactive Progress Polling
+- `eoa_start_orchestration.py` - Initialize Orchestration Phase
+- `eoa_orchestration_status.py` - Display orchestration progress <!-- TODO: Script not implemented -->
+- `eoa_register_agent.py` - Register remote agent
+- `eoa_assign_module.py` - Assign module to agent
+- `eoa_modify_module.py` - Add/modify/remove/prioritize modules
+- `eoa_reassign_module.py` - Reassign module to different agent
+- `eoa_check_remote_agents.py` - Poll active AI agents
+- `eoa_notify_agent.py` - Send AI Maestro message <!-- TODO: Script not implemented -->
+- `eoa_check_plan_phase.py` - Check plan phase completion <!-- TODO: Script not implemented -->
+- `eoa_check_orchestration_phase.py` - Check orchestration phase completion <!-- TODO: Script not implemented -->
+- `eoa_sync_github_issues.py` - Sync with GitHub Issues <!-- TODO: Script not implemented -->
+- `eoa_verify_instructions.py` - Instruction Verification Protocol
+- `eoa_poll_agent.py` - Proactive Progress Polling
 
 ### Modified Scripts (1)
 
-- `atlas_orchestrator_stop_check.py` - Phase-aware stop hook
+- `eoa_orchestrator_stop_check.py` - Phase-aware stop hook <!-- TODO: Script not implemented -->
 
 ## Quick Start
 

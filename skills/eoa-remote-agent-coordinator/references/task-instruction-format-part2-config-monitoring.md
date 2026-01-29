@@ -23,33 +23,33 @@
 ```markdown
 ## Project Config
 
-**Configuration Location**: `.atlas/config/`
+**Configuration Location**: `design/config/`
 **Config Version**: 2025-12-31T03:48:23Z
 
 ### Required Reading Before Starting Task
 
 Agents MUST read these config files before beginning work:
 
-1. **Toolchain**: `.atlas/config/toolchain.md`
+1. **Toolchain**: `design/config/toolchain.md`
    - Python version, package manager, virtual environment
    - Quality tools (linter, formatter, type checker, test runner)
    - Commands for setup, quality checks, tests
 
-2. **Standards**: `.atlas/config/standards.md`
+2. **Standards**: `design/config/standards.md`
    - Naming conventions, documentation requirements
    - Type hints, error handling, testing requirements
    - File organization, import order
 
-3. **Environment**: `.atlas/config/environment.md`
+3. **Environment**: `design/config/environment.md`
    - Required environment variables (Git, AI Maestro, project-specific)
    - Environment file location and loading
    - CI/CD environment configuration
 
-4. **Architecture**: `.atlas/specs/architecture.md`
+4. **Architecture**: `design/specs/architecture.md`
    - System overview and components
    - Data flow and deployment architecture
 
-5. **Requirements**: `.atlas/specs/requirements.md`
+5. **Requirements**: `design/specs/requirements.md`
    - Feature specifications relevant to this task
    - Acceptance criteria
 ```
@@ -62,11 +62,11 @@ Every task instruction should list the required config files:
 
 | Config File | Contains | Read When |
 |-------------|----------|-----------|
-| `.atlas/config/toolchain.md` | Python version, package manager, linter, formatter | ALWAYS before starting |
-| `.atlas/config/standards.md` | Code style, naming, documentation requirements | ALWAYS before writing code |
-| `.atlas/config/environment.md` | Environment variables, secrets location | Before any setup |
-| `.atlas/specs/architecture.md` | System design, component relationships | When touching multiple files |
-| `.atlas/specs/requirements.md` | Feature specs, acceptance criteria | When implementing features |
+| `design/config/toolchain.md` | Python version, package manager, linter, formatter | ALWAYS before starting |
+| `design/config/standards.md` | Code style, naming, documentation requirements | ALWAYS before writing code |
+| `design/config/environment.md` | Environment variables, secrets location | Before any setup |
+| `design/specs/architecture.md` | System design, component relationships | When touching multiple files |
+| `design/specs/requirements.md` | Feature specs, acceptance criteria | When implementing features |
 
 ---
 
@@ -76,19 +76,19 @@ Include these commands in task instructions:
 
 ```bash
 # Read toolchain configuration
-cat .atlas/config/toolchain.md
+cat design/config/toolchain.md
 
 # Read code standards
-cat .atlas/config/standards.md
+cat design/config/standards.md
 
 # Read environment variables spec
-cat .atlas/config/environment.md
+cat design/config/environment.md
 
 # Read architecture docs
-cat .atlas/specs/architecture.md
+cat design/specs/architecture.md
 
 # Read requirements for specific feature
-cat .atlas/specs/requirements.md | grep -A 20 "GH-{issue-number}"
+cat design/specs/requirements.md | grep -A 20 "GH-{issue-number}"
 ```
 
 ---
@@ -102,9 +102,9 @@ At task assignment, orchestrator provides:
   "config_snapshot": {
     "version": "2025-12-31T03:48:23Z",
     "files": [
-      ".atlas/config/toolchain.md",
-      ".atlas/config/standards.md",
-      ".atlas/config/environment.md"
+      "design/config/toolchain.md",
+      "design/config/standards.md",
+      "design/config/environment.md"
     ],
     "critical_settings": {
       "python_version": "3.12",
@@ -124,7 +124,7 @@ At task assignment, orchestrator provides:
 
 Secrets are **NEVER** sent in task instructions. Agent must:
 
-1. Check local `.env` file (see `.atlas/config/environment.md` for required variables)
+1. Check local `.env` file (see `design/config/environment.md` for required variables)
 2. If missing, request from orchestrator via secure message
 3. **NEVER** commit secrets to git
 
@@ -157,11 +157,11 @@ When project config changes, orchestrator sends:
 {
   "type": "config-update",
   "changed_files": [
-    ".atlas/config/toolchain.md"
+    "design/config/toolchain.md"
   ],
   "change_summary": "Updated ruff from 0.7.0 to 0.8.0",
   "new_version": "2025-12-31T04:15:00Z",
-  "action_required": "Re-read .atlas/config/toolchain.md before next task"
+  "action_required": "Re-read design/config/toolchain.md before next task"
 }
 ```
 

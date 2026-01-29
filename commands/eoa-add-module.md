@@ -2,7 +2,7 @@
 name: eoa-add-module
 description: "Add a new module during Orchestration Phase (dynamic flexibility)"
 argument-hint: "<NAME> --criteria <TEXT> [--priority LEVEL]"
-allowed-tools: ["Bash(python3 ${CLAUDE_PLUGIN_ROOT}/scripts/atlas_modify_module.py:*)"]
+allowed-tools: ["Bash(python3 ${CLAUDE_PLUGIN_ROOT}/scripts/eoa_modify_module.py:*)"]
 ---
 
 # Add Module Command
@@ -12,7 +12,7 @@ Add a new module to the plan during Orchestration Phase. Supports dynamic flexib
 ## Usage
 
 ```!
-python3 "${CLAUDE_PLUGIN_ROOT}/scripts/atlas_modify_module.py" add $ARGUMENTS
+python3 "${CLAUDE_PLUGIN_ROOT}/scripts/eoa_modify_module.py" add $ARGUMENTS
 ```
 
 ## Arguments

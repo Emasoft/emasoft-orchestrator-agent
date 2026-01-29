@@ -20,22 +20,22 @@ Workflow for creating, compiling, and tracking design files.
 
 During `/start-planning`:
 
-1. Create `.atlas/` folder structure
+1. Create `design/` folder structure
 2. Create platform-specific subfolders
 3. Create templates in `designs/{platform}/templates/`
 4. Create shared architecture docs in `designs/shared/`
 
 ```bash
 # Script creates structure automatically
-python3 atlas_start_planning.py "Build auth system"
+python3 eoa_start_planning.py <!-- TODO: Script not implemented --> "Build auth system"
 
 # Creates:
-# .atlas/designs/shared/
-# .atlas/designs/web/templates/
-# .atlas/designs/web/specs/
-# .atlas/designs/web/rdd/
-# .atlas/config/
-# .atlas/handoffs/
+# design/requirements/shared/
+# design/requirements/web/templates/
+# design/requirements/web/specs/
+# design/requirements/web/rdd/
+# design/config/
+# design/handoffs/
 ```
 
 ### 4.2 Compiling templates for implementers
@@ -49,7 +49,7 @@ During `/assign-module`:
 
 ```python
 def compile_handoff(module_id, agent_id, platform):
-    template_path = f".atlas/designs/{platform}/templates/handoff-template.md"
+    template_path = f"design/requirements/{platform}/templates/handoff-template.md"
     template = load_template(template_path)
 
     compiled = template.format(
@@ -61,7 +61,7 @@ def compile_handoff(module_id, agent_id, platform):
         GITHUB_ISSUE=module.github_issue
     )
 
-    handoff_path = f".atlas/handoffs/{agent_id}/{module_id}-handoff.md"
+    handoff_path = f"design/handoffs/{agent_id}/{module_id}-handoff.md"
     save_file(handoff_path, compiled)
     return handoff_path
 ```
@@ -81,26 +81,26 @@ When implementers provide feedback or request config:
 ### 5.1 What to track
 
 **ALWAYS track in git**:
-- All `.atlas/designs/` contents
-- All `.atlas/config/` contents (except secrets)
-- All `.atlas/handoffs/` contents
-- All `.atlas/archive/` contents
+- All `design/requirements/` contents
+- All `design/config/` contents (except secrets)
+- All `design/handoffs/` contents
+- All `design/archive/` contents
 
 ### 5.2 What to gitignore
 
 **Add to .gitignore**:
 ```gitignore
 # Actual secrets (not .example files)
-.atlas/config/**/*.env
-!.atlas/config/**/*.env.example
+design/config/**/*.env
+!design/config/**/*.env.example
 
 # Temporary compilation files
-.atlas/.tmp/
+design/.tmp/
 
 # Local orchestrator state (separate from design docs)
 .claude/orchestrator-*.local.md
 ```
 
 **IMPORTANT**: Design documents are NOT the same as orchestrator state files.
-- Design docs (`.atlas/`) = tracked by git
+- Design docs (`design/`) = tracked by git
 - State files (`.claude/*.local.md`) = gitignored

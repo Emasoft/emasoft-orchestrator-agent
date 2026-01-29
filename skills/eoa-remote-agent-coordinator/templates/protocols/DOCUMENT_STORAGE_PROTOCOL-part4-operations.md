@@ -24,10 +24,10 @@ ls -la "$FILE_PATH"  # Should show -r--r--r--
 
 ```bash
 # Lock entire task folder
-chmod -R a-w .atlas/agents/helper-agent-macos-arm64/received/reports/GH-42/
+chmod -R a-w design/agents/helper-agent-macos-arm64/received/reports/GH-42/
 
 # Verify no write access
-touch .atlas/agents/helper-agent-macos-arm64/received/reports/GH-42/test.txt  # Should fail
+touch design/agents/helper-agent-macos-arm64/received/reports/GH-42/test.txt  # Should fail
 ```
 
 ### Integrity Verification
@@ -53,7 +53,7 @@ fi
 # Set in remote agent environment
 export ATLAS_ROLE="remote"
 export ATLAS_AGENT_NAME="helper-agent-macos-arm64"
-export ATLAS_STORAGE_ROOT="${PROJECT_ROOT}/.atlas/received"
+export ATLAS_STORAGE_ROOT="${PROJECT_ROOT}/design/received"
 export ATLAS_TASKS_DIR="${ATLAS_STORAGE_ROOT}/tasks"
 export ATLAS_SPECS_DIR="${ATLAS_STORAGE_ROOT}/specs"
 export ATLAS_PLANS_DIR="${ATLAS_STORAGE_ROOT}/plans"
@@ -119,13 +119,13 @@ Add to project `.gitignore`:
 
 ```gitignore
 # ATLAS Document Storage (local cache, not committed)
-.atlas/
+design/
 
 # Exception: Keep folder structure template
-!.atlas/.gitkeep
+!design/.gitkeep
 ```
 
-**CRITICAL**: The `.atlas/` directory is NEVER committed to git. Each agent maintains its own local storage.
+**CRITICAL**: The `design/` directory is NEVER committed to git. Each agent maintains its own local storage.
 
 ---
 

@@ -27,10 +27,10 @@ Create issue Claude Tasks when:
 
 ## Creating Issue Tasks
 
-Use the `atlas_create_issue_tasks.py` script:
+Use the `eoa_create_issue_tasks.py <!-- TODO: Script not implemented -->` script:
 
 ```bash
-python3 scripts/atlas_create_issue_tasks.py \
+python3 scripts/eoa_create_issue_tasks.py <!-- TODO: Script not implemented --> \
     --category BUG \
     --reporter implementer-1 \
     --module auth-core \
@@ -176,10 +176,10 @@ The orchestrator stop hook checks `docs_dev/issue-tasks/` for pending Claude Cod
 
 ## Script Reference
 
-See `scripts/atlas_create_issue_tasks.py` for implementation details.
+See `scripts/eoa_create_issue_tasks.py <!-- TODO: Script not implemented -->` for implementation details.
 
 ```
-Usage: atlas_create_issue_tasks.py [OPTIONS]
+Usage: eoa_create_issue_tasks.py <!-- TODO: Script not implemented --> [OPTIONS]
 
 Options:
   --category    Issue category (required)

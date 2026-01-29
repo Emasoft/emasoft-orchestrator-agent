@@ -40,8 +40,8 @@ Follow these steps in order. Mark each complete before proceeding:
 
 ### Phase 1: Knowledge Acquisition
 
-- [ ] **Read `.atlas/config/toolchain.md`** - Understand project build/test/deploy tools
-- [ ] **Read `.atlas/specs/architecture.md`** - Understand system design and component boundaries
+- [ ] **Read `design/config/toolchain.md`** - Understand project build/test/deploy tools
+- [ ] **Read `design/specs/architecture.md`** - Understand system design and component boundaries
 - [ ] **Read `IRON_RULES.md`** - Understand orchestration rules and FAIL-FAST principle
 - [ ] **Read `PROJECT_METHODOLOGY.md`** - Understand selected methodology (TDD, branch strategy, etc.)
 - [ ] **Read `CONTRIBUTING.md`** - Understand PR format, code style, commit conventions
@@ -49,7 +49,7 @@ Follow these steps in order. Mark each complete before proceeding:
 ### Phase 2: Environment Setup
 
 - [ ] **Clone repository** - `git clone <repo-url>`
-- [ ] **Install toolchain dependencies** - Follow `.atlas/config/toolchain.md`
+- [ ] **Install toolchain dependencies** - Follow `design/config/toolchain.md`
 - [ ] **Configure git identity** - Set name and email
 - [ ] **Setup AI Maestro client** - Configure session name and API endpoint
 - [ ] **Create development branch** - `git checkout -b onboarding/<agent-id>`
@@ -78,7 +78,7 @@ Follow these steps in order. Mark each complete before proceeding:
 
 ### Prerequisites
 
-**Required Tools** (verify in `.atlas/config/toolchain.md`):
+**Required Tools** (verify in `design/config/toolchain.md`):
 - Git 2.40+
 - Programming language runtime (Python 3.11+, Node.js 18+, etc.)
 - Package manager (uv, pnpm, cargo, etc.)
@@ -264,8 +264,8 @@ When verification task is complete, send this message:
 ### Priority 1: Critical (Read FIRST)
 
 1. **`IRON_RULES.md`** - FAIL-FAST principle, no workarounds
-2. **`.atlas/config/toolchain.md`** - Build/test/deploy commands
-3. **`.atlas/specs/architecture.md`** - System design overview
+2. **`design/config/toolchain.md`** - Build/test/deploy commands
+3. **`design/specs/architecture.md`** - System design overview
 
 ### Priority 2: Essential (Read BEFORE first task)
 
@@ -276,7 +276,7 @@ When verification task is complete, send this message:
 
 ### Priority 3: Important (Read DURING onboarding)
 
-8. **`.atlas/specs/api-contracts.md`** - Interface specifications
+8. **`design/specs/api-contracts.md`** - Interface specifications
 9. **`references/escalation-procedures.md`** - When to ask for help
 10. **`references/change-notification-protocol.md`** - How to notify about changes
 

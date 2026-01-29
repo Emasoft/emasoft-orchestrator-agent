@@ -123,7 +123,7 @@ When implementer requests configuration:
 
 1. **Receive request** - Implementer specifies what config is needed
 2. **Validate request** - Is this a legitimate config need?
-3. **Integrate config** - Add to central configuration (`.atlas/config/`)
+3. **Integrate config** - Add to central configuration (`design/config/`)
 4. **Update templates** - Modify project templates if needed
 5. **Send confirmation** - Provide config to implementer with documentation
 6. **Track in state** - Record config addition for future reference
@@ -137,7 +137,7 @@ IMPLEMENTER                               ORCHESTRATOR
      |---------------------------------------->|
      |                                         |
      |                    Validates request    |
-     |                    Updates .atlas/config|
+     |                    Updates design/config|
      |                    Updates templates    |
      |                                         |
      |  "Config added. Details: [X]"           |
@@ -182,7 +182,7 @@ Subject: RE: [CONFIG-NEEDED] Module: {module_name} - Configuration Provided
 {config_content}
 ```
 
-**Location:** Added to `.atlas/config/{config_file}.md`
+**Location:** Added to `design/config/{config_file}.md`
 
 **Documentation:** {brief_explanation_of_config}
 
@@ -204,7 +204,7 @@ config_feedback:
     description: "Need Redis connection string"
     status: "provided"
     provided_at: "2026-01-08T18:05:00+00:00"
-    config_file: ".atlas/config/environment.md"
+    config_file: "design/config/environment.md"
     config_key: "REDIS_URL"
   - request_id: "config-002"
     module: "auth-core"
@@ -221,33 +221,33 @@ config_feedback:
 
 ## 7. Script Usage
 
-Use `atlas_update_verification.py` to manage update verification:
+Use `eoa_update_verification.py <!-- TODO: Script not implemented -->` to manage update verification:
 
 ```bash
 # Send update notification
-python3 atlas_update_verification.py send implementer-1 --type requirement_change \
+python3 eoa_update_verification.py <!-- TODO: Script not implemented --> send implementer-1 --type requirement_change \
   --description "Added 2FA support"
 
 # Record receipt confirmation
-python3 atlas_update_verification.py record-receipt implementer-1 update-001
+python3 eoa_update_verification.py <!-- TODO: Script not implemented --> record-receipt implementer-1 update-001
 
 # Record feasibility assessment
-python3 atlas_update_verification.py record-feasibility implementer-1 update-001 \
+python3 eoa_update_verification.py <!-- TODO: Script not implemented --> record-feasibility implementer-1 update-001 \
   --clear --feasible --no-concerns
 
 # Record feasibility with concerns
-python3 atlas_update_verification.py record-feasibility implementer-1 update-001 \
+python3 eoa_update_verification.py <!-- TODO: Script not implemented --> record-feasibility implementer-1 update-001 \
   --concerns "Need Redis credentials"
 
 # Resolve concerns
-python3 atlas_update_verification.py resolve-concerns implementer-1 update-001 \
-  --resolution "Redis credentials provided in .atlas/config"
+python3 eoa_update_verification.py <!-- TODO: Script not implemented --> resolve-concerns implementer-1 update-001 \
+  --resolution "Redis credentials provided in design/config"
 
 # Authorize resume
-python3 atlas_update_verification.py authorize-resume implementer-1 update-001
+python3 eoa_update_verification.py <!-- TODO: Script not implemented --> authorize-resume implementer-1 update-001
 
 # View update history
-python3 atlas_update_verification.py history implementer-1
+python3 eoa_update_verification.py <!-- TODO: Script not implemented --> history implementer-1
 ```
 
 ---

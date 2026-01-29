@@ -87,7 +87,7 @@ def get_orchestration_status_via_script() -> dict[str, Any] | None:
     """Get accurate orchestration status by calling the dedicated check script.
 
     GAP 3 FIX: The parse_frontmatter() function cannot parse nested YAML structures.
-    This function calls atlas_check_orchestration_phase.py which has full YAML parsing
+    This function calls eoa_check_orchestration_phase.py which has full YAML parsing
     via PyYAML to get accurate module counts.
 
     Returns:
@@ -101,7 +101,7 @@ def get_orchestration_status_via_script() -> dict[str, Any] | None:
     """
     # Determine script path relative to this module's location
     script_dir = Path(__file__).parent.parent
-    check_script = script_dir / "atlas_check_orchestration_phase.py"
+    check_script = script_dir / "eoa_check_orchestration_phase.py"
 
     if not check_script.exists():
         warn(f"Orchestration check script not found: {check_script}")
@@ -350,36 +350,52 @@ def check_all_verifications() -> tuple[bool, str | None]:
             # Conservative: block if we can't parse state
             return (False, "Unable to parse verification state - blocking for safety")
 
+        # Ensure state is a dict (YAML could return other types)
+        if not isinstance(state, dict):
+            return (True, None)
+
         # Check if in orchestration phase
         if state.get("phase") != "orchestration":
             return (True, None)
 
         # Track incomplete verifications
-        incomplete = []
+        incomplete: list[str] = []
 
         # Check 1: Initial instruction verification for active assignments
         active_assignments = state.get("active_assignments", [])
-        for assignment in active_assignments:
-            agent = assignment.get("agent", "unknown")
-            module = assignment.get("module", "unknown")
-            verification = assignment.get("instruction_verification", {})
+        if isinstance(active_assignments, list):
+            for assignment in active_assignments:
+                if not isinstance(assignment, dict):
+                    continue
+                agent = assignment.get("agent", "unknown")
+                module = assignment.get("module", "unknown")
+                verification = assignment.get("instruction_verification", {})
 
-            status = verification.get("status", "pending")
-            authorized_at = verification.get("authorized_at")
+                if isinstance(verification, dict):
+                    status = verification.get("status", "pending")
+                    authorized_at = verification.get("authorized_at")
+                else:
+                    status = "pending"
+                    authorized_at = None
 
-            if status != "verified" or not authorized_at:
-                incomplete.append(f"initial:{agent}/{module}")
+                if status != "verified" or not authorized_at:
+                    incomplete.append(f"initial:{agent}/{module}")
 
         # Check 2: Instruction update verifications
         instruction_updates = state.get("instruction_updates", [])
-        for update in instruction_updates:
-            update_agent = update.get("agent", "unknown")
-            update_module = update.get("module", "unknown")
-            update_status = update.get("verification_status", "pending")
-            update_id = update.get("update_id", "unknown")
+        if isinstance(instruction_updates, list):
+            for update in instruction_updates:
+                if not isinstance(update, dict):
+                    continue
+                update_agent = update.get("agent", "unknown")
+                update_module = update.get("module", "unknown")
+                update_status = update.get("verification_status", "pending")
+                update_id = update.get("update_id", "unknown")
 
-            if update_status != "verified":
-                incomplete.append(f"update:{update_agent}/{update_module}#{update_id}")
+                if update_status != "verified":
+                    incomplete.append(
+                        f"update:{update_agent}/{update_module}#{update_id}"
+                    )
 
         if incomplete:
             reason = f"Verification incomplete for: {', '.join(incomplete)}"
@@ -716,6 +732,7 @@ def update_state_file(state_file_path: Path, updates: dict[str, str | int]) -> b
     """
     import os
 
+    temp_path: Path | None = None
     try:
         content = state_file_path.read_text(encoding="utf-8")
 
@@ -734,8 +751,9 @@ def update_state_file(state_file_path: Path, updates: dict[str, str | int]) -> b
         return True
     except OSError:
         error("Failed to update state file")
-        try:
-            temp_path.unlink(missing_ok=True)
-        except (OSError, UnboundLocalError):
-            pass
+        if temp_path is not None:
+            try:
+                temp_path.unlink(missing_ok=True)
+            except OSError:
+                pass
         return False

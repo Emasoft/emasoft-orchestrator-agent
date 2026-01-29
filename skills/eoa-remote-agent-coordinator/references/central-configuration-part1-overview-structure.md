@@ -4,8 +4,8 @@
 
 1. [If you need to understand why central configuration matters](#overview)
    - [Why Central Configuration Matters](#why-central-configuration-matters)
-2. [If you need to set up the `.atlas/` directory structure](#directory-structure)
-   - [The `.atlas/` Hierarchy](#the-atlas-hierarchy)
+2. [If you need to set up the `design/` directory structure](#directory-structure)
+   - [The `design/` Hierarchy](#the-atlas-hierarchy)
    - [Purpose of Each Directory](#purpose-of-each-directory)
 
 ---
@@ -23,16 +23,16 @@ In multi-agent orchestrated workflows, configuration drift is the primary cause 
 - **Conflict Prevention**: Single source of truth eliminates conflicting instructions
 - **Audit Trail**: Changes to configs are tracked, enabling rollback and review
 
-**Critical Principle**: Configuration is NEVER embedded in task messages. Messages contain REFERENCES to config files that agents read from the shared `.atlas/` directory.
+**Critical Principle**: Configuration is NEVER embedded in task messages. Messages contain REFERENCES to config files that agents read from the shared `design/` directory.
 
 ---
 
 ## Directory Structure
 
-### The `.atlas/` Hierarchy
+### The `design/` Hierarchy
 
 ```
-.atlas/
+design/
 ├── config/                     # Canonical project configuration
 │   ├── toolchain.md           # Tools, versions, commands, build system
 │   ├── standards.md           # Code standards, formatting, naming conventions

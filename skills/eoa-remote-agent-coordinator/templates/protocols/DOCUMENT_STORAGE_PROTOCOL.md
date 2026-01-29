@@ -22,7 +22,7 @@ This protocol defines the standardized folder structure for storing downloaded .
 
 ```
 ORCHESTRATOR STORAGE (tracks ALL agents):
-.atlas/
+design/
 ├── agents/                          # Per-agent tracking (orchestrator only)
 │   ├── {agent-full-name}/           # e.g., helper-agent-macos-arm64
 │   │   └── received/                # Documents FROM this agent
@@ -41,7 +41,7 @@ ORCHESTRATOR STORAGE (tracks ALL agents):
     └── by-date/
 
 REMOTE AGENT STORAGE (local to each agent):
-.atlas/
+design/
 └── received/                        # Documents FROM orchestrator
     ├── tasks/
     ├── specs/
@@ -115,17 +115,17 @@ This protocol is split into 5 parts for easier navigation:
 
 | Role | Storage Root | Primary Use |
 |------|--------------|-------------|
-| Remote Agent | `.atlas/received/` | Store documents FROM orchestrator |
-| Orchestrator | `.atlas/agents/{name}/received/` | Store documents FROM each agent |
-| Orchestrator | `.atlas/sent/{name}/` | Track documents SENT TO each agent |
-| Orchestrator | `.atlas/index/` | Cross-agent search indexes |
+| Remote Agent | `design/received/` | Store documents FROM orchestrator |
+| Orchestrator | `design/agents/{name}/received/` | Store documents FROM each agent |
+| Orchestrator | `design/sent/{name}/` | Track documents SENT TO each agent |
+| Orchestrator | `design/index/` | Cross-agent search indexes |
 
 ---
 
 ## Key Principles
 
 1. **READ-ONLY**: All downloaded documents are locked immediately after download
-2. **NEVER COMMITTED**: The `.atlas/` directory is gitignored
+2. **NEVER COMMITTED**: The `design/` directory is gitignored
 3. **INTEGRITY VERIFIED**: SHA256 hashes stored in metadata.json
 4. **AGENT-SEPARATED**: Orchestrator tracks each agent's documents separately
 5. **INDEXED**: Fast lookup by task, agent, date, or category

@@ -6,7 +6,7 @@ Reassigns a module from one agent to another.
 Notifies both old and new agents.
 
 Usage:
-    python3 atlas_reassign_module.py auth-core --to implementer-2
+    python3 eoa_reassign_module.py auth-core --to implementer-2
 """
 
 import argparse

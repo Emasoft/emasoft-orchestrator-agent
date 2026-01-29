@@ -114,7 +114,7 @@
 All document deliveries MUST follow both this protocol AND `DOCUMENT_STORAGE_PROTOCOL.md`:
 
 1. **This Protocol** - Defines HOW documents are shared (GitHub URLs, ACK responses)
-2. **Storage Protocol** - Defines WHERE documents are stored (.atlas/received/ structure)
+2. **Storage Protocol** - Defines WHERE documents are stored (design/received/ structure)
 
 The storage protocol ensures:
 - Permanent, immutable record of all received instructions

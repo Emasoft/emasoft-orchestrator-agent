@@ -30,7 +30,7 @@ When project toolchain changes:
   "type": "change-notification",
   "category": "toolchain",
   "urgency": "high",
-  "config_location": ".atlas/config/",
+  "config_location": "design/config/",
   "affected_files": ["project-context.md", "standards.md"],
   "changes": [
     {
@@ -59,7 +59,7 @@ When requirements change:
   "type": "change-notification",
   "category": "specification",
   "urgency": "medium",
-  "config_location": ".atlas/config/",
+  "config_location": "design/config/",
   "affected_files": ["project-context.md", "standards.md"],
   "affected_tasks": ["GH-42", "GH-45"],
   "changes": [
@@ -83,7 +83,7 @@ When task priorities shift:
   "type": "change-notification",
   "category": "priority",
   "urgency": "high",
-  "config_location": ".atlas/config/",
+  "config_location": "design/config/",
   "affected_files": ["project-context.md", "standards.md"],
   "changes": [
     {
@@ -106,7 +106,7 @@ When shared dependencies change:
   "type": "change-notification",
   "category": "dependency",
   "urgency": "medium",
-  "config_location": ".atlas/config/",
+  "config_location": "design/config/",
   "affected_files": ["project-context.md", "standards.md"],
   "changes": [
     {
@@ -151,7 +151,7 @@ Agents acknowledge change notifications:
   "type": "change-notification",
   "broadcast": true,
   "target_agents": [],
-  "config_location": ".atlas/config/",
+  "config_location": "design/config/",
   "affected_files": ["project-context.md", "standards.md"]
 }
 ```
@@ -162,7 +162,7 @@ Agents acknowledge change notifications:
   "type": "change-notification",
   "broadcast": false,
   "target_agents": ["dev-agent-1", "dev-agent-2"],
-  "config_location": ".atlas/config/",
+  "config_location": "design/config/",
   "affected_files": ["project-context.md", "standards.md"]
 }
 ```
@@ -208,7 +208,7 @@ Orchestrator tracks agent acknowledgments using event-driven pattern (no fixed t
   "reminder_count": 1,
   "original_sent_at": "2025-12-31T10:00:00Z",
   "urgency": "high",
-  "config_location": ".atlas/config/",
+  "config_location": "design/config/",
   "affected_files": ["project-context.md", "standards.md"],
   "message": "REMINDER: Acknowledge toolchain update before continuing work"
 }

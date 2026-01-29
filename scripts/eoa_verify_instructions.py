@@ -6,10 +6,10 @@ Manages the Instruction Verification Protocol for remote agents.
 Tracks verification status and handles the verification flow.
 
 Usage:
-    python3 atlas_verify_instructions.py status implementer-1
-    python3 atlas_verify_instructions.py record-repetition implementer-1 --correct
-    python3 atlas_verify_instructions.py record-questions implementer-1 --count 2
-    python3 atlas_verify_instructions.py authorize implementer-1
+    python3 eoa_verify_instructions.py status implementer-1
+    python3 eoa_verify_instructions.py record-repetition implementer-1 --correct
+    python3 eoa_verify_instructions.py record-questions implementer-1 --count 2
+    python3 eoa_verify_instructions.py authorize implementer-1
 """
 
 import argparse

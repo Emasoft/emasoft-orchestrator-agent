@@ -49,8 +49,8 @@ Standardized folder structure for all design documents, customized templates, ha
   - 6.2 Platform-specific customization
 - 7. State File Integration
 - 8. Script Support
-  - 8.1 atlas_init_design_folders.py
-  - 8.2 atlas_compile_handoff.py
+  - 8.1 eoa_init_design_folders.py <!-- TODO: Script not implemented -->
+  - 8.2 eoa_compile_handoff.py <!-- TODO: Script not implemented -->
 - 9. Checklists
   - 9.1 Design Folder Setup Checklist
   - 9.2 Per-Module Design Checklist
@@ -62,15 +62,15 @@ Standardized folder structure for all design documents, customized templates, ha
 ### Root Location
 
 ```
-.atlas/
+design/
 ```
 
-The `.atlas/` folder is the root for ALL orchestration design artifacts. This folder is **NOT gitignored** - all contents are tracked by git.
+The `design/` folder is the root for ALL orchestration design artifacts. This folder is **NOT gitignored** - all contents are tracked by git.
 
 ### Directory Structure Overview
 
 ```
-.atlas/
+design/
 ├── designs/                    # All design documents
 │   ├── shared/                 # Cross-platform shared resources
 │   ├── web/                    # Web platform
@@ -85,18 +85,18 @@ The `.atlas/` folder is the root for ALL orchestration design artifacts. This fo
 
 | Type | Location | Purpose |
 |------|----------|---------|
-| Templates | `.atlas/designs/{platform}/templates/` | Compilable documents with placeholders |
-| Specs | `.atlas/designs/{platform}/specs/` | Technical specifications |
-| RDD | `.atlas/designs/{platform}/rdd/` | Requirements-Driven Design docs |
-| Handoffs | `.atlas/handoffs/{agent-id}/` | Compiled communication files |
-| Config | `.atlas/config/{platform}/` | Implementer configuration |
+| Templates | `design/requirements/{platform}/templates/` | Compilable documents with placeholders |
+| Specs | `design/requirements/{platform}/specs/` | Technical specifications |
+| RDD | `design/requirements/{platform}/rdd/` | Requirements-Driven Design docs |
+| Handoffs | `design/handoffs/{agent-id}/` | Compiled communication files |
+| Config | `design/config/{platform}/` | Implementer configuration |
 
 ### Key Scripts
 
 | Script | Purpose |
 |--------|---------|
-| `atlas_init_design_folders.py` | Create standardized folder structure |
-| `atlas_compile_handoff.py` | Compile template to handoff |
+| `eoa_init_design_folders.py <!-- TODO: Script not implemented -->` | Create standardized folder structure |
+| `eoa_compile_handoff.py <!-- TODO: Script not implemented -->` | Compile template to handoff |
 
 ---
 

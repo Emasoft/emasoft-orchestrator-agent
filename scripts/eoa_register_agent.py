@@ -6,8 +6,8 @@ Registers a remote agent (AI or human) for module assignment
 during Orchestration Phase.
 
 Usage:
-    python3 atlas_register_agent.py ai implementer-1 --session helper-agent-generic
-    python3 atlas_register_agent.py human dev-alice
+    python3 eoa_register_agent.py ai implementer-1 --session helper-agent-generic
+    python3 eoa_register_agent.py human dev-alice
 """
 
 import argparse

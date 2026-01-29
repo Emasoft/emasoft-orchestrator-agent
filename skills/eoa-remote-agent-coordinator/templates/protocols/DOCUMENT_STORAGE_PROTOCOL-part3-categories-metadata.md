@@ -10,7 +10,7 @@
 ### Category: Reports (Orchestrator receives from agents)
 
 ```
-.atlas/agents/{agent-name}/received/reports/
+design/agents/{agent-name}/received/reports/
 ├── {{TASK_ID}}/
 │   ├── completion/
 │   │   ├── YYYYMMDD_HHMMSS_completion.md
@@ -34,7 +34,7 @@
 ### Category: Acknowledgments (Orchestrator receives from agents)
 
 ```
-.atlas/agents/{agent-name}/received/acks/
+design/agents/{agent-name}/received/acks/
 ├── {{TASK_ID}}/
 │   ├── YYYYMMDD_HHMMSS_ack.md
 │   └── metadata.json

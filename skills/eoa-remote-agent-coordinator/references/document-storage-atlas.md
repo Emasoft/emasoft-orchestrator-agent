@@ -33,7 +33,7 @@ The orchestrator tracks ALL documents sent to and received from agents using a s
 ### 2.1 Directory Structure
 
 ```
-.atlas/
+design/
 +-- agents/                          # Per-agent tracking (orchestrator only)
 |   +-- {agent-full-name}/           # e.g., helper-agent-macos-arm64
 |   |   +-- agent.json               # Agent metadata
@@ -85,35 +85,35 @@ When receiving documents, verify integrity:
 
 | Script | Purpose |
 |--------|---------|
-| `scripts/atlas_orchestrator_init.py` | Initialize orchestrator storage structure |
-| `scripts/atlas_register_agent.py` | Register new agents, list registered agents |
-| `scripts/atlas_orchestrator_download.py` | Download documents from agents to per-agent folders |
-| `scripts/atlas_search.py` | Search across all agents by task, agent, date, category |
+| `scripts/atlas_orchestrator_init.py <!-- TODO: Rename to eoa_orchestrator_init.py -->` | Initialize orchestrator storage structure |
+| `scripts/atlas_register_agent.py <!-- TODO: Rename to eoa_register_agent.py -->` | Register new agents, list registered agents |
+| `scripts/atlas_orchestrator_download.py <!-- TODO: Rename to eoa_orchestrator_download.py -->` | Download documents from agents to per-agent folders |
+| `scripts/atlas_search.py <!-- TODO: Rename to eoa_search.py -->` | Search across all agents by task, agent, date, category |
 
 ### 4.2 Usage Examples
 
 ```bash
 # Initialize orchestrator storage
-python scripts/atlas_orchestrator_init.py --project-root .
+python scripts/atlas_orchestrator_init.py <!-- TODO: Rename to eoa_orchestrator_init.py --> --project-root .
 
 # Register a new agent
-python scripts/atlas_register_agent.py register \
+python scripts/atlas_register_agent.py <!-- TODO: Rename to eoa_register_agent.py --> register \
   --name helper-agent-macos-arm64 \
   --platform macos \
   --architecture arm64
 
 # Download document from agent
-python scripts/atlas_orchestrator_download.py download \
+python scripts/atlas_orchestrator_download.py <!-- TODO: Rename to eoa_orchestrator_download.py --> download \
   --url "https://github.com/.../issues/42#issuecomment-123456" \
   --agent helper-agent-macos-arm64 \
   --task-id GH-42 \
   --category reports
 
 # Search for blockers across all agents
-python scripts/atlas_search.py blockers
+python scripts/atlas_search.py <!-- TODO: Rename to eoa_search.py --> blockers
 
 # Find all documents for a task
-python scripts/atlas_search.py by-task GH-42
+python scripts/atlas_search.py <!-- TODO: Rename to eoa_search.py --> by-task GH-42
 ```
 
 ---

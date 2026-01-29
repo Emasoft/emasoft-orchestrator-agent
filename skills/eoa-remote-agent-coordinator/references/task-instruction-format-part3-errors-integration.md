@@ -280,15 +280,15 @@ functionality that sends a reset token via email.
 
 ## Project Configuration
 
-**Config Location**: `.atlas/config/`
+**Config Location**: `design/config/`
 **Config Version**: 2025-12-30T09:00:00Z
 
 ### Required Config Files
-- `.atlas/config/toolchain.md` - Python 3.12, uv, ruff, pytest
-- `.atlas/config/standards.md` - Code standards, TDD, FAIL-FAST
-- `.atlas/config/environment.md` - Git config, AI Maestro settings
-- `.atlas/specs/architecture.md` - Auth system architecture
-- `.atlas/specs/requirements.md` - Password reset requirements (GH-42)
+- `design/config/toolchain.md` - Python 3.12, uv, ruff, pytest
+- `design/config/standards.md` - Code standards, TDD, FAIL-FAST
+- `design/config/environment.md` - Git config, AI Maestro settings
+- `design/specs/architecture.md` - Auth system architecture
+- `design/specs/requirements.md` - Password reset requirements (GH-42)
 
 **IMPORTANT**: Read ALL config files before starting. Do NOT rely on this summary alone.
 

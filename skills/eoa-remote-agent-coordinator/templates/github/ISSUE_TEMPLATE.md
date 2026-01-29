@@ -181,7 +181,7 @@ system_dependencies:
 
 ## Implementation Notes
 
-Use paramiko or fabric for SSH operations. Store keys in `~/.atlas/keys/` with 0600 permissions. Implement key rotation mechanism.
+Use paramiko or fabric for SSH operations. Store keys in `~/design/keys/` with 0600 permissions. Implement key rotation mechanism.
 
 ## Testing Requirements
 

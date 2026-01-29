@@ -30,7 +30,7 @@ POLLING_WARNING_MINUTES = 10  # Warn when approaching poll interval
 def log_error(message: str) -> None:
     """Log error message to stderr."""
     import sys
-    print(f"[ERROR] atlas_check_polling_due: {message}", file=sys.stderr)
+    print(f"[ERROR] eoa_check_polling_due: {message}", file=sys.stderr)
 
 
 def parse_frontmatter(file_path: Path) -> tuple[dict, bool]:

@@ -117,7 +117,7 @@ Contents:
 2. **ALWAYS** upload to GitHub issue comment first
 3. **ALWAYS** share via URL only
 4. **ALWAYS** send ACK within 5 minutes for `document_delivery` type
-5. **ALWAYS** store received documents in `.atlas/received/` structure
+5. **ALWAYS** store received documents in `design/received/` structure
 
 ---
 

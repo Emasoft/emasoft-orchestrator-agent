@@ -6,7 +6,7 @@ This document has been split into multiple parts for easier reading. Each part f
 
 | Part | File | Content | Lines |
 |------|------|---------|-------|
-| 1 | [Overview & Structure](central-configuration-part1-overview-structure.md) | Why config matters, `.atlas/` directory layout | ~80 |
+| 1 | [Overview & Structure](central-configuration-part1-overview-structure.md) | Why config matters, `design/` directory layout | ~80 |
 | 2 | [Tooling Templates](central-configuration-part2-tooling-templates.md) | toolchain.md, standards.md, environment.md | ~280 |
 | 3 | [Spec Templates](central-configuration-part3-spec-templates.md) | decisions.md, requirements.md, architecture.md, interfaces.md | ~335 |
 | 4 | [Workflows & Protocols](central-configuration-part4-workflows-protocols.md) | Reference-based sharing, update protocols, troubleshooting | ~280 |
@@ -20,9 +20,9 @@ Read: [Part 1 - Overview](central-configuration-part1-overview-structure.md#over
 - Why Central Configuration Matters
 - Critical Principle: Reference, don't embed
 
-### If you need to set up the `.atlas/` directory structure
+### If you need to set up the `design/` directory structure
 Read: [Part 1 - Directory Structure](central-configuration-part1-overview-structure.md#directory-structure)
-- The `.atlas/` Hierarchy
+- The `design/` Hierarchy
 - Purpose of Each Directory (config/, specs/, memory/)
 
 ### If you need to create toolchain.md
@@ -106,13 +106,13 @@ Read: [Part 4 - Workflows](central-configuration-part4-workflows-protocols.md#tr
 
 | File | Purpose | Location |
 |------|---------|----------|
-| `toolchain.md` | Tools, versions, build commands | `.atlas/config/` |
-| `standards.md` | Code conventions, formatting | `.atlas/config/` |
-| `environment.md` | Environment variables | `.atlas/config/` |
-| `decisions.md` | Architecture Decision Records | `.atlas/config/` |
-| `requirements.md` | Feature requirements | `.atlas/specs/` |
-| `architecture.md` | System design | `.atlas/specs/` |
-| `interfaces.md` | API contracts | `.atlas/specs/` |
+| `toolchain.md` | Tools, versions, build commands | `design/config/` |
+| `standards.md` | Code conventions, formatting | `design/config/` |
+| `environment.md` | Environment variables | `design/config/` |
+| `decisions.md` | Architecture Decision Records | `design/config/` |
+| `requirements.md` | Feature requirements | `design/specs/` |
+| `architecture.md` | System design | `design/specs/` |
+| `interfaces.md` | API contracts | `design/specs/` |
 
 ---
 

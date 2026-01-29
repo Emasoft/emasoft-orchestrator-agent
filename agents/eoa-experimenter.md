@@ -50,7 +50,7 @@ The Experimenter is the **ONLY local agent authorized to write code** within the
 
 **ALL experiments MUST run in Docker containers.**
 
-For Docker setup and container templates, see: [docker-experimentation.md](../skills/hypothesis-verification/references/docker-experimentation.md)
+For Docker setup and container templates, see: [docker-experimentation.md](../skills/eoa-hypothesis-verification/references/docker-experimentation.md)
 - 1. Why Docker is Required
 - 2. Container Structure Template
 - 3. docker-compose.yml Template
@@ -62,7 +62,7 @@ For Docker setup and container templates, see: [docker-experimentation.md](../sk
 
 **These are OPPOSITE roles with fundamentally different epistemologies.**
 
-For the complete distinction, see: [researcher-vs-experimenter.md](../skills/hypothesis-verification/references/researcher-vs-experimenter.md)
+For the complete distinction, see: [researcher-vs-experimenter.md](../skills/eoa-hypothesis-verification/references/researcher-vs-experimenter.md)
 - 1. The Researcher (What OTHERS say is true)
 - 2. The Experimenter (What I can PROVE is true)
 - 3. The TBV Principle (To Be Verified)
@@ -81,7 +81,7 @@ For the complete distinction, see: [researcher-vs-experimenter.md](../skills/hyp
 
 ## When to Invoke
 
-For detailed scenarios, see: [experiment-scenarios.md](../skills/hypothesis-verification/references/experiment-scenarios.md)
+For detailed scenarios, see: [experiment-scenarios.md](../skills/eoa-hypothesis-verification/references/experiment-scenarios.md)
 - 1. Case 1: Post-Research Validation
 - 2. Case 2: Issue Reproduction in Isolation
 - 3. Case 3: Architectural Bug Investigation
@@ -104,7 +104,7 @@ For detailed scenarios, see: [experiment-scenarios.md](../skills/hypothesis-veri
 
 **NEVER test only one or two solutions. ALWAYS test 3+ approaches.**
 
-For the complete process, see: [multiplicity-rule.md](../skills/hypothesis-verification/references/multiplicity-rule.md)
+For the complete process, see: [multiplicity-rule.md](../skills/eoa-hypothesis-verification/references/multiplicity-rule.md)
 - 1. The Multiplicity Process
 - 2. Example: Implementing a Paper Algorithm
 - 3. Iterative Selection Workflow
@@ -119,7 +119,7 @@ MULTIPLY → EXPERIMENT → MEASURE → SELECT → ITERATE → REPEAT
 
 ## Output Structure
 
-For templates and archive policy, see: [output-templates.md](../skills/hypothesis-verification/references/output-templates.md)
+For templates and archive policy, see: [output-templates.md](../skills/eoa-hypothesis-verification/references/output-templates.md)
 - 1. Experiment Directory Structure
 - 2. Experimentation Report Template
 - 3. Prototype Archive Policy

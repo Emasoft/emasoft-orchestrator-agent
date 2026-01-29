@@ -60,7 +60,7 @@ Use `compile_template.py` to generate customized configurations:
 python scripts/compile_template.py \
   --template toolchain/python-advanced \
   --project my-project \
-  --output .atlas/agents/dev-agent-1/
+  --output design/agents/dev-agent-1/
 
 # Generate handoff template for specific task
 python scripts/compile_template.py \
@@ -80,9 +80,9 @@ Reference templates in task delegation messages to ensure agents have all necess
 
 Before starting this task, download and apply the following templates:
 
-1. **Toolchain**: `.atlas/templates/toolchain/typescript-react.json`
-2. **Report Format**: `.atlas/templates/reports/completion-report.md`
-3. **GitHub Integration**: `.atlas/templates/github/pr-description.md`
+1. **Toolchain**: `design/templates/toolchain/typescript-react.json`
+2. **Report Format**: `design/templates/reports/completion-report.md`
+3. **GitHub Integration**: `design/templates/github/pr-description.md`
 
 Apply with:
 \`\`\`bash

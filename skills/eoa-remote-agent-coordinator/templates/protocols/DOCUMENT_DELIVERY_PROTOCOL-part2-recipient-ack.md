@@ -52,10 +52,10 @@ See **DOCUMENT_STORAGE_PROTOCOL.md** for complete details.
 
 ```bash
 # Initialize storage (if not already done)
-python scripts/atlas_download.py init --project-root .
+python scripts/atlas_download.py <!-- TODO: Rename to eoa_download.py --> init --project-root .
 
 # Download and store with proper categorization
-python scripts/atlas_download.py download \
+python scripts/atlas_download.py <!-- TODO: Rename to eoa_download.py --> download \
   --url "$COMMENT_URL" \
   --task-id {{TASK_ID}} \
   --category tasks \
@@ -63,7 +63,7 @@ python scripts/atlas_download.py download \
   --sender orchestrator
 
 # Document is now stored at:
-# .atlas/received/tasks/{{TASK_ID}}/YYYYMMDD_HHMMSS_delegation.md
+# design/received/tasks/{{TASK_ID}}/YYYYMMDD_HHMMSS_delegation.md
 # Automatically set to READ-ONLY with SHA256 verification
 ```
 
@@ -71,12 +71,12 @@ python scripts/atlas_download.py download \
 
 | Category | Path | Contents |
 |----------|------|----------|
-| `tasks` | `.atlas/received/tasks/{task_id}/` | Task delegations, checklists |
-| `reports` | `.atlas/received/reports/{task_id}/` | Completion, verification, blockers |
-| `acks` | `.atlas/received/acks/{task_id}/` | ACK confirmations |
-| `specs` | `.atlas/received/specs/` | Toolchain, platform configs |
-| `plans` | `.atlas/received/plans/{task_id}/` | Design docs, reviews |
-| `sync` | `.atlas/received/sync/` | Cross-agent sync reports |
+| `tasks` | `design/received/tasks/{task_id}/` | Task delegations, checklists |
+| `reports` | `design/received/reports/{task_id}/` | Completion, verification, blockers |
+| `acks` | `design/received/acks/{task_id}/` | ACK confirmations |
+| `specs` | `design/received/specs/` | Toolchain, platform configs |
+| `plans` | `design/received/plans/{task_id}/` | Design docs, reviews |
+| `sync` | `design/received/sync/` | Cross-agent sync reports |
 
 **Read-Only Enforcement:**
 - All downloaded files are immediately set to `chmod 444`
@@ -88,7 +88,7 @@ python scripts/atlas_download.py download \
 
 ```bash
 # Read from storage (read-only access)
-TASK_DIR=".atlas/received/tasks/{{TASK_ID}}"
+TASK_DIR="design/received/tasks/{{TASK_ID}}"
 cat "$TASK_DIR"/*.md
 
 # Execute instructions, run tasks, etc.

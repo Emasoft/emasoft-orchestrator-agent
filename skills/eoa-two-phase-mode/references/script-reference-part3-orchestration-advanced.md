@@ -4,27 +4,27 @@ This document covers Orchestration Phase scripts 2.9-2.16 (advanced operations).
 
 ## Contents
 
-- 2.9 atlas_check_plan_phase.py - Checking if Plan Phase is complete
-- 2.10 atlas_check_orchestration_phase.py - Checking if Orchestration Phase is complete
-- 2.11 atlas_sync_github_issues.py - Syncing modules with GitHub Issues
-- 2.12 atlas_verify_instructions.py - Managing Instruction Verification Protocol
-- 2.13 atlas_poll_agent.py - Sending MANDATORY progress poll
-- 2.14 atlas_update_verification.py - Managing mid-implementation changes
-- 2.15 atlas_init_design_folders.py - Initializing design folder structure
-- 2.16 atlas_compile_handoff.py - Compiling template to handoff document
+- 2.9 eoa_check_plan_phase.py <!-- TODO: Script not implemented --> - Checking if Plan Phase is complete
+- 2.10 eoa_check_orchestration_phase.py <!-- TODO: Script not implemented --> - Checking if Orchestration Phase is complete
+- 2.11 eoa_sync_github_issues.py <!-- TODO: Script not implemented --> - Syncing modules with GitHub Issues
+- 2.12 eoa_verify_instructions.py - Managing Instruction Verification Protocol
+- 2.13 eoa_poll_agent.py - Sending MANDATORY progress poll
+- 2.14 eoa_update_verification.py <!-- TODO: Script not implemented --> - Managing mid-implementation changes
+- 2.15 eoa_init_design_folders.py <!-- TODO: Script not implemented --> - Initializing design folder structure
+- 2.16 eoa_compile_handoff.py <!-- TODO: Script not implemented --> - Compiling template to handoff document
 
 ---
 
-## 2.9 atlas_check_plan_phase.py
+## 2.9 eoa_check_plan_phase.py <!-- TODO: Script not implemented -->
 
 **Purpose:** Check if Plan Phase is complete.
 
-**Location:** `scripts/atlas_check_plan_phase.py`
+**Location:** `scripts/eoa_check_plan_phase.py <!-- TODO: Script not implemented -->`
 
 **Usage:**
 ```bash
-python3 atlas_check_plan_phase.py
-python3 atlas_check_plan_phase.py --json
+python3 eoa_check_plan_phase.py <!-- TODO: Script not implemented -->
+python3 eoa_check_plan_phase.py <!-- TODO: Script not implemented --> --json
 ```
 
 **Output:**
@@ -39,16 +39,16 @@ python3 atlas_check_plan_phase.py --json
 
 ---
 
-## 2.10 atlas_check_orchestration_phase.py
+## 2.10 eoa_check_orchestration_phase.py <!-- TODO: Script not implemented -->
 
 **Purpose:** Check if Orchestration Phase is complete.
 
-**Location:** `scripts/atlas_check_orchestration_phase.py`
+**Location:** `scripts/eoa_check_orchestration_phase.py <!-- TODO: Script not implemented -->`
 
 **Usage:**
 ```bash
-python3 atlas_check_orchestration_phase.py
-python3 atlas_check_orchestration_phase.py --json
+python3 eoa_check_orchestration_phase.py <!-- TODO: Script not implemented -->
+python3 eoa_check_orchestration_phase.py <!-- TODO: Script not implemented --> --json
 ```
 
 **Output:**
@@ -64,16 +64,16 @@ python3 atlas_check_orchestration_phase.py --json
 
 ---
 
-## 2.11 atlas_sync_github_issues.py
+## 2.11 eoa_sync_github_issues.py <!-- TODO: Script not implemented -->
 
 **Purpose:** Sync modules with GitHub Issues.
 
-**Location:** `scripts/atlas_sync_github_issues.py`
+**Location:** `scripts/eoa_sync_github_issues.py <!-- TODO: Script not implemented -->`
 
 **Usage:**
 ```bash
-python3 atlas_sync_github_issues.py
-python3 atlas_sync_github_issues.py --dry-run
+python3 eoa_sync_github_issues.py <!-- TODO: Script not implemented -->
+python3 eoa_sync_github_issues.py <!-- TODO: Script not implemented --> --dry-run
 ```
 
 **Actions:**
@@ -87,26 +87,26 @@ python3 atlas_sync_github_issues.py --dry-run
 
 ---
 
-## 2.12 atlas_verify_instructions.py
+## 2.12 eoa_verify_instructions.py
 
 **Purpose:** Manage Instruction Verification Protocol.
 
-**Location:** `scripts/atlas_verify_instructions.py`
+**Location:** `scripts/eoa_verify_instructions.py`
 
 **Usage:**
 ```bash
 # Check status
-python3 atlas_verify_instructions.py status <agent-id>
+python3 eoa_verify_instructions.py status <agent-id>
 
 # Record repetition received
-python3 atlas_verify_instructions.py record-repetition <agent-id> --correct
-python3 atlas_verify_instructions.py record-repetition <agent-id>  # incorrect
+python3 eoa_verify_instructions.py record-repetition <agent-id> --correct
+python3 eoa_verify_instructions.py record-repetition <agent-id>  # incorrect
 
 # Record questions
-python3 atlas_verify_instructions.py record-questions <agent-id> --count 2 --answered 2
+python3 eoa_verify_instructions.py record-questions <agent-id> --count 2 --answered 2
 
 # Authorize agent
-python3 atlas_verify_instructions.py authorize <agent-id>
+python3 eoa_verify_instructions.py authorize <agent-id>
 ```
 
 **Exit codes:**
@@ -115,23 +115,23 @@ python3 atlas_verify_instructions.py authorize <agent-id>
 
 ---
 
-## 2.13 atlas_poll_agent.py
+## 2.13 eoa_poll_agent.py
 
 **Purpose:** Send MANDATORY progress poll with 6 questions.
 
-**Location:** `scripts/atlas_poll_agent.py`
+**Location:** `scripts/eoa_poll_agent.py`
 
 **Usage:**
 ```bash
 # Send poll
-python3 atlas_poll_agent.py <agent-id>
+python3 eoa_poll_agent.py <agent-id>
 
 # Record response
-python3 atlas_poll_agent.py <agent-id> --record-response --issues "Issue description"
-python3 atlas_poll_agent.py <agent-id> --record-response --issues "Issue" --resolved
+python3 eoa_poll_agent.py <agent-id> --record-response --issues "Issue description"
+python3 eoa_poll_agent.py <agent-id> --record-response --issues "Issue" --resolved
 
 # View history
-python3 atlas_poll_agent.py <agent-id> --history
+python3 eoa_poll_agent.py <agent-id> --history
 ```
 
 **Poll message includes ALL 6 mandatory questions.**
@@ -142,38 +142,38 @@ python3 atlas_poll_agent.py <agent-id> --history
 
 ---
 
-## 2.14 atlas_update_verification.py
+## 2.14 eoa_update_verification.py <!-- TODO: Script not implemented -->
 
 **Purpose:** Manage Instruction Update Verification Protocol for mid-implementation changes.
 
-**Location:** `scripts/atlas_update_verification.py`
+**Location:** `scripts/eoa_update_verification.py <!-- TODO: Script not implemented -->`
 
 **Usage:**
 ```bash
 # Send update notification
-python3 atlas_update_verification.py send <agent-id> \
+python3 eoa_update_verification.py <!-- TODO: Script not implemented --> send <agent-id> \
   --type requirement_change \
   --description "Added OAuth2 scope requirements"
 
 # Record receipt confirmation
-python3 atlas_update_verification.py record-receipt <agent-id> <update-id>
+python3 eoa_update_verification.py <!-- TODO: Script not implemented --> record-receipt <agent-id> <update-id>
 
 # Record feasibility assessment
-python3 atlas_update_verification.py record-feasibility <agent-id> <update-id> \
+python3 eoa_update_verification.py <!-- TODO: Script not implemented --> record-feasibility <agent-id> <update-id> \
   --clear  # or --concerns "Concern description"
 
 # Resolve concerns
-python3 atlas_update_verification.py resolve-concerns <agent-id> <update-id> \
+python3 eoa_update_verification.py <!-- TODO: Script not implemented --> resolve-concerns <agent-id> <update-id> \
   --resolution "Provided additional config"
 
 # Authorize resume
-python3 atlas_update_verification.py authorize-resume <agent-id> <update-id>
+python3 eoa_update_verification.py <!-- TODO: Script not implemented --> authorize-resume <agent-id> <update-id>
 
 # View update history
-python3 atlas_update_verification.py history <agent-id>
+python3 eoa_update_verification.py <!-- TODO: Script not implemented --> history <agent-id>
 
 # View pending updates
-python3 atlas_update_verification.py pending
+python3 eoa_update_verification.py <!-- TODO: Script not implemented --> pending
 ```
 
 **Update types:**
@@ -219,13 +219,13 @@ active_assignments:
 When implementer needs configuration from orchestrator:
 ```bash
 # Implementer requests config
-python3 atlas_update_verification.py send orchestrator \
+python3 eoa_update_verification.py <!-- TODO: Script not implemented --> send orchestrator \
   --type config_request \
   --description "Need API keys for OAuth2 provider"
 
 # Orchestrator provides config
-python3 atlas_update_verification.py resolve-concerns <agent-id> <update-id> \
-  --resolution "Config added to .atlas/config/oauth2.env"
+python3 eoa_update_verification.py <!-- TODO: Script not implemented --> resolve-concerns <agent-id> <update-id> \
+  --resolution "Config added to design/config/oauth2.env"
 ```
 
 **Exit codes:**
@@ -234,25 +234,25 @@ python3 atlas_update_verification.py resolve-concerns <agent-id> <update-id> \
 
 ---
 
-## 2.15 atlas_init_design_folders.py
+## 2.15 eoa_init_design_folders.py <!-- TODO: Script not implemented -->
 
 **Purpose:** Initialize standardized design folder structure.
 
-**Location:** `scripts/atlas_init_design_folders.py`
+**Location:** `scripts/eoa_init_design_folders.py <!-- TODO: Script not implemented -->`
 
 **Usage:**
 ```bash
 # Initialize for single platform
-python3 atlas_init_design_folders.py --platforms web
+python3 eoa_init_design_folders.py <!-- TODO: Script not implemented --> --platforms web
 
 # Initialize for multiple platforms
-python3 atlas_init_design_folders.py --platforms web ios android
+python3 eoa_init_design_folders.py <!-- TODO: Script not implemented --> --platforms web ios android
 
 # Initialize with custom root (default: .atlas)
-python3 atlas_init_design_folders.py --platforms web --root custom-atlas
+python3 eoa_init_design_folders.py <!-- TODO: Script not implemented --> --platforms web --root custom-atlas
 
 # Skip template file creation
-python3 atlas_init_design_folders.py --platforms web --no-templates
+python3 eoa_init_design_folders.py <!-- TODO: Script not implemented --> --platforms web --no-templates
 ```
 
 **Arguments:**
@@ -261,7 +261,7 @@ python3 atlas_init_design_folders.py --platforms web --no-templates
 - `--no-templates` (optional): Skip creating template files
 
 **Actions:**
-1. Creates `.atlas/` root directory
+1. Creates `design/` root directory
 2. Creates `designs/shared/` for cross-platform docs
 3. Creates `designs/{platform}/templates/`, `specs/`, `rdd/` for each platform
 4. Creates `config/shared/` and `config/{platform}/` folders
@@ -271,7 +271,7 @@ python3 atlas_init_design_folders.py --platforms web --no-templates
 
 **Created folder structure:**
 ```
-.atlas/
+design/
 ├── designs/
 │   ├── shared/
 │   │   ├── ARCHITECTURE.md
@@ -299,23 +299,23 @@ python3 atlas_init_design_folders.py --platforms web --no-templates
 
 ---
 
-## 2.16 atlas_compile_handoff.py
+## 2.16 eoa_compile_handoff.py <!-- TODO: Script not implemented -->
 
 **Purpose:** Compile template to handoff document for implementer.
 
-**Location:** `scripts/atlas_compile_handoff.py`
+**Location:** `scripts/eoa_compile_handoff.py <!-- TODO: Script not implemented -->`
 
 **Usage:**
 ```bash
 # Compile handoff for module assignment
-python3 atlas_compile_handoff.py auth-core implementer-1 --platform web
+python3 eoa_compile_handoff.py <!-- TODO: Script not implemented --> auth-core implementer-1 --platform web
 
 # With custom template
-python3 atlas_compile_handoff.py auth-core implementer-1 --platform web \
+python3 eoa_compile_handoff.py <!-- TODO: Script not implemented --> auth-core implementer-1 --platform web \
     --template custom-handoff-template.md
 
 # Preview without saving
-python3 atlas_compile_handoff.py auth-core implementer-1 --platform web --preview
+python3 eoa_compile_handoff.py <!-- TODO: Script not implemented --> auth-core implementer-1 --platform web --preview
 ```
 
 **Arguments:**
@@ -340,7 +340,7 @@ python3 atlas_compile_handoff.py auth-core implementer-1 --platform web --previe
 | `{{RDD_PATH}}` | Path to RDD file |
 
 **Output:**
-Compiled handoff saved to: `.atlas/handoffs/{agent-id}/{module-id}-handoff.md`
+Compiled handoff saved to: `design/handoffs/{agent-id}/{module-id}-handoff.md`
 
 **Exit codes:**
 - 0: Success

@@ -90,14 +90,14 @@ DOCUMENT_TYPE_MAP: dict[str, tuple[str, str | None]] = {
 def get_storage_root(project_root: Path | None = None) -> Path:
     """Get the ATLAS storage root directory."""
     if project_root:
-        return project_root / ".atlas" / "received"
+        return project_root / "design" / "received"
 
     env_root = os.environ.get("ATLAS_STORAGE_ROOT")
     if env_root:
         return Path(env_root)
 
     cwd = Path.cwd()
-    return cwd / ".atlas" / "received"
+    return cwd / "design" / "received"
 
 
 def init_storage(project_root: Path) -> None:
@@ -126,11 +126,11 @@ def init_storage(project_root: Path) -> None:
 
     # Update .gitignore if in git repo
     gitignore_path = project_root / ".gitignore"
-    gitignore_entry = "\n# ATLAS Document Storage (local cache)\n.atlas/\n!.atlas/.gitkeep\n"
+    gitignore_entry = "\n# ATLAS Document Storage (local cache)\ndesign/\n!design/.gitkeep\n"
 
     if gitignore_path.exists():
         content = gitignore_path.read_text()
-        if ".atlas/" not in content:
+        if "design/" not in content:
             with gitignore_path.open("a") as f:
                 f.write(gitignore_entry)
             print(f"Updated {gitignore_path}")

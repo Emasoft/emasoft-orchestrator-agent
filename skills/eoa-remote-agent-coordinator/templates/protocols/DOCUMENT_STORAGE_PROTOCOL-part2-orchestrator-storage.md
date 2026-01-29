@@ -10,15 +10,15 @@
 The orchestrator tracks documents FROM ALL agents:
 
 ```
-{{ORCHESTRATOR_PROJECT_ROOT}}/.atlas/
+{{ORCHESTRATOR_PROJECT_ROOT}}/design/
 ```
 
 ## Agent Folders
 
-Each agent has its own folder under `.atlas/agents/`:
+Each agent has its own folder under `design/agents/`:
 
 ```
-.atlas/agents/
+design/agents/
 ├── helper-agent-macos-arm64/        # Full agent name (required)
 │   ├── agent.json                   # Agent metadata
 │   └── received/                    # Documents FROM this agent
@@ -71,7 +71,7 @@ Each agent folder contains metadata:
 The orchestrator also tracks documents SENT to each agent:
 
 ```
-.atlas/sent/
+design/sent/
 ├── helper-agent-macos-arm64/
 │   └── tasks/
 │       └── GH-42/
@@ -92,7 +92,7 @@ The orchestrator also tracks documents SENT to each agent:
 The orchestrator maintains search indexes:
 
 ```
-.atlas/index/
+design/index/
 ├── by-task/
 │   └── GH-42.json                   # All agents working on GH-42
 ├── by-agent/
@@ -127,12 +127,12 @@ The orchestrator maintains search indexes:
   "documents": [
     {
       "type": "delegation",
-      "path": ".atlas/sent/helper-agent-macos-arm64/tasks/GH-42/delegation.md",
+      "path": "design/sent/helper-agent-macos-arm64/tasks/GH-42/delegation.md",
       "timestamp": "2024-01-15T10:00:00Z"
     },
     {
       "type": "completion_report",
-      "path": ".atlas/agents/helper-agent-macos-arm64/received/reports/GH-42/completion/...",
+      "path": "design/agents/helper-agent-macos-arm64/received/reports/GH-42/completion/...",
       "timestamp": "2024-01-15T14:30:00Z"
     }
   ]

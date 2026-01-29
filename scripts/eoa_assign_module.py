@@ -6,7 +6,7 @@ Assigns a module to a registered agent and initiates the
 Instruction Verification Protocol.
 
 Usage:
-    python3 atlas_assign_module.py auth-core implementer-1
+    python3 eoa_assign_module.py auth-core implementer-1
 """
 
 import argparse

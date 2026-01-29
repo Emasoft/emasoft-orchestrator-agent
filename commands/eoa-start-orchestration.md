@@ -2,7 +2,7 @@
 name: eoa-start-orchestration
 description: "Enter Orchestration Phase - begin coordinating remote agents for implementation"
 argument-hint: "[--project-id ID]"
-allowed-tools: ["Bash(python3 ${CLAUDE_PLUGIN_ROOT}/scripts/atlas_start_orchestration.py:*)"]
+allowed-tools: ["Bash(python3 ${CLAUDE_PLUGIN_ROOT}/scripts/eoa_start_orchestration.py:*)"]
 ---
 
 # Start Orchestration Command
@@ -12,7 +12,7 @@ Enter Orchestration Phase Mode to coordinate remote agents implementing the appr
 ## Usage
 
 ```!
-python3 "${CLAUDE_PLUGIN_ROOT}/scripts/atlas_start_orchestration.py" $ARGUMENTS
+python3 "${CLAUDE_PLUGIN_ROOT}/scripts/eoa_start_orchestration.py" $ARGUMENTS
 ```
 
 ## Prerequisites

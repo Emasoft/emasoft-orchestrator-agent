@@ -6,8 +6,8 @@ Polls all active remote agents for progress updates using the
 MANDATORY Proactive Progress Polling Protocol.
 
 Usage:
-    python3 atlas_check_remote_agents.py
-    python3 atlas_check_remote_agents.py --agent implementer-1
+    python3 eoa_check_remote_agents.py
+    python3 eoa_check_remote_agents.py --agent implementer-1
 """
 
 import argparse
@@ -73,8 +73,9 @@ def find_agent_session(data: dict[str, Any], agent_id: str) -> str | None:
     return None
 
 
-def create_poll_message(module_name: str, poll_number: int) -> str:
+def create_poll_message(_agent_id: str, _poll_count: int) -> str:
     """Create the MANDATORY poll message with all required questions."""
+    del _agent_id, _poll_count  # Explicitly mark as unused
     return """## Status Request
 
 Please provide:

@@ -85,7 +85,7 @@ Flag as potential violation if:
 
 ## RULE 15: No Implementation by Orchestrator (ABSOLUTE)
 
-**Reference**: See [orchestrator-no-implementation.md](../skills/ao-orchestration-patterns/references/orchestrator-no-implementation.md) for complete specification.
+**Reference**: See [orchestrator-no-implementation.md](../skills/eoa-orchestration-patterns/references/orchestrator-no-implementation.md) for complete specification.
 
 **Summary for Team Orchestrator:**
 
@@ -109,7 +109,7 @@ The team orchestrator MUST:
 3. Is this DELEGATION (sending instructions)? → PROCEED
 4. Is this IMPLEMENTATION (code, builds, git push)? → STOP → DELEGATE
 
-**See Also**: [orchestrator-guardrails.md](../skills/ao-orchestration-patterns/references/orchestrator-guardrails.md)
+**See Also**: [orchestrator-guardrails.md](../skills/eoa-orchestration-patterns/references/orchestrator-guardrails.md)
 
 ---
 
@@ -211,7 +211,7 @@ REMOTE AGENTS (via AI Maestro)
 
 ## Step-by-Step Procedure
 
-For the complete step-by-step orchestration workflow, see: [agent-onboarding.md](../skills/remote-agent-coordinator/references/agent-onboarding.md)
+For the complete step-by-step orchestration workflow, see: [agent-onboarding.md](../skills/eoa-remote-agent-coordinator/references/agent-onboarding.md)
 - 1. Step 1: Analyze Requirements
 - 2. Step 2: Create Task Plan
 - 3. Step 3: Create GitHub Project Board
@@ -238,7 +238,7 @@ For the complete step-by-step orchestration workflow, see: [agent-onboarding.md]
 
 ## Communication Patterns
 
-For remote agent communication and failure handling, see: [messaging-protocol.md](../skills/remote-agent-coordinator/references/messaging-protocol.md)
+For remote agent communication and failure handling, see: [messaging-protocol.md](../skills/eoa-remote-agent-coordinator/references/messaging-protocol.md)
 - 1. Remote Agent Communication Patterns
 - 2. Failure Scenarios
 - 3. Conflict Resolution Planning
@@ -256,7 +256,7 @@ For remote agent communication and failure handling, see: [messaging-protocol.md
 
 ## Instruction Templates
 
-For all message and instruction templates, see: [task-instruction-format.md](../skills/remote-agent-coordinator/references/task-instruction-format.md)
+For all message and instruction templates, see: [task-instruction-format.md](../skills/eoa-remote-agent-coordinator/references/task-instruction-format.md)
 - 1. Task Assignment Template
 - 2. Integration Assignment Template
 - 3. Conflict Resolution Assignment Template

@@ -67,7 +67,7 @@ Source → Lint → Format → Type-Check → Unit Tests → Integration Tests �
 ### 2. GitHub Actions Workflow Management
 
 **For workflow types and templates, see:**
-[github-actions-templates.md](../skills/devops-expert/references/github-actions-templates.md)
+[github-actions-templates.md](../skills/eoa-devops-expert/references/github-actions-templates.md)
 
 Contents:
 - Multi-Platform CI Workflow Template
@@ -89,7 +89,7 @@ Contents:
 | Linux ARM | `ubuntu-24.04-arm` | ARM64 | Limited availability |
 
 **For platform-specific build configurations, see:**
-[cross-platform-builds.md](../skills/devops-expert/references/cross-platform-builds.md)
+[cross-platform-builds.md](../skills/eoa-devops-expert/references/cross-platform-builds.md)
 
 ### 4. Secret Management
 
@@ -117,7 +117,7 @@ GitHub Organization Secrets
 | General | `GITHUB_TOKEN` (automatic), `CODECOV_TOKEN`, `SONAR_TOKEN` |
 
 **For secret management scripts and best practices, see:**
-[secret-management.md](../skills/devops-expert/references/secret-management.md)
+[secret-management.md](../skills/eoa-devops-expert/references/secret-management.md)
 
 ### 5. TDD Enforcement in Pipelines
 
@@ -138,7 +138,7 @@ GitHub Organization Secrets
 5. **Post-release**: Smoke tests on deployed artifacts
 
 **For TDD enforcement configuration, see:**
-[tdd-enforcement.md](../skills/devops-expert/references/tdd-enforcement.md)
+[tdd-enforcement.md](../skills/eoa-devops-expert/references/tdd-enforcement.md)
 
 ### 6. Release Management
 
@@ -157,7 +157,7 @@ Tag Push → Build All Platforms → Run All Tests → Create GitHub Release →
 ```
 
 **For release automation details, see:**
-[release-automation.md](../skills/devops-expert/references/release-automation.md)
+[release-automation.md](../skills/eoa-devops-expert/references/release-automation.md)
 
 ---
 
@@ -166,7 +166,7 @@ Tag Push → Build All Platforms → Run All Tests → Create GitHub Release →
 ### Debugging and Scripts
 
 **For debugging workflows locally and common commands, see:**
-[devops-debugging.md](../skills/devops-expert/references/devops-debugging.md)
+[devops-debugging.md](../skills/eoa-devops-expert/references/devops-debugging.md)
 
 Contents:
 - Debug Script Template (WorkflowDebugger class)
@@ -174,7 +174,7 @@ Contents:
 - Troubleshooting Common Issues
 
 **For GH CLI scripts and GraphQL queries, see:**
-[gh-cli-scripts.md](../skills/devops-expert/references/gh-cli-scripts.md)
+[gh-cli-scripts.md](../skills/eoa-devops-expert/references/gh-cli-scripts.md)
 
 Contents:
 - Repository Setup Script
@@ -183,7 +183,7 @@ Contents:
 - Secret Automation
 
 **For platform test protocols, see:**
-[platform-test-protocols.md](../skills/devops-expert/references/platform-test-protocols.md)
+[platform-test-protocols.md](../skills/eoa-devops-expert/references/platform-test-protocols.md)
 
 Contents:
 - Language-Specific Test Commands (Python, TypeScript, Rust, Swift, C#, Kotlin, Go)

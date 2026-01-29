@@ -9,8 +9,8 @@ Multi-platform project organization, state file integration, and script support.
   - 6.2 Platform-specific customization
 - 7. State File Integration
 - 8. Script Support
-  - 8.1 atlas_init_design_folders.py
-  - 8.2 atlas_compile_handoff.py
+  - 8.1 eoa_init_design_folders.py <!-- TODO: Script not implemented -->
+  - 8.2 eoa_compile_handoff.py <!-- TODO: Script not implemented -->
 - 9. Checklists
   - 9.1 Design Folder Setup Checklist
   - 9.2 Per-Module Design Checklist
@@ -24,7 +24,7 @@ Multi-platform project organization, state file integration, and script support.
 For multi-platform projects, put shared resources in `designs/shared/`:
 
 ```
-.atlas/designs/
+design/requirements/
 ├── shared/
 │   ├── ARCHITECTURE.md           # Overall architecture
 │   ├── API_SPEC.md               # Backend API (shared)
@@ -91,51 +91,51 @@ Add handoff tracking to Orchestration Phase state file:
 active_assignments:
   - agent: "implementer-1"
     module: "auth-core"
-    handoff_path: ".atlas/handoffs/implementer-1/auth-core-handoff.md"
+    handoff_path: "design/handoffs/implementer-1/auth-core-handoff.md"
     config_provided:
-      - ".atlas/config/web/tsconfig.json"
-      - ".atlas/config/shared/env.example"
+      - "design/config/web/tsconfig.json"
+      - "design/config/shared/env.example"
 ```
 
 ---
 
 ## 8. Script Support
 
-### 8.1 atlas_init_design_folders.py
+### 8.1 eoa_init_design_folders.py <!-- TODO: Script not implemented -->
 
 Creates standardized folder structure:
 
 ```bash
-python3 atlas_init_design_folders.py --platforms web ios android
+python3 eoa_init_design_folders.py <!-- TODO: Script not implemented --> --platforms web ios android
 
 # Creates:
-# .atlas/designs/shared/
-# .atlas/designs/web/templates/
-# .atlas/designs/web/specs/
-# .atlas/designs/web/rdd/
-# .atlas/designs/ios/templates/
-# .atlas/designs/ios/specs/
-# .atlas/designs/ios/rdd/
-# .atlas/designs/android/templates/
-# .atlas/designs/android/specs/
-# .atlas/designs/android/rdd/
-# .atlas/config/shared/
-# .atlas/config/web/
-# .atlas/config/ios/
-# .atlas/config/android/
-# .atlas/handoffs/
-# .atlas/archive/
+# design/requirements/shared/
+# design/requirements/web/templates/
+# design/requirements/web/specs/
+# design/requirements/web/rdd/
+# design/requirements/ios/templates/
+# design/requirements/ios/specs/
+# design/requirements/ios/rdd/
+# design/requirements/android/templates/
+# design/requirements/android/specs/
+# design/requirements/android/rdd/
+# design/config/shared/
+# design/config/web/
+# design/config/ios/
+# design/config/android/
+# design/handoffs/
+# design/archive/
 ```
 
-### 8.2 atlas_compile_handoff.py
+### 8.2 eoa_compile_handoff.py <!-- TODO: Script not implemented -->
 
 Compiles template to handoff:
 
 ```bash
-python3 atlas_compile_handoff.py auth-core implementer-1 --platform web
+python3 eoa_compile_handoff.py <!-- TODO: Script not implemented --> auth-core implementer-1 --platform web
 
 # Output:
-# Compiled handoff saved to: .atlas/handoffs/implementer-1/auth-core-handoff.md
+# Compiled handoff saved to: design/handoffs/implementer-1/auth-core-handoff.md
 ```
 
 ---
@@ -144,7 +144,7 @@ python3 atlas_compile_handoff.py auth-core implementer-1 --platform web
 
 ### 9.1 Design Folder Setup Checklist
 
-- [ ] Create `.atlas/` root folder
+- [ ] Create `design/` root folder
 - [ ] Create `designs/shared/` for cross-platform docs
 - [ ] Create `designs/{platform}/` for each platform
 - [ ] Create `templates/`, `specs/`, `rdd/` in each platform folder

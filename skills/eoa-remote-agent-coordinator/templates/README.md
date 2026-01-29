@@ -2,7 +2,7 @@
 
 ## Purpose
 
-These templates provide **exact formats** for remote agents to use when responding to the orchestrator. Since remote agents do not have access to the atlas-orchestrator skill, they must be taught response formats explicitly. These templates solve that problem.
+These templates provide **exact formats** for remote agents to use when responding to the orchestrator. Since remote agents do not have access to the orchestrator-agent skill, they must be taught response formats explicitly. These templates solve that problem.
 
 ---
 
