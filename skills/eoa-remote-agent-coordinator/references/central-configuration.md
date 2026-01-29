@@ -1,5 +1,29 @@
 # Central Configuration Architecture
 
+
+## Contents
+
+- [Document Structure](#document-structure)
+- [Quick Navigation](#quick-navigation)
+  - [If you need to understand why central configuration matters](#if-you-need-to-understand-why-central-configuration-matters)
+  - [If you need to set up the `design/` directory structure](#if-you-need-to-set-up-the-design-directory-structure)
+  - [If you need to create toolchain.md](#if-you-need-to-create-toolchainmd)
+  - [If you need to create standards.md](#if-you-need-to-create-standardsmd)
+  - [If you need to create environment.md](#if-you-need-to-create-environmentmd)
+  - [If you need to create decisions.md (ADRs)](#if-you-need-to-create-decisionsmd-adrs)
+  - [If you need to create requirements.md](#if-you-need-to-create-requirementsmd)
+  - [If you need to create architecture.md](#if-you-need-to-create-architecturemd)
+  - [If you need to create interfaces.md](#if-you-need-to-create-interfacesmd)
+  - [If you need to reference configs in task messages](#if-you-need-to-reference-configs-in-task-messages)
+  - [If you need to update a configuration file](#if-you-need-to-update-a-configuration-file)
+  - [If config changes affect active agents](#if-config-changes-affect-active-agents)
+  - [If you want to follow best practices for config management](#if-you-want-to-follow-best-practices-for-config-management)
+  - [If config management is not working as expected](#if-config-management-is-not-working-as-expected)
+- [Quick Reference](#quick-reference)
+- [Related Documentation](#related-documentation)
+
+---
+
 This document has been split into multiple parts for easier reading. Each part focuses on a specific aspect of central configuration management.
 
 ## Document Structure

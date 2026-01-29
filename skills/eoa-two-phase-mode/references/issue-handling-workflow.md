@@ -1,5 +1,33 @@
 # Issue Handling Workflow
 
+
+## Contents
+
+- [Overview](#overview)
+- [When to Trigger](#when-to-trigger)
+- [Issue Categories](#issue-categories)
+- [Creating Issue Tasks](#creating-issue-tasks)
+- [Standard Task Workflow](#standard-task-workflow)
+  - [Phase 1: Initial Assessment](#phase-1-initial-assessment)
+  - [Phase 2: Triage (for BUG, ENHANCEMENT, INVESTIGATION)](#phase-2-triage-for-bug-enhancement-investigation)
+  - [Phase 3: Investigation (for BUG, BLOCKER, INVESTIGATION)](#phase-3-investigation-for-bug-blocker-investigation)
+  - [Phase 4: Test Creation (for BUG, ENHANCEMENT, INVESTIGATION)](#phase-4-test-creation-for-bug-enhancement-investigation)
+  - [Phase 5: GitHub Workflow](#phase-5-github-workflow)
+  - [Phase 6: Resolution](#phase-6-resolution)
+- [Category-Specific Workflows](#category-specific-workflows)
+  - [BUG Workflow](#bug-workflow)
+  - [BLOCKER Workflow](#blocker-workflow)
+  - [QUESTION Workflow](#question-workflow)
+  - [ENHANCEMENT Workflow](#enhancement-workflow)
+  - [CONFIG Workflow](#config-workflow)
+  - [INVESTIGATION Workflow](#investigation-workflow)
+- [Claude Tasks Task File Location](#claude-tasks-task-file-location)
+- [Integration with Stop Hook](#integration-with-stop-hook)
+- [Best Practices](#best-practices)
+- [Script Reference](#script-reference)
+
+---
+
 ## Overview
 
 When an implementer reports an issue (bug, blocker, question, enhancement), the orchestrator MUST immediately create Claude Code native Task entries to track the complete handling procedure. This ensures systematic resolution and nothing is missed.

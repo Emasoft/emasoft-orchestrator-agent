@@ -1,5 +1,50 @@
 # Language-Specific Verification Checklists - Part 2: Extended Platforms
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [C#/.NET Verification Checklist](#cnet-verification-checklist)
+  - [Core Requirements](#core-requirements)
+  - [Build and Distribution](#build-and-distribution)
+  - [Optional (Recommended)](#optional-recommended)
+- [Unity Verification Checklist](#unity-verification-checklist)
+  - [Core Requirements](#core-requirements)
+  - [Unity-Specific Patterns](#unity-specific-patterns)
+  - [Build](#build)
+  - [Optional (Recommended)](#optional-recommended)
+- [Android Verification Checklist](#android-verification-checklist)
+  - [Core Requirements](#core-requirements)
+  - [Jetpack Compose Patterns](#jetpack-compose-patterns)
+  - [Kotlin Coroutines](#kotlin-coroutines)
+  - [Release Checklist](#release-checklist)
+- [C/C++ Verification Checklist](#cc-verification-checklist)
+  - [Core Requirements (CMake)](#core-requirements-cmake)
+  - [Modern C++ Patterns](#modern-c-patterns)
+  - [C-Specific (No C++)](#c-specific-no-c)
+- [Flutter Verification Checklist](#flutter-verification-checklist)
+  - [Core Requirements](#core-requirements)
+  - [Flutter-Specific Patterns](#flutter-specific-patterns)
+  - [Platform Channels](#platform-channels)
+- [React Native Verification Checklist](#react-native-verification-checklist)
+  - [Core Requirements](#core-requirements)
+  - [React Native Patterns](#react-native-patterns)
+  - [iOS-Specific](#ios-specific)
+- [ML/AI Verification Checklist (PyTorch, HuggingFace)](#mlai-verification-checklist-pytorch-huggingface)
+  - [Core Requirements](#core-requirements)
+  - [PyTorch-Specific](#pytorch-specific)
+  - [HuggingFace Transformers](#huggingface-transformers)
+  - [HuggingFace Diffusers](#huggingface-diffusers)
+  - [Experiment Tracking](#experiment-tracking)
+- [Embedded/IoT Verification Checklist](#embeddediot-verification-checklist)
+  - [Core Requirements](#core-requirements)
+  - [Embedded-Specific Patterns](#embedded-specific-patterns)
+  - [Hardware Testing](#hardware-testing)
+- [Extending This Document](#extending-this-document)
+- [Related Documents](#related-documents)
+
+---
+
 This document provides comprehensive verification checklists for extended platforms and specialized development environments (C#/.NET, Unity, Android, C/C++, Flutter, React Native, ML/AI, Embedded/IoT).
 
 ## Table of Contents

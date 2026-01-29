@@ -1,5 +1,30 @@
 # Bug Reporting Protocol - Part 4: Verification, Best Practices, and Troubleshooting
 
+
+## Contents
+
+- [Echo/Acknowledgment Integration](#echoacknowledgment-integration)
+  - [Acknowledgment Required](#acknowledgment-required)
+  - [Acknowledgment Format](#acknowledgment-format)
+- [Bug Verification Requirements](#bug-verification-requirements)
+  - [Verification Evidence Format](#verification-evidence-format)
+- [Best Practices](#best-practices)
+  - [For Agents Reporting Bugs](#for-agents-reporting-bugs)
+  - [For Orchestrator Processing Bugs](#for-orchestrator-processing-bugs)
+- [Integration](#integration)
+- [Message Type Registry](#message-type-registry)
+- [Troubleshooting](#troubleshooting)
+  - [Problem: Bug Report Rejected as "Cannot Reproduce"](#problem-bug-report-rejected-as-cannot-reproduce)
+  - [Problem: Agent Reports Bug But It's Expected Behavior](#problem-agent-reports-bug-but-its-expected-behavior)
+  - [Problem: Critical Bug Not Getting Attention](#problem-critical-bug-not-getting-attention)
+  - [Problem: Bug Fix Causes Regressions](#problem-bug-fix-causes-regressions)
+  - [Problem: Agent Cannot Fix Bug After Multiple Attempts](#problem-agent-cannot-fix-bug-after-multiple-attempts)
+  - [Problem: Duplicate Bugs Reported](#problem-duplicate-bugs-reported)
+  - [Problem: Bug Severity Disputed](#problem-bug-severity-disputed)
+  - [Problem: Bug Reports Lack Sufficient Detail](#problem-bug-reports-lack-sufficient-detail)
+
+---
+
 This document covers bug verification, best practices, integration, and troubleshooting.
 
 **Parent document**: [bug-reporting-protocol.md](bug-reporting-protocol.md)

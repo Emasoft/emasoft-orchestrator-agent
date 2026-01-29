@@ -1,5 +1,26 @@
 # Messaging Protocol Part 5: Notifications and Response Expectations
 
+
+## Contents
+
+- [5.1 Automatic Message Notification (Subconscious)](#51-automatic-message-notification-subconscious)
+  - [What It Does](#what-it-does)
+- [5.2 How Subconscious Polling Works](#52-how-subconscious-polling-works)
+  - [Polling Cycle](#polling-cycle)
+  - [Notification Format](#notification-format)
+  - [Checking Subconscious Status](#checking-subconscious-status)
+  - [Key Implications](#key-implications)
+- [5.3 Response Expectations by Message Type](#53-response-expectations-by-message-type)
+  - [Response Flow Diagram](#response-flow-diagram)
+- [5.4 No-Response-Required Messages](#54-no-response-required-messages)
+  - [When Progress Updates DO Require Response](#when-progress-updates-do-require-response)
+- [5.5 Handling No Response](#55-handling-no-response)
+  - [For Required Responses](#for-required-responses)
+  - [For Optional Responses](#for-optional-responses)
+- [Related Sections](#related-sections)
+
+---
+
 **Parent document**: [messaging-protocol.md](messaging-protocol.md)
 
 ---

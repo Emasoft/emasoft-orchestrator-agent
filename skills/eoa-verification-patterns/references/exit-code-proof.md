@@ -1,5 +1,26 @@
 # Exit Code Proof
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [2.1 What is an Exit Code](#21-what-is-an-exit-code)
+- [2.2 Why Exit Codes Matter](#22-why-exit-codes-matter)
+- [2.3 Exit Code Proof Steps](#23-exit-code-proof-steps)
+  - [2.3.1 Step 1: Run the Process](#231-step-1-run-the-process)
+  - [2.3.2 Step 2: Check the Exit Code](#232-step-2-check-the-exit-code)
+  - [2.3.3 Step 3: Interpret the Result](#233-step-3-interpret-the-result)
+  - [2.3.4 Step 4: Act on the Result](#234-step-4-act-on-the-result)
+- [2.4 Exit Code Proof Examples](#24-exit-code-proof-examples)
+  - [2.4.1 Bash Script Example](#241-bash-script-example)
+  - [2.4.2 Python Script Example](#242-python-script-example)
+- [2.5 Setting Exit Codes in Your Code](#25-setting-exit-codes-in-your-code)
+  - [2.5.1 Bash](#251-bash)
+  - [2.5.2 Python](#252-python)
+- [2.6 When to Use Exit Code Proof](#26-when-to-use-exit-code-proof)
+
+---
+
 ## Table of Contents
 
 - [2.1 What is an Exit Code](#21-what-is-an-exit-code)

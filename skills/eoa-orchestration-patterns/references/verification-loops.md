@@ -1,5 +1,36 @@
 # MANDATORY: 4-Verification-Loops Before PR
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [1. Overview](#1-overview)
+  - [1.1 Why 4 Verification Loops Are Required](#11-why-4-verification-loops-are-required)
+  - [1.2 The Precise Flow Diagram](#12-the-precise-flow-diagram)
+- [2. Step 1: At Task Assignment](#2-step-1-at-task-assignment)
+  - [2.1 PR Notification Requirement Template](#21-pr-notification-requirement-template)
+  - [2.2 Including in Every Delegation](#22-including-in-every-delegation)
+- [3. Step 2: Full Verification Message](#3-step-2-full-verification-message)
+  - [3.1 When to Send This Message](#31-when-to-send-this-message)
+  - [3.2 Verification Message Template (Send 4 Times)](#32-verification-message-template-send-4-times)
+  - [3.3 What the Agent Must Check](#33-what-the-agent-must-check)
+- [4. Step 3: Track PR Requests Per Task](#4-step-3-track-pr-requests-per-task)
+  - [4.1 Tracking Table Format](#41-tracking-table-format)
+  - [4.2 Sample Tracking Table](#42-sample-tracking-table)
+- [5. Step 4: On 5th Request - Final Decision](#5-step-4-on-5th-request---final-decision)
+  - [5.1 Approval Conditions](#51-approval-conditions)
+  - [5.2 Summary Table](#52-summary-table)
+- [6. Enforcement Rules](#6-enforcement-rules)
+  - [6.1 What is NEVER Allowed](#61-what-is-never-allowed)
+  - [6.2 What is ALWAYS Required](#62-what-is-always-required)
+- [Troubleshooting](#troubleshooting)
+  - [Agent Creates PR Without Approval](#agent-creates-pr-without-approval)
+  - [Agent Says "No Issues Found" Every Loop](#agent-says-no-issues-found-every-loop)
+  - [Issues Persist After 4 Loops](#issues-persist-after-4-loops)
+- [See Also](#see-also)
+
+---
+
 ## Table of Contents
 
 - 1. Overview

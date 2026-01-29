@@ -1,5 +1,39 @@
 # LSP Enforcement Checklist - Part 1: Setup and Core Remediation
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [When preparing to assign work to remote agents](#when-preparing-to-assign-work-to-remote-agents)
+- [When verifying that all required LSP servers are installed](#when-verifying-that-all-required-lsp-servers-are-installed)
+  - [Core Languages](#core-languages)
+    - [Python](#python)
+    - [TypeScript/JavaScript](#typescriptjavascript)
+    - [Go](#go)
+    - [Rust](#rust)
+  - [JVM Languages](#jvm-languages)
+    - [Java](#java)
+    - [Kotlin](#kotlin)
+  - [Systems Languages](#systems-languages)
+    - [C/C++](#cc)
+    - [C#](#c)
+  - [Web Languages](#web-languages)
+    - [PHP](#php)
+    - [Ruby](#ruby)
+    - [HTML/CSS](#htmlcss)
+- [Automated Verification](#automated-verification)
+- [When LSP verification fails for any language](#when-lsp-verification-fails-for-any-language)
+  - [Python (pyright) Remediation](#python-pyright-remediation)
+  - [TypeScript (typescript-language-server) Remediation](#typescript-typescript-language-server-remediation)
+  - [Rust (rust-analyzer) Remediation](#rust-rust-analyzer-remediation)
+  - [Go (gopls) Remediation](#go-gopls-remediation)
+  - [Java (jdtls) Remediation](#java-jdtls-remediation)
+  - [Kotlin (kotlin-language-server) Remediation](#kotlin-kotlin-language-server-remediation)
+  - [C/C++ (clangd) Remediation](#cc-clangd-remediation)
+  - [C# (OmniSharp/csharp-ls) Remediation](#c-omnisharpcsharp-ls-remediation)
+
+---
+
 Covers preparation, verification, and remediation for core languages supported by Claude Code LSP.
 
 ## Table of Contents

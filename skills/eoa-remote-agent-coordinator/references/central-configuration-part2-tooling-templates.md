@@ -1,5 +1,46 @@
 # Central Configuration - Part 2: Tooling Templates
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [`toolchain.md` Template](#toolchainmd-template)
+- [Python Environment](#python-environment)
+  - [Commands](#commands)
+- [Code Formatting](#code-formatting)
+- [Testing Framework](#testing-framework)
+  - [Test Execution](#test-execution)
+- [Git Workflow](#git-workflow)
+  - [Commit Convention](#commit-convention)
+- [Build System](#build-system)
+- [`standards.md` Template](#standardsmd-template)
+- [Python Code Standards](#python-code-standards)
+  - [Naming Conventions](#naming-conventions)
+  - [Documentation Requirements](#documentation-requirements)
+  - [Type Hints](#type-hints)
+  - [Error Handling](#error-handling)
+  - [Testing Requirements](#testing-requirements)
+- [TypeScript/JavaScript Standards](#typescriptjavascript-standards)
+  - [Naming Conventions](#naming-conventions)
+  - [Linting](#linting)
+- [File Organization](#file-organization)
+  - [Module Structure](#module-structure)
+  - [Import Order](#import-order)
+- [Prohibited Patterns](#prohibited-patterns)
+- [`environment.md` Template](#environmentmd-template)
+- [Required Environment Variables](#required-environment-variables)
+  - [Git Configuration](#git-configuration)
+  - [AI Maestro Configuration](#ai-maestro-configuration)
+  - [Project-Specific Variables](#project-specific-variables)
+- [Environment File Location](#environment-file-location)
+  - [Loading Environment](#loading-environment)
+- [CI/CD Environment](#cicd-environment)
+  - [GitHub Actions Secrets](#github-actions-secrets)
+  - [GitHub Actions Variables](#github-actions-variables)
+- [Related Parts](#related-parts)
+
+---
+
 ## Table of Contents
 
 1. [If you need to create toolchain.md](#toolchainmd-template)

@@ -1,5 +1,20 @@
 # Messaging Protocol Part 1: API and Schema Reference
 
+
+## Contents
+
+- [1.1 API Base URL and Endpoints](#11-api-base-url-and-endpoints)
+  - [Base URL](#base-url)
+  - [Available Endpoints](#available-endpoints)
+- [1.2 Complete Message Object Schema](#12-complete-message-object-schema)
+  - [Field Descriptions](#field-descriptions)
+  - [Content Object Requirements](#content-object-requirements)
+- [1.3 Priority Levels](#13-priority-levels)
+  - [Priority Selection Guidelines](#priority-selection-guidelines)
+- [Related Sections](#related-sections)
+
+---
+
 **Parent document**: [messaging-protocol.md](messaging-protocol.md)
 
 ---

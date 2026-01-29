@@ -1,5 +1,23 @@
 # Instruction Update Verification Protocol
 
+
+## Contents
+
+- [Document Structure](#document-structure)
+- [Quick Reference: Contents](#quick-reference-contents)
+  - [Part 1: Core Protocol](#part-1-core-protocol)
+  - [Part 2: Special Cases and Troubleshooting](#part-2-special-cases-and-troubleshooting)
+- [Protocol Overview](#protocol-overview)
+  - [Purpose](#purpose)
+  - [Key Principle](#key-principle)
+  - [When to Use](#when-to-use)
+  - [The 5-Step Flow (Summary)](#the-5-step-flow-summary)
+  - [Critical Rules](#critical-rules)
+- [Related Documents](#related-documents)
+- [Start Reading](#start-reading)
+
+---
+
 **MANDATORY**: This protocol MUST be executed whenever the orchestrator sends UPDATED instructions, design changes, or new requirements to an implementer who is ALREADY working on a task.
 
 ---

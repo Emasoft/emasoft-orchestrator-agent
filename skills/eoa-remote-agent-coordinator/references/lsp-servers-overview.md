@@ -1,5 +1,23 @@
 # LSP Server Integration for Remote Agents
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [What Are LSP Servers](#what-are-lsp-servers)
+- [Benefits for Remote Agents](#benefits-for-remote-agents)
+- [Available LSP Plugins](#available-lsp-plugins)
+- [Configuration Methods](#configuration-methods)
+  - [1. Dedicated .lsp.json](#1-dedicated-lspjson)
+  - [2. Inline in plugin.json](#2-inline-in-pluginjson)
+- [Configuration Fields](#configuration-fields)
+  - [Required](#required)
+  - [Optional](#optional)
+- [Enforcement Requirements](#enforcement-requirements)
+- [Official Documentation](#official-documentation)
+
+---
+
 ## Table of Contents
 1. **If you're new to LSP** - Read "What Are LSP Servers" to understand the fundamentals
 2. **When you need to improve code quality** - Read "Benefits for Remote Agents" to see why LSP matters

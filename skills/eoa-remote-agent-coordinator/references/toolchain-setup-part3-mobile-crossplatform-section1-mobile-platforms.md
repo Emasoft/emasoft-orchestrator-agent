@@ -1,5 +1,29 @@
 # Toolchain Setup Part 3 Section 1: Mobile Platforms
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [Table of Contents](#table-of-contents)
+- [1. Android Toolchain](#1-android-toolchain)
+  - [Setup Instructions for Remote Agent](#setup-instructions-for-remote-agent)
+  - [Gradle Configuration](#gradle-configuration)
+  - [Verification Commands](#verification-commands)
+- [2. React Native Toolchain](#2-react-native-toolchain)
+  - [Setup Instructions for Remote Agent](#setup-instructions-for-remote-agent)
+  - [Project Setup](#project-setup)
+  - [Verification Commands](#verification-commands)
+- [3. Blazor Toolchain](#3-blazor-toolchain)
+  - [Setup Instructions for Remote Agent](#setup-instructions-for-remote-agent)
+  - [Verification Commands](#verification-commands)
+- [4. Cross-Platform Project Matrix](#4-cross-platform-project-matrix)
+  - [Cross-Compilation Setup](#cross-compilation-setup)
+  - [Python Cross-Platform](#python-cross-platform)
+  - [Node.js Cross-Platform](#nodejs-cross-platform)
+- [Related References](#related-references)
+
+---
+
 ## Purpose
 
 This section covers mobile development toolchains: Android, React Native, Blazor, and cross-platform build matrices. Remote agents do NOT have access to this skill, so the orchestrator must provide ALL toolchain requirements explicitly.

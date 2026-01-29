@@ -86,7 +86,7 @@ This template is split into multiple parts for easier consumption:
 template:
   name: MONOREPO_CI_MATRIX
   version: 1.0.0
-  atlas_compatible: true
+  eoa_compatible: true
   parent_template: MONOREPO_BASE
   requires:
     - MONOREPO_BASE

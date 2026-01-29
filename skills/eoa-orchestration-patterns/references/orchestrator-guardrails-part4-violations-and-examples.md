@@ -1,5 +1,19 @@
 # Orchestrator Guardrails - Part 4: Violation Detection and Examples
 
+
+## Contents
+
+- [5.0 Violation Detection](#50-violation-detection)
+  - [5.1 Warning Signs](#51-warning-signs)
+  - [5.2 Recovery Procedure](#52-recovery-procedure)
+- [6.0 Templates and Examples](#60-templates-and-examples)
+  - [6.1 Correct Delegation Example](#61-correct-delegation-example)
+  - [6.2 Infrastructure Task Example](#62-infrastructure-task-example)
+  - [6.3 Bug Fix Delegation Example](#63-bug-fix-delegation-example)
+- [Related Documents](#related-documents)
+
+---
+
 **Parent Document**: [orchestrator-guardrails.md](./orchestrator-guardrails.md)
 
 ---

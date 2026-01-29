@@ -1,5 +1,37 @@
 # Instruction Update Verification Protocol - Part 2: Special Cases and Troubleshooting
 
+
+## Contents
+
+- [5. Special Cases](#5-special-cases)
+  - [5.1 Minor clarifications (abbreviated flow)](#51-minor-clarifications-abbreviated-flow)
+- [Minor Clarification](#minor-clarification)
+  - [5.2 Major design changes (extended flow)](#52-major-design-changes-extended-flow)
+- [Additional Assessment for Major Change](#additional-assessment-for-major-change)
+  - [5.3 User requirement changes (full re-verification)](#53-user-requirement-changes-full-re-verification)
+- [FULL STOP](#full-stop)
+- [User Decision](#user-decision)
+- [New Requirements](#new-requirements)
+- [6. Configuration Feedback Loop](#6-configuration-feedback-loop)
+  - [6.1 When implementer needs configuration changes](#61-when-implementer-needs-configuration-changes)
+  - [6.2 Orchestrator integration of config feedback](#62-orchestrator-integration-of-config-feedback)
+  - [6.3 Template for config feedback request](#63-template-for-config-feedback-request)
+- [Configuration Requirement](#configuration-requirement)
+- [Configuration Provided](#configuration-provided)
+- [Integration Notes](#integration-notes)
+  - [6.4 State file tracking for config requests](#64-state-file-tracking-for-config-requests)
+- [7. Script Usage](#7-script-usage)
+- [8. Troubleshooting](#8-troubleshooting)
+  - [Problem: Implementer Continues Without Acknowledging Update](#problem-implementer-continues-without-acknowledging-update)
+  - [Problem: Implementer Says Change Is Not Feasible](#problem-implementer-says-change-is-not-feasible)
+  - [Problem: Too Many Updates Fragmenting Work](#problem-too-many-updates-fragmenting-work)
+  - [Problem: Implementer Requests Excessive Configuration](#problem-implementer-requests-excessive-configuration)
+  - [Problem: Update Verification Taking Too Long](#problem-update-verification-taking-too-long)
+  - [Problem: Conflicting Updates Sent](#problem-conflicting-updates-sent)
+- [9. Integration with Other Protocols](#9-integration-with-other-protocols)
+
+---
+
 **Parent document:** [instruction-update-verification-protocol.md](instruction-update-verification-protocol.md)
 
 This part covers:

@@ -1,5 +1,29 @@
 # Progress Monitoring (PROACTIVE ENFORCEMENT)
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [1. Proactive Monitoring Principles](#1-proactive-monitoring-principles)
+  - [1.1 Why Proactive Monitoring is Critical](#11-why-proactive-monitoring-is-critical)
+  - [1.2 The Five Proactive Principles](#12-the-five-proactive-principles)
+- [2. PROACTIVE Status Request Protocol](#2-proactive-status-request-protocol)
+  - [2.1 When to Send Status Requests](#21-when-to-send-status-requests)
+  - [2.2 Status Request Message Template](#22-status-request-message-template)
+- [3. PROACTIVE Unblocking Protocol](#3-proactive-unblocking-protocol)
+  - [3.1 When an Agent Reports a Blocker](#31-when-an-agent-reports-a-blocker)
+  - [3.2 Unblocking Response Template](#32-unblocking-response-template)
+- [4. PROACTIVE Task Completion Enforcement](#4-proactive-task-completion-enforcement)
+  - [4.1 Before Allowing Agent to Stop](#41-before-allowing-agent-to-stop)
+  - [4.2 Verification Requirements](#42-verification-requirements)
+- [Troubleshooting](#troubleshooting)
+  - [Agent Not Responding to Status Requests](#agent-not-responding-to-status-requests)
+  - [Agent Reports Same Blocker Repeatedly](#agent-reports-same-blocker-repeatedly)
+  - [Agent Claims Completion But Evidence Missing](#agent-claims-completion-but-evidence-missing)
+- [See Also](#see-also)
+
+---
+
 ## Table of Contents
 
 - 1. Proactive Monitoring Principles

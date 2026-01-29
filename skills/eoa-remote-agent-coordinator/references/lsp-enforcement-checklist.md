@@ -1,5 +1,19 @@
 # LSP Enforcement Checklist - Index
 
+
+## Contents
+
+- [Parts Overview](#parts-overview)
+- [Quick Navigation by Task](#quick-navigation-by-task)
+  - [Setting Up LSP](#setting-up-lsp)
+  - [Installing Missing LSP Servers](#installing-missing-lsp-servers)
+  - [Validating Agent Work](#validating-agent-work)
+  - [Troubleshooting LSP Issues](#troubleshooting-lsp-issues)
+  - [Enforcement Workflow](#enforcement-workflow)
+- [Languages Covered](#languages-covered)
+
+---
+
 This checklist has been split into 3 parts for easier navigation and context efficiency.
 
 ## Parts Overview

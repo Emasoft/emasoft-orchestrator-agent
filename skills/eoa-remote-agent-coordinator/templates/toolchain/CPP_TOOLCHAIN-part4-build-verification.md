@@ -97,7 +97,7 @@ cmake --build build
 template:
   name: CPP_TOOLCHAIN
   version: 1.0.0
-  atlas_compatible: true
+  eoa_compatible: true
   requires:
     - git
     - cmake 3.25+

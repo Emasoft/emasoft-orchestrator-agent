@@ -1,5 +1,26 @@
 # Messaging Protocol Part 6: Timeouts and Protocol Integration
 
+
+## Contents
+
+- [6.1 Response Timeouts by Priority Level](#61-response-timeouts-by-priority-level)
+  - [Timeout Calculation](#timeout-calculation)
+- [6.2 Timeout Flow](#62-timeout-flow)
+  - [First Timeout (at Initial Timeout)](#first-timeout-at-initial-timeout)
+  - [Second Timeout (after Retry)](#second-timeout-after-retry)
+  - [Timeline Example](#timeline-example)
+- [6.3 Retry Message Format](#63-retry-message-format)
+  - [Retry Rules](#retry-rules)
+- [6.4 Integration with Other Protocols](#64-integration-with-other-protocols)
+  - [Related Protocol Documents](#related-protocol-documents)
+- [6.5 Protocol Hierarchy Diagram](#65-protocol-hierarchy-diagram)
+  - [How Protocols Relate](#how-protocols-relate)
+- [6.6 Message Type Registry](#66-message-type-registry)
+  - [Message Type Namespacing](#message-type-namespacing)
+- [Related Sections](#related-sections)
+
+---
+
 **Parent document**: [messaging-protocol.md](messaging-protocol.md)
 
 ---

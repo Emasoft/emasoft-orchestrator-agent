@@ -1,5 +1,26 @@
 # Agent Selection Guide - Part 5: Advanced Topics & Troubleshooting
 
+
+## Contents
+
+- [Use-Case Quick Reference for This Section](#use-case-quick-reference-for-this-section)
+- [Advanced Topics](#advanced-topics)
+  - [Agent Composition](#agent-composition)
+  - [Agent Lifecycle](#agent-lifecycle)
+  - [Agent Constraints](#agent-constraints)
+  - [Agent Communication](#agent-communication)
+- [Troubleshooting](#troubleshooting)
+  - [Agent Selection Errors](#agent-selection-errors)
+  - [Selection Conflicts](#selection-conflicts)
+- [Quick Reference Card](#quick-reference-card)
+  - [Most Common Agent Selections](#most-common-agent-selections)
+  - [Agent Output Templates](#agent-output-templates)
+- [Summary: Golden Rules](#summary-golden-rules)
+- [Remember](#remember)
+- [Related Files](#related-files)
+
+---
+
 ## Use-Case Quick Reference for This Section
 
 **When to use this file:**

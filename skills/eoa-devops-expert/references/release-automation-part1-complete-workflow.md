@@ -1,5 +1,13 @@
 # Release Automation: Complete Release Workflow
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [Tag-Triggered Release](#tag-triggered-release)
+
+---
+
 > **Parent document**: [release-automation.md](release-automation.md)
 
 ## Table of Contents

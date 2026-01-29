@@ -162,7 +162,7 @@ Swift on Windows is experimental. Use macOS or Linux for production builds.
 template:
   name: SWIFT_TOOLCHAIN
   version: 1.0.0
-  atlas_compatible: true
+  eoa_compatible: true
   platforms:
     - macos
     - linux

@@ -1,5 +1,18 @@
 # Project Setup Menu - Part 2: Documentation & Quality Requirements
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [Documentation Strategy](#documentation-strategy)
+  - [Question 10: Continuous Documentation](#question-10-continuous-documentation)
+  - [Question 11: Deferred Documentation](#question-11-deferred-documentation)
+- [Quality Requirements](#quality-requirements)
+  - [Question 12: Test Coverage Target](#question-12-test-coverage-target)
+  - [Question 13: Linting Strictness](#question-13-linting-strictness)
+
+---
+
 ## Table of Contents
 
 - [Documentation Strategy](#documentation-strategy)

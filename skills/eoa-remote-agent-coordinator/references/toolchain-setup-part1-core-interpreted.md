@@ -1,5 +1,36 @@
 # Toolchain Setup Part 1: Core Setup and Interpreted Languages
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [Table of Contents](#table-of-contents)
+- [Related References](#related-references)
+- [1. Orchestrator Self-Setup](#1-orchestrator-self-setup)
+  - [Orchestrator Required Tools](#orchestrator-required-tools)
+- [2. Toolchain Selection by Language](#2-toolchain-selection-by-language)
+- [3. Python Toolchain (uv-based)](#3-python-toolchain-uv-based)
+  - [Setup Instructions for Remote Agent](#setup-instructions-for-remote-agent)
+  - [Required Tools](#required-tools)
+  - [Configuration Files](#configuration-files)
+  - [Verification Commands](#verification-commands)
+- [4. JavaScript/TypeScript Toolchain (bun-based)](#4-javascripttypescript-toolchain-bun-based)
+  - [Setup Instructions for Remote Agent](#setup-instructions-for-remote-agent)
+  - [Alternative: pnpm](#alternative-pnpm)
+  - [Required Tools](#required-tools)
+  - [Configuration Files](#configuration-files)
+  - [Verification Commands](#verification-commands)
+- [5. Ruby Toolchain](#5-ruby-toolchain)
+  - [Setup Instructions for Remote Agent](#setup-instructions-for-remote-agent)
+  - [Bundler Configuration](#bundler-configuration)
+  - [Verification Commands](#verification-commands)
+- [6. Bash/Shell Toolchain](#6-bashshell-toolchain)
+  - [Setup Instructions for Remote Agent](#setup-instructions-for-remote-agent)
+  - [Verification Commands](#verification-commands)
+- [Quick Reference Table](#quick-reference-table)
+
+---
+
 ## Purpose
 
 This reference provides toolchain setup instructions for the orchestrator and interpreted languages (Python, JavaScript/TypeScript, Ruby, Bash). Remote agents do NOT have access to this skill, so the orchestrator must provide ALL toolchain requirements explicitly in each task delegation message.

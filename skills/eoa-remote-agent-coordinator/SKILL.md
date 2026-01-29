@@ -393,11 +393,11 @@ remote-agent-coordinator/
 +-- scripts/
 |   +-- install_lsp.py                    # LSP installation
 |   +-- validate_skill.py                 # Skill validation
-|   +-- atlas_orchestrator_init.py <!-- TODO: Rename to eoa_orchestrator_init.py -->        # Init storage
-|   +-- atlas_register_agent.py <!-- TODO: Rename to eoa_register_agent.py -->           # Register agents
-|   +-- atlas_orchestrator_download.py <!-- TODO: Rename to eoa_orchestrator_download.py -->    # Download from agents
-|   +-- atlas_search.py <!-- TODO: Rename to eoa_search.py -->                   # Cross-agent search
-|   +-- atlas_download.py <!-- TODO: Rename to eoa_download.py -->                 # Basic download
+|   +-- eoa_orchestrator_init.py <!-- TODO: Rename to eoa_orchestrator_init.py -->        # Init storage
+|   +-- eoa_register_agent.py <!-- TODO: Rename to eoa_register_agent.py -->           # Register agents
+|   +-- eoa_orchestrator_download.py <!-- TODO: Rename to eoa_orchestrator_download.py -->    # Download from agents
+|   +-- eoa_search.py <!-- TODO: Rename to eoa_search.py -->                   # Cross-agent search
+|   +-- eoa_download.py <!-- TODO: Rename to eoa_download.py -->                 # Basic download
 +-- templates/
     +-- protocols/
         +-- DOCUMENT_DELIVERY_PROTOCOL.md

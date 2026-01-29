@@ -1,5 +1,28 @@
 # Messaging Protocol Part 2: Sending and Receiving Messages
 
+
+## Contents
+
+- [2.1 Basic Send Syntax](#21-basic-send-syntax)
+  - [Command Syntax](#command-syntax)
+  - [Parameters](#parameters)
+  - [Basic Example](#basic-example)
+- [2.2 Send with Task Assignment](#22-send-with-task-assignment)
+  - [Simple Task Assignment](#simple-task-assignment)
+  - [Using Heredoc for Complex Content](#using-heredoc-for-complex-content)
+- [2.3 Check Inbox Command](#23-check-inbox-command)
+  - [List All Unread Messages](#list-all-unread-messages)
+  - [Example Output](#example-output)
+- [2.4 Read and Mark Message as Read](#24-read-and-mark-message-as-read)
+  - [Command Syntax](#command-syntax)
+  - [Example](#example)
+  - [Example Output](#example-output)
+- [2.5 Workflow Example](#25-workflow-example)
+  - [Complete Send-Receive-Respond Flow](#complete-send-receive-respond-flow)
+- [Related Sections](#related-sections)
+
+---
+
 **Parent document**: [messaging-protocol.md](messaging-protocol.md)
 
 ---

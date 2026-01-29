@@ -1,5 +1,19 @@
 # Orchestrator Guardrails - Part 1: Role Definition and Action Classification
 
+
+## Contents
+
+- [1.0 Role Definition](#10-role-definition)
+  - [1.1 What an Orchestrator IS](#11-what-an-orchestrator-is)
+  - [1.2 What an Orchestrator IS NOT](#12-what-an-orchestrator-is-not)
+- [2.0 Action Classification](#20-action-classification)
+  - [2.1 Always Allowed Actions](#21-always-allowed-actions)
+  - [2.2 Conditionally Allowed Actions](#22-conditionally-allowed-actions)
+  - [2.3 Small Experiments (Allowed with Limits)](#23-small-experiments-allowed-with-limits)
+  - [2.4 Forbidden Actions](#24-forbidden-actions)
+
+---
+
 **Parent Document**: [orchestrator-guardrails.md](./orchestrator-guardrails.md)
 
 ---

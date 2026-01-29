@@ -1,5 +1,20 @@
 # Toolchain Setup Part 3: Mobile/Cross-Platform and Templates
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [Table of Contents](#table-of-contents)
+  - [Section 1: Mobile Platforms](#section-1-mobile-platforms)
+  - [Section 2: Templates and Verification](#section-2-templates-and-verification)
+- [Related References](#related-references)
+- [Quick Summary](#quick-summary)
+  - [When to Read Section 1 (Mobile Platforms)](#when-to-read-section-1-mobile-platforms)
+  - [When to Read Section 2 (Templates and Verification)](#when-to-read-section-2-templates-and-verification)
+- [Key Principle](#key-principle)
+
+---
+
 ## Purpose
 
 This reference provides toolchain setup instructions for mobile development (Android, React Native), cross-platform frameworks (Blazor), cross-compilation matrix, and delegation templates. Remote agents do NOT have access to this skill, so the orchestrator must provide ALL toolchain requirements explicitly in each task delegation message.

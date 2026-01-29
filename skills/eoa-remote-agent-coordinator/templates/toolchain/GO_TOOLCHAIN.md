@@ -106,7 +106,7 @@ This template is split into multiple files for better organization:
 template:
   name: GO_TOOLCHAIN
   version: 1.0.0
-  atlas_compatible: true
+  eoa_compatible: true
   language: go
   language_version: "1.22+"
   requires:

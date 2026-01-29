@@ -1,5 +1,35 @@
 # LSP Server Installation Guide
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [1. Core Languages](#1-core-languages)
+  - [Python (Pyright)](#python-pyright)
+  - [TypeScript/JavaScript](#typescriptjavascript)
+  - [Go (gopls)](#go-gopls)
+  - [Rust (rust-analyzer)](#rust-rust-analyzer)
+- [2. JVM Languages](#2-jvm-languages)
+  - [Java (Eclipse JDT Language Server)](#java-eclipse-jdt-language-server)
+  - [Kotlin](#kotlin)
+- [3. Systems Languages](#3-systems-languages)
+  - [C/C++ (clangd)](#cc-clangd)
+  - [C# (OmniSharp / csharp-ls)](#c-omnisharp-csharp-ls)
+- [4. Web Languages](#4-web-languages)
+  - [PHP (Intelephense)](#php-intelephense)
+  - [Ruby (Solargraph)](#ruby-solargraph)
+  - [HTML/CSS (Standalone Language Servers)](#htmlcss-standalone-language-servers)
+- [5. Verification](#5-verification)
+- [6. Troubleshooting](#6-troubleshooting)
+  - ["Executable not found in $PATH"](#executable-not-found-in-path)
+  - [LSP Not Starting](#lsp-not-starting)
+  - [Plugin Not Recognized](#plugin-not-recognized)
+  - [Java/Kotlin: "JDK not found"](#javakotlin-jdk-not-found)
+  - [C#: "dotnet not found"](#c-dotnet-not-found)
+- [Official Documentation](#official-documentation)
+
+---
+
 Complete installation guide for all 11 languages supported by Claude Code LSP.
 
 ## Table of Contents

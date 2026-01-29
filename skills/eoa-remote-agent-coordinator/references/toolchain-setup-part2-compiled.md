@@ -1,5 +1,18 @@
 # Toolchain Setup Part 2: Compiled Languages
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [Table of Contents](#table-of-contents)
+  - [Part 1: Rust and Go](#part-1-rust-and-go)
+  - [Part 2: Swift, C/C++, and Objective-C](#part-2-swift-cc-and-objective-c)
+  - [Part 3: .NET and JVM Languages](#part-3-net-and-jvm-languages)
+- [Related References](#related-references)
+- [Quick Navigation by Use Case](#quick-navigation-by-use-case)
+
+---
+
 ## Purpose
 
 This reference provides toolchain setup instructions for compiled languages (Rust, Go, Swift, C/C++, Objective-C, C#, Java, Kotlin). Remote agents do NOT have access to this skill, so the orchestrator must provide ALL toolchain requirements explicitly in each task delegation message.

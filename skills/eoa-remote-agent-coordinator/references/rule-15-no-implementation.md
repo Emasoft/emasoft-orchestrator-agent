@@ -1,5 +1,24 @@
 # RULE 15: No Implementation by Orchestrator (ABSOLUTE)
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [1.0 Overview](#10-overview)
+- [2.0 What the Orchestrator NEVER Does](#20-what-the-orchestrator-never-does)
+  - [2.1 Never Write Code](#21-never-write-code)
+  - [2.2 Never Run Builds](#22-never-run-builds)
+  - [2.3 Never Edit Source Files](#23-never-edit-source-files)
+  - [2.4 Never Set Up Infrastructure](#24-never-set-up-infrastructure)
+- [3.0 Task Delegation Self-Check](#30-task-delegation-self-check)
+  - [3.1 Pre-Delegation Verification](#31-pre-delegation-verification)
+  - [3.2 Self-Check Questions](#32-self-check-questions)
+- [4.0 Correct vs Incorrect Usage](#40-correct-vs-incorrect-usage)
+  - [4.1 Common Scenarios and Proper Handling](#41-common-scenarios-and-proper-handling)
+  - [4.2 Examples of Violations](#42-examples-of-violations)
+
+---
+
 ## Table of Contents
 
 - 1.0 Overview

@@ -1,5 +1,42 @@
 # Edge Case Protocols for Orchestrator Agent
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [1.0 AI Maestro Unavailable](#10-ai-maestro-unavailable)
+  - [1.1 Detection Methods](#11-detection-methods)
+  - [1.2 Response Workflow](#12-response-workflow)
+  - [1.3 Queue Management](#13-queue-management)
+  - [1.4 Fallback Coordination](#14-fallback-coordination)
+- [AI Maestro Fallback: Task Assignment](#ai-maestro-fallback-task-assignment)
+  - [Instructions](#instructions)
+  - [Response Required](#response-required)
+- [2.0 GitHub Unavailable](#20-github-unavailable)
+  - [2.1 Detection Methods](#21-detection-methods)
+  - [2.2 Response Workflow](#22-response-workflow)
+  - [2.3 Local State Caching](#23-local-state-caching)
+- [3.0 Remote Agent Timeout](#30-remote-agent-timeout)
+  - [3.1 Detection Methods](#31-detection-methods)
+  - [3.2 Escalation Ladder](#32-escalation-ladder)
+  - [3.3 Reassignment Protocol](#33-reassignment-protocol)
+- [4.0 Module Assignment Failures](#40-module-assignment-failures)
+  - [4.1 Agent Capacity Exceeded](#41-agent-capacity-exceeded)
+  - [4.2 Skill Mismatch](#42-skill-mismatch)
+  - [4.3 Dependency Deadlock](#43-dependency-deadlock)
+- [5.0 Progress Monitoring Failures](#50-progress-monitoring-failures)
+  - [5.1 Stale Progress Reports](#51-stale-progress-reports)
+  - [5.2 Conflicting Status Updates](#52-conflicting-status-updates)
+  - [5.3 Missing Checkpoints](#53-missing-checkpoints)
+- [6.0 Incomplete Task Instructions](#60-incomplete-task-instructions)
+  - [6.1 Detection Methods](#61-detection-methods)
+  - [6.2 Clarification Protocol](#62-clarification-protocol)
+  - [6.3 Blocking Behavior](#63-blocking-behavior)
+- [Emergency Recovery](#emergency-recovery)
+- [Related Documents](#related-documents)
+
+---
+
 This document defines standardized protocols for handling edge cases and failure scenarios in the Orchestrator Agent (eoa-) plugin.
 
 ## Table of Contents

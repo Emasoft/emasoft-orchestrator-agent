@@ -1,5 +1,44 @@
 # Task Complexity Classifier
 
+
+## Contents
+
+- [Task Complexity Assessment](#task-complexity-assessment)
+- [Use-Case Quick Reference](#use-case-quick-reference)
+- [Simple Task](#simple-task)
+  - [Criteria](#criteria)
+  - [Action](#action)
+  - [Example Pattern](#example-pattern)
+- [Medium Task](#medium-task)
+  - [Criteria](#criteria)
+  - [Action](#action)
+  - [Example Pattern](#example-pattern)
+- [Complex Task](#complex-task)
+  - [Criteria](#criteria)
+  - [Action](#action)
+  - [Example Pattern](#example-pattern)
+- [Decision Matrix](#decision-matrix)
+- [Examples](#examples)
+  - [Simple Task Examples](#simple-task-examples)
+  - [Medium Task Examples](#medium-task-examples)
+  - [Complex Task Examples](#complex-task-examples)
+- [Classification Process](#classification-process)
+  - [Step 1: Initial Assessment](#step-1-initial-assessment)
+  - [Step 2: Count Complexity Signals](#step-2-count-complexity-signals)
+  - [Step 3: Apply Classification](#step-3-apply-classification)
+  - [Step 4: Choose Action Pattern](#step-4-choose-action-pattern)
+- [Anti-Patterns to Avoid](#anti-patterns-to-avoid)
+  - [Over-Planning Simple Tasks](#over-planning-simple-tasks)
+  - [Under-Planning Complex Tasks](#under-planning-complex-tasks)
+  - [Treating All Medium Tasks as Complex](#treating-all-medium-tasks-as-complex)
+- [Practical Tips](#practical-tips)
+  - [When in Doubt](#when-in-doubt)
+  - [Escalation Signals](#escalation-signals)
+  - [De-escalation Signals](#de-escalation-signals)
+- [Summary](#summary)
+
+---
+
 ## Task Complexity Assessment
 
 Understanding task complexity helps orchestrators make efficient delegation decisions. This classification system evaluates tasks based on scope, dependencies, and coordination requirements rather than time estimates.

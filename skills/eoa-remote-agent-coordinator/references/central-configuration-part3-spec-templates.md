@@ -1,5 +1,53 @@
 # Central Configuration - Part 3: Specification Templates
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [`decisions.md` Template](#decisionsmd-template)
+- [ADR-001: Use `uv` for Python Package Management](#adr-001-use-uv-for-python-package-management)
+  - [Context](#context)
+  - [Decision](#decision)
+  - [Rationale](#rationale)
+  - [Consequences](#consequences)
+  - [Alternatives Considered](#alternatives-considered)
+- [ADR-002: FAIL-FAST Error Handling](#adr-002-fail-fast-error-handling)
+  - [Context](#context)
+  - [Decision](#decision)
+  - [Rationale](#rationale)
+  - [Consequences](#consequences)
+- [ADR-NNN: (Template for New Decision)](#adr-nnn-template-for-new-decision)
+  - [Context](#context)
+  - [Decision](#decision)
+  - [Rationale](#rationale)
+  - [Consequences](#consequences)
+  - [Alternatives Considered](#alternatives-considered)
+- [`requirements.md` Template](#requirementsmd-template)
+- [Core Features](#core-features)
+  - [Feature: User Authentication](#feature-user-authentication)
+  - [Feature: (Template)](#feature-template)
+- [`architecture.md` Template](#architecturemd-template)
+- [System Overview](#system-overview)
+- [Architecture Diagram](#architecture-diagram)
+- [Components](#components)
+  - [Component: Web API](#component-web-api)
+  - [Component: (Template)](#component-template)
+- [Data Flow](#data-flow)
+- [Deployment Architecture](#deployment-architecture)
+- [`interfaces.md` Template](#interfacesmd-template)
+- [REST API Endpoints](#rest-api-endpoints)
+  - [POST /api/auth/login](#post-apiauthlogin)
+- [Function Signatures](#function-signatures)
+  - [Module: `auth.service`](#module-authservice)
+    - [`authenticate_user()`](#authenticate_user)
+- [Database Schema](#database-schema)
+  - [Table: `users`](#table-users)
+- [Message Contracts](#message-contracts)
+  - [Message Type: `task-completion`](#message-type-task-completion)
+- [Related Parts](#related-parts)
+
+---
+
 ## Table of Contents
 
 1. [If you need to create decisions.md (ADRs)](#decisionsmd-template)

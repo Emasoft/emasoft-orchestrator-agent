@@ -1,5 +1,45 @@
 # Instruction Update Verification Protocol - Part 1: Core Protocol
 
+
+## Contents
+
+- [1. When This Protocol Applies](#1-when-this-protocol-applies)
+  - [1.1 Triggers for this protocol](#11-triggers-for-this-protocol)
+  - [1.2 Distinction from Initial Verification](#12-distinction-from-initial-verification)
+  - [1.3 Distinction from Regular Polling](#13-distinction-from-regular-polling)
+- [2. The 5-Step Update Verification Flow](#2-the-5-step-update-verification-flow)
+  - [2.1 Step 1: Send Update Notification](#21-step-1-send-update-notification)
+  - [2.2 Step 2: Request Confirmation of Receipt](#22-step-2-request-confirmation-of-receipt)
+  - [2.3 Step 3: Request Feasibility Assessment](#23-step-3-request-feasibility-assessment)
+  - [2.4 Step 4: Address Concerns](#24-step-4-address-concerns)
+  - [2.5 Step 5: Authorize Resume](#25-step-5-authorize-resume)
+- [3. Message Templates](#3-message-templates)
+  - [3.1 Update Notification Template](#31-update-notification-template)
+- [PAUSE CURRENT WORK](#pause-current-work)
+- [What Changed](#what-changed)
+- [Why This Changed](#why-this-changed)
+- [Impact on Your Work](#impact-on-your-work)
+- [Invalidated Instructions](#invalidated-instructions)
+- [Required Action](#required-action)
+  - [3.2 Feasibility Assessment Request Template](#32-feasibility-assessment-request-template)
+- [MANDATORY: Answer All Questions](#mandatory-answer-all-questions)
+  - [3.3 Concern Resolution Template](#33-concern-resolution-template)
+- [Your Concerns and My Responses](#your-concerns-and-my-responses)
+- [Clarifications Provided](#clarifications-provided)
+- [Configuration Changes Made](#configuration-changes-made)
+- [Updated Understanding Check](#updated-understanding-check)
+  - [3.4 Resume Authorization Template](#34-resume-authorization-template)
+- [UPDATE VERIFICATION COMPLETE](#update-verification-complete)
+- [Summary of Changes to Incorporate](#summary-of-changes-to-incorporate)
+- [Invalidated Instructions (Reminder)](#invalidated-instructions-reminder)
+- [Current Valid Instructions](#current-valid-instructions)
+- [Resume Work](#resume-work)
+- [4. Tracking Update Verification](#4-tracking-update-verification)
+  - [4.1 State file fields](#41-state-file-fields)
+  - [4.2 Status values](#42-status-values)
+
+---
+
 **Parent document:** [instruction-update-verification-protocol.md](instruction-update-verification-protocol.md)
 
 This part covers:

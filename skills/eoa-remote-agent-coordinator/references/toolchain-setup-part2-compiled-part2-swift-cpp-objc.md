@@ -1,5 +1,28 @@
 # Toolchain Setup Part 2 - Part 2: Swift, C/C++, and Objective-C
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [Table of Contents](#table-of-contents)
+- [2.1 Swift Toolchain](#21-swift-toolchain)
+  - [2.1.1 Setup Instructions for Remote Agent](#211-setup-instructions-for-remote-agent)
+  - [2.1.2 Swift Package Manager](#212-swift-package-manager)
+  - [2.1.3 Configuration Files](#213-configuration-files)
+  - [2.1.4 Verification Commands](#214-verification-commands)
+- [2.2 C/C++ Toolchain](#22-cc-toolchain)
+  - [2.2.1 Setup Instructions for Remote Agent](#221-setup-instructions-for-remote-agent)
+  - [2.2.2 CMake Configuration](#222-cmake-configuration)
+  - [2.2.3 Build Commands](#223-build-commands)
+  - [2.2.4 Linting](#224-linting)
+- [2.3 Objective-C Toolchain](#23-objective-c-toolchain)
+  - [2.3.1 Setup Instructions for Remote Agent](#231-setup-instructions-for-remote-agent)
+  - [2.3.2 Build Commands](#232-build-commands)
+  - [2.3.3 CocoaPods (if needed)](#233-cocoapods-if-needed)
+- [Related Parts](#related-parts)
+
+---
+
 ## Purpose
 
 This reference provides toolchain setup instructions for Swift, C/C++, and Objective-C. Remote agents do NOT have access to this skill, so the orchestrator must provide ALL toolchain requirements explicitly in each task delegation message.

@@ -1,5 +1,37 @@
 # RULE 15: No Implementation by Orchestrator (ABSOLUTE)
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [1. Core Principle](#1-core-principle)
+  - [1.1 What the Orchestrator Does](#11-what-the-orchestrator-does)
+  - [1.2 Why This Rule Exists](#12-why-this-rule-exists)
+- [2. Forbidden Actions for Orchestrators](#2-forbidden-actions-for-orchestrators)
+  - [2.1 Actions That Violate RULE 15](#21-actions-that-violate-rule-15)
+  - [2.2 Correct Approach for Each Forbidden Action](#22-correct-approach-for-each-forbidden-action)
+- [3. Allowed Actions for Orchestrators](#3-allowed-actions-for-orchestrators)
+  - [3.1 Actions That Are Always Allowed](#31-actions-that-are-always-allowed)
+  - [3.2 When Each Action is Appropriate](#32-when-each-action-is-appropriate)
+- [4. Small Experiments (ALLOWED with Limits)](#4-small-experiments-allowed-with-limits)
+  - [4.1 What Qualifies as a Small Experiment](#41-what-qualifies-as-a-small-experiment)
+  - [4.2 Size Limits for Experiments](#42-size-limits-for-experiments)
+  - [4.3 Experiment Workflow](#43-experiment-workflow)
+  - [4.4 Example Experiments](#44-example-experiments)
+- [5. Self-Check Before ANY Action](#5-self-check-before-any-action)
+  - [5.1 The Self-Check Procedure](#51-the-self-check-procedure)
+  - [5.2 What to Do When Self-Check Fails](#52-what-to-do-when-self-check-fails)
+- [6. Exception: Emergency Research Commands](#6-exception-emergency-research-commands)
+  - [6.1 Allowed Research Commands](#61-allowed-research-commands)
+  - [6.2 Forbidden Implementation Commands](#62-forbidden-implementation-commands)
+- [7. Practical Examples](#7-practical-examples)
+  - [7.1 WRONG Approach (Orchestrator Does Implementation)](#71-wrong-approach-orchestrator-does-implementation)
+  - [7.2 CORRECT Approach (Orchestrator Researches and Delegates)](#72-correct-approach-orchestrator-researches-and-delegates)
+- [Enforcement Mechanism](#enforcement-mechanism)
+- [See Also](#see-also)
+
+---
+
 ## Table of Contents
 
 - 1. Core Principle

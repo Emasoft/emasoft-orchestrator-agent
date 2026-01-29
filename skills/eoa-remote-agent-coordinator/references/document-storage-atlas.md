@@ -1,5 +1,25 @@
 # ATLAS Document Storage Protocol v2.0
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [1.0 Overview](#10-overview)
+- [2.0 Storage Architecture](#20-storage-architecture)
+  - [2.1 Directory Structure](#21-directory-structure)
+- [3.0 Document Delivery Rules](#30-document-delivery-rules)
+  - [3.1 Mandatory Rules for All Document Delivery](#31-mandatory-rules-for-all-document-delivery)
+  - [3.2 GitHub Issue Comment URL Sharing](#32-github-issue-comment-url-sharing)
+  - [3.3 Integrity Verification with SHA256](#33-integrity-verification-with-sha256)
+- [4.0 Orchestrator Scripts](#40-orchestrator-scripts)
+  - [4.1 Available Scripts and Their Purposes](#41-available-scripts-and-their-purposes)
+  - [4.2 Usage Examples](#42-usage-examples)
+- [5.0 Remote Agent Storage Skill](#50-remote-agent-storage-skill)
+  - [5.1 What the Skill Provides](#51-what-the-skill-provides)
+  - [5.2 Installation on Remote Agent](#52-installation-on-remote-agent)
+
+---
+
 ## Table of Contents
 
 - 1.0 Overview
@@ -85,35 +105,35 @@ When receiving documents, verify integrity:
 
 | Script | Purpose |
 |--------|---------|
-| `scripts/atlas_orchestrator_init.py <!-- TODO: Rename to eoa_orchestrator_init.py -->` | Initialize orchestrator storage structure |
-| `scripts/atlas_register_agent.py <!-- TODO: Rename to eoa_register_agent.py -->` | Register new agents, list registered agents |
-| `scripts/atlas_orchestrator_download.py <!-- TODO: Rename to eoa_orchestrator_download.py -->` | Download documents from agents to per-agent folders |
-| `scripts/atlas_search.py <!-- TODO: Rename to eoa_search.py -->` | Search across all agents by task, agent, date, category |
+| `scripts/eoa_orchestrator_init.py <!-- TODO: Rename to eoa_orchestrator_init.py -->` | Initialize orchestrator storage structure |
+| `scripts/eoa_register_agent.py <!-- TODO: Rename to eoa_register_agent.py -->` | Register new agents, list registered agents |
+| `scripts/eoa_orchestrator_download.py <!-- TODO: Rename to eoa_orchestrator_download.py -->` | Download documents from agents to per-agent folders |
+| `scripts/eoa_search.py <!-- TODO: Rename to eoa_search.py -->` | Search across all agents by task, agent, date, category |
 
 ### 4.2 Usage Examples
 
 ```bash
 # Initialize orchestrator storage
-python scripts/atlas_orchestrator_init.py <!-- TODO: Rename to eoa_orchestrator_init.py --> --project-root .
+python scripts/eoa_orchestrator_init.py <!-- TODO: Rename to eoa_orchestrator_init.py --> --project-root .
 
 # Register a new agent
-python scripts/atlas_register_agent.py <!-- TODO: Rename to eoa_register_agent.py --> register \
+python scripts/eoa_register_agent.py <!-- TODO: Rename to eoa_register_agent.py --> register \
   --name helper-agent-macos-arm64 \
   --platform macos \
   --architecture arm64
 
 # Download document from agent
-python scripts/atlas_orchestrator_download.py <!-- TODO: Rename to eoa_orchestrator_download.py --> download \
+python scripts/eoa_orchestrator_download.py <!-- TODO: Rename to eoa_orchestrator_download.py --> download \
   --url "https://github.com/.../issues/42#issuecomment-123456" \
   --agent helper-agent-macos-arm64 \
   --task-id GH-42 \
   --category reports
 
 # Search for blockers across all agents
-python scripts/atlas_search.py <!-- TODO: Rename to eoa_search.py --> blockers
+python scripts/eoa_search.py <!-- TODO: Rename to eoa_search.py --> blockers
 
 # Find all documents for a task
-python scripts/atlas_search.py <!-- TODO: Rename to eoa_search.py --> by-task GH-42
+python scripts/eoa_search.py <!-- TODO: Rename to eoa_search.py --> by-task GH-42
 ```
 
 ---

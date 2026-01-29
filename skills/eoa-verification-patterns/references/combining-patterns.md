@@ -1,5 +1,15 @@
 # Combining Verification Patterns
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [5.1 Pattern Combinations](#51-pattern-combinations)
+- [5.2 Verification Pyramid](#52-verification-pyramid)
+- [5.3 Complete Verification Strategy Example](#53-complete-verification-strategy-example)
+
+---
+
 ## Table of Contents
 
 - [5.1 Pattern Combinations](#51-pattern-combinations)

@@ -1,5 +1,19 @@
 # Bug Reporting Protocol - Part 2: Response Flow and Escalation
 
+
+## Contents
+
+- [Orchestrator Response Flow](#orchestrator-response-flow)
+  - [Step 1: Acknowledgment](#step-1-acknowledgment)
+  - [Step 2: GitHub Issue Creation](#step-2-github-issue-creation)
+  - [Step 3: Resolution Tracking](#step-3-resolution-tracking)
+- [Escalation Handling](#escalation-handling)
+  - [Escalation Triggers by Severity](#escalation-triggers-by-severity)
+  - [Escalation Flow](#escalation-flow)
+  - [Example Escalation Flow (High Severity)](#example-escalation-flow-high-severity)
+
+---
+
 This document covers how the orchestrator handles bug reports and escalation procedures.
 
 **Parent document**: [bug-reporting-protocol.md](bug-reporting-protocol.md)

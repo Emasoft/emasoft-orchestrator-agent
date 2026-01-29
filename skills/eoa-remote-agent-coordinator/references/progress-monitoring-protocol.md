@@ -1,5 +1,36 @@
 # Progress Monitoring Protocol (Proactive Enforcement)
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [1.0 Overview](#10-overview)
+- [2.0 Proactive Monitoring Principles](#20-proactive-monitoring-principles)
+- [3.0 Status Request Protocol](#30-status-request-protocol)
+  - [3.1 Checking Agent Status (PROACTIVELY)](#31-checking-agent-status-proactively)
+  - [3.2 Expected Update Events by Task Type](#32-expected-update-events-by-task-type)
+  - [3.3 Proactive Status Request Timeline](#33-proactive-status-request-timeline)
+- [4.0 Proactive Unblocking Protocol](#40-proactive-unblocking-protocol)
+  - [4.1 When an Agent Reports Being Blocked](#41-when-an-agent-reports-being-blocked)
+- [5.0 Task Completion Enforcement](#50-task-completion-enforcement)
+  - [5.1 Verifying All Acceptance Criteria Are Met](#51-verifying-all-acceptance-criteria-are-met)
+- [6.0 No Update Protocol (Proactive Escalation)](#60-no-update-protocol-proactive-escalation)
+  - [6.1 Escalation Timeline When Agent Goes Silent](#61-escalation-timeline-when-agent-goes-silent)
+- [7.0 Message Templates](#70-message-templates)
+  - [7.1 Status Request Message](#71-status-request-message)
+  - [7.2 Unblocking Assistance Message](#72-unblocking-assistance-message)
+  - [7.3 Completion Verification Message](#73-completion-verification-message)
+- [8.0 Troubleshooting](#80-troubleshooting)
+  - [Problem: Agent Goes Silent During Task](#problem-agent-goes-silent-during-task)
+  - [Problem: Agent Reports Progress But No Actual Work](#problem-agent-reports-progress-but-no-actual-work)
+  - [Problem: Agent Keeps Reporting "Almost Done"](#problem-agent-keeps-reporting-almost-done)
+  - [Problem: Agent Claims Complete But Acceptance Criteria Not Met](#problem-agent-claims-complete-but-acceptance-criteria-not-met)
+  - [Problem: Proactive Checks Interrupt Agent's Flow](#problem-proactive-checks-interrupt-agents-flow)
+  - [Problem: Multiple Blocked Agents Create Backlog](#problem-multiple-blocked-agents-create-backlog)
+  - [Problem: Agent Unblocking Attempts Not Working](#problem-agent-unblocking-attempts-not-working)
+
+---
+
 ## Table of Contents
 
 - 1.0 Overview

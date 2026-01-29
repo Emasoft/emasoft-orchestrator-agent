@@ -1,5 +1,18 @@
 # Central Configuration - Part 1: Overview and Directory Structure
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [Overview](#overview)
+  - [Why Central Configuration Matters](#why-central-configuration-matters)
+- [Directory Structure](#directory-structure)
+  - [The `design/` Hierarchy](#the-design-hierarchy)
+  - [Purpose of Each Directory](#purpose-of-each-directory)
+- [Related Parts](#related-parts)
+
+---
+
 ## Table of Contents
 
 1. [If you need to understand why central configuration matters](#overview)

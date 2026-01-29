@@ -1,5 +1,18 @@
 # Project Setup Interactive Menu - Index
 
+
+## Contents
+
+- [Overview](#overview)
+- [Document Structure](#document-structure)
+  - [[Part 1: Team, Repository & Release Configuration](project-setup-menu-part1-team-repo-release.md)](#part-1-team-repository-release-configurationproject-setup-menu-part1-team-repo-releasemd)
+  - [[Part 2: Documentation & Quality Requirements](project-setup-menu-part2-docs-quality.md)](#part-2-documentation-quality-requirementsproject-setup-menu-part2-docs-qualitymd)
+  - [[Part 3: Implementation & Troubleshooting](project-setup-menu-part3-implementation-troubleshooting.md)](#part-3-implementation-troubleshootingproject-setup-menu-part3-implementation-troubleshootingmd)
+- [Quick Navigation by Use Case](#quick-navigation-by-use-case)
+- [Storage Keys Reference](#storage-keys-reference)
+
+---
+
 ## Overview
 
 This document provides an index to the Project Setup Interactive Menu guide, which has been split into three parts for easier navigation and loading.

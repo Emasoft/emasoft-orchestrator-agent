@@ -1,5 +1,32 @@
 # LSP Enforcement Checklist - Part 2: Validation and General Troubleshooting
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [Web Languages Remediation](#web-languages-remediation)
+  - [PHP (Intelephense) Remediation](#php-intelephense-remediation)
+  - [Ruby (Solargraph) Remediation](#ruby-solargraph-remediation)
+  - [HTML/CSS (Standalone Language Servers) Remediation](#htmlcss-standalone-language-servers-remediation)
+- [When validating agent's work before PR approval](#when-validating-agents-work-before-pr-approval)
+  - [1. LSP Diagnostics Check](#1-lsp-diagnostics-check)
+  - [2. Type Safety Verification](#2-type-safety-verification)
+  - [3. Code Navigation Test](#3-code-navigation-test)
+  - [4. Quality Gates](#4-quality-gates)
+- [When enforcing LSP requirements throughout workflows](#when-enforcing-lsp-requirements-throughout-workflows)
+- [Rejection Criteria](#rejection-criteria)
+- [Benefits Tracked](#benefits-tracked)
+- [When LSP features fail or behave unexpectedly](#when-lsp-features-fail-or-behave-unexpectedly)
+  - [LSP Server Won't Start](#lsp-server-wont-start)
+  - [LSP Diagnostics Not Appearing](#lsp-diagnostics-not-appearing)
+  - [Performance Issues](#performance-issues)
+- [Language-Specific Issues](#language-specific-issues)
+  - [Python (pyright) Issues](#python-pyright-issues)
+  - [TypeScript Issues](#typescript-issues)
+  - [Rust (rust-analyzer) Issues](#rust-rust-analyzer-issues)
+
+---
+
 Covers web language remediation, PR validation, enforcement workflows, and general troubleshooting.
 
 ## Table of Contents

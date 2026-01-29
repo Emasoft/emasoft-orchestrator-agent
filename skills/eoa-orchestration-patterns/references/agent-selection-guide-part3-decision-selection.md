@@ -1,5 +1,21 @@
 # Agent Selection Guide - Part 3: Decision Tree & Selection
 
+
+## Contents
+
+- [Use-Case Quick Reference for This Section](#use-case-quick-reference-for-this-section)
+- [Selection Decision Tree](#selection-decision-tree)
+  - [Step 1: Identify Task Category](#step-1-identify-task-category)
+  - [Step 2: Check Language Requirements](#step-2-check-language-requirements)
+  - [Step 3: Verify Parallelization Safety](#step-3-verify-parallelization-safety)
+  - [Step 4: Determine Output Requirements](#step-4-determine-output-requirements)
+  - [Step 5: Select Agent](#step-5-select-agent)
+- [Agent Selection Checklist](#agent-selection-checklist)
+- [Minimal Output Requirement Template](#minimal-output-requirement-template)
+- [Related Files](#related-files)
+
+---
+
 ## Use-Case Quick Reference for This Section
 
 **When to use this file:**

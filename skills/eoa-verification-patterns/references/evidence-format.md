@@ -1,5 +1,22 @@
 # Evidence Format Enforcement
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [7.1 Evidence Format Script](#71-evidence-format-script)
+- [7.2 Evidence Types](#72-evidence-types)
+- [7.3 Verification Statuses](#73-verification-statuses)
+- [7.4 Required Evidence Fields](#74-required-evidence-fields)
+- [7.5 Required Verification Record Fields](#75-required-verification-record-fields)
+- [7.6 Validation Requirements](#76-validation-requirements)
+- [7.7 Validating Evidence Before Submission](#77-validating-evidence-before-submission)
+- [7.8 Creating Properly-Formatted Evidence](#78-creating-properly-formatted-evidence)
+- [7.9 Integration with Handoff Protocols](#79-integration-with-handoff-protocols)
+- [7.10 Command-Line Usage](#710-command-line-usage)
+
+---
+
 ## Table of Contents
 
 - [7.1 Evidence Format Script](#71-evidence-format-script)

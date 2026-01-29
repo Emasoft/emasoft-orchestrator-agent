@@ -1,5 +1,32 @@
 # RULE 14: User Requirements Are Immutable
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [1.0 Overview](#10-overview)
+- [2.0 Mandatory Task Delegation Elements](#20-mandatory-task-delegation-elements)
+  - [2.1 Requirement Reference Section](#21-requirement-reference-section)
+- [User Requirements (IMMUTABLE)](#user-requirements-immutable)
+  - [2.2 Forbidden Actions Block](#22-forbidden-actions-block)
+- [FORBIDDEN (RULE 14 Violations)](#forbidden-rule-14-violations)
+  - [2.3 Escalation Protocol Section](#23-escalation-protocol-section)
+- [If Requirements Have Issues](#if-requirements-have-issues)
+- [3.0 Task Template Requirements](#30-task-template-requirements)
+  - [3.1 Updating All Task Delegation Templates](#31-updating-all-task-delegation-templates)
+  - [3.2 Verification Checklist](#32-verification-checklist)
+- [4.0 Violation Handling](#40-violation-handling)
+  - [4.1 When Remote Agent Reports a Violation](#41-when-remote-agent-reports-a-violation)
+  - [4.2 Requirement Issue Report Format](#42-requirement-issue-report-format)
+- [Requirement Issue Report](#requirement-issue-report)
+  - [Issue Description](#issue-description)
+  - [Agent's Concern](#agents-concern)
+  - [Options](#options)
+  - [Recommendation](#recommendation)
+  - [4.3 User Decision Workflow](#43-user-decision-workflow)
+
+---
+
 ## Table of Contents
 
 - 1.0 Overview

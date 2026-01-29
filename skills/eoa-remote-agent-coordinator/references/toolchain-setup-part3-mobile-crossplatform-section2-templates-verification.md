@@ -1,5 +1,29 @@
 # Toolchain Setup Part 3 Section 2: Templates and Verification
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [Table of Contents](#table-of-contents)
+- [1. Delegation Template with Toolchain](#1-delegation-template-with-toolchain)
+- [Toolchain Setup (RUN FIRST)](#toolchain-setup-run-first)
+- [Task Details](#task-details)
+- [Verification Commands](#verification-commands)
+- [Completion Criteria](#completion-criteria)
+- [2. Python Task Template](#2-python-task-template)
+- [Toolchain Setup (RUN FIRST)](#toolchain-setup-run-first)
+- [Verification Commands](#verification-commands)
+- [3. JavaScript/TypeScript Task Template](#3-javascripttypescript-task-template)
+- [Toolchain Setup (RUN FIRST)](#toolchain-setup-run-first)
+- [Verification Commands](#verification-commands)
+- [4. Toolchain Verification Script Generator](#4-toolchain-verification-script-generator)
+  - [Generic Verification Script Generator](#generic-verification-script-generator)
+  - [Usage](#usage)
+- [5. Quick Reference: Delegation Checklist](#5-quick-reference-delegation-checklist)
+- [Related References](#related-references)
+
+---
+
 ## Purpose
 
 This section provides delegation templates with toolchain requirements and verification scripts. When delegating tasks, ALWAYS include toolchain setup to ensure remote agents have proper environment.

@@ -1,5 +1,34 @@
 # Central Configuration - Part 4: Workflows and Protocols
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [Reference-Based Sharing](#reference-based-sharing)
+  - [How Task Instructions Reference Configs](#how-task-instructions-reference-configs)
+  - [Agent Workflow for Reading Configs](#agent-workflow-for-reading-configs)
+  - [Example Agent Flow](#example-agent-flow)
+- [Config Update Protocol](#config-update-protocol)
+  - [When Configuration Changes](#when-configuration-changes)
+  - [Change Notification Message](#change-notification-message)
+  - [Agent Response to Config Change](#agent-response-to-config-change)
+  - [Handling Config Update Conflicts](#handling-config-update-conflicts)
+- [Integration with Change Notification](#integration-with-change-notification)
+  - [Reference to Change Notification Protocol](#reference-to-change-notification-protocol)
+  - [Config Changes Trigger Notifications](#config-changes-trigger-notifications)
+- [Best Practices](#best-practices)
+  - [DO](#do)
+  - [DON'T](#dont)
+- [Troubleshooting](#troubleshooting)
+  - [Problem: Agent uses outdated configuration](#problem-agent-uses-outdated-configuration)
+  - [Problem: Config files grow too large](#problem-config-files-grow-too-large)
+  - [Problem: Multiple agents report same config conflict](#problem-multiple-agents-report-same-config-conflict)
+  - [Problem: Config changes not reflected in agent output](#problem-config-changes-not-reflected-in-agent-output)
+- [Related Documentation](#related-documentation)
+- [Related Parts](#related-parts)
+
+---
+
 ## Table of Contents
 
 1. [If you need to reference configs in task messages](#reference-based-sharing)

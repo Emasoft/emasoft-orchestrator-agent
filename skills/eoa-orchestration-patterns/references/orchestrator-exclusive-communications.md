@@ -1,5 +1,38 @@
 # RULE 16: Orchestrator-Exclusive Communications (ABSOLUTE)
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [1. Core Principle](#1-core-principle)
+  - [1.1 What This Rule Means](#11-what-this-rule-means)
+  - [1.2 Why This Rule Exists](#12-why-this-rule-exists)
+- [2. Orchestrator-Exclusive Actions](#2-orchestrator-exclusive-actions)
+  - [2.1 Actions ONLY the Orchestrator Can Perform](#21-actions-only-the-orchestrator-can-perform)
+  - [2.2 Why Each Action is Exclusive](#22-why-each-action-is-exclusive)
+- [3. Sub-Agent Restrictions](#3-sub-agent-restrictions)
+  - [3.1 What Sub-Agents CANNOT Do](#31-what-sub-agents-cannot-do)
+  - [3.2 What Sub-Agents CAN Do](#32-what-sub-agents-can-do)
+- [4. Communication Flow](#4-communication-flow)
+  - [4.1 Correct Communication Pattern](#41-correct-communication-pattern)
+  - [4.2 Forbidden Communication Pattern](#42-forbidden-communication-pattern)
+- [5. Practical Examples](#5-practical-examples)
+  - [5.1 WRONG Approach (Sub-Agent Sends Messages)](#51-wrong-approach-sub-agent-sends-messages)
+  - [5.2 CORRECT Approach (Sub-Agent Reports to Orchestrator)](#52-correct-approach-sub-agent-reports-to-orchestrator)
+  - [5.3 CORRECT Approach (Sub-Agent Prepares Template)](#53-correct-approach-sub-agent-prepares-template)
+- [6. Enforcement Mechanism](#6-enforcement-mechanism)
+  - [6.1 What to Include in Sub-Agent Prompts](#61-what-to-include-in-sub-agent-prompts)
+  - [6.2 What to Check Before Spawning Sub-Agents](#62-what-to-check-before-spawning-sub-agents)
+- [7. Standardized Rules for Sub-Agent GitHub Interactions](#7-standardized-rules-for-sub-agent-github-interactions)
+  - [7.1 When Sub-Agents Can Use GitHub](#71-when-sub-agents-can-use-github)
+  - [7.2 Standardized Comment Format](#72-standardized-comment-format)
+  - [7.3 Rules for Opening Bug Reports](#73-rules-for-opening-bug-reports)
+  - [7.4 Rules for Issue Triage](#74-rules-for-issue-triage)
+  - [7.5 What Sub-Agents CANNOT Do on GitHub](#75-what-sub-agents-cannot-do-on-github)
+- [See Also](#see-also)
+
+---
+
 ## Table of Contents
 
 - 1. Core Principle

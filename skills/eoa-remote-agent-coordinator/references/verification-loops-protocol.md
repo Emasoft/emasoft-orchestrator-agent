@@ -1,5 +1,32 @@
 # 4-Verification-Loops Protocol Before PR
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [1.0 Overview](#10-overview)
+- [2.0 The Verification Flow](#20-the-verification-flow)
+  - [2.1 Understanding the 5 PR Requests Cycle](#21-understanding-the-5-pr-requests-cycle)
+- [3.0 Step-by-Step Implementation](#30-step-by-step-implementation)
+  - [3.1 Including PR Notification Requirement in Task Assignment](#31-including-pr-notification-requirement-in-task-assignment)
+  - [3.2 Responding to Agent PR Requests with Verification Messages](#32-responding-to-agent-pr-requests-with-verification-messages)
+  - [3.3 Tracking Verification State Per Task](#33-tracking-verification-state-per-task)
+- [Verification State Tracker](#verification-state-tracker)
+  - [3.4 Waiting for Next PR Request After Each Verification Report](#34-waiting-for-next-pr-request-after-each-verification-report)
+  - [3.5 Making the Final Decision on the 5th PR Request](#35-making-the-final-decision-on-the-5th-pr-request)
+- [4.0 Summary: The 5 PR Requests](#40-summary-the-5-pr-requests)
+- [5.0 Enforcement Rules](#50-enforcement-rules)
+  - [5.1 What the Orchestrator MUST NOT Do](#51-what-the-orchestrator-must-not-do)
+  - [5.2 What the Orchestrator MUST Do](#52-what-the-orchestrator-must-do)
+- [6.0 Troubleshooting](#60-troubleshooting)
+  - [Problem: Agent Creates PR Without Waiting for Approval](#problem-agent-creates-pr-without-waiting-for-approval)
+  - [Problem: Agent Claims "No Issues Found" But Issues Exist](#problem-agent-claims-no-issues-found-but-issues-exist)
+  - [Problem: Verification Loop Count Lost](#problem-verification-loop-count-lost)
+  - [Problem: Agent Skipping Verification Steps](#problem-agent-skipping-verification-steps)
+  - [Problem: Endless Loop - Issues Keep Appearing](#problem-endless-loop---issues-keep-appearing)
+
+---
+
 ## Table of Contents
 
 - 1.0 Overview

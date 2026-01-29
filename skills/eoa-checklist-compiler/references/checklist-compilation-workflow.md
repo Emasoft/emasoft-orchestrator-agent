@@ -1,5 +1,41 @@
 # Checklist Compilation Workflow
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [1. Phase 1: Requirements Gathering](#1-phase-1-requirements-gathering)
+  - [1.1 Reading Source Requirements](#11-reading-source-requirements)
+  - [1.2 Identifying Verification Points](#12-identifying-verification-points)
+  - [1.3 Categorizing Requirements](#13-categorizing-requirements)
+- [2. Phase 2: Checklist Structuring](#2-phase-2-checklist-structuring)
+  - [2.1 Creating Hierarchical Structure](#21-creating-hierarchical-structure)
+  - [2.2 Defining Verification Criteria](#22-defining-verification-criteria)
+  - [2.3 Adding Context and Guidance](#23-adding-context-and-guidance)
+- [3. Phase 3: Format and Document](#3-phase-3-format-and-document)
+  - [3.1 Applying Standard Formatting](#31-applying-standard-formatting)
+  - [3.2 Adding Metadata](#32-adding-metadata)
+  - [3.3 Writing Verification Procedures](#33-writing-verification-procedures)
+- [4. Phase 4: Quality Assurance](#4-phase-4-quality-assurance)
+  - [4.1 Checklist Self-Check](#41-checklist-self-check)
+  - [4.2 Consistency Check](#42-consistency-check)
+  - [4.3 Documentation Check](#43-documentation-check)
+- [5. Step-by-Step Procedure](#5-step-by-step-procedure)
+  - [5.1 Steps 1-5: From Assignment to Structuring](#51-steps-1-5-from-assignment-to-structuring)
+    - [Step 1: Receive Assignment from Orchestrator](#step-1-receive-assignment-from-orchestrator)
+    - [Step 2: Read Source Requirements and Context](#step-2-read-source-requirements-and-context)
+    - [Step 3: Extract and Categorize Verification Points](#step-3-extract-and-categorize-verification-points)
+    - [Step 4: Structure Checklist Hierarchy](#step-4-structure-checklist-hierarchy)
+    - [Step 5: Define Verification Criteria](#step-5-define-verification-criteria)
+  - [5.2 Steps 6-10: From Formatting to Delivery](#52-steps-6-10-from-formatting-to-delivery)
+    - [Step 6: Apply Formatting and Add Metadata](#step-6-apply-formatting-and-add-metadata)
+    - [Step 7: Quality Assurance Self-Check](#step-7-quality-assurance-self-check)
+    - [Step 8: Write Checklist Document](#step-8-write-checklist-document)
+    - [Step 9: Prepare Summary Report](#step-9-prepare-summary-report)
+    - [Step 10: Report Completion to Orchestrator](#step-10-report-completion-to-orchestrator)
+
+---
+
 Detailed workflow for compiling verification checklists from requirements and specifications.
 
 ---

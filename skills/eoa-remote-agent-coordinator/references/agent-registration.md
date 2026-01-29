@@ -1,5 +1,33 @@
 # Remote Agent Registration
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [1.0 Overview](#10-overview)
+- [2.0 Agent Registration Format](#20-agent-registration-format)
+  - [2.1 Required Fields for Agent Registration](#21-required-fields-for-agent-registration)
+  - [2.2 Agent Capabilities List](#22-agent-capabilities-list)
+  - [2.3 Availability States](#23-availability-states)
+- [3.0 Agent Roster Management](#30-agent-roster-management)
+  - [3.1 Creating and Maintaining AGENT_ROSTER.md](#31-creating-and-maintaining-agent_rostermd)
+- [Active Agents](#active-agents)
+- [Offline Agents](#offline-agents)
+  - [3.2 Updating Agent Status](#32-updating-agent-status)
+  - [3.3 Tracking Current Task Assignments](#33-tracking-current-task-assignments)
+- [4.0 Agent Roster File Template](#40-agent-roster-file-template)
+  - [4.1 Full Template](#41-full-template)
+- [Active Agents](#active-agents)
+- [Offline Agents](#offline-agents)
+- [Onboarding Agents](#onboarding-agents)
+- [Agent History](#agent-history)
+  - [Recently Completed Tasks](#recently-completed-tasks)
+- [5.0 Integration with Onboarding](#50-integration-with-onboarding)
+  - [5.1 Registration After Successful Onboarding](#51-registration-after-successful-onboarding)
+  - [5.2 Verification Task Completion Requirement](#52-verification-task-completion-requirement)
+
+---
+
 ## Table of Contents
 
 - 1.0 Overview

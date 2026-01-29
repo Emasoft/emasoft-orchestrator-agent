@@ -1,5 +1,40 @@
 # Change Notification Protocol
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [Purpose](#purpose)
+- [Notification Types](#notification-types)
+  - [1. Toolchain Update](#1-toolchain-update)
+  - [2. Specification Update](#2-specification-update)
+  - [3. Priority Change](#3-priority-change)
+  - [4. Dependency Update](#4-dependency-update)
+- [Agent Response](#agent-response)
+- [Urgency Levels](#urgency-levels)
+- [Broadcast vs Targeted](#broadcast-vs-targeted)
+  - [Broadcast (All Agents)](#broadcast-all-agents)
+  - [Targeted (Specific Agents)](#targeted-specific-agents)
+- [Integration](#integration)
+- [Acknowledgment Flow](#acknowledgment-flow)
+  - [Flow Steps](#flow-steps)
+  - [Reminder Notification Format](#reminder-notification-format)
+  - [Escalation Criteria](#escalation-criteria)
+- [Error States](#error-states)
+  - [Error Response Format](#error-response-format)
+  - [Partial Application Response](#partial-application-response)
+- [Expanded Integration](#expanded-integration)
+- [Troubleshooting](#troubleshooting)
+  - [Problem: Agent Ignores Change Notifications](#problem-agent-ignores-change-notifications)
+  - [Problem: Breaking Change Causes Agent Failure](#problem-breaking-change-causes-agent-failure)
+  - [Problem: Agent Environment Cannot Support Change](#problem-agent-environment-cannot-support-change)
+  - [Problem: Broadcast Notification Overwhelms System](#problem-broadcast-notification-overwhelms-system)
+  - [Problem: Notification Lost During Agent Downtime](#problem-notification-lost-during-agent-downtime)
+  - [Problem: Conflicting Changes Sent](#problem-conflicting-changes-sent)
+  - [Problem: Partial Application With No Resolution](#problem-partial-application-with-no-resolution)
+
+---
+
 ## Table of Contents
 
 1. [Purpose](#purpose)

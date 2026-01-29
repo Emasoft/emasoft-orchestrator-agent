@@ -1,5 +1,23 @@
 # Agent Selection Guide - Part 2: Specialized Agents
 
+
+## Contents
+
+- [Use-Case Quick Reference for This Section](#use-case-quick-reference-for-this-section)
+- [Specialized Agents](#specialized-agents)
+  - [Code Quality Agents](#code-quality-agents)
+  - [Search and Analysis Agents](#search-and-analysis-agents)
+  - [Testing Agents](#testing-agents)
+  - [DevOps and Infrastructure Agents](#devops-and-infrastructure-agents)
+  - [Documentation Agents](#documentation-agents)
+- [Agent Capability Matrix](#agent-capability-matrix)
+  - [Core Capabilities](#core-capabilities)
+  - [Tool Expertise](#tool-expertise)
+  - [Domain Expertise (Star Rating: 1-5)](#domain-expertise-star-rating-1-5)
+- [Related Files](#related-files)
+
+---
+
 ## Use-Case Quick Reference for This Section
 
 **When to use this file:**

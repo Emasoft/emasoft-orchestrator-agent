@@ -1,5 +1,44 @@
 # Checklist Templates
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [1. Standard Checklist Template](#1-standard-checklist-template)
+- [Prerequisites](#prerequisites)
+- [Section 1: [Category Name]](#section-1-category-name)
+  - [Subsection 1.1: [Specific Area]](#subsection-11-specific-area)
+  - [Subsection 1.2: [Specific Area]](#subsection-12-specific-area)
+- [Section 2: [Category Name]](#section-2-category-name)
+- [Completion Criteria](#completion-criteria)
+- [Notes and Issues](#notes-and-issues)
+- [Sign-Off](#sign-off)
+- [2. Priority-Annotated Checklist Template](#2-priority-annotated-checklist-template)
+- [Critical Items (🔴)](#critical-items-)
+- [Important Items (🟡)](#important-items-)
+- [Optional Items (🟢)](#optional-items-)
+- [Summary](#summary)
+- [3. Dependency-Ordered Checklist Template](#3-dependency-ordered-checklist-template)
+- [Phase 1: Foundation (No Dependencies)](#phase-1-foundation-no-dependencies)
+- [Phase 2: Core (Depends on Phase 1)](#phase-2-core-depends-on-phase-1)
+- [Phase 3: Integration (Depends on Phase 2)](#phase-3-integration-depends-on-phase-2)
+- [Phase 4: Verification (Depends on Phase 3)](#phase-4-verification-depends-on-phase-3)
+- [Dependency Graph](#dependency-graph)
+- [4. Test Coverage Checklist Template](#4-test-coverage-checklist-template)
+- [Unit Tests](#unit-tests)
+  - [Function: `function_name_1()`](#function-function_name_1)
+  - [Function: `function_name_2()`](#function-function_name_2)
+  - [Class: `ClassName`](#class-classname)
+    - [Method: `__init__()`](#method-__init__)
+    - [Method: `method_name()`](#method-method_name)
+- [Integration Tests](#integration-tests)
+  - [Interface: [Interface Name]](#interface-interface-name)
+  - [External Dependency: [Dependency Name]](#external-dependency-dependency-name)
+- [Coverage Metrics](#coverage-metrics)
+- [Missing Coverage](#missing-coverage)
+
+---
+
 Ready-to-use templates for different checklist types.
 
 ---

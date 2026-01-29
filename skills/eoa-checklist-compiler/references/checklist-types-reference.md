@@ -1,5 +1,31 @@
 # Checklist Types Reference
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [1. Module Completion Checklists](#1-module-completion-checklists)
+  - [1.1 When to Use](#11-when-to-use)
+  - [1.2 Standard Elements](#12-standard-elements)
+- [2. Quality Gate Checklists](#2-quality-gate-checklists)
+  - [2.1 When to Use](#21-when-to-use)
+  - [2.2 Standard Elements](#22-standard-elements)
+- [3. Review Checklists](#3-review-checklists)
+  - [3.1 When to Use](#31-when-to-use)
+  - [3.2 Standard Elements](#32-standard-elements)
+- [4. Test Coverage Checklists](#4-test-coverage-checklists)
+  - [4.1 When to Use](#41-when-to-use)
+  - [4.2 Standard Elements](#42-standard-elements)
+- [5. Release Readiness Checklists](#5-release-readiness-checklists)
+  - [5.1 When to Use](#51-when-to-use)
+  - [5.2 Standard Elements](#52-standard-elements)
+- [6. Task Assignment Checklists](#6-task-assignment-checklists)
+  - [6.1 When to Use](#61-when-to-use)
+  - [6.2 Standard Elements](#62-standard-elements)
+- [Checklist Type Selection Guide](#checklist-type-selection-guide)
+
+---
+
 Detailed reference for the six standard checklist types used by the Checklist Compiler Agent.
 
 ---

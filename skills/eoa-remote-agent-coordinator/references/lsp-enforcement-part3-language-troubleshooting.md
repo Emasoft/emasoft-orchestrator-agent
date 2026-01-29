@@ -1,5 +1,38 @@
 # LSP Enforcement Checklist - Part 3: Language-Specific Troubleshooting
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [Go (gopls) Issues](#go-gopls-issues)
+  - [Issue: "Package not found" for local modules](#issue-package-not-found-for-local-modules)
+  - [Issue: "Undefined: package name" after adding import](#issue-undefined-package-name-after-adding-import)
+  - [Issue: "No required module provides package"](#issue-no-required-module-provides-package)
+- [Java (jdtls) Issues](#java-jdtls-issues)
+  - [Issue: "Cannot resolve symbol" for imported classes](#issue-cannot-resolve-symbol-for-imported-classes)
+  - [Issue: "Project build path is incomplete"](#issue-project-build-path-is-incomplete)
+- [Kotlin Issues](#kotlin-issues)
+  - [Issue: "Unresolved reference" for standard library](#issue-unresolved-reference-for-standard-library)
+  - [Issue: "Type mismatch" with Java interop](#issue-type-mismatch-with-java-interop)
+- [C/C++ (clangd) Issues](#cc-clangd-issues)
+  - [Issue: "'file.h' file not found"](#issue-fileh-file-not-found)
+  - [Issue: "Unknown argument '-std=c++20'"](#issue-unknown-argument--stdc20)
+- [C# (OmniSharp) Issues](#c-omnisharp-issues)
+  - [Issue: "The type or namespace could not be found"](#issue-the-type-or-namespace-could-not-be-found)
+  - [Issue: "Nullable warnings everywhere"](#issue-nullable-warnings-everywhere)
+- [PHP (Intelephense) Issues](#php-intelephense-issues)
+  - [Issue: "Undefined function/class"](#issue-undefined-functionclass)
+  - [Issue: "Method not found" for Laravel facades](#issue-method-not-found-for-laravel-facades)
+- [Ruby (Solargraph) Issues](#ruby-solargraph-issues)
+  - [Issue: "Undefined method" for valid code](#issue-undefined-method-for-valid-code)
+  - [Issue: "LoadError: cannot load such file"](#issue-loaderror-cannot-load-such-file)
+- [Cross-Language Issues](#cross-language-issues)
+  - [Issue: "LSP installed but features not working"](#issue-lsp-installed-but-features-not-working)
+  - [Issue: "Multiple LSP errors after git branch switch"](#issue-multiple-lsp-errors-after-git-branch-switch)
+- [Official Documentation](#official-documentation)
+
+---
+
 Covers troubleshooting for Go, Java, Kotlin, C/C++, C#, PHP, Ruby, and cross-language issues.
 
 ## Table of Contents

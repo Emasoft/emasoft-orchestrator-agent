@@ -1,5 +1,26 @@
 # AI Maestro Messaging Protocol
 
+
+## Contents
+
+- [IMPORTANT: Official Skill Reference](#important-official-skill-reference)
+- [Overview](#overview)
+- [Document Structure](#document-structure)
+  - [Part 1: API and Schema Reference](#part-1-api-and-schema-reference)
+  - [Part 2: Sending and Receiving Messages](#part-2-sending-and-receiving-messages)
+  - [Part 3: Message Types by Category](#part-3-message-types-by-category)
+  - [Part 4: Agents, Errors, and Best Practices](#part-4-agents-errors-and-best-practices)
+  - [Part 5: Notifications and Response Expectations](#part-5-notifications-and-response-expectations)
+  - [Part 6: Timeouts and Protocol Integration](#part-6-timeouts-and-protocol-integration)
+  - [Part 7: Troubleshooting](#part-7-troubleshooting)
+- [Quick Reference](#quick-reference)
+  - [Essential Commands](#essential-commands)
+  - [Priority Quick Guide](#priority-quick-guide)
+  - [Required Message Fields](#required-message-fields)
+- [Navigation](#navigation)
+
+---
+
 ## IMPORTANT: Official Skill Reference
 
 **For sending and receiving messages, always use the official AI Maestro skill:**

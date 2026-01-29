@@ -1,5 +1,33 @@
 # Messaging Protocol Part 7: Troubleshooting
 
+
+## Contents
+
+- [7.1 Messages Not Being Delivered](#71-messages-not-being-delivered)
+  - [Solution Steps](#solution-steps)
+- [7.2 Agent Not Found (404)](#72-agent-not-found-404)
+  - [Solution Steps](#solution-steps)
+- [7.3 Message Content Malformed (400)](#73-message-content-malformed-400)
+  - [Solution Steps](#solution-steps)
+- [7.4 Messages Arrive Out of Order](#74-messages-arrive-out-of-order)
+  - [Solution Steps](#solution-steps)
+- [7.5 Duplicate Messages Received](#75-duplicate-messages-received)
+  - [Solution Steps](#solution-steps)
+- [7.6 Subconscious Notifications Not Appearing](#76-subconscious-notifications-not-appearing)
+  - [Solution Steps](#solution-steps)
+- [7.7 High Priority Messages Not Prioritized](#77-high-priority-messages-not-prioritized)
+  - [Solution Steps](#solution-steps)
+- [7.8 Message Timeout But Agent Is Working](#78-message-timeout-but-agent-is-working)
+  - [Solution Steps](#solution-steps)
+- [Diagnostic Commands](#diagnostic-commands)
+  - [Check Server Status](#check-server-status)
+  - [List All Agents](#list-all-agents)
+  - [Check Your Inbox](#check-your-inbox)
+  - [Validate JSON Before Sending](#validate-json-before-sending)
+- [Related Sections](#related-sections)
+
+---
+
 **Parent document**: [messaging-protocol.md](messaging-protocol.md)
 
 ---

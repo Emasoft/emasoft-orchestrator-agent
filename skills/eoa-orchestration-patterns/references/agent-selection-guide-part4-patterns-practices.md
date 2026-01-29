@@ -1,5 +1,35 @@
 # Agent Selection Guide - Part 4: Anti-Patterns & Best Practices
 
+
+## Contents
+
+- [Use-Case Quick Reference for This Section](#use-case-quick-reference-for-this-section)
+- [Anti-Patterns](#anti-patterns)
+  - [WRONG Agent Selections](#wrong-agent-selections)
+    - [Anti-Pattern 1: Using Orchestrator for Blocking Tasks](#anti-pattern-1-using-orchestrator-for-blocking-tasks)
+    - [Anti-Pattern 2: Using Wrong Language Agent](#anti-pattern-2-using-wrong-language-agent)
+    - [Anti-Pattern 3: Parallel Git Operations](#anti-pattern-3-parallel-git-operations)
+    - [Anti-Pattern 4: Missing Test Count Specification](#anti-pattern-4-missing-test-count-specification)
+    - [Anti-Pattern 5: Verbose Agent Output](#anti-pattern-5-verbose-agent-output)
+    - [Anti-Pattern 6: Using Scripts to Edit Files](#anti-pattern-6-using-scripts-to-edit-files)
+- [Best Practices](#best-practices)
+  - [1. Always Specify Minimal Output](#1-always-specify-minimal-output)
+  - [2. Batch Related Tasks](#2-batch-related-tasks)
+  - [3. Chain Agents for Complex Workflows](#3-chain-agents-for-complex-workflows)
+  - [4. Use Appropriate Search Agents](#4-use-appropriate-search-agents)
+  - [5. Prevent Git Conflicts](#5-prevent-git-conflicts)
+  - [6. Test Writer Agent Best Practices](#6-test-writer-agent-best-practices)
+  - [7. Code Fixer Agent Best Practices](#7-code-fixer-agent-best-practices)
+  - [8. Log Auditor Best Practices](#8-log-auditor-best-practices)
+  - [9. Agent Coordination Patterns](#9-agent-coordination-patterns)
+    - [Pattern A: Fan-Out (Parallel)](#pattern-a-fan-out-parallel)
+    - [Pattern B: Pipeline (Sequential)](#pattern-b-pipeline-sequential)
+    - [Pattern C: Map-Reduce](#pattern-c-map-reduce)
+    - [Pattern D: Supervisor-Worker](#pattern-d-supervisor-worker)
+- [Related Files](#related-files)
+
+---
+
 ## Use-Case Quick Reference for This Section
 
 **When to use this file:**

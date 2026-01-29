@@ -166,7 +166,7 @@ docker-compose up -d --build rust-api
 template:
   name: DOCKER_INTEGRATION
   version: 1.0.0
-  atlas_compatible: true
+  eoa_compatible: true
   parent_template: MONOREPO_BASE
   requires:
     - MONOREPO_BASE

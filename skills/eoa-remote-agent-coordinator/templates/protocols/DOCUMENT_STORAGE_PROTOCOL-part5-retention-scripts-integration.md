@@ -34,19 +34,19 @@
 
 | Script | Purpose |
 |--------|---------|
-| `atlas_download.py <!-- TODO: Rename to eoa_download.py -->` | Download document to correct category |
-| `atlas_verify.py <!-- TODO: Rename to eoa_verify.py -->` | Verify integrity and permissions |
-| `atlas_lookup.py <!-- TODO: Rename to eoa_lookup.py -->` | Find documents by task ID |
+| `eoa_download.py <!-- TODO: Rename to eoa_download.py -->` | Download document to correct category |
+| `eoa_verify.py <!-- TODO: Rename to eoa_verify.py -->` | Verify integrity and permissions |
+| `eoa_lookup.py <!-- TODO: Rename to eoa_lookup.py -->` | Find documents by task ID |
 
 ### Orchestrator Scripts
 
 | Script | Purpose |
 |--------|---------|
-| `atlas_orchestrator_download.py <!-- TODO: Rename to eoa_orchestrator_download.py -->` | Download to agent-specific folder |
-| `atlas_index_rebuild.py <!-- TODO: Rename to eoa_index_rebuild.py -->` | Rebuild cross-agent search index |
-| `atlas_agent_status.py <!-- TODO: Rename to eoa_agent_status.py -->` | Show document counts per agent |
-| `atlas_search.py <!-- TODO: Rename to eoa_search.py -->` | Search across all agents |
-| `atlas_cleanup.py <!-- TODO: Rename to eoa_cleanup.py -->` | Controlled cleanup with approval |
+| `eoa_orchestrator_download.py <!-- TODO: Rename to eoa_orchestrator_download.py -->` | Download to agent-specific folder |
+| `eoa_index_rebuild.py <!-- TODO: Rename to eoa_index_rebuild.py -->` | Rebuild cross-agent search index |
+| `eoa_agent_status.py <!-- TODO: Rename to eoa_agent_status.py -->` | Show document counts per agent |
+| `eoa_search.py <!-- TODO: Rename to eoa_search.py -->` | Search across all agents |
+| `eoa_cleanup.py <!-- TODO: Rename to eoa_cleanup.py -->` | Controlled cleanup with approval |
 
 ---
 
@@ -56,7 +56,7 @@
 
 ```bash
 # Initialize storage structure
-python3 scripts/atlas_download.py <!-- TODO: Rename to eoa_download.py --> init
+python3 scripts/eoa_download.py <!-- TODO: Rename to eoa_download.py --> init
 
 # Creates:
 # design/
@@ -71,7 +71,7 @@ python3 scripts/atlas_download.py <!-- TODO: Rename to eoa_download.py --> init
 
 ```bash
 # Initialize orchestrator storage
-python3 scripts/atlas_orchestrator_init.py <!-- TODO: Rename to eoa_orchestrator_init.py -->
+python3 scripts/eoa_orchestrator_init.py <!-- TODO: Rename to eoa_orchestrator_init.py -->
 
 # Creates:
 # design/
@@ -90,7 +90,7 @@ python3 scripts/atlas_orchestrator_init.py <!-- TODO: Rename to eoa_orchestrator
 
 ```bash
 # When orchestrator first contacts a new agent
-python3 scripts/atlas_register_agent.py <!-- TODO: Rename to eoa_register_agent.py --> \
+python3 scripts/eoa_register_agent.py <!-- TODO: Rename to eoa_register_agent.py --> \
   --name "helper-agent-macos-arm64" \
   --platform macos \
   --architecture arm64 \

@@ -1,5 +1,17 @@
 # Release Automation: Platform-Specific Publishing
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [Platform-Specific Publishing](#platform-specific-publishing)
+  - [Homebrew (macOS)](#homebrew-macos)
+  - [Windows Store](#windows-store)
+  - [Docker Hub](#docker-hub)
+- [Debug Script](#debug-script)
+
+---
+
 > **Parent document**: [release-automation.md](release-automation.md)
 
 ## Table of Contents

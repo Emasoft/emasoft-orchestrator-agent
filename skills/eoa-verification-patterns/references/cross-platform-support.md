@@ -1,5 +1,17 @@
 # Cross-Platform Support
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [6.1 Platform-Specific Behavior](#61-platform-specific-behavior)
+- [6.2 UTF-8 Encoding](#62-utf-8-encoding)
+- [6.3 Platform Detection](#63-platform-detection)
+- [6.4 Path Handling](#64-path-handling)
+- [6.5 Command Execution](#65-command-execution)
+
+---
+
 ## Table of Contents
 
 - [6.1 Platform-Specific Behavior](#61-platform-specific-behavior)

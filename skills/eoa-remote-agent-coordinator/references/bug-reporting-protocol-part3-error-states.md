@@ -1,5 +1,17 @@
 # Bug Reporting Protocol - Part 3: Error States
 
+
+## Contents
+
+- [Error States](#error-states)
+  - [Cannot Reproduce](#cannot-reproduce)
+  - [Duplicate](#duplicate)
+  - [Not a Bug](#not-a-bug)
+  - [Needs More Info](#needs-more-info)
+  - [Escalated](#escalated)
+
+---
+
 This document covers all error states and edge cases in bug handling.
 
 **Parent document**: [bug-reporting-protocol.md](bug-reporting-protocol.md)

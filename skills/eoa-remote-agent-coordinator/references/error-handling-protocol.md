@@ -1,5 +1,27 @@
 # Error Handling Protocol
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [1.0 Overview](#10-overview)
+  - [1.1 FAIL-FAST Principle](#11-fail-fast-principle)
+  - [1.2 When Agents Must Stop and Report](#12-when-agents-must-stop-and-report)
+- [2.0 Error Reporting Format](#20-error-reporting-format)
+  - [2.1 Error Report Message Schema](#21-error-report-message-schema)
+  - [2.2 Error Types](#22-error-types)
+- [3.0 Orchestrator Response to Errors](#30-orchestrator-response-to-errors)
+  - [3.1 Acknowledging Error Reports](#31-acknowledging-error-reports)
+  - [3.2 Providing Solutions](#32-providing-solutions)
+  - [3.3 Escalation When Needed](#33-escalation-when-needed)
+- [4.0 Troubleshooting](#40-troubleshooting)
+  - [Problem: Agent Not Reporting Errors](#problem-agent-not-reporting-errors)
+  - [Problem: Agent Reports Same Error Repeatedly](#problem-agent-reports-same-error-repeatedly)
+  - [Problem: Unclear Error Type](#problem-unclear-error-type)
+  - [Problem: False Blocker Reports](#problem-false-blocker-reports)
+
+---
+
 ## Table of Contents
 
 - 1.0 Overview

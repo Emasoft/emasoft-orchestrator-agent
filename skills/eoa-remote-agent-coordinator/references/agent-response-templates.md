@@ -1,5 +1,22 @@
 # Agent Response Templates
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [1.0 Overview](#10-overview)
+- [2.0 Available Templates](#20-available-templates)
+  - [Template Reference Table](#template-reference-table)
+- [3.0 Including Templates in Task Delegations](#30-including-templates-in-task-delegations)
+  - [3.1 Template Reference Block Format](#31-template-reference-block-format)
+- [Response Templates](#response-templates)
+- [4.0 Generating Ad-Hoc Skills for Complex Tasks](#40-generating-ad-hoc-skills-for-complex-tasks)
+  - [4.1 When to Generate a Mini-Skill](#41-when-to-generate-a-mini-skill)
+  - [4.2 Using generate_agent_skill.py](#42-using-generate_agent_skillpy)
+  - [4.3 Agent Installation Instructions](#43-agent-installation-instructions)
+
+---
+
 ## Table of Contents
 
 - 1.0 Overview

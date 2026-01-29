@@ -1,5 +1,31 @@
 # Checklist Compilation Examples
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [1. Complete Example: SVG Parser Quality Gate Checklist](#1-complete-example-svg-parser-quality-gate-checklist)
+  - [1.1 Scenario and Requirements](#11-scenario-and-requirements)
+  - [1.2 Compiled Checklist Document](#12-compiled-checklist-document)
+- [Prerequisites](#prerequisites)
+- [Section 1: Implementation Completeness](#section-1-implementation-completeness)
+- [Section 2: Test Coverage and Pass Rate](#section-2-test-coverage-and-pass-rate)
+- [Section 3: Code Quality](#section-3-code-quality)
+- [Section 4: Documentation](#section-4-documentation)
+- [Section 5: Security](#section-5-security)
+- [Completion Criteria](#completion-criteria)
+- [Sign-Off](#sign-off)
+- [2. Compilation Process Walkthrough](#2-compilation-process-walkthrough)
+  - [2.1 Reading Requirements](#21-reading-requirements)
+  - [2.2 Identifying Verification Points](#22-identifying-verification-points)
+  - [2.3 Structuring the Checklist](#23-structuring-the-checklist)
+  - [2.4 Writing the Document](#24-writing-the-document)
+- [3. Orchestrator Interaction Example](#3-orchestrator-interaction-example)
+  - [3.1 Request from Orchestrator](#31-request-from-orchestrator)
+  - [3.2 Completion Report Format](#32-completion-report-format)
+
+---
+
 Complete examples demonstrating the checklist compilation process.
 
 ---

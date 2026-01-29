@@ -1,5 +1,27 @@
 # Automation Scripts
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [11.1 Traceability and Requirements Scripts](#111-traceability-and-requirements-scripts)
+  - [traceability_validator.py](#traceability_validatorpy)
+- [11.2 Evidence Collection Scripts](#112-evidence-collection-scripts)
+  - [evidence_store.py](#evidence_storepy)
+- [11.3 Consistency and Verification Scripts](#113-consistency-and-verification-scripts)
+  - [consistency_verifier.py](#consistency_verifierpy)
+  - [with_server.py](#with_serverpy)
+- [11.4 Code Quality Scripts](#114-code-quality-scripts)
+  - [quality_pattern_detector.py](#quality_pattern_detectorpy)
+- [11.5 Scoring and Analysis Scripts](#115-scoring-and-analysis-scripts)
+  - [scoring_framework.py](#scoring_frameworkpy)
+  - [comparison_analyzer.py](#comparison_analyzerpy)
+- [11.6 Testing and Validation Scripts](#116-testing-and-validation-scripts)
+  - [ab_test_calculator.py](#ab_test_calculatorpy)
+  - [checklist_validator.py](#checklist_validatorpy)
+
+---
+
 ## Table of Contents
 
 - [11.1 Traceability and Requirements Scripts](#111-traceability-and-requirements-scripts)

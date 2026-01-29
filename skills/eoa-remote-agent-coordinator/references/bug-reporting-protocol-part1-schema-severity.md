@@ -1,5 +1,18 @@
 # Bug Reporting Protocol - Part 1: Schema and Severity Levels
 
+
+## Contents
+
+- [Bug Message Schema](#bug-message-schema)
+  - [Complete Bug Report Object](#complete-bug-report-object)
+- [Severity Levels](#severity-levels)
+  - [Critical](#critical)
+  - [High](#high)
+  - [Normal](#normal)
+  - [Low](#low)
+
+---
+
 This document covers bug message structure and severity classification.
 
 **Parent document**: [bug-reporting-protocol.md](bug-reporting-protocol.md)

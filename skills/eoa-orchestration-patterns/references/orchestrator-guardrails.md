@@ -1,5 +1,21 @@
 # Orchestrator Guardrails Reference
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+  - [Part 1: Role Definition and Action Classification](#part-1-role-definition-and-action-classification)
+  - [Part 2: Decision Trees](#part-2-decision-trees)
+  - [Part 3: Common Scenarios](#part-3-common-scenarios)
+  - [Part 4: Violation Detection and Examples](#part-4-violation-detection-and-examples)
+- [Quick Reference Summary](#quick-reference-summary)
+  - [What Orchestrators DO:](#what-orchestrators-do)
+  - [What Orchestrators DO NOT DO:](#what-orchestrators-do-not-do)
+  - [Decision Rule:](#decision-rule)
+- [Related Documents](#related-documents)
+
+---
+
 **Purpose**: Detailed role boundary definitions and enforcement mechanisms for orchestrator agents.
 
 ---

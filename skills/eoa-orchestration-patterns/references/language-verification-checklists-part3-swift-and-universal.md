@@ -1,5 +1,32 @@
 # Language-Specific Verification Checklists - Part 3: Swift and Universal Resources
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [Swift/iOS/macOS Verification Checklist](#swiftiosmacos-verification-checklist)
+  - [Core Requirements](#core-requirements)
+  - [Swift Package Manager (SPM)](#swift-package-manager-spm)
+  - [Optional (Recommended)](#optional-recommended)
+- [Universal TDD Verification](#universal-tdd-verification)
+  - [Check Commit Sequence](#check-commit-sequence)
+  - [TDD Compliance Report](#tdd-compliance-report)
+- [General Cross-Language Checklist](#general-cross-language-checklist)
+- [Usage in Orchestration](#usage-in-orchestration)
+  - [When Delegating Tasks](#when-delegating-tasks)
+  - [When Reviewing Deliverables](#when-reviewing-deliverables)
+  - [When Creating New Projects](#when-creating-new-projects)
+- [Automation Scripts](#automation-scripts)
+  - [Python](#python)
+  - [Go](#go)
+  - [JavaScript/TypeScript](#javascripttypescript)
+- [Troubleshooting](#troubleshooting)
+  - [Common Issues](#common-issues)
+  - [Verification Failures](#verification-failures)
+- [Related Documents](#related-documents)
+
+---
+
 This document provides the Swift/iOS/macOS verification checklist and universal resources applicable to all languages.
 
 **Parent document:** [language-verification-checklists-index.md](./language-verification-checklists-index.md)

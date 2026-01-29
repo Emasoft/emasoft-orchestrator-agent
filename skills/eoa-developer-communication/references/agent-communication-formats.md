@@ -1,5 +1,27 @@
 # Agent Communication Formats
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [1. Message Format Overview](#1-message-format-overview)
+  - [1.1 When sending messages between agents](#11-when-sending-messages-between-agents)
+  - [1.2 Required fields for all messages](#12-required-fields-for-all-messages)
+- [2. Status Report Formats](#2-status-report-formats)
+  - [2.1 If reporting task completion](#21-if-reporting-task-completion)
+  - [2.2 If reporting task failure](#22-if-reporting-task-failure)
+  - [2.3 If reporting blockers](#23-if-reporting-blockers)
+- [3. Request Formats](#3-request-formats)
+  - [3.1 When requesting status updates](#31-when-requesting-status-updates)
+  - [3.2 When requesting clarification](#32-when-requesting-clarification)
+  - [3.3 When requesting resources](#33-when-requesting-resources)
+- [4. Acknowledgment Formats](#4-acknowledgment-formats)
+  - [4.1 If acknowledging task delegation](#41-if-acknowledging-task-delegation)
+  - [4.2 If acknowledging message receipt](#42-if-acknowledging-message-receipt)
+- [See Also](#see-also)
+
+---
+
 This document defines standardized message formats for inter-agent communication in the atlas-orchestrator system.
 
 ---

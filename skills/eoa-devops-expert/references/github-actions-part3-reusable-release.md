@@ -1,5 +1,21 @@
 # GitHub Actions Part 3: Reusable Workflows and Releases
 
+
+## Contents
+
+- [Reusable Workflows](#reusable-workflows)
+  - [Define Reusable Workflow](#define-reusable-workflow)
+  - [Call Reusable Workflow](#call-reusable-workflow)
+- [Release Workflow](#release-workflow)
+  - [Create GitHub Release](#create-github-release)
+  - [Publish to Package Registries](#publish-to-package-registries)
+- [Security Best Practices](#security-best-practices)
+  - [Permissions](#permissions)
+  - [Pin Action Versions](#pin-action-versions)
+  - [Dependency Review](#dependency-review)
+
+---
+
 ## Reusable Workflows
 
 ### Define Reusable Workflow

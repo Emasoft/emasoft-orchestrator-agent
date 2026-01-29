@@ -1,5 +1,27 @@
 # Toolchain Setup Part 2 - Part 3: .NET and JVM Languages
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [Table of Contents](#table-of-contents)
+- [3.1 C# Toolchain (.NET)](#31-c-toolchain-net)
+  - [3.1.1 Setup Instructions for Remote Agent](#311-setup-instructions-for-remote-agent)
+  - [3.1.2 Project Setup](#312-project-setup)
+  - [3.1.3 Verification Commands](#313-verification-commands)
+- [3.2 Java Toolchain](#32-java-toolchain)
+  - [3.2.1 Setup Instructions for Remote Agent](#321-setup-instructions-for-remote-agent)
+  - [3.2.2 Gradle Configuration](#322-gradle-configuration)
+  - [3.2.3 Verification Commands](#323-verification-commands)
+- [3.3 Kotlin Toolchain](#33-kotlin-toolchain)
+  - [3.3.1 Setup Instructions for Remote Agent](#331-setup-instructions-for-remote-agent)
+  - [3.3.2 Gradle with Kotlin](#332-gradle-with-kotlin)
+  - [3.3.3 Verification Commands](#333-verification-commands)
+- [3.4 Quick Reference Table](#34-quick-reference-table)
+- [Related Parts](#related-parts)
+
+---
+
 ## Purpose
 
 This reference provides toolchain setup instructions for C# (.NET), Java, and Kotlin. Remote agents do NOT have access to this skill, so the orchestrator must provide ALL toolchain requirements explicitly in each task delegation message.

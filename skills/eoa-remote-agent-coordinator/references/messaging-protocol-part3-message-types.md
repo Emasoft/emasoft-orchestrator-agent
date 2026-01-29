@@ -1,5 +1,25 @@
 # Messaging Protocol Part 3: Message Types by Category
 
+
+## Contents
+
+- [3.1 Task Management Messages](#31-task-management-messages)
+  - [Task Assignment](#task-assignment)
+  - [Fix Request](#fix-request)
+  - [Completion Report](#completion-report)
+- [3.2 Status and Progress Messages](#32-status-and-progress-messages)
+  - [Status Request](#status-request)
+  - [Progress Update](#progress-update)
+- [3.3 Approvals and Rejections](#33-approvals-and-rejections)
+  - [Approval](#approval)
+  - [Rejection](#rejection)
+- [3.4 Escalations](#34-escalations)
+  - [Escalation to Orchestrator/User](#escalation-to-orchestratoruser)
+  - [Escalation Response](#escalation-response)
+- [Related Sections](#related-sections)
+
+---
+
 **Parent document**: [messaging-protocol.md](messaging-protocol.md)
 
 ---

@@ -1,5 +1,48 @@
 # Non-Blocking Orchestration Patterns
 
+
+## Contents
+
+- [Overview](#overview)
+- [RULE 17: Orchestrator Must Remain Responsive (IRON RULE)](#rule-17-orchestrator-must-remain-responsive-iron-rule)
+- [1. Async Task Delegation Patterns](#1-async-task-delegation-patterns)
+  - [1.1 Background Bash Pattern](#11-background-bash-pattern)
+  - [1.2 Task Agent with Timeout](#12-task-agent-with-timeout)
+  - [1.3 Fire-and-Forget Pattern for Non-Critical Tasks](#13-fire-and-forget-pattern-for-non-critical-tasks)
+- [2. Polling Instead of Blocking](#2-polling-instead-of-blocking)
+  - [2.1 Progress Polling Protocol](#21-progress-polling-protocol)
+  - [2.2 Status Check Without Blocking](#22-status-check-without-blocking)
+- [3. Automatic Escalation Triggers](#3-automatic-escalation-triggers)
+  - [3.1 When Orchestrator Has Been Unresponsive](#31-when-orchestrator-has-been-unresponsive)
+  - [3.2 Self-Check for Responsiveness](#32-self-check-for-responsiveness)
+- [4. Parallel Agent Spawning](#4-parallel-agent-spawning)
+  - [4.1 Batch Spawning Pattern](#41-batch-spawning-pattern)
+  - [4.2 Maximum Concurrent Agents](#42-maximum-concurrent-agents)
+- [5. Message Queue Processing](#5-message-queue-processing)
+  - [5.1 AI Maestro Priority Queue](#51-ai-maestro-priority-queue)
+  - [5.2 Non-Blocking Message Check](#52-non-blocking-message-check)
+- [6. Graceful Handoff Pattern](#6-graceful-handoff-pattern)
+  - [6.1 Complete Handoff](#61-complete-handoff)
+  - [6.2 Instruction Document Template](#62-instruction-document-template)
+- [Objective](#objective)
+- [Requirements](#requirements)
+- [Success Criteria](#success-criteria)
+- [Report Format](#report-format)
+- [Timeout](#timeout)
+- [7. Emergency Response Availability](#7-emergency-response-availability)
+  - [7.1 Always Available For](#71-always-available-for)
+  - [7.2 Interrupt Protocol](#72-interrupt-protocol)
+- [8. Task Tracking for Async Operations](#8-task-tracking-for-async-operations)
+  - [8.1 Tracking Document Format](#81-tracking-document-format)
+- [In Progress](#in-progress)
+- [Pending Check](#pending-check)
+  - [8.2 Task Completion Verification](#82-task-completion-verification)
+- [Quick Reference Checklist](#quick-reference-checklist)
+- [Anti-Patterns to Avoid](#anti-patterns-to-avoid)
+- [Summary](#summary)
+
+---
+
 ## Overview
 
 This document defines patterns that ensure the orchestrator ALWAYS remains responsive and available for urgent issues. The orchestrator must NEVER be blocked by long-running operations.

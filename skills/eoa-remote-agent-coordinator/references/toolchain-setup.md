@@ -1,5 +1,24 @@
 # Toolchain Setup Reference Index
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [Document Structure](#document-structure)
+- [Part 1: Core Setup and Interpreted Languages](#part-1-core-setup-and-interpreted-languages)
+  - [Contents](#contents)
+  - [When to Read Part 1](#when-to-read-part-1)
+- [Part 2: Compiled Languages](#part-2-compiled-languages)
+  - [Contents](#contents)
+  - [When to Read Part 2](#when-to-read-part-2)
+- [Part 3: Mobile/Cross-Platform and Templates](#part-3-mobilecross-platform-and-templates)
+  - [Contents](#contents)
+  - [When to Read Part 3](#when-to-read-part-3)
+- [Quick Language Lookup](#quick-language-lookup)
+- [Usage Pattern](#usage-pattern)
+
+---
+
 ## Purpose
 
 This index provides navigation to all toolchain setup documentation. The original monolithic document has been split into three focused parts for easier consumption and faster loading.

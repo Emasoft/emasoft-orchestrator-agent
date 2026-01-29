@@ -1,5 +1,17 @@
 # Troubleshooting
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [10.1 Tests Pass Locally but Fail in CI/CD](#101-tests-pass-locally-but-fail-in-cicd)
+- [10.2 Exit Code is 0 but Process Failed](#102-exit-code-is-0-but-process-failed)
+- [10.3 Integration Test Fails with Timeout](#103-integration-test-fails-with-timeout)
+- [10.4 E2E Test is Flaky](#104-e2e-test-is-flaky)
+- [10.5 Verification Requires Access to Internal State](#105-verification-requires-access-to-internal-state)
+
+---
+
 ## Table of Contents
 
 - [10.1 Tests Pass Locally but Fail in CI/CD](#101-tests-pass-locally-but-fail-in-cicd)

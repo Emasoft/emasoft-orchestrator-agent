@@ -1,5 +1,22 @@
 # Agent Selection Guide
 
+
+## Contents
+
+- [Overview](#overview)
+- [Use-Case Quick Reference](#use-case-quick-reference)
+- [Table of Contents](#table-of-contents)
+  - [Part 1: Language-Specific Agents](#part-1-language-specific-agents)
+  - [Part 2: Specialized Agents](#part-2-specialized-agents)
+  - [Part 3: Decision Tree & Selection](#part-3-decision-tree-selection)
+  - [Part 4: Anti-Patterns & Best Practices](#part-4-anti-patterns-best-practices)
+  - [Part 5: Advanced Topics & Troubleshooting](#part-5-advanced-topics-troubleshooting)
+- [Quick Navigation by Problem](#quick-navigation-by-problem)
+- [Summary: Golden Rules](#summary-golden-rules)
+- [Remember](#remember)
+
+---
+
 ## Overview
 
 This guide helps orchestrators select the right specialized agent for each task. Making the correct agent selection is critical for task success, efficient resource utilization, and avoiding context contamination.

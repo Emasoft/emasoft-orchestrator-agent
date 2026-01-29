@@ -1,5 +1,61 @@
 # Delegation Checklist Reference
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [1.0 General Delegation Checklist](#10-general-delegation-checklist)
+  - [Pre-Delegation Requirements](#pre-delegation-requirements)
+  - [Delegation Document Contents](#delegation-document-contents)
+  - [Post-Delegation Actions](#post-delegation-actions)
+- [2.0 Infrastructure Tasks](#20-infrastructure-tasks)
+  - [2.1 Docker Setup Delegation](#21-docker-setup-delegation)
+- [Task: Docker Multi-Platform Setup](#task-docker-multi-platform-setup)
+  - [Objective](#objective)
+  - [Required Services](#required-services)
+  - [Volume Mounts](#volume-mounts)
+  - [Commands Per Service](#commands-per-service)
+  - [Acceptance Criteria](#acceptance-criteria)
+  - [2.2 CI/CD Pipeline Delegation](#22-cicd-pipeline-delegation)
+- [Task: CI/CD Pipeline Setup](#task-cicd-pipeline-setup)
+  - [Objective](#objective)
+  - [Trigger Events](#trigger-events)
+  - [Matrix Configuration](#matrix-configuration)
+  - [Jobs](#jobs)
+  - [Acceptance Criteria](#acceptance-criteria)
+  - [2.3 Development Environment Delegation](#23-development-environment-delegation)
+- [3.0 Code Tasks](#30-code-tasks)
+  - [3.1 New Feature Delegation](#31-new-feature-delegation)
+- [Task: Implement Directory Sorting Feature](#task-implement-directory-sorting-feature)
+  - [Objective](#objective)
+  - [Interface Contract](#interface-contract)
+  - [Files to Modify](#files-to-modify)
+  - [Test Requirements](#test-requirements)
+  - [3.2 Bug Fix Delegation](#32-bug-fix-delegation)
+- [Task: Fix Windows Path Handling Bug](#task-fix-windows-path-handling-bug)
+  - [Bug Description](#bug-description)
+  - [Reproduction](#reproduction)
+  - [Root Cause Analysis](#root-cause-analysis)
+  - [Files to Modify](#files-to-modify)
+  - [Verification](#verification)
+  - [3.3 Refactoring Delegation](#33-refactoring-delegation)
+- [4.0 Testing Tasks](#40-testing-tasks)
+  - [4.1 Test Suite Setup Delegation](#41-test-suite-setup-delegation)
+  - [4.2 Test Execution Delegation](#42-test-execution-delegation)
+  - [4.3 Test Fix Delegation](#43-test-fix-delegation)
+- [5.0 Documentation Tasks](#50-documentation-tasks)
+- [6.0 Pre-Delegation Self-Check](#60-pre-delegation-self-check)
+  - [Final Checklist Before Sending](#final-checklist-before-sending)
+- [Pre-Send Self-Check](#pre-send-self-check)
+  - [RULE 15 Compliance](#rule-15-compliance)
+  - [Delegation Quality](#delegation-quality)
+  - [Communication Protocol](#communication-protocol)
+  - [Tracking](#tracking)
+- [Quick Reference: Orchestrator Role](#quick-reference-orchestrator-role)
+- [Related Documents](#related-documents)
+
+---
+
 **Purpose**: Checklists for delegating common task types while maintaining RULE 15 compliance.
 
 ---

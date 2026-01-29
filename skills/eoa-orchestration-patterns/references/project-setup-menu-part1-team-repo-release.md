@@ -1,5 +1,26 @@
 # Project Setup Menu - Part 1: Team, Repository & Release Configuration
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [Overview](#overview)
+- [Use-Case Quick Reference](#use-case-quick-reference)
+- [Team Configuration](#team-configuration)
+  - [Question 1: Human Developers](#question-1-human-developers)
+  - [Question 2: AI Remote Agents](#question-2-ai-remote-agents)
+  - [Question 3: Access Permissions](#question-3-access-permissions)
+- [Repository Configuration](#repository-configuration)
+  - [Question 4: Branch Protection](#question-4-branch-protection)
+  - [Question 5: Required Reviews](#question-5-required-reviews)
+  - [Question 6: CI Requirements](#question-6-ci-requirements)
+- [Release Strategy](#release-strategy)
+  - [Question 7: Alpha-Only Development](#question-7-alpha-only-development)
+  - [Question 8: Package Publishing](#question-8-package-publishing)
+  - [Question 9: Versioning Scheme](#question-9-versioning-scheme)
+
+---
+
 ## Table of Contents
 
 - [Overview](#overview)

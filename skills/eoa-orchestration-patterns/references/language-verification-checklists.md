@@ -1,5 +1,18 @@
 # Language-Specific Verification Checklists
 
+
+## Contents
+
+- [Quick Navigation](#quick-navigation)
+- [Cross-Language Resources](#cross-language-resources)
+- [Documents](#documents)
+  - [Part 1: Core Languages](#part-1-core-languages)
+  - [Part 2: Extended Platforms](#part-2-extended-platforms)
+  - [Part 3: Swift and Universal Resources](#part-3-swift-and-universal-resources)
+- [When to Use Each Checklist](#when-to-use-each-checklist)
+
+---
+
 This document has been split into multiple parts for easier navigation. Use the index below to find the checklist you need.
 
 ## Quick Navigation

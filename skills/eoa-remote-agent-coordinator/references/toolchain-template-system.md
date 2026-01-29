@@ -1,5 +1,26 @@
 # Toolchain Template System
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [1.0 Overview](#10-overview)
+  - [1.1 Purpose](#11-purpose)
+  - [1.2 Key Benefits](#12-key-benefits)
+- [2.0 Template Categories](#20-template-categories)
+  - [2.1 Category Reference Table](#21-category-reference-table)
+- [3.0 Using Templates](#30-using-templates)
+  - [3.1 Template Customization with compile_template.py](#31-template-customization-with-compile_templatepy)
+  - [3.2 Including Templates in Task Delegations](#32-including-templates-in-task-delegations)
+- [Setup Instructions](#setup-instructions)
+  - [3.3 Referencing Templates in Reports](#33-referencing-templates-in-reports)
+- [Completion Report](#completion-report)
+- [4.0 Template Index](#40-template-index)
+  - [4.1 Where to Find All Templates](#41-where-to-find-all-templates)
+  - [4.2 Placeholder Reference Guide](#42-placeholder-reference-guide)
+
+---
+
 ## Table of Contents
 
 - 1.0 Overview

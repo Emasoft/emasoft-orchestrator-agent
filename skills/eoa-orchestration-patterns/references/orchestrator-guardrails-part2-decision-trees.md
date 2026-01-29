@@ -1,5 +1,15 @@
 # Orchestrator Guardrails - Part 2: Decision Trees
 
+
+## Contents
+
+- [3.0 Decision Trees](#30-decision-trees)
+  - [3.1 Before Any Command](#31-before-any-command)
+  - [3.2 Before Any File Edit](#32-before-any-file-edit)
+  - [3.3 Before Any Git Operation](#33-before-any-git-operation)
+
+---
+
 **Parent Document**: [orchestrator-guardrails.md](./orchestrator-guardrails.md)
 
 ---

@@ -1,5 +1,24 @@
 # Bug Reporting Protocol
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [When to Use](#when-to-use)
+- [Document Structure](#document-structure)
+  - [Part 1: Schema and Severity Levels](#part-1-schema-and-severity-levels)
+  - [Part 2: Response Flow and Escalation](#part-2-response-flow-and-escalation)
+  - [Part 3: Error States](#part-3-error-states)
+  - [Part 4: Verification, Best Practices, and Troubleshooting](#part-4-verification-best-practices-and-troubleshooting)
+- [Quick Reference](#quick-reference)
+  - [Message Types](#message-types)
+  - [Severity Quick Guide](#severity-quick-guide)
+  - [Bug Report Minimal Example](#bug-report-minimal-example)
+  - [Bug Fix Report Minimal Example](#bug-fix-report-minimal-example)
+- [Integration](#integration)
+
+---
+
 ## Purpose
 
 Define how remote agents report bugs to the orchestrator, including bug classification, severity assessment, reproduction steps, and escalation paths. This protocol ensures all bugs are properly tracked, prioritized, and resolved.

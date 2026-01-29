@@ -52,10 +52,10 @@ See **DOCUMENT_STORAGE_PROTOCOL.md** for complete details.
 
 ```bash
 # Initialize storage (if not already done)
-python scripts/atlas_download.py <!-- TODO: Rename to eoa_download.py --> init --project-root .
+python scripts/eoa_download.py <!-- TODO: Rename to eoa_download.py --> init --project-root .
 
 # Download and store with proper categorization
-python scripts/atlas_download.py <!-- TODO: Rename to eoa_download.py --> download \
+python scripts/eoa_download.py <!-- TODO: Rename to eoa_download.py --> download \
   --url "$COMMENT_URL" \
   --task-id {{TASK_ID}} \
   --category tasks \

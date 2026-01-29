@@ -1,5 +1,34 @@
 # Language-Specific Verification Checklists - Part 1: Core Languages
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [Use-Case Quick Reference](#use-case-quick-reference)
+- [Python Verification Checklist](#python-verification-checklist)
+  - [Core Requirements](#core-requirements)
+  - [Build and Distribution](#build-and-distribution)
+  - [TDD Verification](#tdd-verification)
+  - [Optional (Recommended)](#optional-recommended)
+- [Go Verification Checklist](#go-verification-checklist)
+  - [Core Requirements](#core-requirements)
+  - [Build and Distribution](#build-and-distribution)
+  - [TDD Verification](#tdd-verification)
+  - [Optional (Recommended)](#optional-recommended)
+- [JavaScript/TypeScript Verification Checklist](#javascripttypescript-verification-checklist)
+  - [Core Requirements](#core-requirements)
+  - [Package Management](#package-management)
+  - [TDD Verification](#tdd-verification)
+  - [Optional (Recommended)](#optional-recommended)
+- [Rust Verification Checklist](#rust-verification-checklist)
+  - [Core Requirements](#core-requirements)
+  - [Build and Distribution](#build-and-distribution)
+  - [TDD Verification](#tdd-verification)
+  - [Optional (Recommended)](#optional-recommended)
+- [Related Documents](#related-documents)
+
+---
+
 This document provides comprehensive verification checklists for core programming languages (Python, Go, JavaScript/TypeScript, Rust). Use these checklists to ensure code quality, build success, and release readiness before delegating tasks or accepting deliverables.
 
 **Parent document:** [language-verification-checklists-index.md](./language-verification-checklists-index.md)

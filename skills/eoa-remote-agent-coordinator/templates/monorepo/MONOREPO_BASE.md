@@ -403,7 +403,7 @@ utils = { path = "../utils", version = "{{VERSION}}" }
 template:
   name: MONOREPO_BASE
   version: 1.0.0
-  atlas_compatible: true
+  eoa_compatible: true
   requires:
     - git
     - bash

@@ -1,5 +1,45 @@
 # Test Report Format
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [Purpose](#purpose)
+- [Standard Report Structure](#standard-report-structure)
+- [Minimal Report (For Orchestrator)](#minimal-report-for-orchestrator)
+- [Language-Specific Converters](#language-specific-converters)
+  - [Python (pytest)](#python-pytest)
+  - [JavaScript (Jest)](#javascript-jest)
+  - [Go](#go)
+  - [Rust](#rust)
+- [Report Locations](#report-locations)
+- [Failure Detail Levels](#failure-detail-levels)
+  - [Level 1: Minimal (default)](#level-1-minimal-default)
+  - [Level 2: With Error](#level-2-with-error)
+  - [Level 3: With Traceback](#level-3-with-traceback)
+- [Report Storage and Handoff](#report-storage-and-handoff)
+- [Orchestrator Response to Test Reports](#orchestrator-response-to-test-reports)
+  - [If All Tests Pass](#if-all-tests-pass)
+  - [If Tests Fail](#if-tests-fail)
+  - [If Coverage Too Low](#if-coverage-too-low)
+- [Error States](#error-states)
+  - [Error Report Format](#error-report-format)
+  - [Partial Results Handling](#partial-results-handling)
+- [Completion Tracking](#completion-tracking)
+  - [Attempt-Based Progress Tracking](#attempt-based-progress-tracking)
+  - [Escalation Flow](#escalation-flow)
+    - [After No Response](#after-no-response)
+    - [After Multiple Check-ins](#after-multiple-check-ins)
+    - [Blocker Escalation](#blocker-escalation)
+  - [Additional Attempts Request](#additional-attempts-request)
+  - [Progress Updates During Testing](#progress-updates-during-testing)
+  - [Agent-Side Hang Prevention](#agent-side-hang-prevention)
+  - [Completion Best Practices](#completion-best-practices)
+  - [Related Protocol References](#related-protocol-references)
+- [Integration](#integration)
+
+---
+
 ## Table of Contents
 
 1. [Purpose](#purpose)

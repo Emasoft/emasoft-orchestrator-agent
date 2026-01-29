@@ -1,5 +1,17 @@
 # Integration with GitHub Projects
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [9.1 Verification Results and Issue Status](#91-verification-results-and-issue-status)
+- [9.2 Verification Evidence in Issue Comments](#92-verification-evidence-in-issue-comments)
+- [Verification Report](#verification-report)
+- [9.3 Automation Script Integration](#93-automation-script-integration)
+- [9.4 Cross-Reference to Related Skills](#94-cross-reference-to-related-skills)
+
+---
+
 ## Table of Contents
 
 - [9.1 Verification Results and Issue Status](#91-verification-results-and-issue-status)

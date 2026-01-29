@@ -1,5 +1,30 @@
 # Testing Protocol
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [8.1 Script Validation](#81-script-validation)
+- [8.2 Pytest Integration](#82-pytest-integration)
+- [8.3 Worktree Isolation Testing](#83-worktree-isolation-testing)
+- [8.4 AI Maestro Notification](#84-ai-maestro-notification)
+- [8.5 Combined Workflow Example](#85-combined-workflow-example)
+- [8.6 Testing Protocol Scripts](#86-testing-protocol-scripts)
+- [8.7 Integration with Verification Scripts](#87-integration-with-verification-scripts)
+  - [8.7.1 Evidence Collection](#871-evidence-collection)
+  - [8.7.2 Consistency Verification](#872-consistency-verification)
+  - [8.7.3 Quality Pattern Detection](#873-quality-pattern-detection)
+- [Troubleshooting](#troubleshooting)
+  - [Problem: Script Validation Fails With Import Errors](#problem-script-validation-fails-with-import-errors)
+  - [Problem: Pytest Collection Errors](#problem-pytest-collection-errors)
+  - [Problem: Worktree Isolation Tests Fail Differently Than Local](#problem-worktree-isolation-tests-fail-differently-than-local)
+  - [Problem: AI Maestro Notification Not Delivered](#problem-ai-maestro-notification-not-delivered)
+  - [Problem: Test Results JSON Malformed](#problem-test-results-json-malformed)
+  - [Problem: Evidence Collection Fails](#problem-evidence-collection-fails)
+  - [Problem: Quality Pattern Detector False Positives](#problem-quality-pattern-detector-false-positives)
+
+---
+
 ## Table of Contents
 
 - [8.1 Script Validation](#81-script-validation)

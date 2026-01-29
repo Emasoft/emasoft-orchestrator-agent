@@ -1,5 +1,32 @@
 # Messaging Protocol Part 4: Agents, Errors, and Best Practices
 
+
+## Contents
+
+- [4.1 Agent Identification](#41-agent-identification)
+  - [Session Name Format](#session-name-format)
+- [4.2 Resolving Agent Names](#42-resolving-agent-names)
+  - [Best Practice](#best-practice)
+- [4.3 API Error Codes](#43-api-error-codes)
+  - [4.3.1 Fixing 400 Errors](#431-fixing-400-errors)
+  - [4.3.2 Fixing 404 Errors](#432-fixing-404-errors)
+- [4.4 Message Delivery Failure Handling](#44-message-delivery-failure-handling)
+  - [Retry Example](#retry-example)
+- [4.5 Message Size Best Practices](#45-message-size-best-practices)
+  - [Handling Large Content](#handling-large-content)
+- [4.6 Subject Line Formatting](#46-subject-line-formatting)
+  - [Format Guidelines](#format-guidelines)
+  - [Subject Line Prefixes](#subject-line-prefixes)
+- [4.7 Content Structure Requirements](#47-content-structure-requirements)
+  - [Always Include](#always-include)
+  - [For Task-Related Messages](#for-task-related-messages)
+  - [Structure Rules](#structure-rules)
+- [4.8 Environment Variables](#48-environment-variables)
+  - [Setting Environment Variables](#setting-environment-variables)
+- [Related Sections](#related-sections)
+
+---
+
 **Parent document**: [messaging-protocol.md](messaging-protocol.md)
 
 ---

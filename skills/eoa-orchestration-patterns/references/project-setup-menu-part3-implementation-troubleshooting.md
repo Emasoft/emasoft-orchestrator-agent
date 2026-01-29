@@ -1,5 +1,28 @@
 # Project Setup Menu - Part 3: Implementation & Troubleshooting
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [Menu Implementation](#menu-implementation)
+  - [Using AskUserQuestion Tool](#using-askuserquestion-tool)
+  - [Interactive Flow Pattern](#interactive-flow-pattern)
+- [Response Handling](#response-handling)
+  - [Storage Location](#storage-location)
+  - [Using Stored Configuration](#using-stored-configuration)
+  - [Configuration Updates](#configuration-updates)
+- [Troubleshooting](#troubleshooting)
+  - [User Skips Setup](#user-skips-setup)
+  - [Conflicting Answers](#conflicting-answers)
+  - [Changed Mind Mid-Project](#changed-mind-mid-project)
+  - [Missing Configuration File](#missing-configuration-file)
+- [Best Practices](#best-practices)
+  - [DO:](#do)
+  - [DON'T:](#dont)
+- [Example Session](#example-session)
+
+---
+
 ## Table of Contents
 
 - [Menu Implementation](#menu-implementation)

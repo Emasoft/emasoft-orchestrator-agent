@@ -1,5 +1,21 @@
 # Agent Selection Guide - Part 1: Language-Specific Agents
 
+
+## Contents
+
+- [Use-Case Quick Reference for This Section](#use-case-quick-reference-for-this-section)
+- [Agent Selection by Task Type](#agent-selection-by-task-type)
+  - [Language-Specific Agents](#language-specific-agents)
+    - [Python Projects](#python-projects)
+    - [JavaScript/TypeScript Projects](#javascripttypescript-projects)
+    - [Go Projects](#go-projects)
+    - [Rust Projects](#rust-projects)
+    - [Native Platform Development](#native-platform-development)
+- [Language Selection Quick Reference](#language-selection-quick-reference)
+- [Related Files](#related-files)
+
+---
+
 ## Use-Case Quick Reference for This Section
 
 **When to use this file:**

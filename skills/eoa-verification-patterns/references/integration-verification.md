@@ -1,5 +1,25 @@
 # Integration Verification
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [4.1 What is Integration Verification](#41-what-is-integration-verification)
+- [4.2 Why Integration Verification Matters](#42-why-integration-verification-matters)
+- [4.3 Integration Verification Steps](#43-integration-verification-steps)
+  - [4.3.1 Step 1: Identify Components to Test](#431-step-1-identify-components-to-test)
+  - [4.3.2 Step 2: Prepare Test Environment](#432-step-2-prepare-test-environment)
+  - [4.3.3 Step 3: Define Integration Points](#433-step-3-define-integration-points)
+  - [4.3.4 Step 4: Execute Component Interactions](#434-step-4-execute-component-interactions)
+  - [4.3.5 Step 5: Verify Results](#435-step-5-verify-results)
+  - [4.3.6 Step 6: Clean Up](#436-step-6-clean-up)
+- [4.4 Integration Verification Examples](#44-integration-verification-examples)
+  - [4.4.1 API and Database Integration](#441-api-and-database-integration)
+  - [4.4.2 Microservices Communication](#442-microservices-communication)
+- [4.5 When to Use Integration Verification](#45-when-to-use-integration-verification)
+
+---
+
 ## Table of Contents
 
 - [4.1 What is Integration Verification](#41-what-is-integration-verification)

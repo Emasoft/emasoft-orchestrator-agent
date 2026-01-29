@@ -1,5 +1,17 @@
 # Orchestrator Guardrails - Part 3: Common Scenarios
 
+
+## Contents
+
+- [4.0 Common Scenarios](#40-common-scenarios)
+  - [4.1 Research Phase](#41-research-phase)
+  - [4.2 Experimentation Phase](#42-experimentation-phase)
+  - [4.3 Planning Phase](#43-planning-phase)
+  - [4.4 Delegation Phase](#44-delegation-phase)
+  - [4.5 Monitoring Phase](#45-monitoring-phase)
+
+---
+
 **Parent Document**: [orchestrator-guardrails.md](./orchestrator-guardrails.md)
 
 ---

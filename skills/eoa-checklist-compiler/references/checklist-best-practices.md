@@ -1,5 +1,27 @@
 # Checklist Best Practices
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [1. Checklist Design Principles](#1-checklist-design-principles)
+  - [1.1 Atomic Items](#11-atomic-items)
+  - [1.2 Clear Criteria](#12-clear-criteria)
+  - [1.3 Actionable Language](#13-actionable-language)
+  - [1.4 Logical Organization](#14-logical-organization)
+  - [1.5 Appropriate Detail](#15-appropriate-detail)
+- [2. Common Pitfalls to Avoid](#2-common-pitfalls-to-avoid)
+  - [2.1 Vague Items](#21-vague-items)
+  - [2.2 Non-Verifiable Items](#22-non-verifiable-items)
+  - [2.3 Compound Items](#23-compound-items)
+  - [2.4 Assumption-Based Items](#24-assumption-based-items)
+  - [2.5 Missing Verification Procedures](#25-missing-verification-procedures)
+- [3. Checklist Maintenance](#3-checklist-maintenance)
+  - [3.1 Versioning Checklists](#31-versioning-checklists)
+  - [3.2 Creating Reusable Templates](#32-creating-reusable-templates)
+
+---
+
 Design principles, common pitfalls, and maintenance guidelines for checklists.
 
 ---

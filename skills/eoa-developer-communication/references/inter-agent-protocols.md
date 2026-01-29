@@ -1,5 +1,25 @@
 # Inter-Agent Communication Protocols
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [1. Communication Hierarchy](#1-communication-hierarchy)
+  - [1.1 When communicating in a multi-agent system](#11-when-communicating-in-a-multi-agent-system)
+  - [1.2 Orchestrator-exclusive communications (RULE 16)](#12-orchestrator-exclusive-communications-rule-16)
+- [2. Message Routing Protocol](#2-message-routing-protocol)
+  - [2.1 If sending messages to remote agents](#21-if-sending-messages-to-remote-agents)
+  - [2.2 If receiving messages from orchestrator](#22-if-receiving-messages-from-orchestrator)
+- [3. Acknowledgment Protocol](#3-acknowledgment-protocol)
+  - [3.1 When acknowledgment is required](#31-when-acknowledgment-is-required)
+  - [3.2 Acknowledgment timing requirements](#32-acknowledgment-timing-requirements)
+- [4. Escalation Protocol](#4-escalation-protocol)
+  - [4.1 If encountering blockers](#41-if-encountering-blockers)
+  - [4.2 If requiring clarification](#42-if-requiring-clarification)
+- [See Also](#see-also)
+
+---
+
 This document defines the protocols for communication between agents in the atlas-orchestrator system.
 
 ---

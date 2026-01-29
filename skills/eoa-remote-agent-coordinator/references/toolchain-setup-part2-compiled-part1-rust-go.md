@@ -1,5 +1,24 @@
 # Toolchain Setup Part 2 - Part 1: Rust and Go
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [Table of Contents](#table-of-contents)
+- [1.1 Rust Toolchain (cargo-based)](#11-rust-toolchain-cargo-based)
+  - [1.1.1 Setup Instructions for Remote Agent](#111-setup-instructions-for-remote-agent)
+  - [1.1.2 Required Components](#112-required-components)
+  - [1.1.3 Configuration Files](#113-configuration-files)
+  - [1.1.4 Verification Commands](#114-verification-commands)
+- [1.2 Go Toolchain](#12-go-toolchain)
+  - [1.2.1 Setup Instructions for Remote Agent](#121-setup-instructions-for-remote-agent)
+  - [1.2.2 Required Tools](#122-required-tools)
+  - [1.2.3 Configuration Files](#123-configuration-files)
+  - [1.2.4 Verification Commands](#124-verification-commands)
+- [Related Parts](#related-parts)
+
+---
+
 ## Purpose
 
 This reference provides toolchain setup instructions for Rust and Go. Remote agents do NOT have access to this skill, so the orchestrator must provide ALL toolchain requirements explicitly in each task delegation message.

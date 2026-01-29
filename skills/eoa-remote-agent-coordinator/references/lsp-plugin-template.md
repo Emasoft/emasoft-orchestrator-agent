@@ -1,5 +1,18 @@
 # Custom LSP Plugin Template
 
+
+## Contents
+
+- [Table of Contents](#table-of-contents)
+- [When setting up a custom LSP plugin directory structure](#when-setting-up-a-custom-lsp-plugin-directory-structure)
+- [When you need to configure a plugin with plugin.json](#when-you-need-to-configure-a-plugin-with-pluginjson)
+- [When you want to use .lsp.json as an alternative configuration format](#when-you-want-to-use-lspjson-as-an-alternative-configuration-format)
+- [When you need advanced configuration options (environment variables, initialization)](#when-you-need-advanced-configuration-options-environment-variables-initialization)
+- [When you need to debug LSP server connection issues](#when-you-need-to-debug-lsp-server-connection-issues)
+- [Official Documentation](#official-documentation)
+
+---
+
 ## Table of Contents
 1. When setting up a custom LSP plugin directory structure
 2. When you need to configure a plugin with plugin.json
