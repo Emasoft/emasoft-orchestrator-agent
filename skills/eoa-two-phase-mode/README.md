@@ -154,8 +154,8 @@ Minor issues (regular bugs, code-level problems) are left to the implementer.
 
 | File | Phase |
 |------|-------|
-| `.claude/orchestrator-plan-phase.local.md` | Plan Phase |
-| `.claude/orchestrator-exec-phase.local.md` | Orchestration Phase |
+| `design/state/plan-phase.md` | Plan Phase |
+| `design/state/exec-phase.md` | Orchestration Phase |
 
 Both files use YAML frontmatter format and are gitignored (`.local.md` suffix).
 

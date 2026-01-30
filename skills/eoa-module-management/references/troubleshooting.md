@@ -12,7 +12,7 @@
 
 ## 7.1 State File Corruption Recovery
 
-The state file at `.claude/orchestrator-exec-phase.local.md` can become corrupted. This section explains recovery procedures.
+The state file at `design/state/exec-phase.md` can become corrupted. This section explains recovery procedures.
 
 ### Detecting Corruption
 
@@ -25,7 +25,7 @@ The state file at `.claude/orchestrator-exec-phase.local.md` can become corrupte
 **Validation check**:
 ```bash
 # Check YAML syntax
-python3 -c "import yaml; yaml.safe_load(open('.claude/orchestrator-exec-phase.local.md').read())"
+python3 -c "import yaml; yaml.safe_load(open('design/state/exec-phase.md').read())"
 ```
 
 ### Common Corruption Causes
@@ -43,13 +43,13 @@ If state file is tracked in git:
 
 ```bash
 # Check git status
-git status .claude/orchestrator-exec-phase.local.md
+git status design/state/exec-phase.md
 
 # Restore from last commit
-git checkout -- .claude/orchestrator-exec-phase.local.md
+git checkout -- design/state/exec-phase.md
 
 # Or restore from specific commit
-git checkout <commit-hash> -- .claude/orchestrator-exec-phase.local.md
+git checkout <commit-hash> -- design/state/exec-phase.md
 ```
 
 ### Recovery from Backup
@@ -61,7 +61,7 @@ If backups exist:
 ls -la .claude/*.bak
 
 # Restore from backup
-cp .claude/orchestrator-exec-phase.local.md.bak .claude/orchestrator-exec-phase.local.md
+cp design/state/exec-phase.md.bak design/state/exec-phase.md
 ```
 
 ### Manual Reconstruction

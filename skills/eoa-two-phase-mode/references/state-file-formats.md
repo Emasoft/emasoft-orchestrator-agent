@@ -27,7 +27,7 @@ Complete YAML frontmatter specifications for Two-Phase Mode state files.
 ### 1.1 File location
 
 ```
-.claude/orchestrator-plan-phase.local.md
+design/state/plan-phase.md
 ```
 
 This file is gitignored (`.local.md` suffix).
@@ -114,7 +114,7 @@ modifications:
 ### 2.1 File location
 
 ```
-.claude/orchestrator-exec-phase.local.md
+design/state/exec-phase.md
 ```
 
 This file is gitignored (`.local.md` suffix).
@@ -130,7 +130,7 @@ status: "executing|verifying|complete"
 started_at: "ISO 8601 timestamp"
 
 # Link to Plan Phase
-plan_file: ".claude/orchestrator-plan-phase.local.md"
+plan_file: "design/state/plan-phase.md"
 requirements_file: "USER_REQUIREMENTS.md"
 
 # Current Focus

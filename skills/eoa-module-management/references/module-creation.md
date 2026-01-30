@@ -219,7 +219,7 @@ python3 scripts/github_sync.py sync module-id
 
 ## 1.5 State File Update After Addition
 
-When a module is added, the state file at `.claude/orchestrator-exec-phase.local.md` is updated.
+When a module is added, the state file at `design/state/exec-phase.md` is updated.
 
 ### New Module Entry Structure
 

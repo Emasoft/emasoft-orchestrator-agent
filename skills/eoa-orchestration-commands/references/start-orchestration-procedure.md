@@ -36,16 +36,16 @@ Before running `/start-orchestration`, verify:
 **Plan Phase Files**:
 ```bash
 # Check plan state file exists
-test -f .claude/orchestrator-plan-phase.local.md && echo "Plan state exists" || echo "MISSING: Plan state"
+test -f design/state/plan-phase.md && echo "Plan state exists" || echo "MISSING: Plan state"
 
 # Check plan is approved
-grep -q "plan_phase_complete: true" .claude/orchestrator-plan-phase.local.md && echo "Plan approved" || echo "Plan NOT approved"
+grep -q "plan_phase_complete: true" design/state/plan-phase.md && echo "Plan approved" || echo "Plan NOT approved"
 ```
 
 **Execution State File**:
 ```bash
 # Check execution state file exists (created by /approve-plan)
-test -f .claude/orchestrator-exec-phase.local.md && echo "Exec state exists" || echo "MISSING: Exec state"
+test -f design/state/exec-phase.md && echo "Exec state exists" || echo "MISSING: Exec state"
 ```
 
 **Requirements Documentation**:
@@ -228,7 +228,7 @@ If sync appears broken:
 1. Verify `gh auth status` shows authenticated
 2. Check Project ID is correct format (starts with `PVT_`)
 3. Verify you have write access to the project
-4. Check `.claude/orchestrator-hook.log` for errors
+4. Check `design/logs/hook.log` for errors
 
 ---
 

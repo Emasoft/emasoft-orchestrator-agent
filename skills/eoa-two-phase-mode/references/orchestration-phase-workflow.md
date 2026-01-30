@@ -49,7 +49,7 @@ The command:
 
 ### 1.2 State file structure
 
-Creates `.claude/orchestrator-exec-phase.local.md`:
+Creates `design/state/exec-phase.md`:
 
 ```yaml
 ---
@@ -58,7 +58,7 @@ plan_id: "plan-20260108-143022"
 status: "executing"
 started_at: "ISO timestamp"
 
-plan_file: ".claude/orchestrator-plan-phase.local.md"
+plan_file: "design/state/plan-phase.md"
 requirements_file: "USER_REQUIREMENTS.md"
 
 current_module: null

@@ -26,7 +26,7 @@ python3 eoa_start_planning.py <!-- TODO: Script not implemented --> "User's proj
 - `goal` (positional): The user's project goal
 
 **Actions:**
-1. Creates `.claude/orchestrator-plan-phase.local.md`
+1. Creates `design/state/plan-phase.md`
 2. Initializes YAML frontmatter with goal
 3. Sets up empty modules list
 4. Defines exit criteria

@@ -45,7 +45,7 @@ The command:
 
 ### 1.2 State file initialization
 
-The command creates `.claude/orchestrator-plan-phase.local.md` with:
+The command creates `design/state/plan-phase.md` with:
 
 ```yaml
 ---

@@ -377,7 +377,7 @@ gh issue close 45 -c "Module removed from plan"
 **Cause**: File permission issue or disk full.
 
 **Solutions**:
-1. Check file permissions on `.claude/orchestrator-exec-phase.local.md`
+1. Check file permissions on `design/state/exec-phase.md`
 2. Check disk space
 3. Try again
 
@@ -387,7 +387,7 @@ If a module was accidentally removed:
 
 1. **State file recovery** - If git tracked, revert:
    ```bash
-   git checkout -- .claude/orchestrator-exec-phase.local.md
+   git checkout -- design/state/exec-phase.md
    ```
 
 2. **Re-add module** - Add it back manually:

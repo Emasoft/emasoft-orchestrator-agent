@@ -12,7 +12,7 @@
 
 ## 5.1 Loop State File Format and Fields
 
-**File**: `.claude/orchestrator-loop.local.md`
+**File**: `design/state/loop.md`
 
 **Purpose**: Tracks the orchestrator loop state, iterations, and task monitoring configuration.
 
@@ -68,7 +68,7 @@ This content is displayed in `/orchestrator-status` as "Current Task".
 
 ## 5.2 Execution Phase State File Format
 
-**File**: `.claude/orchestrator-exec-phase.local.md`
+**File**: `design/state/exec-phase.md`
 
 **Purpose**: Tracks orchestration phase progress, modules, agents, and assignments.
 
@@ -258,19 +258,19 @@ Integer fields:
 
 2. **Backup the file**:
    ```bash
-   cp .claude/orchestrator-loop.local.md .claude/orchestrator-loop.local.md.bak
+   cp design/state/loop.md design/state/loop.md.bak
    ```
 
 3. **Edit with text editor**:
    ```bash
-   nano .claude/orchestrator-loop.local.md
+   nano design/state/loop.md
    # or
-   vim .claude/orchestrator-loop.local.md
+   vim design/state/loop.md
    ```
 
 4. **Validate YAML syntax**:
    ```bash
-   python3 -c "import yaml; yaml.safe_load(open('.claude/orchestrator-loop.local.md').read())"
+   python3 -c "import yaml; yaml.safe_load(open('design/state/loop.md').read())"
    ```
 
 5. **Restart Claude Code**
@@ -322,15 +322,15 @@ Some fields must be consistent:
 
 ```bash
 # Check file exists and is readable
-ls -la .claude/orchestrator-loop.local.md
+ls -la design/state/loop.md
 
 # Check file starts with ---
-head -1 .claude/orchestrator-loop.local.md
+head -1 design/state/loop.md
 
 # Validate YAML
 python3 -c "
 import yaml
-with open('.claude/orchestrator-loop.local.md') as f:
+with open('design/state/loop.md') as f:
     content = f.read()
     if content.startswith('---'):
         end = content.find('---', 3)
@@ -348,13 +348,13 @@ with open('.claude/orchestrator-loop.local.md') as f:
 
 **Step 1: Backup corrupted file**
 ```bash
-cp .claude/orchestrator-loop.local.md .claude/orchestrator-loop.corrupted
+cp design/state/loop.md design/state/loop.corrupted
 ```
 
 **Step 2: Try to extract valid content**
 ```bash
 # View the file
-cat .claude/orchestrator-loop.local.md
+cat design/state/loop.md
 
 # Check for obvious issues:
 # - Missing --- markers
@@ -367,13 +367,13 @@ cat .claude/orchestrator-loop.local.md
 If fixable (minor syntax issue):
 ```bash
 # Edit to fix
-nano .claude/orchestrator-loop.local.md
+nano design/state/loop.md
 ```
 
 If too corrupted, recreate:
 ```bash
 # Remove corrupted file
-rm .claude/orchestrator-loop.local.md
+rm design/state/loop.md
 
 # Start fresh loop
 /orchestrator-loop "Resume my tasks"

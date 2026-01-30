@@ -269,8 +269,8 @@ These are two different commands:
 
 | Command | Purpose | State File |
 |---------|---------|------------|
-| `/orchestration-status` | Module/agent progress | `.claude/orchestrator-exec-phase.local.md` |
-| `/orchestrator-status` | Loop state and tasks | `.claude/orchestrator-loop.local.md` |
+| `/orchestration-status` | Module/agent progress | `design/state/exec-phase.md` |
+| `/orchestrator-status` | Loop state and tasks | `design/state/loop.md` |
 
 Use **orchestration-status** when:
 - Tracking module implementation progress

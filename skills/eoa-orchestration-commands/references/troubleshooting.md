@@ -21,10 +21,10 @@
 **Solution**:
 ```bash
 # Check current state
-cat .claude/orchestrator-loop.local.md
+cat design/state/loop.md
 
 # If you want to restart fresh
-rm .claude/orchestrator-loop.local.md
+rm design/state/loop.md
 /orchestrator-loop "Your task"
 ```
 
@@ -51,7 +51,7 @@ rm .claude/orchestrator-loop.local.md
 **Solution**:
 ```bash
 # Check plan status
-cat .claude/orchestrator-plan-phase.local.md | head -20
+cat design/state/plan-phase.md | head -20
 
 # Complete and approve the plan
 /approve-plan
@@ -67,7 +67,7 @@ cat .claude/orchestrator-plan-phase.local.md | head -20
 /approve-plan
 
 # Verify file was created
-ls -la .claude/orchestrator-exec-phase.local.md
+ls -la design/state/exec-phase.md
 ```
 
 ### Script Not Found
@@ -104,7 +104,7 @@ cat "${CLAUDE_PLUGIN_ROOT}/hooks/hooks.json"
 
 ```bash
 # The hook only fires if state file exists
-ls -la .claude/orchestrator-loop.local.md
+ls -la design/state/loop.md
 ```
 
 If missing, the hook allows exit (no loop active).
@@ -116,7 +116,7 @@ If missing, the hook allows exit (no loop active).
 export ORCHESTRATOR_DEBUG=1
 
 # Try to stop Claude Code and check log
-cat .claude/orchestrator-hook.log
+cat design/logs/hook.log
 ```
 
 ### Step 4: Check Hook Script
@@ -183,7 +183,7 @@ gh auth status
 gh project item-list <PROJECT_NUMBER>
 
 # Check for filters
-cat .claude/orchestrator-loop.local.md | grep github
+cat design/state/loop.md | grep github
 ```
 
 **Common causes**:
@@ -229,16 +229,16 @@ grep -c '^\s*-\s*\[x\]' TODO.md  # Done
 **Debugging**:
 ```bash
 # Check lock file
-cat .claude/orchestrator-hook.lock
+cat design/locks/hook.lock
 
 # Check if PID is alive
-ps -p $(cat .claude/orchestrator-hook.lock) || echo "Process dead"
+ps -p $(cat design/locks/hook.lock) || echo "Process dead"
 ```
 
 **Solution**:
 ```bash
 # If process is dead, remove stale lock
-rm .claude/orchestrator-hook.lock
+rm design/locks/hook.lock
 ```
 
 ### Symptom: Lock File Keeps Reappearing
@@ -291,7 +291,7 @@ If you're testing rapidly, you may hit the 60-second threshold.
 # Choose one - remove the other
 rm .claude/ralph-loop.local.md    # Keep orchestrator
 # OR
-rm .claude/orchestrator-loop.local.md  # Keep Ralph
+rm design/state/loop.md  # Keep Ralph
 ```
 
 ### Prevention
@@ -314,7 +314,7 @@ rm .claude/orchestrator-loop.local.md  # Keep Ralph
 **Debugging**:
 ```bash
 # Check verification state
-grep "verification" .claude/orchestrator-loop.local.md
+grep "verification" design/state/loop.md
 
 # Should show:
 # verification_mode: true
@@ -324,7 +324,7 @@ grep "verification" .claude/orchestrator-loop.local.md
 **Solution if stuck**:
 ```bash
 # Option 1: Manually decrement
-# Edit .claude/orchestrator-loop.local.md
+# Edit design/state/loop.md
 # Set verification_remaining: 0
 
 # Option 2: Skip verification entirely
@@ -428,14 +428,14 @@ export ORCHESTRATOR_DEBUG=1
 ### 2. Check Log File
 
 ```bash
-tail -100 .claude/orchestrator-hook.log
+tail -100 design/logs/hook.log
 ```
 
 ### 3. Verify State Files
 
 ```bash
-cat .claude/orchestrator-loop.local.md
-cat .claude/orchestrator-exec-phase.local.md
+cat design/state/loop.md
+cat design/state/exec-phase.md
 ```
 
 ### 4. Test Scripts Individually
@@ -453,7 +453,7 @@ Look at Claude Code's output panel for any error messages.
 
 ```bash
 # Nuclear option - complete reset
-rm -f .claude/orchestrator-*.local.md
-rm -f .claude/orchestrator-hook.lock
-rm -f .claude/orchestrator-hook.log
+rm -f design/state/*.md
+rm -f design/locks/hook.lock
+rm -f design/logs/hook.log
 ```

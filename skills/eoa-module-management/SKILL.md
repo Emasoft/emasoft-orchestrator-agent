@@ -249,7 +249,7 @@ Every module in Atlas orchestration has a corresponding GitHub Issue. This relat
 
 ## State File Structure
 
-Module management commands modify the orchestration state file at `.claude/orchestrator-exec-phase.local.md`.
+Module management commands modify the orchestration state file at `design/state/exec-phase.md`.
 
 ### Module Entry Format
 

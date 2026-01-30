@@ -98,7 +98,7 @@ design/config/**/*.env
 design/.tmp/
 
 # Local orchestrator state (separate from design docs)
-.claude/orchestrator-*.local.md
+design/state/*.md
 ```
 
 **IMPORTANT**: Design documents are NOT the same as orchestrator state files.

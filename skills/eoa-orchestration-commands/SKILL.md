@@ -29,7 +29,7 @@ Use this skill when you need to:
 
 Before using orchestration commands, ensure:
 1. Plan Phase is complete (via `/approve-plan`)
-2. The state file `.claude/orchestrator-exec-phase.local.md` exists
+2. The state file `design/state/exec-phase.md` exists
 3. You understand the Two-Phase Mode workflow (Plan Phase then Orchestration Phase)
 
 ---
@@ -125,8 +125,8 @@ See [references/cancellation-cleanup.md](references/cancellation-cleanup.md):
 **If you need to understand or debug state files:**
 
 The orchestrator uses markdown files with YAML frontmatter to track state:
-- `.claude/orchestrator-loop.local.md` - Loop state
-- `.claude/orchestrator-exec-phase.local.md` - Execution phase state
+- `design/state/loop.md` - Loop state
+- `design/state/exec-phase.md` - Execution phase state
 
 See [references/state-file-format.md](references/state-file-format.md):
 - 5.1 Loop state file format and fields
@@ -302,7 +302,7 @@ The orchestrator stop hook (`eoa_orchestrator_stop_check.py` <!-- TODO: Script n
 ## Checklist: Starting Orchestration
 
 - [ ] Plan Phase complete (`/approve-plan` executed)
-- [ ] State file `.claude/orchestrator-exec-phase.local.md` exists
+- [ ] State file `design/state/exec-phase.md` exists
 - [ ] Run `/start-orchestration` with optional `--project-id`
 - [ ] Register AI agents with `/register-agent ai <agent_id> --session <session>`
 - [ ] Assign modules with `/assign-module <module_id> <agent_id>`
@@ -327,4 +327,4 @@ The orchestrator stop hook (`eoa_orchestrator_stop_check.py` <!-- TODO: Script n
 - [ ] Run `/cancel-orchestrator`
 - [ ] Verify state file removed
 - [ ] Check no orphaned lock files in `.claude/`
-- [ ] If needed, manually remove `.claude/orchestrator-loop.local.md`
+- [ ] If needed, manually remove `design/state/loop.md`

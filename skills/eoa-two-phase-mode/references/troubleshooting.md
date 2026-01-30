@@ -84,8 +84,8 @@
 **Cause**: Manual editing or interrupted session.
 
 **Solution**:
-1. Check `.claude/orchestrator-plan-phase.local.md` exists
-2. Check `.claude/orchestrator-exec-phase.local.md` exists
+1. Check `design/state/plan-phase.md` exists
+2. Check `design/state/exec-phase.md` exists
 3. If corrupted, backup and recreate with `/start-planning` or `/start-orchestration`
 4. Recover module status from GitHub Issues
 

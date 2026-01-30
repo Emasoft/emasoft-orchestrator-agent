@@ -56,5 +56,5 @@ Read SKILL.md first, then follow the TOC links to relevant reference files based
 ## Prerequisites
 
 - Plan Phase completed (`/approve-plan` executed)
-- State file `.claude/orchestrator-exec-phase.local.md` exists
+- State file `design/state/exec-phase.md` exists
 - Understanding of Two-Phase Mode workflow

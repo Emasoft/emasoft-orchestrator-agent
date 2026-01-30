@@ -27,7 +27,7 @@ The orchestrator loop is a continuous task-driven development loop that:
 START
   |
   v
-[Create State File] --> .claude/orchestrator-loop.local.md
+[Create State File] --> design/state/loop.md
   |
   v
 [Work on Tasks]
@@ -55,7 +55,7 @@ START
 
 ### State File Structure
 
-The loop state is stored in `.claude/orchestrator-loop.local.md`:
+The loop state is stored in `design/state/loop.md`:
 
 ```yaml
 ---

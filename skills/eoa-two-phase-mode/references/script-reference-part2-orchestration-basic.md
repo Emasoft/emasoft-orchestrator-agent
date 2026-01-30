@@ -30,7 +30,7 @@ python3 eoa_start_orchestration.py
 - Plan Phase complete (`plan_phase_complete: true`)
 
 **Actions:**
-1. Creates `.claude/orchestrator-exec-phase.local.md`
+1. Creates `design/state/exec-phase.md`
 2. Copies modules from plan with GitHub issue links
 3. Initializes agent registry
 4. Sets status to "executing"

@@ -45,7 +45,7 @@ Complete reference for all 16 Two-Phase Mode commands.
 ```
 
 **Actions:**
-1. Creates `.claude/orchestrator-plan-phase.local.md`
+1. Creates `design/state/plan-phase.md`
 2. Locks the user goal (immutable)
 3. Initializes requirements tracking
 4. Sets status to "drafting"
@@ -201,7 +201,7 @@ Complete reference for all 16 Two-Phase Mode commands.
 **Arguments:** None
 
 **Actions:**
-1. Creates `.claude/orchestrator-exec-phase.local.md`
+1. Creates `design/state/exec-phase.md`
 2. Copies modules from plan with GitHub issue links
 3. Initializes agent registry
 4. Sets status to "executing"

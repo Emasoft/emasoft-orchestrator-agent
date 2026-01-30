@@ -70,7 +70,7 @@ See: `[../shared/AUTH_FLOW.md]\(../shared/AUTH_FLOW.md\)`
 Add design folder tracking to Plan Phase state file:
 
 ```yaml
-# In .claude/orchestrator-plan-phase.local.md
+# In design/state/plan-phase.md
 design_folders:
   root: ".atlas"
   platforms:
@@ -85,7 +85,7 @@ design_folders:
 Add handoff tracking to Orchestration Phase state file:
 
 ```yaml
-# In .claude/orchestrator-exec-phase.local.md
+# In design/state/exec-phase.md
 active_assignments:
   - agent: "implementer-1"
     module: "auth-core"

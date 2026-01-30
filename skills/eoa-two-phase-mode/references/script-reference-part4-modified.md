@@ -19,14 +19,14 @@ This document covers the modified scripts for Two-Phase Mode.
 ### Plan Phase Checking
 
 When in Plan Phase, the script:
-1. Reads `.claude/orchestrator-plan-phase.local.md`
+1. Reads `design/state/plan-phase.md`
 2. Blocks if `plan_phase_complete: false`
 3. Shows missing exit criteria
 
 ### Orchestration Phase Checking
 
 When in Orchestration Phase, the script:
-1. Reads `.claude/orchestrator-exec-phase.local.md`
+1. Reads `design/state/exec-phase.md`
 2. Blocks if any module not complete
 3. Blocks if verification loops remaining
 4. Shows incomplete modules list
