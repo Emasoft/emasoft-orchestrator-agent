@@ -1,6 +1,6 @@
 ---
 name: eoa-orchestration-patterns
-description: Teaches how to coordinate work among multiple developers using orchestration patterns. Covers multi-developer coordination, Claude Code native Tasks management, progress monitoring, and escalation procedures for blocked tasks. Includes task decomposition, assignment strategies, status tracking, and handling blocked tasks. Workflow follows five phases - task decomposition, task assignment, progress monitoring, escalation and unblocking, integration and verification.
+description: "Use when coordinating work among multiple developers using orchestration patterns. Covers multi-developer coordination, Claude Code native Tasks management, progress monitoring, and escalation procedures for blocked tasks. Includes task decomposition, assignment strategies, status tracking, and handling blocked tasks."
 license: Apache-2.0
 compatibility: Requires multiple developers or task agents, task tracking system (GitHub issues or similar), clear task definitions with success criteria, and communication channel for status updates.
 metadata:
@@ -34,7 +34,9 @@ To use this skill effectively, ensure you have:
 3. Clear task definitions with success criteria
 4. A communication channel for status updates and escalations
 
-## Procedure Overview
+## Instructions
+
+### Procedure Overview
 
 The orchestration workflow follows these main phases in order:
 
@@ -363,7 +365,7 @@ Use this checklist when orchestrating multi-developer work:
 
 ---
 
-## Usage Examples
+## Examples
 
 ### Example 1: Coordinating Code Review Across 5 Developers
 
@@ -445,3 +447,31 @@ orchestration-patterns/
 9. Read [User Requirements Immutable](./references/user-requirements-immutable.md) for requirement handling (RULE 14)
 10. Read [Non-Blocking Patterns](./references/non-blocking-patterns.md) for async delegation and responsiveness (RULE 17)
 11. Use the Quick Reference Checklist above for all orchestration work
+
+---
+
+## Error Handling
+
+| Issue | Cause | Resolution |
+|-------|-------|------------|
+| Agent unresponsive | Agent crashed or blocked | Poll every 5 min, reassign after 30 min |
+| Task conflict | Same file modified by multiple agents | Assign non-overlapping scope |
+| Verification loop stuck | Agent doesn't check changes | Send explicit verification message |
+| Escalation timeout | User unavailable | Queue issue, continue other work |
+
+See individual reference files for detailed troubleshooting.
+
+---
+
+## Resources
+
+- [task-complexity-classifier.md](references/task-complexity-classifier.md) - Complexity assessment
+- [agent-selection-guide.md](references/agent-selection-guide.md) - Agent selection
+- [project-setup-menu.md](references/project-setup-menu.md) - Project configuration
+- [language-verification-checklists.md](references/language-verification-checklists.md) - Quality checks
+- [progress-monitoring.md](references/progress-monitoring.md) - Proactive monitoring
+- [verification-loops.md](references/verification-loops.md) - 4-verification protocol
+- [orchestrator-no-implementation.md](references/orchestrator-no-implementation.md) - RULE 15
+- [orchestrator-exclusive-communications.md](references/orchestrator-exclusive-communications.md) - RULE 16
+- [user-requirements-immutable.md](references/user-requirements-immutable.md) - RULE 14
+- [non-blocking-patterns.md](references/non-blocking-patterns.md) - RULE 17

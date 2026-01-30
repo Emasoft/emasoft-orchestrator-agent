@@ -1,6 +1,6 @@
 ---
 name: eoa-two-phase-mode
-description: Comprehensive Two-Phase Mode workflow for orchestration. Phase 1 (Plan Phase) writes requirements before implementation. Phase 2 (Orchestration Phase) directs remote agents module by module. Includes Instruction Verification Protocol, Instruction Update Verification Protocol, Proactive Progress Polling, Configuration Feedback Loop, Claude Tasks Scheduling Principle, Issue Handling Workflow, and completion enforcement via stop hooks.
+description: "Use when implementing Two-Phase Mode workflow for orchestration. Phase 1 (Plan Phase) writes requirements before implementation. Phase 2 (Orchestration Phase) directs remote agents module by module. Includes Instruction Verification Protocol and completion enforcement via stop hooks."
 license: Apache-2.0
 compatibility: Requires AI Maestro messaging system, GitHub CLI (gh), remote agents registered by user, and YAML frontmatter state files.
 metadata:
@@ -12,6 +12,17 @@ context: fork
 # Two-Phase Mode Skill
 
 ## Overview
+
+Two-Phase Mode separates orchestration into two distinct phases:
+
+## Prerequisites
+
+- AI Maestro messaging system running
+- GitHub CLI (gh) authenticated
+- Remote agents registered by user
+- Understanding of YAML frontmatter state files
+
+## Instructions
 
 Two-Phase Mode separates orchestration into two distinct phases:
 
@@ -383,3 +394,67 @@ two-phase-mode/
 9. See [Workflow Diagram](references/workflow-diagram.md) for visual overview
 10. Keep [Quick Reference Checklist](references/quick-reference-checklist.md) handy during operations
 11. Consult [Troubleshooting](references/troubleshooting.md) when issues arise
+
+---
+
+## Examples
+
+### Example 1: Complete Two-Phase Workflow
+
+```bash
+# PLAN PHASE
+/start-planning
+# Document requirements in USER_REQUIREMENTS.md
+# Define architecture and modules
+/approve-plan
+
+# ORCHESTRATION PHASE
+/start-orchestration --project-id PVT_kwDOB1234567
+/register-agent ai implementer-1 --session helper-agent-generic
+/assign-module auth-core implementer-1
+# Execute Instruction Verification Protocol
+# Poll every 10-15 minutes with /check-agents
+# After 4 verification loops, approve PR
+```
+
+### Example 2: Dynamic Module Addition
+
+```bash
+# User requests new feature during orchestration
+/add-module "OAuth2 Support" --criteria "Google and GitHub OAuth" --priority high
+
+# Stop hook now blocks until OAuth2 is ALSO complete
+# Assign to available agent
+/assign-module oauth2-support implementer-2
+```
+
+---
+
+## Error Handling
+
+See [Troubleshooting](references/troubleshooting.md) for complete solutions.
+
+| Issue | Cause | Resolution |
+|-------|-------|------------|
+| Plan Phase won't transition | Requirements incomplete | Complete all required fields |
+| Stop hook blocks exit | Modules incomplete | Finish all pending modules |
+| Agent not responding | Connection issue | Check AI Maestro health |
+| State file corrupt | YAML syntax error | Restore from git or recreate |
+
+---
+
+## Resources
+
+- [plan-phase-workflow.md](references/plan-phase-workflow.md) - Plan Phase details
+- [orchestration-phase-workflow.md](references/orchestration-phase-workflow.md) - Orchestration Phase details
+- [instruction-verification-protocol.md](references/instruction-verification-protocol.md) - 8-step verification
+- [proactive-progress-polling.md](references/proactive-progress-polling.md) - 6 mandatory questions
+- [instruction-update-verification-protocol.md](references/instruction-update-verification-protocol.md) - Mid-impl updates
+- [state-file-formats.md](references/state-file-formats.md) - YAML schemas
+- [command-reference.md](references/command-reference.md) - All 16 commands
+- [script-reference.md](references/script-reference.md) - All scripts
+- [native-task-persistence.md](references/native-task-persistence.md) - Claude Tasks scheduling
+- [issue-handling-workflow.md](references/issue-handling-workflow.md) - Issue categories
+- [workflow-diagram.md](references/workflow-diagram.md) - Visual flowcharts
+- [quick-reference-checklist.md](references/quick-reference-checklist.md) - Actionable checklists
+- [troubleshooting.md](references/troubleshooting.md) - Common issues and solutions

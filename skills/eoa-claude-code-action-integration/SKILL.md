@@ -1,13 +1,24 @@
 ---
 name: eoa-claude-code-action-integration
-description: Set up Claude Code in GitHub Actions for automated PR reviews, @claude mention responses, and issue triage.
+description: "Use when setting up Claude Code in GitHub Actions for automated PR reviews, @claude mention responses, and issue triage."
+license: Apache-2.0
+metadata:
+  author: Anthropic
+  version: 1.0.0
 agent: deploy-agent
 context: fork
 ---
 
 # Claude Code Action Integration
 
-## When to Use This Skill
+## Prerequisites
+
+- GitHub repository with Actions enabled
+- Anthropic API key (ANTHROPIC_API_KEY secret)
+- Repository write permissions configured
+- Understanding of GitHub Actions workflow syntax
+
+## Instructions
 
 Use this skill when you need to:
 - Set up automated PR reviews using Claude Code in GitHub Actions
@@ -149,7 +160,54 @@ Edit the `prompt` section to customize Claude's behavior for your project's spec
 
 ---
 
-## Troubleshooting
+## Examples
+
+### Example 1: Basic PR Review Setup
+
+```yaml
+# .github/workflows/claude-review.yml
+name: Claude PR Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: anthropics/claude-code-action@v1
+        with:
+          prompt: "Review this PR for code quality and potential bugs"
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+```
+
+### Example 2: @claude Mention Handler
+
+```yaml
+# .github/workflows/claude-mention.yml
+name: Claude Mention
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  respond:
+    if: contains(github.event.comment.body, '@claude')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: anthropics/claude-code-action@v1
+        with:
+          prompt: "Respond to this comment helpfully"
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+```
+
+---
+
+## Error Handling
 
 ### Workflow Not Triggering
 
@@ -175,10 +233,13 @@ Edit the `prompt` section to customize Claude's behavior for your project's spec
 
 ---
 
-## References
+## Resources
 
-- [claude-code-action GitHub](https://github.com/anthropics/claude-code-action)
-- [GitHub Actions Documentation](https://docs.github.com/en/actions)
+- [claude-code-action GitHub](https://github.com/anthropics/claude-code-action) - Official action repository
+- [GitHub Actions Documentation](https://docs.github.com/en/actions) - Actions reference
+- `templates/workflows/claude-pr-review.yml` - PR review template
+- `templates/workflows/claude-mention.yml` - Mention handler template
+- `templates/workflows/claude-issue-triage.yml` - Issue triage template
 
 ---
 

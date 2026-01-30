@@ -1,6 +1,6 @@
 ---
 name: eoa-developer-communication
-description: Effective communication patterns for interacting with human developers in code reviews, issues, technical discussions, and status updates
+description: "Use when communicating with human developers in code reviews, issues, technical discussions, and status updates. Covers effective communication patterns."
 license: Apache-2.0
 metadata:
   version: 1.0.0
@@ -18,6 +18,16 @@ context: fork
 # Developer Communication Skill
 
 ## Overview
+
+This skill teaches effective communication with **human developers**
+
+## Prerequisites
+
+- Understanding of code review processes
+- Access to communication channels (GitHub, Slack, etc.)
+- Familiarity with professional communication standards
+
+## Instructions
 
 This skill teaches effective communication with **human developers** - not AI agents. Human communication differs fundamentally from structured AI-to-AI message templates:
 
@@ -295,3 +305,40 @@ Is this about code you're reviewing?
 - [ ] Did I explain *why*, not just *what*?
 - [ ] Is there anything to acknowledge or praise?
 - [ ] Would I feel good receiving this message?
+
+---
+
+## Examples
+
+### Example 1: Constructive Code Review Comment
+
+**Wrong:**
+> "This code is inefficient and poorly structured."
+
+**Right:**
+> "I noticed this loop processes items sequentially. Consider using `Promise.all()` for parallel execution - it could reduce the response time from ~500ms to ~100ms based on similar patterns elsewhere in the codebase."
+
+### Example 2: Acknowledging Good Work
+
+> "Nice catch on the null check at line 42 - that edge case would have caused issues in production. The error message is also very clear."
+
+---
+
+## Error Handling
+
+| Situation | Issue | Resolution |
+|-----------|-------|------------|
+| Misunderstood feedback | Developer responds defensively | Clarify intent, acknowledge their perspective |
+| Unclear requirements | Developer delivers wrong implementation | Provide concrete examples and success criteria |
+| Communication breakdown | No response for 48+ hours | Follow up with direct message, check availability |
+
+---
+
+## Resources
+
+- [pr-comment-writing.md](references/pr-comment-writing.md) - Code review comment patterns
+- [issue-communication.md](references/issue-communication.md) - Bug report and feature request handling
+- [technical-explanation.md](references/technical-explanation.md) - Explaining technical decisions
+- [conflict-resolution.md](references/conflict-resolution.md) - Handling disagreements
+- [status-updates.md](references/status-updates.md) - Progress reporting
+- [templates-for-humans.md](references/templates-for-humans.md) - PR and commit templates

@@ -1,6 +1,6 @@
 ---
 name: eoa-remote-agent-coordinator
-description: Enables the Orchestrator Agent to delegate coding tasks to remote AI agents and human developers via AI Maestro messaging. The orchestrator NEVER writes code - it creates precise instructions and sends them to remote agents who execute the coding work. Use when onboarding agents, assigning tasks, coordinating multiple agents, or reviewing reports.
+description: "Use when delegating coding tasks to remote AI agents and human developers via AI Maestro messaging. Covers onboarding agents, assigning tasks, coordinating multiple agents, and reviewing reports. The orchestrator NEVER writes code - it creates precise instructions."
 license: Apache-2.0
 compatibility: Requires AI Maestro messaging system (configurable via AIMAESTRO_API env var, default http://localhost:23000). Python 3.9+ for LSP management scripts.
 metadata:
@@ -17,7 +17,14 @@ The Remote Agent Coordinator enables the ATLAS-ORCHESTRATOR to delegate coding t
 
 **Critical Principle**: The orchestrator NEVER writes code. It creates precise instructions and sends them to remote agents who execute the coding work.
 
-## When to Use
+## Prerequisites
+
+- AI Maestro messaging system running (default: http://localhost:23000)
+- Python 3.9+ for LSP management scripts
+- Remote agents registered and available
+- GitHub CLI (gh) for issue management
+
+## Instructions
 
 Invoke this skill when:
 - Onboarding a new agent to the project
@@ -406,7 +413,51 @@ remote-agent-coordinator/
 
 ---
 
-## Troubleshooting
+## Examples
+
+### Example 1: Onboard and Assign Task to New Agent
+
+```bash
+# Step 1: Agent completes onboarding (reads docs, sets up env)
+# Step 2: Agent sends registration message
+# Step 3: Orchestrator approves registration
+
+# Step 4: Send task with ACK instructions
+curl -X POST "http://localhost:23000/api/messages" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "implementer-1",
+    "subject": "Task: Implement auth-core module",
+    "priority": "high",
+    "content": {
+      "type": "task",
+      "message": "[TASK] auth-core\n\n[ACK REQUIRED]...\n\nContext: JWT authentication\nScope: src/auth/\nTests: pytest tests/auth/"
+    }
+  }'
+```
+
+### Example 2: 4-Verification Loop
+
+```
+Agent: "Can I make a PR?"
+Orchestrator: "Check your changes for errors" (Loop 1)
+
+Agent: "Can I make a PR?"
+Orchestrator: "Check your changes for errors" (Loop 2)
+
+Agent: "Can I make a PR?"
+Orchestrator: "Check your changes for errors" (Loop 3)
+
+Agent: "Can I make a PR?"
+Orchestrator: "Check your changes for errors" (Loop 4)
+
+Agent: "Can I make a PR?"
+Orchestrator: "APPROVED - create PR" (5th request)
+```
+
+---
+
+## Error Handling
 
 ### Issue: AI Maestro messages not being delivered
 
@@ -457,3 +508,17 @@ remote-agent-coordinator/
 2. Ensure agent followed 4-verification-loop protocol
 3. Request fixes for failing criteria
 4. Do NOT merge until all criteria pass
+
+---
+
+## Resources
+
+- [echo-acknowledgment-protocol.md](./references/echo-acknowledgment-protocol.md) - ACK protocol
+- [verification-loops-protocol.md](./references/verification-loops-protocol.md) - 4-verification loops
+- [progress-monitoring-protocol.md](./references/progress-monitoring-protocol.md) - Proactive monitoring
+- [error-handling-protocol.md](./references/error-handling-protocol.md) - FAIL-FAST principle
+- [escalation-procedures.md](./references/escalation-procedures.md) - Escalation hierarchy
+- [agent-onboarding.md](./references/agent-onboarding.md) - Onboarding checklist
+- [task-instruction-format.md](./references/task-instruction-format.md) - Instruction template
+- [overnight-operation.md](./references/overnight-operation.md) - Autonomous operation
+- [lsp-servers-overview.md](./references/lsp-servers-overview.md) - LSP requirements

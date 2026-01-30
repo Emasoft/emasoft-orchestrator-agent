@@ -1,6 +1,6 @@
 ---
 name: eoa-agent-management-commands
-description: "Documents commands for managing remote agents (AI agents and human developers) in Orchestrator Agent. Covers registration, module assignment, progress polling, and the mandatory Instruction Verification Protocol."
+description: "Use when managing remote agents (AI agents and human developers) in Orchestrator Agent. Covers registration, module assignment, progress polling, and the mandatory Instruction Verification Protocol."
 license: Apache-2.0
 compatibility: "Requires Python 3.8+, PyYAML, GitHub CLI. Requires AI Maestro for inter-agent messaging."
 metadata:
@@ -12,11 +12,20 @@ context: fork
 
 # Agent Management Commands Skill
 
+## Overview
+
 Master the registration, assignment, and monitoring of remote agents (AI agents and human developers) in the ATLAS orchestration workflow.
+
+## Prerequisites
+
+- Python 3.8+ with PyYAML installed
+- GitHub CLI (gh) authenticated
+- AI Maestro running for inter-agent messaging
+- Orchestration Phase active (after Plan Phase approval)
 
 ---
 
-## When to Use This Skill
+## Instructions
 
 Use this skill when you need to:
 - Register a new AI agent or human developer to receive module assignments
@@ -300,7 +309,7 @@ See script docstrings for usage details.
 
 ---
 
-## Troubleshooting
+## Error Handling
 
 See: [troubleshooting.md](references/troubleshooting.md)
 - 8.1 Registration Issues
@@ -320,6 +329,47 @@ See: [troubleshooting.md](references/troubleshooting.md)
   - 8.4.1 AI Maestro connection failed
   - 8.4.2 GitHub API errors
   - 8.4.3 Message format errors
+
+---
+
+## Examples
+
+### Example 1: Register and Assign AI Agent
+
+```bash
+# Step 1: Register the AI agent
+/register-agent ai implementer-1 --session helper-agent-generic
+
+# Step 2: Assign a module
+/assign-module auth-core implementer-1
+
+# Step 3: Wait for agent to repeat requirements (Instruction Verification Protocol)
+# Step 4: Begin polling every 10-15 minutes
+/check-agents
+```
+
+### Example 2: Register Human Developer
+
+```bash
+# Register using GitHub username
+/register-agent human dev-alice
+
+# Module will be assigned via GitHub Project Kanban
+/assign-module oauth-google dev-alice
+```
+
+---
+
+## Resources
+
+- [instruction-verification-protocol.md](references/instruction-verification-protocol.md) - 8-step verification process
+- [progress-polling-protocol.md](references/progress-polling-protocol.md) - Mandatory polling questions
+- [agent-registration.md](references/agent-registration.md) - Registration details
+- [agent-types.md](references/agent-types.md) - AI vs human agent differences
+- [assignment-workflow.md](references/assignment-workflow.md) - Complete assignment flow
+- [agent-communication-templates.md](references/agent-communication-templates.md) - Message templates
+- [github-assignment-workflow.md](references/github-assignment-workflow.md) - Human developer workflow
+- [troubleshooting.md](references/troubleshooting.md) - Common issues and solutions
 
 ---
 

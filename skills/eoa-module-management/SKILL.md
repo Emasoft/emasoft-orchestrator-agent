@@ -1,6 +1,6 @@
 ---
 name: eoa-module-management-commands
-description: Documents all module management commands for dynamic module manipulation during Orchestration Phase. Covers adding, modifying, removing, prioritizing, and reassigning modules. Enforces the critical rule that every module maps 1:1 to a GitHub Issue.
+description: "Use when managing modules during Orchestration Phase. Covers adding, modifying, removing, prioritizing, and reassigning modules. Enforces the critical rule that every module maps 1:1 to a GitHub Issue."
 license: Apache-2.0
 compatibility: Cross-platform compatible. Requires Python 3.8+ and PyYAML for scripts. Requires gh CLI for GitHub Issue operations. Works with AI Maestro messaging for agent notifications.
 metadata:
@@ -12,13 +12,20 @@ context: fork
 
 # Module Management Commands Skill
 
-## Purpose
+## Overview
 
-This skill teaches orchestrators how to dynamically manage modules during the Orchestration Phase. Modules are the atomic units of work in Atlas orchestration. Each module represents one feature, component, or deliverable that an agent will implement.
+This skill teaches orchestrators how to dynamically manage modules during the Orchestration Phase.
+
+## Prerequisites
+
+- Orchestration Phase active (Plan Phase completed and approved)
+- GitHub CLI (gh) authenticated
+- AI Maestro running for agent notifications
+- State file `design/state/exec-phase.md` exists Modules are the atomic units of work in Atlas orchestration. Each module represents one feature, component, or deliverable that an agent will implement.
 
 **CRITICAL RULE**: Every module is tied 1:1 to a GitHub Issue. When you add a module, an issue is created. When you remove a module, the issue is closed. When you modify a module, the issue is updated. This linkage ensures traceability and transparency.
 
-## When to Use This Skill
+## Instructions
 
 Use this skill when:
 - User requests additional features mid-orchestration
@@ -287,7 +294,35 @@ active_assignments:
 
 ---
 
-## Troubleshooting
+## Examples
+
+### Example 1: Add New Module Mid-Orchestration
+
+```bash
+# User requests two-factor authentication
+/add-module "Two-Factor Auth" --criteria "Support TOTP and SMS" --priority critical
+
+# System automatically creates GitHub Issue #43
+# Module appears in pending queue with status: pending
+```
+
+### Example 2: Reassign Blocked Module
+
+```bash
+# Agent implementer-1 is blocked on auth-core
+# Request progress report first
+/check-agents --agent implementer-1
+
+# Reassign to implementer-2
+/reassign-module auth-core --to implementer-2
+
+# Old agent notified to stop
+# New agent receives full assignment with Instruction Verification Protocol reset
+```
+
+---
+
+## Error Handling
 
 | Problem | Likely Cause | Solution |
 |---------|--------------|----------|
@@ -390,3 +425,15 @@ python3 scripts/github_sync.py verify
 - Modifications sync to GitHub automatically
 - Agent notifications via AI Maestro
 - Instruction Verification required after reassignment
+
+---
+
+## Resources
+
+- [module-creation.md](./references/module-creation.md) - Add-module workflow and validation
+- [module-modification.md](./references/module-modification.md) - Modify specs and notifications
+- [module-removal-rules.md](./references/module-removal-rules.md) - Removal conditions and cleanup
+- [module-prioritization.md](./references/module-prioritization.md) - Priority levels and effects
+- [module-reassignment.md](./references/module-reassignment.md) - Transfer workflow
+- [github-issue-sync.md](./references/github-issue-sync.md) - Issue creation and sync
+- [troubleshooting.md](./references/troubleshooting.md) - Error recovery

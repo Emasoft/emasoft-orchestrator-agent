@@ -1,18 +1,30 @@
 ---
 name: eoa-checklist-compiler
-description: Compile verification checklists from requirements including module completion, quality gates, and test coverage checklists.
+description: "Use when compiling verification checklists from requirements including module completion, quality gates, and test coverage checklists."
+license: Apache-2.0
+metadata:
+  author: Anthropic
+  version: 1.0.0
 context: fork
 ---
 
 # Checklist Compiler Skill
 
+## Overview
+
 Comprehensive patterns and templates for compiling verification checklists from requirements and specifications.
+
+## Prerequisites
+
+- Access to requirements documentation (USER_REQUIREMENTS.md or similar)
+- Understanding of module acceptance criteria
+- Familiarity with quality gate concepts
 
 ---
 
-## When to Use This Skill
+## Instructions
 
-Use when:
+Use this skill when:
 - Compiling verification checklists from requirements
 - Creating quality gate checklists
 - Designing module completion checklists
@@ -88,3 +100,61 @@ Every checklist MUST include:
 - [ ] No technology substitutions without approval
 - [ ] No scope reductions without approval
 ```
+
+---
+
+## Examples
+
+### Example 1: Module Completion Checklist
+
+```markdown
+## Module: auth-core Completion Checklist
+
+### Implementation
+- [ ] All acceptance criteria implemented
+- [ ] No TODO comments remaining
+- [ ] Error handling complete
+
+### Testing
+- [ ] Unit tests pass (80%+ coverage)
+- [ ] Integration tests pass
+- [ ] Edge cases covered
+
+### Documentation
+- [ ] API documentation updated
+- [ ] README updated if needed
+- [ ] Changelog entry added
+```
+
+### Example 2: Quality Gate Checklist
+
+```markdown
+## Quality Gate: Pre-Merge
+
+- [ ] All tests passing
+- [ ] Coverage >= 80%
+- [ ] No linting errors
+- [ ] Type checks pass
+- [ ] Security scan clean
+- [ ] 4 verification loops completed
+```
+
+---
+
+## Error Handling
+
+| Issue | Cause | Solution |
+|-------|-------|----------|
+| Missing requirements | USER_REQUIREMENTS.md not created | Create requirements file first |
+| Incomplete checklist | Acceptance criteria unclear | Request clarification from user |
+| Checklist too large | Requirements too broad | Break into smaller modules |
+
+---
+
+## Resources
+
+- [checklist-types-reference.md](references/checklist-types-reference.md) - All checklist types
+- [checklist-templates.md](references/checklist-templates.md) - Standard templates
+- [checklist-compilation-workflow.md](references/checklist-compilation-workflow.md) - Step-by-step workflow
+- [checklist-best-practices.md](references/checklist-best-practices.md) - Design principles
+- [checklist-examples.md](references/checklist-examples.md) - Complete examples

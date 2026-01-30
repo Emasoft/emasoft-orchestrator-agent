@@ -1,6 +1,6 @@
 ---
 name: eoa-devops-expert
-description: Design and configure CI/CD pipelines, GitHub Actions workflows, cross-platform build automation, secret management, and release processes. Use when setting up CI/CD, configuring GitHub Actions, managing secrets, automating multi-platform releases, debugging failing workflows, or enforcing TDD in pipelines. Outputs workflow YAML files, pipeline configurations, and deployment specifications. IRON RULE - NO CODE EXECUTION, produces configurations only.
+description: "Use when setting up CI/CD pipelines, configuring GitHub Actions workflows, managing secrets, automating multi-platform releases, debugging failing workflows, or enforcing TDD in pipelines. Outputs workflow YAML files, pipeline configurations, and deployment specifications. IRON RULE - NO CODE EXECUTION, produces configurations only."
 license: Apache-2.0
 compatibility: Requires GitHub Actions, GitHub CLI (gh), and understanding of CI/CD concepts. Supports macOS, Windows, Linux, iOS, Android build automation.
 metadata:
@@ -12,11 +12,18 @@ context: fork
 
 # DevOps Expert Skill
 
-## Purpose
+## Overview
 
 Design and configure CI/CD pipelines, GitHub Actions workflows, cross-platform build automation, secret management, and release processes.
 
-## When to Use This Skill
+## Prerequisites
+
+- GitHub Actions access on target repository
+- GitHub CLI (gh) installed and authenticated
+- Understanding of CI/CD concepts
+- Access to required secrets (API keys, certificates)
+
+## Instructions
 
 - Setting up CI/CD pipelines for new projects
 - Configuring GitHub Actions workflows
@@ -179,7 +186,50 @@ This skill NEVER executes code. All outputs are:
 
 Actual pipeline execution happens on GitHub Actions runners.
 
-## Troubleshooting
+## Examples
+
+### Example 1: Multi-Platform CI Workflow
+
+```yaml
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-14, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run tests
+        run: |
+          pip install -r requirements.txt
+          pytest --cov=src tests/
+```
+
+### Example 2: Release Workflow
+
+```yaml
+name: Release
+on:
+  push:
+    tags: ['v*']
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and publish
+        run: |
+          python -m build
+          twine upload dist/*
+        env:
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+```
+
+---
+
+## Error Handling
 
 ### Issue: CI pipeline fails but tests pass locally
 
@@ -230,3 +280,16 @@ Actual pipeline execution happens on GitHub Actions runners.
 2. Check secret is set at correct scope (repo/org/environment)
 3. For forks, secrets are not available by default
 4. Use `${{ secrets.SECRET_NAME }}` syntax
+
+---
+
+## Resources
+
+- [github-actions.md](references/github-actions.md) - Workflow structure and features
+- [cross-platform-builds.md](references/cross-platform-builds.md) - Multi-platform CI setup
+- [secret-management.md](references/secret-management.md) - Secret hierarchy and usage
+- [tdd-enforcement.md](references/tdd-enforcement.md) - Test coverage requirements
+- [release-automation.md](references/release-automation.md) - Release pipeline stages
+- `templates/ci-multi-platform.yml` - Multi-platform CI template
+- `templates/release-github.yml` - GitHub release template
+- `templates/security-scan.yml` - Security scanning template

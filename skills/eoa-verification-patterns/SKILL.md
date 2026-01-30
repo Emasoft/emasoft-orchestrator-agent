@@ -1,6 +1,6 @@
 ---
 name: eoa-verification-patterns
-description: "Teaches evidence-based verification techniques for proving that code, systems, and operations work correctly. Covers four core patterns: evidence-based verification (collecting measurable proof), exit code proof (using process exit codes), end-to-end testing (verifying complete workflows), and integration verification (testing component interactions)."
+description: "Use when verifying that code, systems, and operations work correctly. Covers four core patterns: evidence-based verification, exit code proof, end-to-end testing, and integration verification."
 license: Apache-2.0
 compatibility: "Requires Python 3.8+, Bash shell, Git. Supports Windows, macOS, and Linux. Optional dependencies: Selenium for E2E browser testing, Docker for service orchestration, SQLite/PostgreSQL for database examples."
 metadata:
@@ -13,6 +13,18 @@ context: fork
 # Verification Patterns for Atlas Orchestrator
 
 ## Overview
+
+This skill teaches evidence-based verification techniques for proving that code, systems, and operations work correctly.
+
+## Prerequisites
+
+- Python 3.8+ with Bash shell
+- Git for version control
+- Optional: Selenium for E2E browser testing
+- Optional: Docker for service orchestration
+- Optional: SQLite/PostgreSQL for database examples
+
+## Instructions
 
 This skill teaches evidence-based verification techniques for proving that code, systems, and operations work correctly. Verification is not about hope or assumptions - it is about collecting measurable, reproducible evidence that a system behaves as intended.
 
@@ -164,6 +176,59 @@ See [Test Report Format](./references/test-report-format.md):
 - Completion Tracking (attempt tracking, escalation flows, hang prevention)
 - Integration
 
+## Examples
+
+### Example 1: Evidence-Based Verification
+
+```python
+def test_user_creation():
+    # Step 1: Define expected outcome
+    expected_email = "test@example.com"
+
+    # Step 2: Run the code
+    user = create_user(email=expected_email)
+
+    # Step 3: Collect evidence
+    actual_email = user.email
+    db_record = db.query(User).filter_by(id=user.id).first()
+
+    # Step 4: Compare evidence to expectation
+    assert actual_email == expected_email
+    assert db_record is not None
+    assert db_record.email == expected_email
+
+    # Step 5: Document results (test framework handles this)
+```
+
+### Example 2: Exit Code Proof
+
+```bash
+# Run tests and capture exit code
+pytest tests/ --cov=src
+exit_code=$?
+
+# Interpret result
+if [ $exit_code -eq 0 ]; then
+    echo "SUCCESS: All tests passed"
+else
+    echo "FAILURE: Tests failed with exit code $exit_code"
+    exit 1
+fi
+```
+
+---
+
+## Error Handling
+
+See [Troubleshooting](./references/troubleshooting.md) for complete solutions.
+
+| Issue | Cause | Resolution |
+|-------|-------|------------|
+| Tests pass locally, fail in CI | Environment differences | Check env vars, dependencies |
+| Exit code 0 but process failed | Missing exit code in script | Add explicit `sys.exit(1)` on failure |
+| Integration test timeout | Slow service startup | Increase timeout, add health checks |
+| Flaky E2E test | Race conditions | Add explicit waits, retry logic |
+
 ---
 
 ## Verification Principles
@@ -251,3 +316,20 @@ Verification is not optional. Every claim that code works must be backed by evid
 Combine these patterns to build confidence that your systems work correctly before deploying to production.
 
 For detailed implementation of each pattern, see the reference files linked in the Table of Contents above.
+
+---
+
+## Resources
+
+- [evidence-based-verification.md](./references/evidence-based-verification.md) - Collecting measurable proof
+- [exit-code-proof.md](./references/exit-code-proof.md) - Using process exit codes
+- [end-to-end-testing.md](./references/end-to-end-testing.md) - Complete workflow testing
+- [integration-verification.md](./references/integration-verification.md) - Component interaction testing
+- [combining-patterns.md](./references/combining-patterns.md) - Comprehensive strategies
+- [cross-platform-support.md](./references/cross-platform-support.md) - Platform compatibility
+- [evidence-format.md](./references/evidence-format.md) - Evidence formatting for handoff
+- [testing-protocol.md](./references/testing-protocol.md) - Test execution protocols
+- [github-integration.md](./references/github-integration.md) - GitHub issue updates
+- [troubleshooting.md](./references/troubleshooting.md) - Common issues
+- [automation-scripts.md](./references/automation-scripts.md) - Script reference
+- [test-report-format.md](./references/test-report-format.md) - Report standards

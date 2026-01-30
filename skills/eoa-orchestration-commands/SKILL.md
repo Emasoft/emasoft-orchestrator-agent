@@ -1,6 +1,6 @@
 ---
 name: eoa-orchestration-commands
-description: "Documents all orchestration phase commands for Orchestrator Agent. Covers starting orchestration, monitoring status, checking the orchestrator loop, and cancellation. Explains stop hook integration that prevents premature exit until all modules are complete."
+description: "Use when running orchestration phase commands for Orchestrator Agent. Covers starting orchestration, monitoring status, checking the orchestrator loop, and cancellation. Explains stop hook integration that prevents premature exit until all modules are complete."
 license: Apache-2.0
 compatibility: "Requires Python 3.8+, PyYAML, GitHub CLI. Works with AI Maestro for remote agent communication."
 metadata:
@@ -16,7 +16,7 @@ context: fork
 
 This skill teaches how to use the orchestration phase commands in the Orchestrator Agent plugin. These commands manage the execution loop that coordinates remote agents to implement approved plans.
 
-## When to Use This Skill
+## Instructions
 
 Use this skill when you need to:
 - Start an orchestration phase to implement an approved plan
@@ -43,6 +43,37 @@ Before using orchestration commands, ensure:
 | `/orchestrator-status` | Check loop state and tasks | To see pending tasks across all sources |
 | `/orchestrator-loop` | Start continuous task loop | To activate task-driven development loop |
 | `/cancel-orchestrator` | Cancel active loop | To manually stop the orchestrator loop |
+
+## Examples
+
+### Example 1: Start Orchestration After Plan Approval
+
+```bash
+# Step 1: Start orchestration with GitHub Project sync
+/start-orchestration --project-id PVT_kwDOB1234567
+
+# Step 2: Register your agents
+/register-agent ai implementer-1 --session helper-agent-generic
+
+# Step 3: Assign first module
+/assign-module auth-core implementer-1
+
+# Step 4: Monitor progress
+/orchestration-status
+```
+
+### Example 2: Start Orchestrator Loop
+
+```bash
+# Start continuous task-driven development
+/orchestrator-loop "Complete all pending authentication tasks" --max-iterations 50
+
+# Check loop status
+/orchestrator-status --verbose
+
+# Cancel if needed
+/cancel-orchestrator
+```
 
 ---
 
@@ -139,7 +170,7 @@ See [references/state-file-format.md](references/state-file-format.md):
 
 ## Troubleshooting
 
-**If you encounter errors or unexpected behavior:**
+## Error Handling
 
 See [references/troubleshooting.md](references/troubleshooting.md):
 - 6.1 Loop won't start - common causes
@@ -328,3 +359,14 @@ The orchestrator stop hook (`eoa_orchestrator_stop_check.py` <!-- TODO: Script n
 - [ ] Verify state file removed
 - [ ] Check no orphaned lock files in `.claude/`
 - [ ] If needed, manually remove `design/state/loop.md`
+
+---
+
+## Resources
+
+- [start-orchestration-procedure.md](references/start-orchestration-procedure.md) - Starting orchestration
+- [status-monitoring.md](references/status-monitoring.md) - Reading status output
+- [orchestration-loop-mechanics.md](references/orchestration-loop-mechanics.md) - Loop behavior
+- [cancellation-cleanup.md](references/cancellation-cleanup.md) - Cancellation procedures
+- [state-file-format.md](references/state-file-format.md) - State file schemas
+- [troubleshooting.md](references/troubleshooting.md) - Common issues and solutions
