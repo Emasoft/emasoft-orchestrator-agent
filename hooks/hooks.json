@@ -9,8 +9,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 -m eoa_stop_check.main",
-            "cwd": "${CLAUDE_PLUGIN_ROOT}/scripts"
+            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/scripts/eoa_stop_check/main.py"
           }
         ]
       }
