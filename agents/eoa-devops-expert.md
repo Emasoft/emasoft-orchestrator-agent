@@ -271,6 +271,26 @@ Contents:
 
 ---
 
+## Examples
+
+<example>
+user: Set up CI/CD pipeline for Python project targeting Linux, macOS, and Windows with TDD enforcement and PyPI publishing
+assistant: [DONE] devops-expert - python-multiplatform-ci
+Workflows: ci, release, security | Platforms: macos, windows, linux | Gates: ruff, mypy, pytest, coverage
+Secrets: 2 required (PYPI_API_TOKEN, CODECOV_TOKEN) | Debug scripts: 3 created | Blockers: none
+Created .github/workflows/ci.yml with matrix testing on Python 3.9-3.12 across all platforms, release.yml with PyPI publish on tag push, and security.yml with Bandit scanning. TDD enforcement configured with 80% coverage threshold and branch protection rules.
+</example>
+
+<example>
+user: Configure GitHub Actions for cross-platform mobile app builds targeting iOS and Android with automated App Store uploads
+assistant: [DONE] devops-expert - mobile-ci-release
+Workflows: ci, release | Platforms: ios, android | Gates: lint, test, build, security
+Secrets: 8 required (APPLE_CERTIFICATE, APPLE_ID, ANDROID_KEYSTORE, etc.) | Debug scripts: 4 created | Blockers: none
+Created multi-platform CI workflow with Xcode 15 for iOS and Android SDK 34 for Android. Release workflow handles code signing, building, and automated submission to App Store Connect and Google Play Console. All workflows include TDD gates and security scanning.
+</example>
+
+---
+
 ## Output Format
 
 Return minimal 3-line report to orchestrator:

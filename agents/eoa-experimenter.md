@@ -244,6 +244,26 @@ code-reviewer (reviews PR)
 
 ---
 
+## Examples
+
+<example>
+user: We need to choose between SQLite, PostgreSQL, and MongoDB for the session storage. Test all three for our read-heavy workload.
+assistant: [DONE] experimenter - Tested 3 database backends for session storage
+Key finding: PostgreSQL 2.3x faster than SQLite, 1.4x faster than MongoDB for our read-heavy pattern
+Details: docs_dev/experiments/exp-db-comparison-20260131/RESULTS.md
+Built Docker containers with identical test harnesses for all three. Ran 10,000 concurrent read operations with 5% writes. PostgreSQL achieved 12,450 ops/sec, MongoDB 8,900 ops/sec, SQLite 5,410 ops/sec. All experimental code deleted, keeping only RESULTS.md with benchmarks.
+</example>
+
+<example>
+user: Investigate why image processing is failing on large files. Create minimal reproduction to identify root cause.
+assistant: [DONE] experimenter - Isolated image processing failure to memory allocation
+Key finding: Out-of-memory error at 85MB files due to uncompressed buffer allocation
+Details: docs_dev/experiments/exp-image-failure-20260131/RESULTS.md
+Created minimal Docker container with test harness. Reproduced failure with synthetic 85MB+ images. Root cause: entire file loaded into memory uncompressed (340MB for 85MB JPEG). Tested 3 fixes: streaming parser (works), chunked processing (works), memory mapping (fastest). Recommendation: implement streaming parser. All test code deleted.
+</example>
+
+---
+
 ## Output Format
 
 **Return minimal report to orchestrator:**

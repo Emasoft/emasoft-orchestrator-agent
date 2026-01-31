@@ -207,6 +207,24 @@ For complete compilation examples, see:
 
 ---
 
+## Examples
+
+<example>
+user: Create a quality gate checklist for the svg-parser module before integration testing
+assistant: [DONE] checklist-compiler - Created svg-parser-quality-gate.md with 18 items (12 critical, 6 important)
+Details written to: docs_dev/checklists/svg-parser-quality-gate.md
+Created checklist with sections for code quality, test coverage, documentation, and RULE 14 requirement compliance verification. All 18 verification items are actionable with clear pass/fail criteria.
+</example>
+
+<example>
+user: We need a module completion checklist for the authentication system covering security requirements and edge cases
+assistant: [DONE] checklist-compiler - Created auth-module-completion.md with 24 items (16 critical, 8 important)
+Details written to: docs_dev/checklists/auth-module-completion.md
+Compiled checklist from security requirements in docs/auth-spec.md and USER_REQUIREMENTS.md. Includes password validation, session management, rate limiting, CSRF protection, and requirement traceability per RULE 14.
+</example>
+
+---
+
 ## Handoff to Orchestrator
 
 ### Completion Report Format

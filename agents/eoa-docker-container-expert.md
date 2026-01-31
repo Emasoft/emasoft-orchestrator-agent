@@ -237,6 +237,26 @@ CMD ["bash"]
 3. USE env file: `docker run --env-file .env ...`
 4. VERIFY inside container: `docker exec <container> env`
 
+## Examples
+
+<example>
+user: Create Docker development environment for Python 3.12 project with PostgreSQL database and Redis cache
+assistant: [DONE] docker-container-expert - Created specification for multi-service development environment
+Spec: docs_dev/docker/DOCKER-SPEC-20260131-143022.md
+Delegation: AI Maestro message sent to remote-developer-001
+Specified docker-compose.yml with 3 services: python app (python:3.12-slim), postgres:16, and redis:7-alpine. Documented environment variables, volume mounts for hot-reload, health checks, and resource limits. Included best practices for multi-stage builds and non-root user.
+</example>
+
+<example>
+user: We need cross-platform build container supporting Windows, Linux, and macOS compilation for C++ project
+assistant: [DONE] docker-container-expert - Created specification for cross-platform build environment
+Spec: docs_dev/docker/DOCKER-SPEC-20260131-143156.md
+Delegation: AI Maestro message sent to remote-developer-002
+Specified Ubuntu 24.04 base with MinGW-w64 for Windows cross-compilation, native GCC/Clang for Linux, and osxcross toolchain for macOS. Documented CMake configuration, build scripts for each platform, and artifact output structure. Included verification checklist for remote agent.
+</example>
+
+---
+
 ## Output Format
 
 Return minimal report:

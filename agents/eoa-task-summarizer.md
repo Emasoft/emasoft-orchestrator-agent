@@ -147,6 +147,26 @@ FAILED: tests/integration/test_api.py::test_rate_limit
 ACTION: Check rate limit logic in src/api/middleware.py
 ```
 
+## Examples
+
+<example>
+user: Summarize the test results from tests/logs/test-run-20260131-143022.log
+assistant: [TESTS] 127 passed, 3 failed, 2 skipped
+FAILED: tests/auth/test_session.py:89, tests/api/test_rate_limit.py:45, tests/db/test_migration.py:123
+ACTION: Fix 3 failing tests
+Read 4,250 lines of pytest output. Extracted failure locations and error messages. All failures are assertion errors, not infrastructure issues. Test coverage at 87% (above threshold).
+</example>
+
+<example>
+user: Analyze the CI build log from the latest GitHub Actions run - it's very verbose
+assistant: [BUILD] Failed at TypeScript compilation stage
+ERROR: Type 'string | undefined' not assignable to 'string' in src/utils/parser.ts:67
+ACTION: Add type guard or non-null assertion
+Read 8,930 lines of build output. Build succeeded through lint and test stages. Failure at tsc --noEmit. One type error blocking build. Details written to docs_dev/build-summary-20260131-143156.md with full stack trace and 5 suggested fixes.
+</example>
+
+---
+
 ## Handoff
 
 After summarizing:

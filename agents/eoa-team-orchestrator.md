@@ -334,6 +334,26 @@ The orchestrator maintains this checklist (does NOT execute items):
 
 ---
 
+## Examples
+
+<example>
+user: Coordinate development of the payment processing feature with 4 parallel components: Stripe integration, PayPal integration, transaction logging, and refund handling
+assistant: [DONE] team-orchestrator - Payment processing coordinated across 4 remote agents
+Key finding: GitHub Project created with 4 issues, all agents assigned via AI Maestro, progress monitoring active
+Details: docs_dev/team-orchestrator-report-20260131-143022.md
+Created GitHub Project "Payment Processing v2.0" with issues for each component. Sent AI Maestro messages to libs-payment-stripe, libs-payment-paypal, libs-transaction-logger, libs-refund-handler. Each agent received detailed instructions with RULE 14 enforcement (user required both Stripe AND PayPal, cannot substitute). Progress monitoring via daily check-ins and completion reports.
+</example>
+
+<example>
+user: We have a complex race condition bug affecting 3 modules. Coordinate parallel investigation and fixes.
+assistant: [DONE] team-orchestrator - Race condition investigation coordinated across 3 agents
+Key finding: Root cause identified in session manager, fixes coordinated without conflicts
+Details: docs_dev/team-orchestrator-report-20260131-143156.md
+Created GitHub Project "Race Condition Fix" with 3 investigation tasks. Assigned debugging-session-manager, debugging-cache-layer, debugging-api-gateway to separate agents via AI Maestro. Session manager agent identified root cause (non-atomic read-modify-write). Coordinated fixes: session manager implements mutex, cache layer adds retry logic, API gateway adds request deduplication. All agents confirmed TDD verification complete. Integration approved.
+</example>
+
+---
+
 ## Output Format
 
 **Return minimal report to orchestrator:**
