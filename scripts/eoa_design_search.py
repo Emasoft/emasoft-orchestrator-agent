@@ -165,7 +165,7 @@ def search_by_uuid(root: Path, uuid: str) -> list[dict[str, Any]]:
 
 def search_by_type(root: Path, doc_type: str, agent: str | None = None, platform: str | None = None) -> list[dict[str, Any]]:
     """Search documents by type."""
-    results = []
+    results: list[dict[str, Any]] = []
 
     if doc_type not in DOC_TYPES:
         return results

@@ -18,7 +18,7 @@ import sys
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 import yaml
 
@@ -44,7 +44,7 @@ def parse_frontmatter(file_path: Path) -> tuple[dict[str, Any], str]:
         return {}, content
 
     yaml_content = content[3:end_index].strip()
-    body = content[end_index + 3:].strip()
+    body = content[end_index + 3 :].strip()
 
     try:
         data = yaml.safe_load(yaml_content) or {}
@@ -64,18 +64,26 @@ def read_yaml_file(path: Path) -> dict[str, Any]:
         return {}
 
 
-def find_module_spec(root: Path, module_id: str, platform: str | None = None) -> tuple[Path | None, str]:
+def find_module_spec(
+    root: Path, module_id: str, platform: str | None = None
+) -> tuple[Path | None, str]:
     """Find the module specification file. Returns (path, content)."""
     search_paths = []
 
     if platform:
         # Search platform-specific first
-        search_paths.append(root / "requirements" / platform / "specs" / f"{module_id}.md")
-        search_paths.append(root / "requirements" / platform / "specs" / f"{module_id}-spec.md")
+        search_paths.append(
+            root / "requirements" / platform / "specs" / f"{module_id}.md"
+        )
+        search_paths.append(
+            root / "requirements" / platform / "specs" / f"{module_id}-spec.md"
+        )
 
     # Search shared
     search_paths.append(root / "requirements" / "shared" / "specs" / f"{module_id}.md")
-    search_paths.append(root / "requirements" / "shared" / "specs" / f"{module_id}-spec.md")
+    search_paths.append(
+        root / "requirements" / "shared" / "specs" / f"{module_id}-spec.md"
+    )
 
     # Search all platforms if not found
     requirements_dir = root / "requirements"
@@ -94,16 +102,24 @@ def find_module_spec(root: Path, module_id: str, platform: str | None = None) ->
     return None, ""
 
 
-def find_rdd_file(root: Path, module_id: str, platform: str | None = None) -> tuple[Path | None, str]:
+def find_rdd_file(
+    root: Path, module_id: str, platform: str | None = None
+) -> tuple[Path | None, str]:
     """Find the RDD file for a module. Returns (path, content)."""
     search_paths = []
 
     if platform:
-        search_paths.append(root / "requirements" / platform / "rdd" / f"{module_id}.md")
-        search_paths.append(root / "requirements" / platform / "rdd" / f"{module_id}-rdd.md")
+        search_paths.append(
+            root / "requirements" / platform / "rdd" / f"{module_id}.md"
+        )
+        search_paths.append(
+            root / "requirements" / platform / "rdd" / f"{module_id}-rdd.md"
+        )
 
     search_paths.append(root / "requirements" / "shared" / "rdd" / f"{module_id}.md")
-    search_paths.append(root / "requirements" / "shared" / "rdd" / f"{module_id}-rdd.md")
+    search_paths.append(
+        root / "requirements" / "shared" / "rdd" / f"{module_id}-rdd.md"
+    )
 
     for path in search_paths:
         if path.exists():
@@ -114,7 +130,7 @@ def find_rdd_file(root: Path, module_id: str, platform: str | None = None) -> tu
 
 def find_context_docs(root: Path, doc_ids: list[str]) -> list[tuple[str, str]]:
     """Find context documents by ID. Returns list of (id, content)."""
-    results = []
+    results: list[tuple[str, str]] = []
     memory_dir = root / "memory"
 
     if not memory_dir.exists():
@@ -141,7 +157,7 @@ def get_module_from_state(module_id: str) -> dict[str, Any] | None:
 
     for module in modules:
         if module.get("id") == module_id:
-            return module
+            return cast(dict[str, Any], module)
 
     return None
 
@@ -185,20 +201,24 @@ def compile_handoff(
     if platform:
         handoff_lines.append(f"**Platform:** {platform}")
 
-    handoff_lines.extend([
-        "",
-        "---",
-        "",
-        "## Context Summary",
-        "",
-    ])
+    handoff_lines.extend(
+        [
+            "",
+            "---",
+            "",
+            "## Context Summary",
+            "",
+        ]
+    )
 
     # Add context from state file
     if module_state:
         handoff_lines.append(f"**Module Name:** {module_state.get('name', module_id)}")
         handoff_lines.append(f"**Priority:** {module_state.get('priority', 'medium')}")
         if module_state.get("dependencies"):
-            handoff_lines.append(f"**Dependencies:** {', '.join(module_state['dependencies'])}")
+            handoff_lines.append(
+                f"**Dependencies:** {', '.join(module_state['dependencies'])}"
+            )
         handoff_lines.append("")
 
     # Add context documents
@@ -212,12 +232,14 @@ def compile_handoff(
             handoff_lines.append("")
 
     # Add requirements/specification
-    handoff_lines.extend([
-        "---",
-        "",
-        "## Requirements and Specification",
-        "",
-    ])
+    handoff_lines.extend(
+        [
+            "---",
+            "",
+            "## Requirements and Specification",
+            "",
+        ]
+    )
 
     if spec_content:
         handoff_lines.append(f"*Source: {spec_path}*")
@@ -230,24 +252,28 @@ def compile_handoff(
 
     # Add RDD
     if rdd_content:
-        handoff_lines.extend([
-            "---",
-            "",
-            "## Requirements-Driven Design",
-            "",
-            f"*Source: {rdd_path}*",
-            "",
-            rdd_content,
-            "",
-        ])
+        handoff_lines.extend(
+            [
+                "---",
+                "",
+                "## Requirements-Driven Design",
+                "",
+                f"*Source: {rdd_path}*",
+                "",
+                rdd_content,
+                "",
+            ]
+        )
 
     # Add configuration section
-    handoff_lines.extend([
-        "---",
-        "",
-        "## Configuration",
-        "",
-    ])
+    handoff_lines.extend(
+        [
+            "---",
+            "",
+            "## Configuration",
+            "",
+        ]
+    )
 
     if config_files:
         handoff_lines.append("The following configuration files are provided:")
@@ -260,37 +286,43 @@ def compile_handoff(
         handoff_lines.append("")
 
     # Add acceptance criteria
-    handoff_lines.extend([
-        "---",
-        "",
-        "## Acceptance Criteria",
-        "",
-    ])
+    handoff_lines.extend(
+        [
+            "---",
+            "",
+            "## Acceptance Criteria",
+            "",
+        ]
+    )
 
     if module_state and module_state.get("acceptance_criteria"):
         for criterion in module_state["acceptance_criteria"]:
             handoff_lines.append(f"- {criterion}")
         handoff_lines.append("")
     else:
-        handoff_lines.append("*Acceptance criteria should be extracted from the specification above.*")
+        handoff_lines.append(
+            "*Acceptance criteria should be extracted from the specification above.*"
+        )
         handoff_lines.append("")
 
     # Add verification request
-    handoff_lines.extend([
-        "---",
-        "",
-        "## Instructions for Agent",
-        "",
-        "**Before starting implementation:**",
-        "",
-        "1. Read this entire handoff document carefully",
-        "2. Reply with your understanding of the module scope and requirements",
-        "3. List any questions or clarifications needed",
-        "4. Confirm when you are ready to begin implementation",
-        "",
-        "**Do not start implementation until you receive authorization.**",
-        "",
-    ])
+    handoff_lines.extend(
+        [
+            "---",
+            "",
+            "## Instructions for Agent",
+            "",
+            "**Before starting implementation:**",
+            "",
+            "1. Read this entire handoff document carefully",
+            "2. Reply with your understanding of the module scope and requirements",
+            "3. List any questions or clarifications needed",
+            "4. Confirm when you are ready to begin implementation",
+            "",
+            "**Do not start implementation until you receive authorization.**",
+            "",
+        ]
+    )
 
     handoff_content = "\n".join(handoff_lines)
 
@@ -347,13 +379,19 @@ def update_index(root: Path, handoff_info: dict[str, Any], handoff_path: Path) -
         # Update stats
         if "stats" not in index_data:
             index_data["stats"] = {"total_documents": 0, "by_type": {}}
-        index_data["stats"]["total_documents"] = index_data["stats"].get("total_documents", 0) + 1
+        index_data["stats"]["total_documents"] = (
+            index_data["stats"].get("total_documents", 0) + 1
+        )
         if "by_type" not in index_data["stats"]:
             index_data["stats"]["by_type"] = {}
-        index_data["stats"]["by_type"]["handoffs"] = index_data["stats"]["by_type"].get("handoffs", 0) + 1
+        index_data["stats"]["by_type"]["handoffs"] = (
+            index_data["stats"]["by_type"].get("handoffs", 0) + 1
+        )
 
         # Write updated index
-        content = yaml.dump(index_data, default_flow_style=False, allow_unicode=True, sort_keys=False)
+        content = yaml.dump(
+            index_data, default_flow_style=False, allow_unicode=True, sort_keys=False
+        )
         index_file.write_text(content, encoding="utf-8")
         return True
 
@@ -380,7 +418,9 @@ def main() -> int:
         help="Configuration files to reference",
     )
     parser.add_argument("--json", action="store_true", help="Output results as JSON")
-    parser.add_argument("--dry-run", action="store_true", help="Generate but don't write handoff")
+    parser.add_argument(
+        "--dry-run", action="store_true", help="Generate but don't write handoff"
+    )
 
     args = parser.parse_args()
 
@@ -389,7 +429,11 @@ def main() -> int:
     # Check design folder exists
     if not root.exists():
         if args.json:
-            print(json.dumps({"success": False, "error": f"Design folder not found: {root}"}))
+            print(
+                json.dumps(
+                    {"success": False, "error": f"Design folder not found: {root}"}
+                )
+            )
         else:
             print(f"ERROR: Design folder not found: {root}")
             print("Run eoa_init_design_folders.py first")
@@ -438,7 +482,9 @@ def main() -> int:
         return 0
 
     # Write handoff
-    handoff_path = write_handoff(root, args.agent_id, args.module_id, handoff_info["content"])
+    handoff_path = write_handoff(
+        root, args.agent_id, args.module_id, handoff_info["content"]
+    )
     result["path"] = str(handoff_path)
 
     # Update index
@@ -448,7 +494,7 @@ def main() -> int:
     if args.json:
         print(json.dumps(result, indent=2))
     else:
-        print(f"Handoff compiled successfully")
+        print("Handoff compiled successfully")
         print(f"  Handoff ID: {handoff_info['handoff_id']}")
         print(f"  Agent: {handoff_info['agent_id']}")
         print(f"  Module: {handoff_info['module_id']}")

@@ -1,7 +1,7 @@
 ---
 name: eoa-docker-container-expert
 model: opus
-description: Manages Docker containers for cross-platform development and isolated testing
+description: Manages Docker containers for cross-platform development and isolated testing. Requires AI Maestro installed.
 type: local-helper
 auto_skills:
   - session-memory

@@ -1,13 +1,14 @@
 ---
 name: eoa-module-management-commands
-description: "Use when managing modules during Orchestration Phase. Covers adding, modifying, removing, prioritizing, and reassigning modules. Enforces the critical rule that every module maps 1:1 to a GitHub Issue."
+description: "Trigger with module management tasks. Use when managing modules during Orchestration Phase (add, modify, remove, prioritize, reassign). Every module maps 1:1 to GitHub Issue."
 license: Apache-2.0
-compatibility: Cross-platform compatible. Requires Python 3.8+ and PyYAML for scripts. Requires gh CLI for GitHub Issue operations. Works with AI Maestro messaging for agent notifications.
+compatibility: Cross-platform compatible. Requires Python 3.8+ and PyYAML for scripts. Requires gh CLI for GitHub Issue operations. Works with AI Maestro messaging for agent notifications. Requires AI Maestro installed.
 metadata:
   author: Anthropic
   version: 1.0.0
 user-invocable: false
 context: fork
+agent: eoa-main
 ---
 
 # Module Management Commands Skill
@@ -27,13 +28,21 @@ This skill teaches orchestrators how to dynamically manage modules during the Or
 
 ## Instructions
 
-Use this skill when:
-- User requests additional features mid-orchestration
-- User wants to change acceptance criteria for a module
-- A module needs to be cancelled before work starts
-- Priority of a module needs to change
-- Module needs to be assigned to a different agent
-- Understanding how modules sync with GitHub Issues
+1. Identify the module management action needed (add, modify, remove, prioritize, or reassign)
+2. Verify prerequisites: Orchestration Phase active, gh CLI authenticated, AI Maestro running
+3. Execute the appropriate command with required parameters
+4. Verify the module state update in `design/state/exec-phase.md`
+5. Confirm GitHub Issue synchronization completed
+6. Notify affected agents via AI Maestro if applicable
+
+## Output
+
+| Output Type | Format | Location |
+|-------------|--------|----------|
+| Module state update | YAML | `design/state/exec-phase.md` |
+| GitHub Issue created/updated | Issue number | GitHub repository |
+| Agent notification | AI Maestro message | Agent inbox |
+| Command success/failure | Status message | Console output |
 
 ## Commands Overview
 
@@ -437,3 +446,20 @@ python3 scripts/github_sync.py verify
 - [module-reassignment.md](./references/module-reassignment.md) - Transfer workflow
 - [github-issue-sync.md](./references/github-issue-sync.md) - Issue creation and sync
 - [troubleshooting.md](./references/troubleshooting.md) - Error recovery
+
+---
+
+## Checklist
+
+Copy this checklist and track your progress:
+
+- [ ] Identify module management action needed (add/modify/remove/prioritize/reassign)
+- [ ] Verify Orchestration Phase is active
+- [ ] Confirm gh CLI is authenticated
+- [ ] Verify AI Maestro is running (http://localhost:23000)
+- [ ] Execute appropriate command with required parameters
+- [ ] Check module state updated in design/state/exec-phase.md
+- [ ] Verify GitHub Issue created/updated with correct labels
+- [ ] Confirm agent notification sent via AI Maestro (if applicable)
+- [ ] Validate module-to-issue 1:1 relationship maintained
+- [ ] Document any errors in troubleshooting log

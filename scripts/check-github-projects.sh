@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2016  # GraphQL uses $var syntax, not shell expansion
 # check-github-projects.sh - Query GitHub Projects V2 API for pending items
 #
 # This script is called by the orchestrator stop hook (tasks.py) to check

@@ -1,12 +1,13 @@
 ---
 name: eoa-remote-agent-coordinator
-description: "Use when delegating coding tasks to remote AI agents and human developers via AI Maestro messaging. Covers onboarding agents, assigning tasks, coordinating multiple agents, and reviewing reports. The orchestrator NEVER writes code - it creates precise instructions."
+description: "Use when coordinating remote AI agents. Trigger with task delegation or multi-agent coordination requests."
 license: Apache-2.0
-compatibility: Requires AI Maestro messaging system (configurable via AIMAESTRO_API env var, default http://localhost:23000). Python 3.9+ for LSP management scripts.
+compatibility: Requires AI Maestro messaging system (configurable via AIMAESTRO_API env var, default http://localhost:23000). Python 3.9+ for LSP management scripts. Requires AI Maestro installed.
 metadata:
   author: Anthropic
   version: 1.2.0
 context: fork
+agent: eoa-main
 ---
 
 # Remote Agent Coordinator
@@ -24,15 +25,47 @@ The Remote Agent Coordinator enables the ATLAS-ORCHESTRATOR to delegate coding t
 - Remote agents registered and available
 - GitHub CLI (gh) for issue management
 
+## Output
+
+| Output Type | Format | Location |
+|-------------|--------|----------|
+| Agent roster | JSON file | `agent_roster.json` |
+| Task delegation messages | AI Maestro message | Sent via API |
+| Progress reports | AI Maestro message | Received via API |
+| Verification loop state | JSON tracking | In-memory or file |
+| Escalation messages | AI Maestro message | Sent to orchestrator-master |
+
 ## Instructions
 
-Invoke this skill when:
-- Onboarding a new agent to the project
-- Assigning a coding task to a remote developer
-- Coordinating multiple remote agents on a feature
-- Setting up overnight autonomous operation
-- Reviewing reports from remote agents
-- Escalating issues between agents
+Follow these steps when coordinating remote agents:
+
+1. Verify AI Maestro is running and remote agents are registered
+2. Review the task requirements and prepare delegation instructions
+3. Include ACK protocol instructions in every task message (see MANDATORY section below)
+4. Send task delegation message via AI Maestro with complete instruction format
+5. Wait for agent acknowledgment (timeout: 5 minutes)
+6. Monitor progress proactively every 10-15 minutes during active work
+7. Enforce 4-verification-loop protocol before approving any PR requests
+8. Review completion reports against acceptance criteria
+9. Escalate to user when architecture/security decisions are needed
+
+---
+
+## Checklist
+
+Copy this checklist and track your progress:
+
+- [ ] AI Maestro messaging system is running and accessible
+- [ ] Remote agents are registered and available in agent roster
+- [ ] Task delegation includes ACK protocol instructions block
+- [ ] Task delegation includes PR notification requirement
+- [ ] Task delegation includes complete instruction format (context, scope, interface, files, tests, completion criteria)
+- [ ] Agent acknowledgment received within 5 minutes
+- [ ] Proactive progress monitoring active (polling every 10-15 minutes)
+- [ ] 4-verification-loop protocol enforced before PR approval
+- [ ] Completion report reviewed against acceptance criteria
+- [ ] LSP servers verified for agent's working language
+- [ ] All escalations resolved before considering task complete
 
 ---
 
@@ -52,32 +85,12 @@ Invoke this skill when:
 
 **CRITICAL**: Remote agents DO NOT have this skill. The orchestrator MUST teach them the ACK protocol BY INCLUDING IT IN EVERY TASK DELEGATION MESSAGE.
 
-### ACK Instructions Block (MUST BE IN EVERY TASK DELEGATION)
-
-```
-================================================================================
-ACKNOWLEDGMENT REQUIRED (MANDATORY)
-================================================================================
-
-Before starting work, you MUST reply with an acknowledgment in this exact format:
-
-[ACK] {task_id} - {status}
-Understanding: {1-line summary of what you will do}
-
-Status options:
-- RECEIVED - Task received, will begin work immediately
-- CLARIFICATION_NEEDED - Need more info (list your questions below)
-- REJECTED - Cannot accept task (explain why)
-- QUEUED - Have prior tasks, will start after completing them
-
-DO NOT begin work until you have sent this acknowledgment.
-================================================================================
-```
+**ACK template to copy-paste**: See [echo-acknowledgment-protocol.md](./references/echo-acknowledgment-protocol.md) section 2.3 for the exact template block.
 
 **Full protocol details**: [echo-acknowledgment-protocol.md](./references/echo-acknowledgment-protocol.md)
 - 1.0 Purpose and triggers
 - 2.0 Message Types: Instructions vs Conversations
-- 3.0 ACK Format and Examples
+- 3.0 ACK Format and Examples (includes template block)
 - 4.0 Timeout handling (5 min wait, reminder, reassign)
 - 5.0 Proactive enforcement by orchestrator
 
@@ -171,23 +184,13 @@ Before any agent can receive real tasks, they must complete onboarding.
 
 ## MANDATORY: 4-Verification-Loops Before PR
 
-**CRITICAL**: For EACH TASK, require 4 verification loops BEFORE allowing PR creation.
+**CRITICAL**: For EACH TASK, require 4 verification loops BEFORE allowing PR creation. The agent will make 5 PR requests total - respond to the first 4 with "Check your changes for errors", then approve or reject on the 5th.
 
-### Summary: The 5 PR Requests
-
-| PR Request # | Orchestrator Response |
-|--------------|----------------------|
-| 1st | "Check your changes for errors" (Loop 1) |
-| 2nd | "Check your changes for errors" (Loop 2) |
-| 3rd | "Check your changes for errors" (Loop 3) |
-| 4th | "Check your changes for errors" (Loop 4) |
-| 5th | "APPROVED" or "NOT APPROVED - restart" |
-
-**Full protocol**: [verification-loops-protocol.md](./references/verification-loops-protocol.md)
+**Full protocol with table**: [verification-loops-protocol.md](./references/verification-loops-protocol.md)
 - 1.0 Understanding the 5 PR requests cycle
 - 2.0 Verification message templates
 - 3.0 Tracking verification state per task
-- 4.0 Approval and rejection messages
+- 4.0 Summary table: The 5 PR Requests (orchestrator responses)
 - 5.0 Enforcement rules (MUST/MUST NOT)
 
 ---
@@ -261,16 +264,10 @@ Remote agents must follow **FAIL-FAST**:
 
 ## LSP Server Requirements
 
-Remote agents MUST have LSP servers installed for working languages.
-
-| Language | LSP Plugin | Install Command |
-|----------|-----------|-----------------|
-| Python | `pyright-lsp` | `pip install pyright` |
-| TypeScript | `typescript-lsp` | `npm install -g typescript-language-server` |
-| Rust | `rust-analyzer-lsp` | `rustup component add rust-analyzer` |
+Remote agents MUST have LSP servers installed for working languages. Verify LSP availability before assigning tasks.
 
 **LSP References**:
-- [lsp-servers-overview.md](./references/lsp-servers-overview.md) - Available plugins, configuration
+- [lsp-servers-overview.md](./references/lsp-servers-overview.md) - Available plugins table, install commands, configuration
 - [lsp-installation-guide.md](./references/lsp-installation-guide.md) - Per-language installation
 - [lsp-enforcement-checklist.md](./references/lsp-enforcement-checklist.md) - Pre-assignment verification
 - [orchestrator-lsp-management.md](./references/orchestrator-lsp-management.md) - Orchestrator LSP guide
@@ -366,94 +363,20 @@ Every task delegation MUST include:
 
 ## Skill Files
 
-```
-remote-agent-coordinator/
-+-- SKILL.md                              # This file (map/index)
-+-- references/
-|   +-- agent-onboarding.md               # New agent onboarding guide
-|   +-- agent-registration.md             # Agent roster management
-|   +-- agent-response-templates.md       # Template usage in delegations
-|   +-- artifact-sharing-protocol.md      # Build artifact sharing
-|   +-- bug-reporting-protocol.md         # Bug report handling
-|   +-- central-configuration.md          # Central source of truth
-|   +-- change-notification-protocol.md   # Change notification system
-|   +-- document-storage-atlas.md         # ATLAS document storage
-|   +-- echo-acknowledgment-protocol.md   # ACK protocol
-|   +-- error-handling-protocol.md        # FAIL-FAST and error reports
-|   +-- escalation-procedures.md          # Escalation rules
-|   +-- lsp-enforcement-checklist.md      # Pre-assignment LSP check
-|   +-- lsp-installation-guide.md         # Per-language LSP install
-|   +-- lsp-plugin-template.md            # Custom LSP plugin templates
-|   +-- lsp-servers-overview.md           # LSP plugins overview
-|   +-- messaging-protocol.md             # AI Maestro protocol details
-|   +-- orchestrator-lsp-management.md    # Orchestrator LSP guide
-|   +-- overnight-operation.md            # Overnight autonomous guide
-|   +-- progress-monitoring-protocol.md   # Proactive monitoring
-|   +-- rule-14-immutable-requirements.md # User requirements rule
-|   +-- rule-15-no-implementation.md      # No orchestrator coding rule
-|   +-- skill-authoring-best-practices.md # Skill writing guidance
-|   +-- skill-format-comparison.md        # Open Spec vs Claude Code
-|   +-- task-instruction-format.md        # Complete instruction template
-|   +-- toolchain-template-system.md      # Template system guide
-|   +-- toolchain-setup.md                # Toolchain configuration
-|   +-- verification-loops-protocol.md    # 4-loop PR verification
-+-- scripts/
-|   +-- install_lsp.py                    # LSP installation
-|   +-- validate_skill.py                 # Skill validation
-|   +-- eoa_orchestrator_init.py <!-- TODO: Rename to eoa_orchestrator_init.py -->        # Init storage
-|   +-- eoa_register_agent.py <!-- TODO: Rename to eoa_register_agent.py -->           # Register agents
-|   +-- eoa_orchestrator_download.py <!-- TODO: Rename to eoa_orchestrator_download.py -->    # Download from agents
-|   +-- eoa_search.py <!-- TODO: Rename to eoa_search.py -->                   # Cross-agent search
-|   +-- eoa_download.py <!-- TODO: Rename to eoa_download.py -->                 # Basic download
-+-- templates/
-    +-- protocols/
-        +-- DOCUMENT_DELIVERY_PROTOCOL.md
-        +-- DOCUMENT_STORAGE_PROTOCOL.md
-```
+**Full directory structure**: [skill-directory-structure.md](./references/skill-directory-structure.md)
+- 1.0 Top-Level Structure
+- 2.0 References Directory (30+ files)
+- 3.0 Scripts Directory
+- 4.0 Templates Directory
 
 ---
 
 ## Examples
 
-### Example 1: Onboard and Assign Task to New Agent
-
-```bash
-# Step 1: Agent completes onboarding (reads docs, sets up env)
-# Step 2: Agent sends registration message
-# Step 3: Orchestrator approves registration
-
-# Step 4: Send task with ACK instructions
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "to": "implementer-1",
-    "subject": "Task: Implement auth-core module",
-    "priority": "high",
-    "content": {
-      "type": "task",
-      "message": "[TASK] auth-core\n\n[ACK REQUIRED]...\n\nContext: JWT authentication\nScope: src/auth/\nTests: pytest tests/auth/"
-    }
-  }'
-```
-
-### Example 2: 4-Verification Loop
-
-```
-Agent: "Can I make a PR?"
-Orchestrator: "Check your changes for errors" (Loop 1)
-
-Agent: "Can I make a PR?"
-Orchestrator: "Check your changes for errors" (Loop 2)
-
-Agent: "Can I make a PR?"
-Orchestrator: "Check your changes for errors" (Loop 3)
-
-Agent: "Can I make a PR?"
-Orchestrator: "Check your changes for errors" (Loop 4)
-
-Agent: "Can I make a PR?"
-Orchestrator: "APPROVED - create PR" (5th request)
-```
+**Complete examples with code**: [examples-remote-coordination.md](./references/examples-remote-coordination.md)
+- 1.0 Example: Onboard and Assign Task to New Agent (with curl commands)
+- 2.0 Example: 4-Verification Loop Sequence (complete conversation flow, tracking table)
+- 3.0 Example: Progress Monitoring Flow (polling commands, timeline, no-response handling)
 
 ---
 

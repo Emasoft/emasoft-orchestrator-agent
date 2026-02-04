@@ -1,13 +1,14 @@
 ---
 name: eoa-orchestration-commands
-description: "Use when running orchestration phase commands for Orchestrator Agent. Covers starting orchestration, monitoring status, checking the orchestrator loop, and cancellation. Explains stop hook integration that prevents premature exit until all modules are complete."
+description: "Use when managing orchestration phase commands. Trigger with start, monitor, loop control, cancellation, or stop hook enforcement requests."
 license: Apache-2.0
-compatibility: "Requires Python 3.8+, PyYAML, GitHub CLI. Works with AI Maestro for remote agent communication."
+compatibility: "Requires Python 3.8+, PyYAML, GitHub CLI. Works with AI Maestro for remote agent communication. Requires AI Maestro installed."
 metadata:
   author: Anthropic
   version: 1.0.0
 user-invocable: false
 context: fork
+agent: eoa-main
 ---
 
 # Orchestration Commands Skill
@@ -18,12 +19,20 @@ This skill teaches how to use the orchestration phase commands in the Orchestrat
 
 ## Instructions
 
-Use this skill when you need to:
-- Start an orchestration phase to implement an approved plan
-- Monitor the status of modules, agents, and assignments
-- Check the orchestrator loop state and pending tasks
-- Control or cancel the orchestrator loop
-- Understand how the stop hook prevents premature exit
+1. Start an orchestration phase to implement an approved plan
+2. Monitor the status of modules, agents, and assignments
+3. Check the orchestrator loop state and pending tasks
+4. Control or cancel the orchestrator loop
+5. Understand how the stop hook prevents premature exit
+
+## Output
+
+| Output Type | Format | Example |
+|-------------|--------|---------|
+| Status report | Markdown table | Module completion percentages, agent assignments |
+| Loop state | Text summary | Active/inactive, iteration count, pending tasks |
+| Cancellation | Confirmation | "Orchestrator loop cancelled at iteration X" |
+| Error messages | Text | Hook blocking reasons, state file issues |
 
 ## Prerequisites
 
@@ -330,7 +339,55 @@ The orchestrator stop hook (`eoa_orchestrator_stop_check.py` <!-- TODO: Script n
 
 ---
 
+## Examples
+
+### Example 1: Complete Orchestration Start
+
+```bash
+# Step 1: Start orchestration with GitHub Project sync
+/start-orchestration --project-id PVT_kwDOB1234567
+
+# Step 2: Register AI agent
+/register-agent ai implementer-1 --session helper-agent-generic
+
+# Step 3: Assign first module
+/assign-module auth-core implementer-1
+
+# Step 4: Monitor progress
+/orchestration-status --verbose
+```
+
+### Example 2: Check Orchestrator Loop Status
+
+```bash
+# Start loop
+/orchestrator-loop "Complete all authentication tasks" --max-iterations 50
+
+# Check status
+/orchestrator-status --verbose
+
+# If needed, cancel
+/cancel-orchestrator
+```
+
+### Example 3: Monitoring During Implementation
+
+```bash
+# Check all agents every 10-15 minutes
+/check-agents
+
+# Or check specific agent
+/check-agents --agent implementer-1
+
+# View orchestration status
+/orchestration-status --modules-only
+```
+
+---
+
 ## Checklist: Starting Orchestration
+
+Copy this checklist and track your progress:
 
 - [ ] Plan Phase complete (`/approve-plan` executed)
 - [ ] State file `design/state/exec-phase.md` exists
@@ -344,6 +401,8 @@ The orchestrator stop hook (`eoa_orchestrator_stop_check.py` <!-- TODO: Script n
 
 ## Checklist: Monitoring Progress
 
+Copy this checklist and track your progress:
+
 - [ ] Run `/orchestration-status` to see module completion
 - [ ] Check for agents with incomplete instruction verification
 - [ ] Review polling history for stuck agents
@@ -353,6 +412,8 @@ The orchestrator stop hook (`eoa_orchestrator_stop_check.py` <!-- TODO: Script n
 ---
 
 ## Checklist: Cancellation
+
+Copy this checklist and track your progress:
 
 - [ ] Confirm you want to cancel (tasks may be incomplete)
 - [ ] Run `/cancel-orchestrator`

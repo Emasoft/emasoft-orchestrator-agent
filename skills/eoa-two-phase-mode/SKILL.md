@@ -1,12 +1,13 @@
 ---
 name: eoa-two-phase-mode
-description: "Use when implementing Two-Phase Mode workflow for orchestration. Phase 1 (Plan Phase) writes requirements before implementation. Phase 2 (Orchestration Phase) directs remote agents module by module. Includes Instruction Verification Protocol and completion enforcement via stop hooks."
+description: "Use when orchestrating complex projects. Trigger with multi-module or two-phase planning requests."
 license: Apache-2.0
-compatibility: Requires AI Maestro messaging system, GitHub CLI (gh), remote agents registered by user, and YAML frontmatter state files.
+compatibility: Requires AI Maestro messaging system, GitHub CLI (gh), remote agents registered by user, and YAML frontmatter state files. Requires AI Maestro installed.
 metadata:
   author: Emasoft
   version: 2.6.0
 context: fork
+agent: eoa-main
 ---
 
 # Two-Phase Mode Skill
@@ -22,14 +23,46 @@ Two-Phase Mode separates orchestration into two distinct phases:
 - Remote agents registered by user
 - Understanding of YAML frontmatter state files
 
+## Output
+
+| Output Type | Location | Description |
+|-------------|----------|-------------|
+| Plan Phase State | `.atlas-orchestrator/plan-phase.md` | YAML frontmatter with requirements, modules, criteria |
+| Orchestration State | `.atlas-orchestrator/orchestration-phase.md` | YAML frontmatter with agent assignments, module status |
+| Design Documents | `design/<platform>/` | Templates, handoffs, RDD files, specs |
+| GitHub Issues | GitHub repository | Module issues created from approved plan |
+| Claude Tasks | Claude Code session | Persistent task tracking across compacting |
+
 ## Instructions
 
-Two-Phase Mode separates orchestration into two distinct phases:
+1. **Understand the two phases**: Plan Phase (requirements) and Orchestration Phase (implementation).
 
-| Phase | Purpose | Activities | Exit Condition |
-|-------|---------|------------|----------------|
-| **Plan Phase** | Write requirements | Design specs, architecture, task breakdown | All requirements documented + user approval |
-| **Orchestration Phase** | Direct implementation | Coordinate remote agents module by module | All modules implemented + 4 verification loops |
+   | Phase | Purpose | Activities | Exit Condition |
+   |-------|---------|------------|----------------|
+   | **Plan Phase** | Write requirements | Design specs, architecture, task breakdown | All requirements documented + user approval |
+   | **Orchestration Phase** | Direct implementation | Coordinate remote agents module by module | All modules implemented + 4 verification loops |
+
+2. **Start Plan Phase**: Use `/start-planning` command to create state file and begin requirements documentation.
+
+3. **Document requirements**: Write USER_REQUIREMENTS.md, define architecture, break down modules, set acceptance criteria.
+
+4. **Approve plan**: Use `/approve-plan` to transition to Orchestration Phase and create GitHub issues.
+
+5. **Start Orchestration Phase**: Use `/start-orchestration` to initialize orchestration state file.
+
+6. **Register agents**: Use `/register-agent` to register remote AI agents or human developers.
+
+7. **Assign modules**: Use `/assign-module` to assign modules to registered agents.
+
+8. **Verify instructions**: Execute Instruction Verification Protocol before authorizing implementation.
+
+9. **Poll progress**: Use `/check-agents` every 10-15 minutes to actively poll implementers.
+
+10. **Handle updates**: If requirements change, use Instruction Update Verification Protocol.
+
+11. **Complete verification loops**: Each module requires 4 verification loops before completion.
+
+12. **Exit when complete**: Stop hook ensures all modules are complete before allowing exit.
 
 ## Core Principle: Dynamic Flexibility with Completion Enforcement
 
@@ -212,38 +245,6 @@ Complete reference for all Two-Phase Mode Python scripts.
 | 4. Modified Scripts (1) | eoa_orchestrator_stop_check.py (phase-aware) |
 
 **When to use:** Understanding script functionality, debugging, learning parameters.
-
----
-
-### Design & GitHub Scripts Usage Examples
-
-**Initialize design folder structure:**
-```bash
-python3 eoa_init_design_folders.py --platforms web ios android
-```
-
-**Compile handoff for agent:**
-```bash
-python3 eoa_compile_handoff.py auth-core implementer-1 --platform web --include-context decision-001
-```
-
-**Search design documents:**
-```bash
-python3 eoa_design_search.py --keyword "auth" --type requirements
-python3 eoa_design_search.py --uuid abc12345
-python3 eoa_design_search.py --recent 10
-```
-
-**Sync with GitHub Projects kanban:**
-```bash
-python3 eoa_sync_kanban.py --project-id PVT_kwDOBxxxxxx --create-missing
-```
-
-**Create GitHub issues for modules:**
-```bash
-python3 eoa_create_module_issues.py --all --project-id PVT_kwDOBxxxxxx
-python3 eoa_create_module_issues.py --module auth-core
-```
 
 ---
 
@@ -443,18 +444,52 @@ See [Troubleshooting](references/troubleshooting.md) for complete solutions.
 
 ---
 
+## Checklist
+
+Copy this checklist and track your progress:
+
+### Plan Phase
+- [ ] Run `/start-planning` command
+- [ ] Document user requirements in USER_REQUIREMENTS.md
+- [ ] Define architecture and design
+- [ ] Break down into modules with acceptance criteria
+- [ ] Review plan with user
+- [ ] Run `/approve-plan` to transition
+- [ ] Verify GitHub issues created
+
+### Orchestration Phase
+- [ ] Run `/start-orchestration` command
+- [ ] Register all remote agents with `/register-agent`
+- [ ] Assign modules to agents with `/assign-module`
+- [ ] Execute Instruction Verification Protocol for each module
+- [ ] Poll agents every 10-15 minutes with `/check-agents`
+- [ ] Handle any instruction updates with Update Verification Protocol
+- [ ] Complete 4 verification loops per module
+- [ ] Verify all modules marked complete
+- [ ] Confirm stop hook allows exit
+
+### Claude Tasks Scheduling
+- [ ] Create Claude Tasks immediately when receiving instructions
+- [ ] Include verification task in each series
+- [ ] Include archive task in each series
+- [ ] Include commit task with [SERIES-COMPLETE] format
+- [ ] Verify Claude Tasks persist across compacting
+
+---
+
 ## Resources
 
-- [plan-phase-workflow.md](references/plan-phase-workflow.md) - Plan Phase details
-- [orchestration-phase-workflow.md](references/orchestration-phase-workflow.md) - Orchestration Phase details
-- [instruction-verification-protocol.md](references/instruction-verification-protocol.md) - 8-step verification
-- [proactive-progress-polling.md](references/proactive-progress-polling.md) - 6 mandatory questions
-- [instruction-update-verification-protocol.md](references/instruction-update-verification-protocol.md) - Mid-impl updates
-- [state-file-formats.md](references/state-file-formats.md) - YAML schemas
-- [command-reference.md](references/command-reference.md) - All 16 commands
-- [script-reference.md](references/script-reference.md) - All scripts
-- [native-task-persistence.md](references/native-task-persistence.md) - Claude Tasks scheduling
-- [issue-handling-workflow.md](references/issue-handling-workflow.md) - Issue categories
-- [workflow-diagram.md](references/workflow-diagram.md) - Visual flowcharts
-- [quick-reference-checklist.md](references/quick-reference-checklist.md) - Actionable checklists
-- [troubleshooting.md](references/troubleshooting.md) - Common issues and solutions
+- [Workflow Diagram](./references/workflow-diagram.md)
+- [Plan Phase Workflow](./references/plan-phase-workflow.md)
+- [Orchestration Phase Workflow](./references/orchestration-phase-workflow.md)
+- [Instruction Verification Protocol](./references/instruction-verification-protocol.md)
+- [Instruction Update Verification Protocol](./references/instruction-update-verification-protocol.md)
+- [Proactive Progress Polling](./references/proactive-progress-polling.md)
+- [Native Task Persistence](./references/native-task-persistence.md)
+- [Issue Handling Workflow](./references/issue-handling-workflow.md)
+- [Command Reference](./references/command-reference.md)
+- [Script Reference](./references/script-reference.md)
+- [State File Formats](./references/state-file-formats.md)
+- [Design Folder Structure](./references/design-folder-structure.md)
+- [Quick Reference Checklist](./references/quick-reference-checklist.md)
+- [Troubleshooting](./references/troubleshooting.md)

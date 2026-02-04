@@ -1,8 +1,18 @@
 # Proactive Handoff Protocol
 
+## Standard Handoff Format
+
+All handoffs use the EAMA standard format:
+- **Location**: `docs_dev/handoffs/`
+- **Naming**: `handoff-{uuid}-{from}-to-{to}.md`
+- **Delivery**: AI Maestro message with file path
+- **Template**: See `../../shared/handoff_template.md`
+
+---
 
 ## Contents
 
+- [Standard Handoff Format](#standard-handoff-format)
 - [Automatic Handoff Triggers](#automatic-handoff-triggers)
 - [Handoff Document Location](#handoff-document-location)
 - [Mandatory Handoff Sections](#mandatory-handoff-sections)

@@ -18,7 +18,7 @@ import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 import yaml
 
@@ -60,7 +60,7 @@ def parse_frontmatter(file_path: Path) -> tuple[dict[str, Any], str]:
         return {}, content
 
     yaml_content = content[3:end_index].strip()
-    body = content[end_index + 3:].strip()
+    body = content[end_index + 3 :].strip()
 
     try:
         data = yaml.safe_load(yaml_content) or {}
@@ -72,7 +72,9 @@ def parse_frontmatter(file_path: Path) -> tuple[dict[str, Any], str]:
 def write_state_file(file_path: Path, data: dict[str, Any], body: str) -> bool:
     """Write a state file with YAML frontmatter."""
     try:
-        yaml_content = yaml.dump(data, default_flow_style=False, allow_unicode=True, sort_keys=False)
+        yaml_content = yaml.dump(
+            data, default_flow_style=False, allow_unicode=True, sort_keys=False
+        )
         content = f"---\n{yaml_content}---\n\n{body}"
         file_path.write_text(content, encoding="utf-8")
         return True
@@ -139,11 +141,16 @@ def get_project_items(project_id: str) -> list[dict[str, Any]]:
     }
     """
 
-    success, output = gh_command([
-        "api", "graphql",
-        "-f", f"query={query}",
-        "-f", f"projectId={project_id}",
-    ])
+    success, output = gh_command(
+        [
+            "api",
+            "graphql",
+            "-f",
+            f"query={query}",
+            "-f",
+            f"projectId={project_id}",
+        ]
+    )
 
     if not success:
         print(f"ERROR: Failed to get project items: {output}")
@@ -152,7 +159,7 @@ def get_project_items(project_id: str) -> list[dict[str, Any]]:
     try:
         data = json.loads(output)
         items = data.get("data", {}).get("node", {}).get("items", {}).get("nodes", [])
-        return items
+        return cast(list[dict[str, Any]], items)
     except json.JSONDecodeError:
         print(f"ERROR: Invalid JSON response: {output}")
         return []
@@ -185,11 +192,16 @@ def get_project_fields(project_id: str) -> dict[str, Any]:
     }
     """
 
-    success, output = gh_command([
-        "api", "graphql",
-        "-f", f"query={query}",
-        "-f", f"projectId={project_id}",
-    ])
+    success, output = gh_command(
+        [
+            "api",
+            "graphql",
+            "-f",
+            f"query={query}",
+            "-f",
+            f"projectId={project_id}",
+        ]
+    )
 
     if not success:
         return {}
@@ -204,7 +216,9 @@ def get_project_fields(project_id: str) -> dict[str, Any]:
             if name in ["Status", "Priority"]:
                 field_map[name] = {
                     "id": field.get("id"),
-                    "options": {opt["name"]: opt["id"] for opt in field.get("options", [])},
+                    "options": {
+                        opt["name"]: opt["id"] for opt in field.get("options", [])
+                    },
                 }
 
         return field_map
@@ -224,13 +238,20 @@ def create_project_item(project_id: str, title: str, body: str = "") -> str | No
     }
     """
 
-    success, output = gh_command([
-        "api", "graphql",
-        "-f", f"query={mutation}",
-        "-f", f"projectId={project_id}",
-        "-f", f"title={title}",
-        "-f", f"body={body}",
-    ])
+    success, output = gh_command(
+        [
+            "api",
+            "graphql",
+            "-f",
+            f"query={mutation}",
+            "-f",
+            f"projectId={project_id}",
+            "-f",
+            f"title={title}",
+            "-f",
+            f"body={body}",
+        ]
+    )
 
     if not success:
         print(f"ERROR: Failed to create project item: {output}")
@@ -238,13 +259,20 @@ def create_project_item(project_id: str, title: str, body: str = "") -> str | No
 
     try:
         data = json.loads(output)
-        item_id = data.get("data", {}).get("addProjectV2DraftIssue", {}).get("projectItem", {}).get("id")
-        return item_id
+        item_id = (
+            data.get("data", {})
+            .get("addProjectV2DraftIssue", {})
+            .get("projectItem", {})
+            .get("id")
+        )
+        return cast(str | None, item_id)
     except json.JSONDecodeError:
         return None
 
 
-def update_project_item_field(project_id: str, item_id: str, field_id: str, option_id: str) -> bool:
+def update_project_item_field(
+    project_id: str, item_id: str, field_id: str, option_id: str
+) -> bool:
     """Update a single select field on a project item."""
     mutation = """
     mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $optionId: String!) {
@@ -261,19 +289,29 @@ def update_project_item_field(project_id: str, item_id: str, field_id: str, opti
     }
     """
 
-    success, _ = gh_command([
-        "api", "graphql",
-        "-f", f"query={mutation}",
-        "-f", f"projectId={project_id}",
-        "-f", f"itemId={item_id}",
-        "-f", f"fieldId={field_id}",
-        "-f", f"optionId={option_id}",
-    ])
+    success, _ = gh_command(
+        [
+            "api",
+            "graphql",
+            "-f",
+            f"query={mutation}",
+            "-f",
+            f"projectId={project_id}",
+            "-f",
+            f"itemId={item_id}",
+            "-f",
+            f"fieldId={field_id}",
+            "-f",
+            f"optionId={option_id}",
+        ]
+    )
 
     return success
 
 
-def find_item_by_title(items: list[dict[str, Any]], title: str) -> dict[str, Any] | None:
+def find_item_by_title(
+    items: list[dict[str, Any]], title: str
+) -> dict[str, Any] | None:
     """Find a project item by title."""
     for item in items:
         content = item.get("content", {})
@@ -377,14 +415,18 @@ def sync_module_to_project(
                 column = STATUS_TO_COLUMN.get(status, "To Do")
                 option_id = status_field.get("options", {}).get(column)
                 if option_id:
-                    update_project_item_field(project_id, item_id, status_field["id"], option_id)
+                    update_project_item_field(
+                        project_id, item_id, status_field["id"], option_id
+                    )
 
             priority_field = fields.get("Priority", {})
             if priority_field:
                 priority_value = PRIORITY_VALUES.get(priority, "Medium")
                 option_id = priority_field.get("options", {}).get(priority_value)
                 if option_id:
-                    update_project_item_field(project_id, item_id, priority_field["id"], option_id)
+                    update_project_item_field(
+                        project_id, item_id, priority_field["id"], option_id
+                    )
         else:
             result["success"] = False
             result["error"] = "Failed to create item"
@@ -396,10 +438,18 @@ def sync_module_to_project(
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Sync modules with GitHub Projects kanban")
-    parser.add_argument("--project-id", help="GitHub Project ID (e.g., PVT_kwDOBxxxxxx)")
-    parser.add_argument("--dry-run", action="store_true", help="Show what would be synced")
-    parser.add_argument("--create-missing", action="store_true", help="Create missing project items")
+    parser = argparse.ArgumentParser(
+        description="Sync modules with GitHub Projects kanban"
+    )
+    parser.add_argument(
+        "--project-id", help="GitHub Project ID (e.g., PVT_kwDOBxxxxxx)"
+    )
+    parser.add_argument(
+        "--dry-run", action="store_true", help="Show what would be synced"
+    )
+    parser.add_argument(
+        "--create-missing", action="store_true", help="Create missing project items"
+    )
     parser.add_argument("--json", action="store_true", help="Output as JSON")
 
     args = parser.parse_args()
@@ -407,7 +457,11 @@ def main() -> int:
     # Load orchestration state
     if not EXEC_STATE_FILE.exists():
         if args.json:
-            print(json.dumps({"success": False, "error": "Orchestration state file not found"}))
+            print(
+                json.dumps(
+                    {"success": False, "error": "Orchestration state file not found"}
+                )
+            )
         else:
             print("ERROR: Orchestration state file not found")
             print("Run /start-orchestration first")
@@ -429,7 +483,11 @@ def main() -> int:
     modules = exec_data.get("modules", [])
     if not modules:
         if args.json:
-            print(json.dumps({"success": True, "message": "No modules to sync", "synced": 0}))
+            print(
+                json.dumps(
+                    {"success": True, "message": "No modules to sync", "synced": 0}
+                )
+            )
         else:
             print("No modules to sync")
         return 0
@@ -439,7 +497,11 @@ def main() -> int:
         fields = get_project_fields(project_id)
         if not fields:
             if args.json:
-                print(json.dumps({"success": False, "error": "Could not get project fields"}))
+                print(
+                    json.dumps(
+                        {"success": False, "error": "Could not get project fields"}
+                    )
+                )
             else:
                 print("ERROR: Could not get project fields")
                 print("Make sure you have access to the project")

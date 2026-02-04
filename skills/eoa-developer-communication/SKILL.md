@@ -1,18 +1,16 @@
 ---
 name: eoa-developer-communication
-description: "Use when communicating with human developers in code reviews, issues, technical discussions, and status updates. Covers effective communication patterns."
+description: "Trigger with developer communication needs. Use when communicating with human developers in code reviews, issues, technical discussions, and status updates. Covers effective communication patterns."
 license: Apache-2.0
+compatibility: Requires AI Maestro installed.
 metadata:
   version: 1.0.0
   author: atlas-orchestrator
-  tags:
-    - communication
-    - code-review
-    - documentation
-    - collaboration
+  tags: "communication, code-review, documentation, collaboration"
   audience: AI agents working with human developers
   prerequisites: None
 context: fork
+agent: eoa-main
 ---
 
 # Developer Communication Skill
@@ -27,19 +25,39 @@ This skill teaches effective communication with **human developers**
 - Access to communication channels (GitHub, Slack, etc.)
 - Familiarity with professional communication standards
 
+## Output
+
+| Field | Description | Format |
+|-------|-------------|--------|
+| Communication Type | The type of developer communication (PR comment, issue response, technical explanation, status update, etc.) | String |
+| Tone Assessment | Evaluation of message tone (respectful, specific, constructive) | Pass/Fail with notes |
+| Blocking Status | Whether feedback is blocking or non-blocking | "Blocking" or "Non-blocking" |
+| Message Content | The actual communication to send | Formatted text (Markdown) |
+| References | Links to relevant code, issues, or documentation | List of URLs |
+
 ## Instructions
 
-This skill teaches effective communication with **human developers** - not AI agents. Human communication differs fundamentally from structured AI-to-AI message templates:
+1. **Identify the communication type** - Determine if you are writing a PR comment, issue response, technical explanation, status update, or conflict resolution message.
 
-| Aspect | AI-to-AI Communication | Human Communication |
-|--------|------------------------|---------------------|
-| Format | Structured JSON/templates | Natural language |
-| Tone | Neutral, task-focused | Warm, respectful, contextual |
-| Context | Explicit, complete | Often implicit, requires inference |
-| Feedback | Direct status codes | Nuanced, face-saving |
-| Timing | Immediate processing | Async, variable attention |
+2. **Understand the human-AI communication differences** - Recognize that human communication differs fundamentally from structured AI-to-AI message templates:
 
-**When to use this skill**: Any interaction where the recipient is a human developer - Pull Request comments, issue responses, technical explanations, status updates, or conflict resolution.
+   | Aspect | AI-to-AI Communication | Human Communication |
+   |--------|------------------------|---------------------|
+   | Format | Structured JSON/templates | Natural language |
+   | Tone | Neutral, task-focused | Warm, respectful, contextual |
+   | Context | Explicit, complete | Often implicit, requires inference |
+   | Feedback | Direct status codes | Nuanced, face-saving |
+   | Timing | Immediate processing | Async, variable attention |
+
+3. **Use the decision tree** - Navigate the decision tree below to select the appropriate reference document for your specific communication scenario.
+
+4. **Apply the key principles** - Before drafting your message, review and apply all six key principles listed in the "Key Principles of Developer Communication" section.
+
+5. **Draft your message** - Write your communication following the patterns and templates in the relevant reference document.
+
+6. **Run the pre-send checklist** - Before sending, verify your message against the "Checklist: Before Sending Any Communication" to ensure quality and professionalism.
+
+7. **Send and monitor** - Deliver the message through the appropriate channel and monitor for responses or follow-up needs.
 
 ---
 
@@ -297,6 +315,8 @@ Is this about code you're reviewing?
 ---
 
 ## Checklist: Before Sending Any Communication
+
+Copy this checklist and track your progress:
 
 - [ ] Is the tone respectful and professional?
 - [ ] Did I assume good intent?

@@ -1,7 +1,7 @@
 ---
 name: eoa-checklist-compiler
 model: opus
-description: Compiles verification checklists from requirements and specifications
+description: Compiles verification checklists from requirements and specifications. Requires AI Maestro installed.
 type: local-helper
 auto_skills:
   - session-memory

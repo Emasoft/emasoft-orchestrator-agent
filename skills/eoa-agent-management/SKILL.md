@@ -1,13 +1,14 @@
 ---
 name: eoa-agent-management-commands
-description: "Use when managing remote agents (AI agents and human developers) in Orchestrator Agent. Covers registration, module assignment, progress polling, and the mandatory Instruction Verification Protocol."
+description: "Trigger with agent coordination tasks. Use when coordinating remote agents (AI or human). Handles registration, module assignment, and progress polling."
 license: Apache-2.0
-compatibility: "Requires Python 3.8+, PyYAML, GitHub CLI. Requires AI Maestro for inter-agent messaging."
+compatibility: "Requires Python 3.8+, PyYAML, GitHub CLI. Requires AI Maestro for inter-agent messaging. Requires AI Maestro installed."
 metadata:
   author: Anthropic
   version: 1.0.0
 user-invocable: false
 context: fork
+agent: eoa-main
 ---
 
 # Agent Management Commands Skill
@@ -25,14 +26,43 @@ Master the registration, assignment, and monitoring of remote agents (AI agents 
 
 ---
 
+## Output
+
+| Output Type | Format | Location |
+|-------------|--------|----------|
+| Agent registry | YAML state file | `.atlas/agents.yaml` |
+| Assignment records | YAML state file | `.atlas/assignments.yaml` |
+| Progress logs | Timestamped logs | `.atlas/logs/polls/` |
+| Verification status | YAML state file | `.atlas/verification_status.yaml` |
+
+---
+
 ## Instructions
 
-Use this skill when you need to:
-- Register a new AI agent or human developer to receive module assignments
-- Assign a decomposed module to a registered agent
-- Poll active agents for progress updates
-- Verify agent understanding before implementation begins
-- Troubleshoot communication or assignment issues
+1. Register the agent using `/register-agent` before any module assignment
+2. Assign a module to the registered agent with `/assign-module`
+3. Execute the Instruction Verification Protocol (mandatory 8-step process)
+4. Begin proactive progress polling every 10-15 minutes using `/check-agents`
+5. Respond immediately to any issues, blockers, or clarification requests from agents
+
+---
+
+## Checklist
+
+Copy this checklist and track your progress:
+
+- [ ] Verify Python 3.8+, PyYAML, GitHub CLI, and AI Maestro are ready
+- [ ] Register agent with `/register-agent` (AI or human type)
+- [ ] Verify agent appears in `.atlas/agents.yaml`
+- [ ] Assign module with `/assign-module`
+- [ ] Send verification request to agent
+- [ ] Wait for agent to repeat key requirements
+- [ ] Verify repetition accuracy and answer all questions
+- [ ] Authorize implementation after successful verification
+- [ ] Begin polling every 10-15 minutes with `/check-agents`
+- [ ] Respond immediately to any reported issues or blockers
+- [ ] Track progress in `.atlas/logs/polls/`
+- [ ] Verify deliverables upon completion
 
 ---
 
@@ -356,6 +386,53 @@ See: [troubleshooting.md](references/troubleshooting.md)
 
 # Module will be assigned via GitHub Project Kanban
 /assign-module oauth-google dev-alice
+```
+
+---
+
+## Examples
+
+### Example 1: Complete Agent Registration and Assignment
+
+```bash
+# Register AI agent
+/register-agent ai implementer-1 --session helper-agent-generic
+
+# Assign module
+/assign-module auth-core implementer-1
+
+# Execute Instruction Verification Protocol (send verification request)
+# Wait for agent to repeat requirements
+# Verify understanding
+# Authorize implementation
+
+# Begin polling every 10-15 minutes
+/check-agents --agent implementer-1
+```
+
+### Example 2: Register Human Developer
+
+```bash
+# Register using GitHub username
+/register-agent human dev-alice
+
+# Assign module (creates GitHub issue assignment)
+/assign-module oauth-google dev-alice
+
+# Track progress via GitHub Project and PR
+```
+
+### Example 3: Verify Instruction Understanding
+
+```
+# After /assign-module, send verification request via AI Maestro:
+Subject: Verify Understanding: auth-core
+Message: Please repeat back the key requirements for auth-core module.
+What are the acceptance criteria? What must be implemented?
+
+# Wait for agent response
+# If correct, authorize: "PROCEED with implementation"
+# If incorrect, clarify and repeat verification
 ```
 
 ---

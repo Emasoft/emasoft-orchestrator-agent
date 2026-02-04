@@ -1,0 +1,296 @@
+# ECOS Notification Handling Reference
+
+## Contents
+
+- [1.1 Notification Types](#11-notification-types)
+- [1.2 Urgency Levels](#12-urgency-levels)
+- [1.3 Acknowledgment Protocol](#13-acknowledgment-protocol)
+- [1.4 Error Handling](#14-error-handling)
+
+---
+
+## 1.1 Notification Types
+
+ECOS sends different notification types for agent replacement scenarios:
+
+### Agent Failure Notification
+
+Sent when an agent has definitively failed:
+
+```json
+{
+  "content": {
+    "type": "agent_replacement",
+    "failed_agent": {
+      "failure_reason": "crash",
+      "recoverable": false
+    }
+  }
+}
+```
+
+**Failure Reasons:**
+
+| Reason | Description | Action |
+|--------|-------------|--------|
+| `crash` | Agent process crashed unexpectedly | Immediate replacement |
+| `context_loss` | Agent lost context and cannot recover | Immediate replacement |
+| `unresponsive` | Agent stopped responding to messages | Wait 2 minutes, then replace |
+| `timeout` | Agent exceeded task timeout | Evaluate, may replace |
+| `manual` | User requested replacement | Follow user instructions |
+
+### Pre-emptive Replacement Notification
+
+Sent when ECOS anticipates a failure:
+
+```json
+{
+  "content": {
+    "type": "agent_replacement",
+    "failed_agent": {
+      "failure_reason": "context_loss_imminent",
+      "current_context_usage": "95%"
+    },
+    "urgency": "prepare"
+  }
+}
+```
+
+**Pre-emptive Reasons:**
+
+| Reason | Description | Action |
+|--------|-------------|--------|
+| `context_loss_imminent` | Agent approaching context limit | Prepare handoff |
+| `resource_exhaustion` | Agent running low on resources | Prepare handoff |
+| `scheduled_maintenance` | Planned agent restart | Schedule handoff |
+
+### Recovery Notification
+
+Sent when a failed agent recovers:
+
+```json
+{
+  "content": {
+    "type": "agent_recovery",
+    "recovered_agent": {
+      "session": "helper-agent-generic",
+      "agent_id": "implementer-1"
+    },
+    "replacement_agent": {
+      "session": "helper-agent-2",
+      "agent_id": "implementer-2"
+    },
+    "action": "keep_replacement|revert_to_original"
+  }
+}
+```
+
+---
+
+## 1.2 Urgency Levels
+
+### Immediate
+
+Agent has failed and replacement must happen NOW:
+
+```json
+{
+  "urgency": "immediate"
+}
+```
+
+**Response Requirements:**
+- ACK within 30 seconds
+- Begin context compilation immediately
+- Prioritize over all other orchestrator tasks
+- Complete handoff within 5 minutes
+
+### Prepare
+
+Agent may fail soon, prepare handoff:
+
+```json
+{
+  "urgency": "prepare"
+}
+```
+
+**Response Requirements:**
+- ACK within 2 minutes
+- Begin context compilation in background
+- Do not interrupt current orchestrator tasks
+- Have handoff ready within 15 minutes
+
+### When Available
+
+Non-critical replacement, handle when convenient:
+
+```json
+{
+  "urgency": "when_available"
+}
+```
+
+**Response Requirements:**
+- ACK within 5 minutes
+- Schedule context compilation
+- Complete before end of orchestration session
+
+---
+
+## 1.3 Acknowledgment Protocol
+
+### ACK Message Format
+
+```json
+{
+  "to": "ecos-controller",
+  "subject": "[EOA-ACK] Replacement Notification Received",
+  "priority": "high",
+  "content": {
+    "type": "ack",
+    "message": "Replacement notification acknowledged",
+    "original_notification_id": "<notification-uuid>",
+    "failed_agent": "implementer-1",
+    "replacement_agent": "implementer-2",
+    "estimated_handoff_time": "5 minutes",
+    "status": "processing"
+  }
+}
+```
+
+### ACK Required Fields
+
+| Field | Description |
+|-------|-------------|
+| `original_notification_id` | UUID of the ECOS notification |
+| `failed_agent` | ID of agent being replaced |
+| `replacement_agent` | ID of new agent |
+| `estimated_handoff_time` | How long until handoff complete |
+| `status` | `processing`, `blocked`, `cannot_proceed` |
+
+### ACK Status Values
+
+| Status | Meaning | Next Step |
+|--------|---------|-----------|
+| `processing` | Working on handoff | ECOS waits |
+| `blocked` | Cannot proceed, need help | ECOS investigates |
+| `cannot_proceed` | Fatal issue | ECOS escalates to user |
+| `complete` | Handoff finished | ECOS confirms |
+
+### ACK Timeout Handling
+
+If ECOS does not receive ACK within expected time:
+
+1. ECOS sends reminder notification
+2. After 2 reminders, ECOS alerts user
+3. ECOS may attempt automatic recovery
+
+---
+
+## 1.4 Error Handling
+
+### Notification Parsing Errors
+
+If notification cannot be parsed:
+
+```json
+{
+  "to": "ecos-controller",
+  "subject": "[EOA-ERROR] Invalid Notification",
+  "priority": "urgent",
+  "content": {
+    "type": "error",
+    "message": "Cannot parse replacement notification",
+    "error_details": "Missing required field: failed_agent.session",
+    "original_notification": "<raw-notification>"
+  }
+}
+```
+
+### Unknown Agent IDs
+
+If failed agent is not in orchestrator's roster:
+
+```json
+{
+  "to": "ecos-controller",
+  "subject": "[EOA-ERROR] Unknown Agent",
+  "priority": "high",
+  "content": {
+    "type": "error",
+    "message": "Failed agent not found in roster",
+    "failed_agent": "unknown-agent-1",
+    "known_agents": ["implementer-1", "implementer-2", "dev-alice"]
+  }
+}
+```
+
+### Replacement Agent Not Ready
+
+If replacement agent is not available:
+
+```json
+{
+  "to": "ecos-controller",
+  "subject": "[EOA-ERROR] Replacement Not Available",
+  "priority": "urgent",
+  "content": {
+    "type": "error",
+    "message": "Replacement agent not available",
+    "replacement_agent": "implementer-2",
+    "reason": "Session not found in AI Maestro registry"
+  }
+}
+```
+
+### Multiple Failures
+
+If replacement agent also fails during handoff:
+
+```json
+{
+  "to": "ecos-controller",
+  "subject": "[EOA-ESCALATE] Multiple Agent Failures",
+  "priority": "urgent",
+  "content": {
+    "type": "escalation",
+    "message": "Replacement agent also failed during handoff",
+    "failed_agents": ["implementer-1", "implementer-2"],
+    "tasks_affected": ["task-uuid-1", "task-uuid-2"],
+    "action_required": "user_intervention"
+  }
+}
+```
+
+---
+
+## Integration Points
+
+### AI Maestro Integration
+
+All ECOS notifications arrive via AI Maestro. Check inbox regularly:
+
+```bash
+curl -s "http://localhost:23000/api/messages?agent=$SESSION_NAME&action=list&status=unread" | \
+  jq '.messages[] | select(.content.type == "agent_replacement")'
+```
+
+### State File Integration
+
+Update orchestrator state when processing notifications:
+
+```yaml
+ecos_notifications:
+  - id: "notification-uuid"
+    received: "2026-01-31T14:30:00Z"
+    type: "agent_replacement"
+    status: "processing"
+    failed_agent: "implementer-1"
+    replacement_agent: "implementer-2"
+```
+
+---
+
+**Version**: 1.0.0
+**Last Updated**: 2026-02-02

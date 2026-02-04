@@ -1,7 +1,7 @@
 ---
 name: eoa-team-orchestrator
 model: opus
-description: Coordinates multiple developer agents working in parallel on features using GitHub Projects and AI Maestro messaging for task management and team coordination
+description: Coordinates multiple developer agents working in parallel on features using GitHub Projects and AI Maestro messaging for task management and team coordination. Requires AI Maestro installed.
 type: planner
 triggers:
   - Feature development with 3+ parallel components
@@ -251,6 +251,70 @@ For remote agent communication and failure handling, see: [messaging-protocol.md
 | `request` | Status update request |
 | `approval` | Authorization to proceed |
 | `clarification` | Request for more details |
+| `replacement_handoff` | Agent replacement from ECOS |
+
+---
+
+## Handling ECOS Agent Replacement
+
+When ECOS (Emergency Context-loss Operations System) notifies about an agent failure or replacement, the orchestrator MUST execute the replacement protocol.
+
+**Reference**: See **eoa-agent-replacement** for complete specification.
+
+### ECOS Notification Format
+
+ECOS sends replacement notifications via AI Maestro with type `agent_replacement`:
+
+```json
+{
+  "content": {
+    "type": "agent_replacement",
+    "failed_agent": {"session": "...", "agent_id": "...", "failure_reason": "..."},
+    "replacement_agent": {"session": "...", "agent_id": "..."},
+    "urgency": "immediate|prepare|when_available"
+  }
+}
+```
+
+### Replacement Protocol Steps
+
+When ECOS notification is received:
+
+1. **ACK immediately** to ECOS
+2. **Compile context** for failed agent (tasks, progress, communications)
+3. **Generate handoff** document with `/eoa-generate-replacement-handoff`
+4. **Reassign kanban** tasks with `/eoa-reassign-kanban-tasks`
+5. **Send handoff** to replacement agent via AI Maestro
+6. **Wait for ACK** from replacement agent
+7. **Confirm to ECOS** that replacement is complete
+
+### Quick Commands
+
+```bash
+# Generate handoff for replacement agent
+/eoa-generate-replacement-handoff --failed-agent implementer-1 --new-agent implementer-2 --include-tasks --include-context
+
+# Reassign GitHub Project tasks
+/eoa-reassign-kanban-tasks --from-agent implementer-1 --to-agent implementer-2 --handoff-url URL
+```
+
+### Critical Rules
+
+| Rule | Description |
+|------|-------------|
+| **Preserve task UUIDs** | New agent continues same task, not a new one |
+| **Reset verification** | New agent must go through Instruction Verification |
+| **Include all context** | Handoff must have everything new agent needs |
+| **Update state file** | Track replacement for audit |
+| **RULE 14 applies** | Requirements remain immutable through replacement |
+
+### Emergency Procedures
+
+If replacement agent also fails:
+1. **STOP** - Do not attempt automatic re-replacement
+2. **ALERT** user immediately
+3. **PRESERVE** all handoff documents
+4. **WAIT** for user guidance
 
 ---
 

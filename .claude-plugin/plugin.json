@@ -1,7 +1,7 @@
 {
   "name": "emasoft-orchestrator-agent",
-  "version": "1.0.0",
-  "description": "Task distribution, agent coordination, progress monitoring - executes architect's plans via subagents",
+  "version": "1.1.0",
+  "description": "Task distribution, agent coordination, progress monitoring - executes plans via subagents. Requires AI Maestro for inter-agent messaging.",
   "author": {
     "name": "Emasoft",
     "email": "713559+Emasoft@users.noreply.github.com"
@@ -15,11 +15,10 @@
     "claude-code": ">=1.0.0"
   },
   "agents": [
-    "./agents/eoa-main.md",
+    "./agents/eoa-orchestrator-main-agent.md",
     "./agents/eoa-team-orchestrator.md",
     "./agents/eoa-task-summarizer.md",
     "./agents/eoa-checklist-compiler.md",
-    "./agents/eoa-devops-expert.md",
     "./agents/eoa-docker-container-expert.md",
     "./agents/eoa-experimenter.md"
   ],

@@ -160,7 +160,7 @@ Before starting any potentially long operation, the orchestrator must ask:
 
 ```
 RESPONSIVENESS SELF-CHECK:
-1. Will this operation take > 30 seconds? → DELEGATE
+1. Is this a long-running operation? → DELEGATE
 2. Do I have unread AI Maestro messages? → READ FIRST
 3. Are any agents waiting for my response? → RESPOND FIRST
 4. Has user asked anything pending? → RESPOND FIRST

@@ -301,7 +301,7 @@ gh issue create \
   --label "platform:linux" \
   --label "type:feature" \
   --label "toolchain:python" \
-  --label "agent:remote" \
+  --label "assign:remote" \
   --assignee "{{ASSIGNEE}}" \
   --project "{{PROJECT_NUMBER}}"
 ```

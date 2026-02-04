@@ -19,7 +19,7 @@ import os
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 
 def get_project_root() -> Path:
@@ -46,7 +46,7 @@ def load_tracking_data() -> dict[str, Any]:
     if tracking_file.exists():
         try:
             with open(tracking_file) as f:
-                return json.load(f)
+                return cast(dict[str, Any], json.load(f))
         except (json.JSONDecodeError, OSError):
             pass
     return {"session_start": datetime.now(timezone.utc).isoformat(), "files": {}}

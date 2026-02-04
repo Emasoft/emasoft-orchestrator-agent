@@ -143,8 +143,6 @@ Advanced orchestration operations (2.9-2.16):
 
 ## Part 4: Design & GitHub Scripts
 
-**File:** [script-reference-part4-design-github.md](script-reference-part4-design-github.md)
-
 Scripts for design document management and GitHub integration:
 
 - **4.1 eoa_init_design_folders.py** - Initialize design folder structure
@@ -181,7 +179,7 @@ Scripts for design document management and GitHub integration:
 
 ## Part 5: Modified Scripts
 
-**File:** [script-reference-part5-modified.md](script-reference-part5-modified.md)
+**File:** [script-reference-part4-modified.md](script-reference-part4-modified.md)
 
 Scripts modified for Two-Phase Mode:
 

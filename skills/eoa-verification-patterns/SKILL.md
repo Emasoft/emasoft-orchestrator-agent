@@ -1,12 +1,12 @@
 ---
 name: eoa-verification-patterns
-description: "Use when verifying that code, systems, and operations work correctly. Covers four core patterns: evidence-based verification, exit code proof, end-to-end testing, and integration verification."
+description: "Use when verifying implementations. Trigger with verification, testing, or evidence requests."
 license: Apache-2.0
-compatibility: "Requires Python 3.8+, Bash shell, Git. Supports Windows, macOS, and Linux. Optional dependencies: Selenium for E2E browser testing, Docker for service orchestration, SQLite/PostgreSQL for database examples."
+compatibility: "Requires Python 3.8+, Bash shell, Git. Supports Windows, macOS, and Linux. Optional dependencies: Selenium for E2E browser testing, Docker for service orchestration, SQLite/PostgreSQL for database examples. Requires AI Maestro installed."
 metadata:
   author: Anthropic
   version: "1.0.0"
-agent: test-engineer
+agent: eoa-main
 context: fork
 ---
 
@@ -218,6 +218,20 @@ fi
 
 ---
 
+## Output
+
+When verification tasks complete, provide results in this format:
+
+| Field | Description | Example |
+|-------|-------------|---------|
+| **Status** | PASSED, FAILED, or ERROR | `PASSED` |
+| **Evidence Type** | Type of verification performed | `EXIT_CODE`, `FILE_CONTENT`, `TEST_RESULT` |
+| **Evidence** | Measurable proof collected | `Exit code: 0`, `All 42 tests passed` |
+| **Timestamp** | When verification was performed | `2024-01-15T10:30:00Z` |
+| **Details** | Additional context or failure reasons | `See test_results.json for details` |
+
+---
+
 ## Error Handling
 
 See [Troubleshooting](./references/troubleshooting.md) for complete solutions.
@@ -333,3 +347,23 @@ For detailed implementation of each pattern, see the reference files linked in t
 - [troubleshooting.md](./references/troubleshooting.md) - Common issues
 - [automation-scripts.md](./references/automation-scripts.md) - Script reference
 - [test-report-format.md](./references/test-report-format.md) - Report standards
+
+---
+
+## Checklist
+
+Copy this checklist and track your progress:
+
+- [ ] Understand verification principles (never trust assumptions, measure what matters)
+- [ ] Define expected outcome for the verification task
+- [ ] Select appropriate verification pattern (evidence-based, exit code, E2E, or integration)
+- [ ] Prepare test environment (dependencies, services, test data)
+- [ ] Execute verification steps according to selected pattern
+- [ ] Collect measurable evidence (return values, output files, exit codes, state changes)
+- [ ] Compare evidence to expected outcome
+- [ ] Document verification results in standard format
+- [ ] Handle failures with fail-fast approach (stop and report immediately)
+- [ ] Ensure reproducibility of verification (can be repeated with same results)
+- [ ] Report results to orchestrator with proper evidence format
+- [ ] Update GitHub issues if applicable (status transitions, evidence comments)
+- [ ] Clean up test environment and temporary resources

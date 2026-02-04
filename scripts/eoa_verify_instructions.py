@@ -19,6 +19,7 @@ import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Any
 
 import yaml
 
@@ -64,9 +65,10 @@ def write_state_file(file_path: Path, data: dict, body: str) -> bool:
         return False
 
 
-def find_assignment(data: dict, agent_id: str) -> dict | None:
+def find_assignment(data: dict, agent_id: str) -> dict[Any, Any] | None:
     """Find active assignment for an agent."""
-    for assignment in data.get("active_assignments", []):
+    assignments: list[dict[Any, Any]] = data.get("active_assignments", [])
+    for assignment in assignments:
         if assignment.get("agent") == agent_id:
             return assignment
     return None
@@ -74,10 +76,12 @@ def find_assignment(data: dict, agent_id: str) -> dict | None:
 
 def find_agent_session(data: dict, agent_id: str) -> str | None:
     """Find the session name for an AI agent."""
-    agents = data.get("registered_agents", {})
-    for agent in agents.get("ai_agents", []):
+    agents: dict = data.get("registered_agents", {})
+    ai_agents: list = agents.get("ai_agents", [])
+    for agent in ai_agents:
         if agent.get("agent_id") == agent_id:
-            return agent.get("session_name")
+            session_name: str | None = agent.get("session_name")
+            return session_name
     return None
 
 

@@ -86,7 +86,7 @@ This checklist is organized into 4 parts for easier navigation. Click each part 
 | Platform | `platform:*` | `platform:linux`, `platform:macos` |
 | Type | `type:*` | `type:feature`, `type:bugfix` |
 | Toolchain | `toolchain:*` | `toolchain:python`, `toolchain:rust` |
-| Agent | `agent:*` | `agent:dev-1` |
+| Assignment | `assign:*` | `assign:dev-1` |
 
 ### Branch Naming Convention
 

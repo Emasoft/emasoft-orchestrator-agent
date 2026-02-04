@@ -1,0 +1,284 @@
+# Message Templates by Scenario
+
+This document provides the complete AI Maestro message templates for all common agent communication scenarios across emasoft plugins.
+
+## Table of Contents
+
+- [2.1 Task Assignment (EOA → Remote Agent)](#21-task-assignment-eoa--remote-agent)
+- [2.2 Task Completion Report (Agent → EOA)](#22-task-completion-report-agent--eoa)
+- [2.3 Status Request (EOA → Agent)](#23-status-request-eoa--agent)
+- [2.4 Status Response (Agent → EOA)](#24-status-response-agent--eoa)
+- [2.5 Approval Request (ECOS → EAMA)](#25-approval-request-ecos--eama)
+- [2.6 Approval Response (EAMA → ECOS)](#26-approval-response-eama--ecos)
+- [2.7 Escalation (Any Agent → ECOS/EAMA)](#27-escalation-any-agent--ecoseama)
+- [2.8 Acknowledgment (Any Agent)](#28-acknowledgment-any-agent)
+- [2.9 Design Handoff (EAA → EOA)](#29-design-handoff-eaa--eoa)
+- [2.10 Integration Request (EOA → EIA)](#210-integration-request-eoa--eia)
+- [2.11 Integration Result (EIA → EOA)](#211-integration-result-eia--eoa)
+
+---
+
+## 2.1 Task Assignment (EOA → Remote Agent)
+
+**When to use:** EOA assigning implementation task to remote agent
+
+```json
+{
+  "from": "orchestrator",
+  "to": "<agent-name>",
+  "subject": "Task Assignment: <task-title>",
+  "priority": "high",
+  "content": {
+    "type": "request",
+    "message": "You are assigned: <task-description>. Success criteria: <criteria>. Report status when starting and when complete.",
+    "data": {
+      "task_id": "<task-id>",
+      "issue_number": "<github-issue-number>",
+      "handoff_doc": "docs_dev/handoffs/<handoff-filename>.md"
+    }
+  }
+}
+```
+
+---
+
+## 2.2 Task Completion Report (Agent → EOA)
+
+**When to use:** Agent reporting task completion to orchestrator
+
+```json
+{
+  "from": "<agent-name>",
+  "to": "orchestrator",
+  "subject": "Task Complete: <task-title>",
+  "priority": "normal",
+  "content": {
+    "type": "response",
+    "message": "[DONE] <task-id> - <brief-result>. Details: <output-location>",
+    "data": {
+      "task_id": "<task-id>",
+      "status": "complete",
+      "output_file": "docs_dev/reports/<report-filename>.md"
+    }
+  }
+}
+```
+
+---
+
+## 2.3 Status Request (EOA → Agent)
+
+**When to use:** Orchestrator polling agent for status
+
+```json
+{
+  "from": "orchestrator",
+  "to": "<agent-name>",
+  "subject": "Status Request: <task-id>",
+  "priority": "normal",
+  "content": {
+    "type": "request",
+    "message": "What is your current status on <task-id>? Report progress, blockers, and next steps.",
+    "data": {
+      "task_id": "<task-id>"
+    }
+  }
+}
+```
+
+---
+
+## 2.4 Status Response (Agent → EOA)
+
+**When to use:** Agent responding to status request
+
+```json
+{
+  "from": "<agent-name>",
+  "to": "orchestrator",
+  "subject": "Status: <task-id>",
+  "priority": "normal",
+  "content": {
+    "type": "response",
+    "message": "[IN_PROGRESS] <task-id> - <progress-description>. Blockers: <none|blocker-list>. Next: <next-step>",
+    "data": {
+      "task_id": "<task-id>",
+      "status": "in_progress",
+      "progress_percent": 60,
+      "blockers": []
+    }
+  }
+}
+```
+
+---
+
+## 2.5 Approval Request (ECOS → EAMA)
+
+**When to use:** Chief of Staff requesting approval from Assistant Manager
+
+```json
+{
+  "from": "chief-of-staff",
+  "to": "assistant-manager",
+  "subject": "Approval Required: <operation-type>",
+  "priority": "high",
+  "content": {
+    "type": "request",
+    "message": "Requesting approval to <operation-description>. Risk level: <low|medium|high>. Justification: <reason>",
+    "data": {
+      "operation": "<spawn|terminate|hibernate|wake>",
+      "target": "<agent-name>",
+      "risk_level": "medium",
+      "justification": "<reason>"
+    }
+  }
+}
+```
+
+---
+
+## 2.6 Approval Response (EAMA → ECOS)
+
+**When to use:** Assistant Manager responding to approval request
+
+```json
+{
+  "from": "assistant-manager",
+  "to": "chief-of-staff",
+  "subject": "Approval Decision: <operation-type>",
+  "priority": "high",
+  "content": {
+    "type": "response",
+    "message": "<APPROVED|REJECTED>: <operation-description>. <rationale>",
+    "data": {
+      "decision": "approved|rejected",
+      "operation": "<operation-type>",
+      "rationale": "<reason>"
+    }
+  }
+}
+```
+
+---
+
+## 2.7 Escalation (Any Agent → ECOS/EAMA)
+
+**When to use:** Agent encountering blocker requiring escalation
+
+```json
+{
+  "from": "<agent-name>",
+  "to": "chief-of-staff",
+  "subject": "Escalation: <issue-summary>",
+  "priority": "high",
+  "content": {
+    "type": "notification",
+    "message": "Escalating: <issue-description>. Attempted: <what-was-tried>. Need: <what-is-needed>",
+    "data": {
+      "task_id": "<task-id>",
+      "blocker_type": "<technical|resource|approval|external>",
+      "attempted_solutions": ["<solution-1>", "<solution-2>"],
+      "required_action": "<what-is-needed>"
+    }
+  }
+}
+```
+
+---
+
+## 2.8 Acknowledgment (Any Agent)
+
+**When to use:** Acknowledging receipt of message
+
+```json
+{
+  "from": "<agent-name>",
+  "to": "<sender-name>",
+  "subject": "ACK: <original-subject>",
+  "priority": "low",
+  "content": {
+    "type": "acknowledgment",
+    "message": "Received and understood. Will <action>.",
+    "data": {
+      "original_subject": "<original-subject>",
+      "action_planned": "<what-agent-will-do>"
+    }
+  }
+}
+```
+
+---
+
+## 2.9 Design Handoff (EAA → EOA)
+
+**When to use:** Architect handing off design to Orchestrator
+
+```json
+{
+  "from": "architect",
+  "to": "orchestrator",
+  "subject": "Design Complete: <project-name>",
+  "priority": "high",
+  "content": {
+    "type": "notification",
+    "message": "Architecture design complete for <project-name>. Handoff document ready. Modules: <count>. Ready for implementation planning.",
+    "data": {
+      "handoff_doc": "docs_dev/design/handoffs/<handoff-id>.md",
+      "architecture_doc": "docs_dev/design/architecture.md",
+      "module_count": 5,
+      "adr_count": 3
+    }
+  }
+}
+```
+
+---
+
+## 2.10 Integration Request (EOA → EIA)
+
+**When to use:** Orchestrator requesting code integration/review
+
+```json
+{
+  "from": "orchestrator",
+  "to": "integrator",
+  "subject": "Integration Request: PR #<pr-number>",
+  "priority": "high",
+  "content": {
+    "type": "request",
+    "message": "Review and verify PR #<pr-number>: <pr-title>. Run full verification workflow. Report pass/fail with details.",
+    "data": {
+      "pr_number": 123,
+      "pr_url": "https://github.com/owner/repo/pull/123",
+      "request_type": "full_verification"
+    }
+  }
+}
+```
+
+---
+
+## 2.11 Integration Result (EIA → EOA)
+
+**When to use:** Integrator reporting integration/review result
+
+```json
+{
+  "from": "integrator",
+  "to": "orchestrator",
+  "subject": "Integration Result: PR #<pr-number>",
+  "priority": "high",
+  "content": {
+    "type": "response",
+    "message": "[<PASS|FAIL>] PR #<pr-number>. <summary>. Details: <report-location>",
+    "data": {
+      "pr_number": 123,
+      "result": "pass|fail",
+      "ci_status": "passing",
+      "review_status": "approved",
+      "report_file": "docs_dev/integration/reports/pr-123-verification.md"
+    }
+  }
+}
+```

@@ -330,8 +330,8 @@ def main() -> int:
             print("Module issue status:")
             for m in modules:
                 issue = m.get("github_issue")
-                status = f"#{issue}" if issue else "no issue"
-                print(f"  {m.get('id')}: {status}")
+                issue_status = f"#{issue}" if issue else "no issue"
+                print(f"  {m.get('id')}: {issue_status}")
             print()
             print("Use --module <id> to create issue for specific module")
             print("Use --all to create issues for all modules without issues")

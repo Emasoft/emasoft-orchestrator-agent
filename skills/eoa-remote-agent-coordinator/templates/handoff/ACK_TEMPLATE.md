@@ -1,6 +1,6 @@
 # Task Acknowledgment: {{TASK_ID}}
 
-**Extends**: [handoff-protocols.md](../../../shared/references/handoff-protocols.md)
+**Extends**: [handoff-protocols.md](../../../eoa-handoff-protocols/references/handoff-protocols.md)
 
 ---
 

@@ -158,7 +158,7 @@ ORCHESTRATOR                              IMPLEMENTER
 
 - [Instruction Verification Protocol](instruction-verification-protocol.md) - Initial task assignment verification
 - [Proactive Progress Polling](proactive-progress-polling.md) - Regular status checks
-- [Central Configuration](../../remote-agent-coordinator/references/central-configuration.md) - Config management
+- [Central Configuration](../../eoa-remote-agent-coordinator/references/central-configuration.md) - Config management
 
 ---
 

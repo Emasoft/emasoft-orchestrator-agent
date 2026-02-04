@@ -150,11 +150,13 @@ gh label create "toolchain:go" --color "00ADD8" --repo {{GITHUB_OWNER}}/{{REPO_N
 gh label create "toolchain:docker" --color "2496ED" --repo {{GITHUB_OWNER}}/{{REPO_NAME}}
 ```
 
-### Agent Labels
+### Assignment Labels
 ```bash
-gh label create "agent:remote" --color "f9d0c4" --repo {{GITHUB_OWNER}}/{{REPO_NAME}}
-gh label create "agent:local" --color "c2e0c6" --repo {{GITHUB_OWNER}}/{{REPO_NAME}}
-gh label create "agent:orchestrator" --color "bfdadc" --repo {{GITHUB_OWNER}}/{{REPO_NAME}}
+# Labels to track which agent is assigned to work on an issue
+# Use assign:* prefix consistently across all plugins
+gh label create "assign:remote" --color "f9d0c4" --repo {{GITHUB_OWNER}}/{{REPO_NAME}}
+gh label create "assign:local" --color "c2e0c6" --repo {{GITHUB_OWNER}}/{{REPO_NAME}}
+gh label create "assign:orchestrator" --color "bfdadc" --repo {{GITHUB_OWNER}}/{{REPO_NAME}}
 ```
 
 ## Repository Settings

@@ -1,11 +1,13 @@
 ---
 name: eoa-checklist-compiler
-description: "Use when compiling verification checklists from requirements including module completion, quality gates, and test coverage checklists."
+description: "Use when compiling verification checklists from requirements including module completion, quality gates, and test coverage checklists. Trigger with checklist compilation requests."
 license: Apache-2.0
+compatibility: Requires AI Maestro installed.
 metadata:
   author: Anthropic
   version: 1.0.0
 context: fork
+agent: eoa-main
 ---
 
 # Checklist Compiler Skill
@@ -24,13 +26,17 @@ Comprehensive patterns and templates for compiling verification checklists from 
 
 ## Instructions
 
-Use this skill when:
-- Compiling verification checklists from requirements
-- Creating quality gate checklists
-- Designing module completion checklists
-- Building test coverage checklists
-- Structuring review checklists
-- Understanding checklist compilation workflow
+1. Read the requirements documentation (USER_REQUIREMENTS.md or similar)
+2. Identify the checklist type needed (module completion, quality gate, review, test coverage, release readiness, or task assignment)
+3. Consult the appropriate reference document from the Contents section based on your checklist type
+4. Extract verification points from the requirements using the compilation workflow guide
+5. Structure the checklist by logical groupings (implementation, testing, documentation, etc.)
+6. Define clear acceptance criteria for each checklist item
+7. Add the mandatory RULE 14 compliance section to every checklist
+8. Apply the appropriate template from checklist-templates.md
+9. Review the checklist for completeness and verify all requirements are addressed
+10. Write the checklist to the appropriate location (project docs or GitHub issue)
+11. Report compilation results to the orchestrator
 
 ---
 
@@ -141,6 +147,18 @@ Every checklist MUST include:
 
 ---
 
+## Output
+
+This skill produces the following deliverables:
+
+| Deliverable | Format | Location | Description |
+|-------------|--------|----------|-------------|
+| Compiled Checklist | Markdown | Project docs or issue | Verification checklist compiled from requirements |
+| Checklist Report | Markdown | Agent output | Summary of compilation process and checklist structure |
+| Quality Assurance | Inline | Checklist document | RULE 14 compliance section and verification steps |
+
+---
+
 ## Error Handling
 
 | Issue | Cause | Solution |
@@ -158,3 +176,21 @@ Every checklist MUST include:
 - [checklist-compilation-workflow.md](references/checklist-compilation-workflow.md) - Step-by-step workflow
 - [checklist-best-practices.md](references/checklist-best-practices.md) - Design principles
 - [checklist-examples.md](references/checklist-examples.md) - Complete examples
+
+---
+
+## Checklist
+
+Copy this checklist and track your progress:
+
+- [ ] Read requirements documentation (USER_REQUIREMENTS.md or similar)
+- [ ] Identify checklist type needed (module completion, quality gate, review, etc.)
+- [ ] Extract verification points from requirements
+- [ ] Structure checklist by logical groupings
+- [ ] Define clear acceptance criteria for each item
+- [ ] Add RULE 14 compliance section
+- [ ] Apply appropriate template from checklist-templates.md
+- [ ] Review checklist for completeness
+- [ ] Verify all requirements addressed
+- [ ] Write checklist to appropriate location
+- [ ] Report compilation results to orchestrator
