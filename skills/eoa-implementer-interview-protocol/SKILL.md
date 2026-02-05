@@ -4,7 +4,7 @@ description: Interview protocols for task verification. Use when checking implem
 license: Apache-2.0
 compatibility: Requires AI Maestro installed.
 metadata:
-  author: Anthropic
+  author: Emasoft
   version: 1.0.0
 context: fork
 agent: eoa-main

@@ -45,17 +45,19 @@ This document defines the protocols for communication between agents in the emas
 
 ### 1.1 When communicating in a multi-agent system
 
-The communication hierarchy follows strict rules:
+The communication hierarchy within EOA's team follows strict rules:
 
 ```
-USER
+ECOS (EOA's coordinator)
   ↓↑
-ORCHESTRATOR (central hub)
+EOA (team orchestrator)
   ↓↑
-REMOTE AGENTS (leaf nodes)
+WORKER AGENTS (implementers, testers, sub-agents)
 ```
 
-**Rule**: Remote agents NEVER communicate directly with each other. All communication flows through the orchestrator.
+**Note**: This shows EOA's internal team structure. In the overall system, EOA receives work from ECOS (Chief of Staff), not directly from the human user. EAMA is the only agent that communicates directly with the human user.
+
+**Rule**: Worker agents NEVER communicate directly with each other. All communication flows through EOA.
 
 ### 1.2 Orchestrator-exclusive communications (RULE 16)
 

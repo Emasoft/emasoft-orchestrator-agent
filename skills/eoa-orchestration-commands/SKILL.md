@@ -4,7 +4,7 @@ description: "Use when managing orchestration phase commands. Trigger with start
 license: Apache-2.0
 compatibility: "Requires Python 3.8+, PyYAML, GitHub CLI. Works with AI Maestro for remote agent communication. Requires AI Maestro installed."
 metadata:
-  author: Anthropic
+  author: Emasoft
   version: 1.0.0
 user-invocable: false
 context: fork

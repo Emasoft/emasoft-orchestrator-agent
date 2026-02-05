@@ -4,7 +4,7 @@ description: "Trigger with module management tasks. Use when managing modules du
 license: Apache-2.0
 compatibility: Cross-platform compatible. Requires Python 3.8+ and PyYAML for scripts. Requires gh CLI for GitHub Issue operations. Works with AI Maestro messaging for agent notifications. Requires AI Maestro installed.
 metadata:
-  author: Anthropic
+  author: Emasoft
   version: 1.0.0
 user-invocable: false
 context: fork

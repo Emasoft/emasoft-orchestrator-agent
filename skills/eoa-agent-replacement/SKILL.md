@@ -4,7 +4,7 @@ description: "Use when replacing agents. Trigger with agent replacement or hando
 license: Apache-2.0
 compatibility: "Requires Python 3.8+, PyYAML, GitHub CLI. Requires AI Maestro for inter-agent messaging. Requires ECOS notifications for replacement triggers. Requires AI Maestro installed."
 metadata:
-  author: Anthropic
+  author: Emasoft
   version: 1.0.0
 user-invocable: false
 context: fork

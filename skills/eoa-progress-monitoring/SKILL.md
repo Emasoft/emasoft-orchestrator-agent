@@ -4,7 +4,7 @@ description: Agent progress monitoring via state-based detection. Use when track
 license: Apache-2.0
 compatibility: Requires AI Maestro installed.
 metadata:
-  author: Anthropic
+  author: Emasoft
   version: 1.0.0
 context: fork
 agent: eoa-main

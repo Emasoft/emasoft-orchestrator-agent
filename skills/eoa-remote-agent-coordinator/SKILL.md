@@ -4,7 +4,7 @@ description: "Use when coordinating remote AI agents. Trigger with task delegati
 license: Apache-2.0
 compatibility: Requires AI Maestro messaging system (configurable via AIMAESTRO_API env var, default http://localhost:23000). Python 3.9+ for LSP management scripts. Requires AI Maestro installed.
 metadata:
-  author: Anthropic
+  author: Emasoft
   version: 1.2.0
 context: fork
 agent: eoa-main

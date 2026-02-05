@@ -4,7 +4,7 @@ description: "Use when verifying implementations. Trigger with verification, tes
 license: Apache-2.0
 compatibility: "Requires Python 3.8+, Bash shell, Git. Supports Windows, macOS, and Linux. Optional dependencies: Selenium for E2E browser testing, Docker for service orchestration, SQLite/PostgreSQL for database examples. Requires AI Maestro installed."
 metadata:
-  author: Anthropic
+  author: Emasoft
   version: "1.0.0"
 agent: eoa-main
 context: fork

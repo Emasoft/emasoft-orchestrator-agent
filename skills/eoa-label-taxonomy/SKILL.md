@@ -4,7 +4,7 @@ description: GitHub label taxonomy for multi-agent systems. Use when managing la
 license: Apache-2.0
 compatibility: Requires AI Maestro installed.
 metadata:
-  author: Anthropic
+  author: Emasoft
   version: 1.0.0
 context: fork
 agent: eoa-main
