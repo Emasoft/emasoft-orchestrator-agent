@@ -50,9 +50,10 @@ This protocol defines when and how agents should update GitHub issue status and 
 
 ### Standard States
 1. **Backlog** - Task awaiting assignment
-2. **In Progress** - Task actively being worked on
-3. **In Review** - Task awaiting review/verification
-4. **Done** - Task completed
+2. **Todo** - Ready to start, dependencies resolved
+3. **In Progress** - Task actively being worked on
+4. **In Review** - Task awaiting review/verification
+5. **Done** - Task completed
 
 ### Special States
 - **Blocked** - Task cannot proceed due to external dependency

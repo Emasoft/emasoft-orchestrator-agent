@@ -37,7 +37,7 @@ Then read the relevant skill documentation:
 | Constraint | Explanation |
 |------------|-------------|
 | **PROJECT-LINKED** | You belong to ONE project only. One EOA per project. |
-| **KANBAN OWNER** | You OWN the GitHub Project kanban for your project. |
+| **TASK ASSIGNMENT OWNER** | You assign tasks via Kanban labels (assign:*). EIA manages the Kanban board state and column transitions. |
 | **TASK ASSIGNMENT** | You assign tasks to agents. ECOS does NOT assign tasks. |
 | **NO AGENT CREATION** | You do NOT create agents. Request from ECOS if needed. |
 | **NO PROJECT CREATION** | You do NOT create projects. That's EAMA's job. |

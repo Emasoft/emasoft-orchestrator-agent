@@ -9,7 +9,8 @@ Complete reference for all AI Maestro curl command templates used by Emasoft Orc
 - 1.3 Requesting status update from sub-agent
 - 1.4 Reporting task completion to ECOS
 - 1.5 Escalating blocked task to ECOS
-- 1.6 Standard AI Maestro API format and conventions
+- 1.6 Escalating blocked task to EAMA (user decision needed)
+- 1.7 Standard AI Maestro API format and conventions
 
 ---
 
@@ -257,7 +258,78 @@ curl -X POST "http://localhost:23000/api/messages" \
 
 ---
 
-## 1.6 Standard AI Maestro API Format and Conventions
+## 1.6 Escalating Blocked Task to EAMA (User Decision Needed)
+
+**Use case:** When a task is blocked and requires user input to proceed. This covers situations where:
+- A requirement is ambiguous and needs user clarification
+- A design choice requires user preference
+- A third-party access or credential is needed from the user
+- A budget or cost decision must be made by the user
+- A feature scope question can only be answered by the user
+
+**EOA to EAMA curl command:**
+
+```bash
+curl -X POST "http://localhost:23000/api/messages" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "from": "eoa-[project-name]",
+    "to": "eama-assistant-manager",
+    "subject": "BLOCKER: Task requires user decision",
+    "priority": "high",
+    "content": {
+      "type": "blocker-escalation",
+      "message": "[Brief description of the blocker and what user input is needed]",
+      "task_uuid": "[task-uuid]",
+      "issue_number": "[GitHub issue number]",
+      "blocker_type": "user-decision|clarification|access-needed|cost-decision|scope-question",
+      "blocker_description": "[Detailed description of what is blocking progress]",
+      "impact": "[What work is prevented and which agents are waiting]",
+      "options": [
+        "Option 1: [description and trade-offs]",
+        "Option 2: [description and trade-offs]"
+      ],
+      "recommended": "Option [N]: [brief reason]",
+      "blocked_since": "[ISO8601 timestamp when block was detected]",
+      "deadline": "[ISO8601 timestamp if time-sensitive, or null]",
+      "request": "User input required to unblock"
+    }
+  }'
+```
+
+**Key fields:**
+- `to`: Always `"eama-assistant-manager"` (EAMA's session name)
+- `blocker_type`: Specific type of user decision needed (choose one)
+- `blocker_description`: Detailed explanation of the blocking issue
+- `impact`: What work is stopped and which agents/tasks are affected
+- `options`: Array of possible solutions with trade-offs
+- `recommended`: Your recommended option with reasoning
+- `blocked_since`: ISO8601 timestamp when blocker was first detected
+- `deadline`: ISO8601 timestamp if time-sensitive, or `null` if not
+- `request`: Always `"User input required to unblock"`
+
+**Escalation rules:**
+
+| Condition | Action | Priority |
+|-----------|--------|----------|
+| User decision needed, no deadline | Send with priority `high` | HIGH |
+| User decision needed, deadline <48h | Send with priority `urgent` | URGENT |
+| User decision needed, deadline <24h | Send with priority `urgent`, add `[URGENT]` to subject | URGENT |
+| No user response after 24h | Resend with `urgent` priority | URGENT |
+| No user response after 48h | EAMA should proactively remind user | URGENT |
+
+**Response handling:**
+
+When EAMA responds with the user's decision:
+1. Update the GitHub issue with the decision (add comment)
+2. Remove `status:blocked` label, add `status:in-progress`
+3. Move card from Blocked column to In Progress (or Todo if not immediately actionable)
+4. Notify the blocked agent with the resolution via AI Maestro
+5. Log the blocker resolution in the issue timeline
+
+---
+
+## 1.7 Standard AI Maestro API Format and Conventions
 
 ### Base API Endpoint
 
