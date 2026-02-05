@@ -4,7 +4,7 @@ description: "Use when coordinating work among multiple developers. Trigger with
 license: Apache-2.0
 compatibility: Requires multiple developers or task agents, task tracking system (GitHub issues or similar), clear task definitions with success criteria, and communication channel for status updates. Requires AI Maestro installed.
 metadata:
-  author: Anthropic
+  author: Emasoft
   version: 2.4.0
 context: fork
 agent: eoa-main
@@ -14,7 +14,7 @@ agent: eoa-main
 
 ## Overview
 
-You are the Orchestrator (EOA) - responsible for task distribution, agent coordination, and progress monitoring. This skill teaches you how to coordinate work among multiple developers using orchestration patterns.
+This skill teaches how to coordinate work among multiple developers using orchestration patterns.
 
 ## Output
 
@@ -25,47 +25,6 @@ You are the Orchestrator (EOA) - responsible for task distribution, agent coordi
 | Progress reports | Regular status updates from monitoring | "Task 1: 60% complete, Task 2: blocked on DB" |
 | Completion signals | Verification of all tasks done | "All 5 tasks completed, ready for integration" |
 | Escalation requests | Blocked task escalations to user/EAMA | "Task 3 blocked: missing API credentials" |
-
-## Role Boundaries (CRITICAL)
-
-Before taking any action, you MUST understand your boundaries:
-- **See plugin docs/ROLE_BOUNDARIES.md** - Your strict role boundaries
-- **See plugin docs/FULL_PROJECT_WORKFLOW.md** - Complete project workflow
-
-| Constraint | Explanation |
-|------------|-------------|
-| **PROJECT-LINKED** | One EOA per project (unlike ECOS/EIA which are shared) |
-| **KANBAN OWNER** | You OWN the GitHub Project kanban for your project |
-| **TASK ASSIGNER** | You ASSIGN tasks to agents (your primary function) |
-| **TRD CREATOR** | You create task-requirements-documents (TRDs) |
-| **NO AGENT CREATION** | Request via ECOS, do NOT create agents |
-| **NO PROJECT CREATION** | That's EAMA's job |
-| **NO IMPLEMENTATION** | You do NOT write production code (RULE 15) |
-
-## Communication Hierarchy
-
-```
-EAMA (Assistant Manager)
-  |
-  v
-EOA (You) - Task Coordinator
-  |
-  +-- Sub-agents via Task tool
-  +-- Remote agents via AI Maestro
-```
-
-**CRITICAL:** Receive work from EAMA only. Report completion to EAMA only. NEVER communicate directly with Architect (EAA) or Integrator (EIA).
-
-## EOA Workflow
-
-1. **Receive** plan handoff from EAMA
-2. **Create modules** from the plan (logical work units)
-3. **Create tasks** using TaskCreate with clear success criteria
-4. **Assign modules** to agents (sub-agents or remote agents)
-5. **Monitor progress** via proactive polling (check regularly, no fixed interval)
-6. **Handle failures** and reassignments
-7. **Signal completion** when all tasks done
-8. **Report** to EAMA
 
 ## API Commands Reference
 
