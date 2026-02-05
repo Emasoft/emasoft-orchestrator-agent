@@ -11,11 +11,9 @@ triggers:
   - Complex bug fixes with multiple root causes
   - Release preparation with validation checkpoints
   - Cross-team coordination requiring formal tracking
-auto_skills:
-  - session-memory
-  - orchestration-patterns
-  - remote-agent-coordinator
-  - worktree-management
+skills:
+  - eoa-remote-agent-coordinator
+  - eoa-messaging-templates
 memory_requirements: high
 ---
 

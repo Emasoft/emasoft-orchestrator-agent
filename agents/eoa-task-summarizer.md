@@ -9,8 +9,8 @@ triggers:
   - After linting or formatting operations
   - When log files need analysis
   - When verbose output must be condensed
-auto_skills:
-  - session-memory
+skills:
+  - eoa-progress-monitoring
 memory_requirements: low
 ---
 

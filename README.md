@@ -57,7 +57,7 @@ The Orchestrator Agent handles **task distribution, agent coordination, and prog
 | `eoa-verification-patterns` | Instruction verification |
 | `eoa-developer-communication` | Developer comm patterns |
 | `eoa-devops-expert` | DevOps expertise |
-| `eoa-checklist-compiler` | Checklist generation |
+| `eoa-checklist-compilation-patterns` | Checklist generation |
 | `eoa-handoff-protocols` | Handoff protocols |
 
 ### Hooks

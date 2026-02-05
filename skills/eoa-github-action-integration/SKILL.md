@@ -4,7 +4,7 @@ description: "Trigger with Claude Code action requests. Use when setting up Clau
 license: Apache-2.0
 compatibility: Requires AI Maestro installed.
 metadata:
-  author: Anthropic
+  author: Emasoft
   version: 1.0.0
 agent: eoa-main
 context: fork

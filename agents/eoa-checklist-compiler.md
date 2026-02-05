@@ -3,9 +3,9 @@ name: eoa-checklist-compiler
 model: opus
 description: Compiles verification checklists from requirements and specifications. Requires AI Maestro installed.
 type: local-helper
-auto_skills:
-  - session-memory
-  - verification-patterns
+skills:
+  - eoa-verification-patterns
+  - eoa-checklist-compilation-patterns
 memory_requirements: low
 ---
 
@@ -114,7 +114,7 @@ Checklist: [filename.md]
 ## Checklist Types
 
 For detailed descriptions and elements of each checklist type, see:
-[checklist-types-reference.md](../skills/eoa-checklist-compiler/references/checklist-types-reference.md)
+[checklist-types-reference.md](../skills/eoa-checklist-compilation-patterns/references/checklist-types-reference.md)
 
 | Type | Purpose |
 |------|---------|
@@ -160,7 +160,7 @@ When compiling checklists:
 ## Compilation Workflow
 
 For detailed workflow and step-by-step procedure, see:
-[checklist-compilation-workflow.md](../skills/eoa-checklist-compiler/references/checklist-compilation-workflow.md)
+[checklist-compilation-workflow.md](../skills/eoa-checklist-compilation-patterns/references/checklist-compilation-workflow.md)
 
 **Summary:**
 
@@ -176,7 +176,7 @@ For detailed workflow and step-by-step procedure, see:
 ## Templates
 
 For ready-to-use checklist templates, see:
-[checklist-templates.md](../skills/eoa-checklist-compiler/references/checklist-templates.md)
+[checklist-templates.md](../skills/eoa-checklist-compilation-patterns/references/checklist-templates.md)
 
 Available templates:
 - Standard Checklist Template
@@ -189,7 +189,7 @@ Available templates:
 ## Best Practices
 
 For design principles and common pitfalls, see:
-[checklist-best-practices.md](../skills/eoa-checklist-compiler/references/checklist-best-practices.md)
+[checklist-best-practices.md](../skills/eoa-checklist-compilation-patterns/references/checklist-best-practices.md)
 
 **Key Principles:**
 1. **Atomic Items** - Each item verifies ONE thing
@@ -203,7 +203,7 @@ For design principles and common pitfalls, see:
 ## Examples
 
 For complete compilation examples, see:
-[checklist-examples.md](../skills/eoa-checklist-compiler/references/checklist-examples.md)
+[checklist-examples.md](../skills/eoa-checklist-compilation-patterns/references/checklist-examples.md)
 
 ---
 

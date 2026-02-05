@@ -3,10 +3,9 @@ name: eoa-experimenter
 model: opus
 description: Experimental validation agent - the ONLY local agent authorized to write code. Requires AI Maestro installed.
 type: local-experimenter
-auto_skills:
-  - session-memory
-  - tdd-enforcement
-  - hypothesis-verification
+skills:
+  - eoa-two-phase-mode
+  - eoa-verification-patterns
 memory_requirements: medium
 ---
 

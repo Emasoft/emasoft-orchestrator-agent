@@ -1,10 +1,10 @@
 ---
-name: eoa-checklist-compiler
+name: eoa-checklist-compilation-patterns
 description: "Use when compiling verification checklists from requirements including module completion, quality gates, and test coverage checklists. Trigger with checklist compilation requests."
 license: Apache-2.0
 compatibility: Requires AI Maestro installed.
 metadata:
-  author: Anthropic
+  author: Emasoft
   version: 1.0.0
 context: fork
 agent: eoa-main
