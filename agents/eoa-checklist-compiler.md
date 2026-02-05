@@ -80,7 +80,7 @@ Details written to: docs_dev/checklists/svg-parser-quality-gate.md
 
 ## RULE 14: Requirement Compliance
 
-> For full RULE 14 specification and implementation details, see [eoa-checklist-compilation-patterns/references/rule-14-requirement-checklists.md](../skills/eoa-checklist-compilation-patterns/references/rule-14-requirement-checklists.md)
+> For full RULE 14 specification and implementation details, see [eoa-orchestration-patterns/references/rule-14-enforcement.md](../skills/eoa-orchestration-patterns/references/rule-14-enforcement.md)
 
 **Mandatory:** Every verification checklist MUST include a "Requirement Compliance (RULE 14)" section.
 

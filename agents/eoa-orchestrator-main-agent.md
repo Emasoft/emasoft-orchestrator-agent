@@ -66,7 +66,7 @@ EOA (You) - Distribute tasks, manage kanban
 | Multi-project coordination | **eoa-team-orchestrator** |
 | Task summarization | **eoa-task-summarizer** |
 | Checklist compilation | **eoa-checklist-compiler** |
-| DevOps tasks | **eoa-devops-expert** |
+| DevOps/Container tasks | **eoa-docker-container-expert** |
 | Container management | **eoa-docker-container-expert** |
 | Experimentation/prototyping | **eoa-experimenter** |
 
@@ -106,7 +106,7 @@ This file contains all agent names and their AI Maestro addresses.
 
 ## Judgment Criteria
 
-> For detailed judgment guidance (delegation vs direct handling, waiting vs polling, escalation vs retry), see **eoa-orchestration-patterns** skill and reference doc **delegation-decision-tree.md**.
+> For detailed judgment guidance (delegation vs direct handling, waiting vs polling, escalation vs retry), see **eoa-orchestration-patterns** skill and reference doc **delegation-checklist.md**.
 
 **Quick checks:**
 - DECISION (what to do next)? → Handle directly
@@ -127,7 +127,7 @@ This file contains all agent names and their AI Maestro addresses.
 
 ## Success Criteria
 
-> For detailed success criteria (task received, delegation complete, task verified, results reported), see **eoa-orchestration-patterns/references/success-criteria.md**.
+> For detailed success criteria (task received, delegation complete, task verified, results reported), see **eoa-orchestration-patterns/references/workflow-checklists.md**.
 
 **Task complete when:**
 - All acceptance criteria met
@@ -155,7 +155,7 @@ curl -X POST "http://localhost:23000/api/messages" \
 
 ## Record-Keeping
 
-> For log formats and archive structure (task-log.md, delegation-log.md, status files, archive layout), see **eoa-orchestration-patterns/references/record-keeping.md**.
+> For log formats (task-log.md, delegation-log.md, status files), see **eoa-orchestration-patterns/references/log-formats.md**. For archive layout, see **eoa-orchestration-patterns/references/archive-structure.md**.
 
 **Key files:**
 - `docs_dev/orchestration/task-log.md` - Central task log

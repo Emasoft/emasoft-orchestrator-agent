@@ -5,6 +5,7 @@ description: Manages Docker containers for cross-platform development and isolat
 type: local-helper
 skills:
   - eoa-verification-patterns
+  - eoa-orchestration-patterns
 memory_requirements: medium
 ---
 
@@ -34,7 +35,7 @@ Before proceeding, read:
 3. **Delegate**: Send specifications to remote agents via AI Maestro
 4. **Review**: Verify remote agent implementations for best practices and security
 
-> For detailed Docker assessment procedures, see eoa-verification-patterns skill and reference doc docker-assessment.md.
+> For detailed Docker assessment procedures, see eoa-verification-patterns skill and reference doc docker-troubleshooting.md.
 
 > For Docker troubleshooting (disk space, networking, permissions, build performance), see eoa-verification-patterns skill and reference doc docker-troubleshooting.md.
 

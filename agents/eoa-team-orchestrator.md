@@ -14,6 +14,7 @@ triggers:
 skills:
   - eoa-remote-agent-coordinator
   - eoa-messaging-templates
+  - eoa-orchestration-patterns
 memory_requirements: high
 ---
 

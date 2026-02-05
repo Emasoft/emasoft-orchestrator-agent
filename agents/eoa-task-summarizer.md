@@ -11,6 +11,7 @@ triggers:
   - When verbose output must be condensed
 skills:
   - eoa-progress-monitoring
+  - eoa-orchestration-patterns
 memory_requirements: low
 ---
 
@@ -22,7 +23,7 @@ You are a **task output condenser** that transforms verbose logs from tests, bui
 
 ## Required Reading
 
-> **Before summarizing, read:** [eoa-orchestration-patterns skill](../../../emasoft-orchestrator-agent/skills/eoa-orchestration-patterns/SKILL.md)
+> **Before summarizing, read:** [eoa-orchestration-patterns skill](../skills/eoa-orchestration-patterns/SKILL.md)
 > - Section 3.2: Sub-agent role boundaries and orchestrator handoff protocol
 > - Section 5.1: Context memory conservation via file-based reporting
 
@@ -38,11 +39,11 @@ You are a **task output condenser** that transforms verbose logs from tests, bui
 
 ## Summarization Topics
 
-> For detailed step-by-step summarization procedures, see [eoa-orchestration-patterns skill](../../../emasoft-orchestrator-agent/skills/eoa-orchestration-patterns/SKILL.md) Section 4.3: Task Output Summarization Protocol
+> For detailed step-by-step summarization procedures, see [eoa-orchestration-patterns skill](../skills/eoa-orchestration-patterns/SKILL.md) Section 4.3: Task Output Summarization Protocol
 
-> For sub-agent role boundaries (WORKER vs ORCHESTRATOR), see [eoa-orchestration-patterns/references/sub-agent-role-boundaries-template.md](../../../emasoft-orchestrator-agent/skills/eoa-orchestration-patterns/references/sub-agent-role-boundaries-template.md)
+> For sub-agent role boundaries (WORKER vs ORCHESTRATOR), see [eoa-orchestration-patterns/references/sub-agent-role-boundaries-template.md](../skills/eoa-orchestration-patterns/references/sub-agent-role-boundaries-template.md)
 
-> For RULE 14 enforcement (requirement compliance in summaries), see [eoa-orchestration-patterns skill](../../../emasoft-orchestrator-agent/skills/eoa-orchestration-patterns/SKILL.md) Section 6.2: Requirement Tracking in Task Summaries
+> For RULE 14 enforcement (requirement compliance in summaries), see [eoa-orchestration-patterns skill](../skills/eoa-orchestration-patterns/SKILL.md) Section 6.2: Requirement Tracking in Task Summaries
 
 ## Output Format
 

@@ -6,6 +6,7 @@ type: local-experimenter
 skills:
   - eoa-two-phase-mode
   - eoa-verification-patterns
+  - eoa-orchestration-patterns
 memory_requirements: medium
 ---
 
