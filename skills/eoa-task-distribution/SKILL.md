@@ -187,6 +187,19 @@ When reassigning a task (agent unresponsive or blocked):
 4. Notify original agent: "Task reassigned"
 5. Include any partial progress from original agent
 
+### 6.1 Reassignment Checklist
+
+Copy this checklist and track your progress:
+
+- [ ] Confirm reassignment is necessary (agent unresponsive after full escalation, or agent at capacity)
+- [ ] Gather partial progress from original agent (check issue comments, PRs, branches)
+- [ ] Remove current `assign:*` label from the issue
+- [ ] Add `assign:<new-agent>` label to the issue
+- [ ] Send reassignment message to new agent via AI Maestro (include all task context and partial progress)
+- [ ] Notify original agent via AI Maestro: "Task reassigned to <new-agent>"
+- [ ] Verify new agent sends ACK
+- [ ] Log reassignment in delegation log file
+
 ---
 
 ## 7. When a Distributed Task Becomes Blocked
@@ -247,6 +260,34 @@ Before escalating, verify the blocker is REAL:
 | Truly blocking | Can work continue on other parts of the task? | Suggest parallel work, escalate only the blocking part |
 
 Only escalate TRUE blockers that require user/architect intervention or resources the agent cannot access.
+
+### 7.4 Checklist: Move Task to Blocked Column
+
+Copy this checklist and track your progress:
+
+- [ ] Verify the blocker is real (section 7.3 verification table)
+- [ ] Acknowledge the blocker via AI Maestro to the reporting agent
+- [ ] Record the task's current column/status BEFORE moving to Blocked
+- [ ] Move the task to the Blocked column on the Kanban board
+- [ ] Remove current `status:*` label, add `status:blocked`
+- [ ] Add blocker details as comment on the blocked task issue (include `Previous status: $CURRENT_STATUS`)
+- [ ] Create a separate GitHub issue for the blocker (`type:blocker` label, referencing the blocked task)
+- [ ] Send blocker-escalation message to EAMA via AI Maestro (include `blocker_issue_number`)
+- [ ] Check if other unblocked tasks can be assigned to the waiting agent
+
+### 7.5 Checklist: Move Task Back to Original Column (Blocker Resolved)
+
+Copy this checklist and track your progress:
+
+- [ ] Verify the blocker is actually resolved (do not assume)
+- [ ] Retrieve the task's previous status from the blocker comment (`Previous status: ...`)
+- [ ] Add resolution comment on the blocked task issue
+- [ ] Close the blocker issue: `gh issue close $BLOCKER_ISSUE --comment "Resolved: [details]"`
+- [ ] Remove `status:blocked` label from the task
+- [ ] Restore previous status label on the task (e.g., `status:in-progress`, `status:in-review`)
+- [ ] Move task back to its PREVIOUS column on the Kanban board (not always "In Progress")
+- [ ] Notify the assigned agent via AI Maestro that the blocker is resolved and work can resume
+- [ ] Log the resolution in the issue timeline
 
 ---
 
