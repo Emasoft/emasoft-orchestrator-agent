@@ -283,6 +283,7 @@ curl -X POST "http://localhost:23000/api/messages" \
       "task_uuid": "[task-uuid]",
       "issue_number": "[GitHub issue number]",
       "blocker_type": "user-decision|clarification|access-needed|cost-decision|scope-question",
+      "blocker_issue_number": "[GitHub issue number tracking the blocker]",
       "blocker_description": "[Detailed description of what is blocking progress]",
       "impact": "[What work is prevented and which agents are waiting]",
       "options": [
@@ -299,6 +300,7 @@ curl -X POST "http://localhost:23000/api/messages" \
 
 **Key fields:**
 - `to`: Always `"eama-assistant-manager"` (EAMA's session name)
+- `blocker_issue_number`: GitHub issue number of the blocker issue (the separate issue created to track the blocking problem)
 - `blocker_type`: Specific type of user decision needed (choose one)
 - `blocker_description`: Detailed explanation of the blocking issue
 - `impact`: What work is stopped and which agents/tasks are affected
@@ -321,11 +323,12 @@ curl -X POST "http://localhost:23000/api/messages" \
 **Response handling:**
 
 When EAMA responds with the user's decision:
-1. Update the GitHub issue with the decision (add comment)
-2. Remove `status:blocked` label, add `status:in-progress`
-3. Move card from Blocked column to In Progress (or Todo if not immediately actionable)
-4. Notify the blocked agent with the resolution via AI Maestro
-5. Log the blocker resolution in the issue timeline
+1. Update the blocked task's GitHub issue with the decision (add comment)
+2. Close the blocker issue (the separate `type:blocker` issue tracking the problem): `gh issue close $BLOCKER_ISSUE --comment "Resolved by user decision: [details]"`
+3. Remove `status:blocked` label, restore the previous status label
+4. Move card from Blocked column to its PREVIOUS column (not always "In Progress" — could be Testing, Review, etc.)
+5. Notify the blocked agent with the resolution via AI Maestro
+6. Log the blocker resolution in the issue timeline
 
 ---
 

@@ -166,32 +166,86 @@ Suggested resolution: <if any>
 
 ## 5. Blocker Handling
 
+**IRON RULE FOR BLOCKERS**: The user must ALWAYS be informed of blockers immediately. There is NO scenario where a blocker should be "monitored quietly" for hours or days before telling the user. The user may have the solution ready in minutes — but only if they know about the problem.
+
+When an agent reports `[BLOCKED]`, EOA must verify the blocker is real (agent cannot solve it themselves), then IMMEDIATELY escalate to EAMA for user notification. There is NO waiting period for user notification — escalation happens as soon as the blocker is confirmed.
+
+### 5.1 Comprehensive Blocker Definition
+
+A blocker is ANY condition preventing task progress that the assigned agent cannot resolve independently:
+
+| Blocker Category | Examples | Verification |
+|------------------|----------|--------------|
+| **Task Dependency** | Feature B requires API from Feature A (still in development) | Check if blocking task is complete |
+| **Problem Resolution** | Bug must be fixed before feature can be tested | Verify bug status, check if workaround exists |
+| **Missing Resource** | Need API key, database access, test environment | Confirm resource is not available via normal channels |
+| **Missing Approval** | Design decision, architecture choice, breaking change | Check if approval authority (user/architect) was consulted |
+| **External Dependency** | Third-party API down, vendor response needed | Verify external status, check if alternative exists |
+| **Access/Credentials** | Repository access, deployment credentials, service permissions | Confirm access cannot be obtained via team processes |
+
+### 5.2 Blocker Response Protocol
+
 When agent reports `[BLOCKED]`:
 
-| Blocker Type | Resolution |
-|--------------|------------|
-| Dependency on another task | Check blocking task status, expedite if possible |
-| Missing information | Route to appropriate source (user, architect, etc.) |
-| Technical issue | Escalate to ECOS or user |
-| Resource contention | Coordinate with other agents |
+1. **Verify** the blocker is real (agent cannot solve it themselves)
+2. **Record** the task's current column BEFORE moving to Blocked (for restoration after unblocking)
+3. **Move** task to Blocked column and add `status:blocked` label
+4. **Remove** the `status:in-progress` (or whatever status it had) label
+5. **Comment** on the blocked task issue with blocker details
+6. **Create a separate GitHub issue** for the blocker itself (labeled `type:blocker`, referencing the blocked task). This makes the blocking problem visible to all agents and team members on the issue tracker.
+7. **Escalate** to EAMA IMMEDIATELY via AI Maestro blocker-escalation message (see eoa-messaging-templates). Include the blocker issue number.
+8. **Continue** monitoring for self-resolution while waiting for user response
+9. **Check** if other unblocked tasks can be assigned to the waiting agent
 
-### 5.1 Update Labels
+### 5.3 Update Labels and Create Blocker Issue
 
 ```bash
-# Mark task as blocked
-gh issue edit $ISSUE --remove-label "status:in-progress" --add-label "status:blocked"
+# BEFORE moving to blocked, record current status
+CURRENT_STATUS=$(gh issue view $ISSUE --json labels | jq -r '.labels[] | select(.name | startswith("status:")) | .name')
 
-# Add blocker details as comment
-gh issue comment $ISSUE --body "BLOCKED: <blocker-description>"
+# Mark task as blocked
+gh issue edit $ISSUE --remove-label "$CURRENT_STATUS" --add-label "status:blocked"
+
+# Create a GitHub issue for the blocker (the problem preventing progress)
+BLOCKER_ISSUE=$(gh issue create \
+  --title "BLOCKER: <one-line description of the blocking problem>" \
+  --label "type:blocker" \
+  --body "## Blocker
+
+This issue tracks a problem that is blocking task #$ISSUE.
+
+**Blocked Task**: #$ISSUE
+**Category**: <Task Dependency | Problem Resolution | Missing Resource | Access/Credentials | Missing Approval | External Dependency>
+**What's Needed**: <specific action to resolve>
+**Impact**: <what work is prevented>
+**Previous Status**: $CURRENT_STATUS
+
+## Resolution
+Close this issue when the blocking problem is resolved and the blocked task can resume." \
+  | grep -oP '\d+$')
+
+# Add blocker details as comment on the blocked task
+gh issue comment $ISSUE --body "BLOCKED: <blocker-description>. Previous status: $CURRENT_STATUS. Blocker tracked in #$BLOCKER_ISSUE"
 ```
 
-### 5.2 When Blocker Resolved
+### 5.4 When Blocker Resolved
+
+When a blocker is resolved, the task returns to the COLUMN IT WAS IN BEFORE being blocked (not always "In Progress" — it could have been in Testing, Review, Deploy, etc.).
 
 ```bash
-# Mark task as in-progress again
-gh issue edit $ISSUE --remove-label "status:blocked" --add-label "status:in-progress"
+# Retrieve previous status from issue comments or metadata
+PREVIOUS_STATUS=$(gh issue view $ISSUE --json comments | jq -r '.comments[-1].body' | grep "Previous status:" | awk '{print $3}')
 
-# Notify agent
+# Close the blocker issue (the issue tracking the blocking problem)
+gh issue close $BLOCKER_ISSUE --comment "Resolved: <resolution details>. Blocked task #$ISSUE can now resume."
+
+# Restore previous status on the blocked task
+gh issue edit $ISSUE --remove-label "status:blocked" --add-label "$PREVIOUS_STATUS"
+
+# Add resolution comment on the blocked task
+gh issue comment $ISSUE --body "Unblocked. Blocker #$BLOCKER_ISSUE resolved. Returning to $PREVIOUS_STATUS."
+
+# Notify agent that blocker is resolved
 # (send message via AI Maestro)
 ```
 

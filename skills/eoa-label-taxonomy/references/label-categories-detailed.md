@@ -117,11 +117,13 @@ needs-triage → backlog → ready → in-progress → needs-review → done
 | `type:security` | Security related | Fix XSS vulnerability |
 | `type:performance` | Performance improvement | Optimize database queries |
 | `type:epic` | Large multi-issue feature | User management system |
+| `type:blocker` | Issue tracking a blocking problem that prevents another task from continuing | Missing API credentials needed for #42 |
 
 **Rules:**
 - An issue should have EXACTLY ONE `type:*` label
 - Type is set when issue is created
 - Type should not change after creation (create new issue if scope changes)
+- `type:blocker` issues are special: they track the CAUSE (the blocking problem), not the blocked task itself. When the blocker is resolved, close the `type:blocker` issue and unblock the referenced task.
 
 ## Component Labels (`component:*`)
 
