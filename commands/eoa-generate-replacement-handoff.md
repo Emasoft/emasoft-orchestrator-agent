@@ -193,5 +193,5 @@ This command is typically triggered by an ECOS replacement notification:
 ## Related Skills
 
 - `eoa-agent-replacement` - Full replacement workflow
-- `eoa-agent-management` - Agent registration and assignment
+- `eoa-remote-agent-coordinator` - Agent registration and assignment
 - `eoa-remote-agent-coordinator` - Remote agent communication

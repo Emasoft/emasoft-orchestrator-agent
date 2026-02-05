@@ -52,13 +52,13 @@ The Orchestrator Agent handles **task distribution, agent coordination, and prog
 | `eoa-orchestration-commands` | Orchestration command patterns |
 | `eoa-orchestration-patterns` | Orchestration best practices |
 | `eoa-remote-agent-coordinator` | Remote agent coordination |
-| `eoa-agent-management` | Agent lifecycle management |
+| `eoa-remote-agent-coordinator` | Agent lifecycle management |
 | `eoa-module-management` | Module CRUD operations |
 | `eoa-verification-patterns` | Instruction verification |
 | `eoa-developer-communication` | Developer comm patterns |
 | `eoa-devops-expert` | DevOps expertise |
 | `eoa-checklist-compilation-patterns` | Checklist generation |
-| `eoa-handoff-protocols` | Handoff protocols |
+| `eoa-agent-replacement` | Handoff protocols |
 
 ### Hooks
 

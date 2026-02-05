@@ -113,6 +113,12 @@ For complete JSON templates with all fields, see **[references/message-templates
 - **2.10 Integration Request (EOA → EIA)** - Orchestrator requesting code integration/review
 - **2.11 Integration Result (EIA → EOA)** - Integrator reporting integration/review result
 
+For AI Maestro curl command templates with all message types, see **[references/ai-maestro-message-templates.md](references/ai-maestro-message-templates.md)**:
+
+- Ready-to-use curl commands for each message type
+- Complete JSON payloads with all required fields
+- Copy-paste templates for quick messaging
+
 ---
 
 ## 3. Cross-Plugin Protocol Reference
@@ -256,3 +262,4 @@ All emasoft plugins follow consistent record-keeping standards for delegation lo
 - **eoa-task-distribution** - Task assignment protocol
 - **eoa-progress-monitoring** - Agent state tracking
 - **AI Maestro API** - http://localhost:23000
+- [AI Maestro Message Templates](./references/ai-maestro-message-templates.md) - Curl command templates

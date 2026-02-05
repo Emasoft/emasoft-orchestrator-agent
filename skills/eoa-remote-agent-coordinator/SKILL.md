@@ -371,6 +371,47 @@ Every task delegation MUST include:
 
 ---
 
+## ECOS Replacement Protocol
+
+When ECOS notifies EOA of agent failure or context loss:
+
+**See [ecos-replacement-protocol.md](./references/ecos-replacement-protocol.md) for:**
+- Replacement notification handling
+- Context compilation workflow
+- Handoff document generation
+- Replacement confirmation protocol
+
+---
+
+## Agent Type Definitions
+
+**See [agent-types.md](./references/agent-types.md) for:**
+- Worker agent types (implementer, debugger, tester, reviewer)
+- Agent role boundaries and capabilities
+- Agent selection based on task requirements
+
+---
+
+## Assignment Workflow
+
+**See [assignment-workflow.md](./references/assignment-workflow.md) for:**
+- Agent availability checking
+- Task-agent matching
+- Assignment protocol steps
+- Assignment failure handling
+
+---
+
+## Agent Communication Templates
+
+**See [agent-communication-templates.md](./references/agent-communication-templates.md) for:**
+- Standard message templates for agent communication
+- Task delegation message format
+- Status update message format
+- Escalation message format
+
+---
+
 ## Examples
 
 **Complete examples with code**: [examples-remote-coordination.md](./references/examples-remote-coordination.md)
@@ -464,3 +505,7 @@ The script is located at `../../scripts/eoa_design_search.py` relative to this s
 - [task-instruction-format.md](./references/task-instruction-format.md) - Instruction template
 - [overnight-operation.md](./references/overnight-operation.md) - Autonomous operation
 - [lsp-servers-overview.md](./references/lsp-servers-overview.md) - LSP requirements
+- [ecos-replacement-protocol.md](./references/ecos-replacement-protocol.md) - Agent replacement
+- [agent-types.md](./references/agent-types.md) - Agent type definitions
+- [assignment-workflow.md](./references/assignment-workflow.md) - Agent assignment
+- [agent-communication-templates.md](./references/agent-communication-templates.md) - Communication templates

@@ -235,6 +235,46 @@ AI Maestro messaging and Claude Code Tasks API reference.
 
 ---
 
+### RULE 14 Enforcement ([references/rule-14-enforcement.md](references/rule-14-enforcement.md))
+
+Canonical text for RULE 14: User Requirements Are Immutable.
+
+**When to use:** When enforcing requirement immutability at all orchestration phases.
+
+---
+
+### Sub-Agent Role Boundaries Template ([references/sub-agent-role-boundaries-template.md](references/sub-agent-role-boundaries-template.md))
+
+Template for defining worker agent role boundaries in task delegations.
+
+**When to use:** When delegating tasks to worker agents.
+
+---
+
+### Workflow Checklists ([references/workflow-checklists.md](references/workflow-checklists.md))
+
+Orchestration workflow checklists for task decomposition, assignment, monitoring, and integration.
+
+**When to use:** When executing orchestration workflows.
+
+---
+
+### Log Formats ([references/log-formats.md](references/log-formats.md))
+
+Log format specifications for orchestration activities.
+
+**When to use:** When creating delegation logs and status reports.
+
+---
+
+### Archive Structure ([references/archive-structure.md](references/archive-structure.md))
+
+Archive directory structure for completed work.
+
+**When to use:** When archiving completed tasks and projects.
+
+---
+
 ## Quick Reference Checklist
 
 Copy this checklist and track your progress:
@@ -303,8 +343,13 @@ See individual reference files for detailed troubleshooting.
 - [Project Setup Menu](./references/project-setup-menu.md)
 - [Language Verification Checklists](./references/language-verification-checklists.md)
 - [RULE 14 - User Requirements Immutable](./references/user-requirements-immutable.md)
+- [RULE 14 Enforcement](./references/rule-14-enforcement.md)
 - [RULE 15 - Orchestrator No Implementation](./references/orchestrator-no-implementation.md)
 - [RULE 16 - Orchestrator Exclusive Communications](./references/orchestrator-exclusive-communications.md)
 - [RULE 17 - Non-Blocking Patterns](./references/non-blocking-patterns.md)
 - [Orchestration Examples](./references/orchestration-examples.md)
 - [Orchestration API Commands](./references/orchestration-api-commands.md)
+- [Sub-Agent Role Boundaries Template](./references/sub-agent-role-boundaries-template.md)
+- [Workflow Checklists](./references/workflow-checklists.md)
+- [Log Formats](./references/log-formats.md)
+- [Archive Structure](./references/archive-structure.md)

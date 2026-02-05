@@ -155,6 +155,14 @@ See [Troubleshooting](./references/troubleshooting.md):
 - 10.4 E2E Test is Flaky (passes sometimes, fails sometimes)
 - 10.5 Verification Requires Access to Internal State
 
+### When you need to troubleshoot Docker-based verification environments
+See [Docker Troubleshooting](./references/docker-troubleshooting.md):
+- Docker service not starting
+- Container networking issues
+- Volume mount problems
+- Image build failures
+- Resource constraints and performance issues
+
 ### When you need to automate verification tasks
 See [Automation Scripts](./references/automation-scripts.md):
 - 11.1 Traceability and Requirements Scripts (traceability_validator.py)
@@ -345,6 +353,7 @@ For detailed implementation of each pattern, see the reference files linked in t
 - [testing-protocol.md](./references/testing-protocol.md) - Test execution protocols
 - [github-integration.md](./references/github-integration.md) - GitHub issue updates
 - [troubleshooting.md](./references/troubleshooting.md) - Common issues
+- [docker-troubleshooting.md](./references/docker-troubleshooting.md) - Docker troubleshooting
 - [automation-scripts.md](./references/automation-scripts.md) - Script reference
 - [test-report-format.md](./references/test-report-format.md) - Report standards
 

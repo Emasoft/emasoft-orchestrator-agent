@@ -74,6 +74,10 @@ Copy this checklist and track your progress:
 | Step 4: Reassign Kanban Tasks | [kanban-reassignment-protocol.md](references/kanban-reassignment-protocol.md) |
 | Step 5: Send Handoff to New Agent | [handoff-delivery-protocol.md](references/handoff-delivery-protocol.md) |
 | Step 6: Confirm Reassignment | [confirmation-protocol.md](references/confirmation-protocol.md) |
+| Handoff Protocols | [handoff-protocols.md](references/handoff-protocols.md) |
+| Design Document Protocol | [design-document-protocol.md](references/design-document-protocol.md) |
+| Edge Case Protocols | [edge-case-protocols.md](references/edge-case-protocols.md) |
+| Task Completion Checklist | [task-completion-checklist.md](references/task-completion-checklist.md) |
 
 ---
 
@@ -201,16 +205,20 @@ See: [examples.md](references/examples.md) - Standard replacement flow, emergenc
 | [kanban-reassignment-protocol.md](references/kanban-reassignment-protocol.md) | GitHub Project updates |
 | [handoff-delivery-protocol.md](references/handoff-delivery-protocol.md) | Delivering to new agent |
 | [confirmation-protocol.md](references/confirmation-protocol.md) | Confirming replacement |
+| [handoff-protocols.md](references/handoff-protocols.md) | Handoff protocol procedures |
+| [design-document-protocol.md](references/design-document-protocol.md) | Design document protocol |
+| [edge-case-protocols.md](references/edge-case-protocols.md) | Edge case protocols |
+| [task-completion-checklist.md](references/task-completion-checklist.md) | Task completion checklist |
 | [troubleshooting.md](references/troubleshooting.md) | Common issues and solutions |
 | [emergency-procedures.md](references/emergency-procedures.md) | Emergency procedures |
 | [examples.md](references/examples.md) | Usage examples |
 
 ## Related Skills
 
-- `eoa-agent-management` - Agent registration and assignment
+- `eoa-remote-agent-coordinator` - Agent registration and assignment
 - `eoa-remote-agent-coordinator` - Remote agent communication
 - `eoa-orchestration-patterns` - General orchestration patterns
-- `eoa-handoff-protocols` - Shared handoff protocols
+- `eoa-agent-replacement` - Shared handoff protocols
 
 ---
 
