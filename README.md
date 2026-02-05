@@ -24,8 +24,8 @@ The Orchestrator Agent handles **task distribution, agent coordination, and prog
 | `eoa-team-orchestrator.md` | Coordinates team of agents |
 | `eoa-task-summarizer.md` | Summarizes task progress |
 | `eoa-checklist-compiler.md` | Creates verification checklists |
-| `eoa-devops-expert.md` | Handles DevOps tasks |
 | `eoa-docker-container-expert.md` | Docker and container expertise |
+| `eoa-experimenter.md` | Experimentation and prototyping |
 
 ### Commands
 
@@ -52,13 +52,17 @@ The Orchestrator Agent handles **task distribution, agent coordination, and prog
 | `eoa-orchestration-commands` | Orchestration command patterns |
 | `eoa-orchestration-patterns` | Orchestration best practices |
 | `eoa-remote-agent-coordinator` | Remote agent coordination |
-| `eoa-remote-agent-coordinator` | Agent lifecycle management |
 | `eoa-module-management` | Module CRUD operations |
 | `eoa-verification-patterns` | Instruction verification |
 | `eoa-developer-communication` | Developer comm patterns |
-| `eoa-devops-expert` | DevOps expertise |
 | `eoa-checklist-compilation-patterns` | Checklist generation |
-| `eoa-agent-replacement` | Handoff protocols |
+| `eoa-agent-replacement` | Agent replacement handoffs |
+| `eoa-task-distribution` | Task breakdown and assignment |
+| `eoa-progress-monitoring` | Progress tracking and polling |
+| `eoa-messaging-templates` | AI Maestro message formats |
+| `eoa-label-taxonomy` | GitHub label system |
+| `eoa-implementer-interview-protocol` | Interview-based requirements |
+| `eoa-github-action-integration` | GitHub Actions patterns |
 
 ### Hooks
 
