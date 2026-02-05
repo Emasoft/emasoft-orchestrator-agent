@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Atlas Assign Module Script
+EOA Assign Module Script
 
 Assigns a module to a registered agent and initiates the
 Instruction Verification Protocol.

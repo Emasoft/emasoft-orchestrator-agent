@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """
-ATLAS Cross-Agent Search
+EOA Cross-Agent Search
 
 Searches across all agents' documents using the pre-built indexes.
 
 Usage:
-    python atlas_search.py by-task TASK_ID
-    python atlas_search.py by-agent AGENT_NAME
-    python atlas_search.py by-date 2024-01-15
-    python atlas_search.py by-category reports
-    python atlas_search.py blockers
+    python eoa_search.py by-task TASK_ID
+    python eoa_search.py by-agent AGENT_NAME
+    python eoa_search.py by-date 2024-01-15
+    python eoa_search.py by-category reports
+    python eoa_search.py blockers
 """
 
 from __future__ import annotations
@@ -23,18 +23,18 @@ from pathlib import Path
 from typing import Any
 
 
-def get_atlas_root() -> Path:
-    """Get ATLAS storage root from environment or current directory."""
-    if "ATLAS_STORAGE_ROOT" in os.environ:
-        return Path(os.environ["ATLAS_STORAGE_ROOT"])
+def get_design_root() -> Path:
+    """Get Design storage root from environment or current directory."""
+    if "DESIGN_STORAGE_ROOT" in os.environ:
+        return Path(os.environ["DESIGN_STORAGE_ROOT"])
     if "PROJECT_ROOT" in os.environ:
-        return Path(os.environ["PROJECT_ROOT"]) / ".atlas"
-    return Path.cwd() / ".atlas"
+        return Path(os.environ["PROJECT_ROOT"]) / "design"
+    return Path.cwd() / "design"
 
 
-def search_by_task(task_id: str, atlas_root: Path) -> dict[str, Any]:
+def search_by_task(task_id: str, design_root: Path) -> dict[str, Any]:
     """Search for all documents related to a task."""
-    index_path = atlas_root / "index" / "by-task" / f"{task_id}.json"
+    index_path = design_root / "index" / "by-task" / f"{task_id}.json"
 
     if not index_path.exists():
         return {"found": False, "task_id": task_id, "message": "No index found for task"}
@@ -46,9 +46,9 @@ def search_by_task(task_id: str, atlas_root: Path) -> dict[str, Any]:
         return {"found": False, "task_id": task_id, "error": "Invalid index file"}
 
 
-def search_by_agent(agent_name: str, atlas_root: Path) -> dict[str, Any]:
+def search_by_agent(agent_name: str, design_root: Path) -> dict[str, Any]:
     """Search for all documents from an agent."""
-    index_path = atlas_root / "index" / "by-agent" / f"{agent_name}.json"
+    index_path = design_root / "index" / "by-agent" / f"{agent_name}.json"
 
     if not index_path.exists():
         return {"found": False, "agent": agent_name, "message": "No index found for agent"}
@@ -60,7 +60,7 @@ def search_by_agent(agent_name: str, atlas_root: Path) -> dict[str, Any]:
         return {"found": False, "agent": agent_name, "error": "Invalid index file"}
 
 
-def search_by_date(date_str: str, atlas_root: Path) -> dict[str, Any]:
+def search_by_date(date_str: str, design_root: Path) -> dict[str, Any]:
     """Search for all documents from a specific date."""
     # Parse date
     try:
@@ -70,7 +70,7 @@ def search_by_date(date_str: str, atlas_root: Path) -> dict[str, Any]:
     except ValueError:
         return {"found": False, "date": date_str, "error": "Invalid date format. Use YYYY-MM-DD"}
 
-    index_path = atlas_root / "index" / "by-date" / year_month / f"{day}.json"
+    index_path = design_root / "index" / "by-date" / year_month / f"{day}.json"
 
     if not index_path.exists():
         return {"found": False, "date": date_str, "message": "No documents found for date"}
@@ -82,9 +82,9 @@ def search_by_date(date_str: str, atlas_root: Path) -> dict[str, Any]:
         return {"found": False, "date": date_str, "error": "Invalid index file"}
 
 
-def search_by_category(category: str, atlas_root: Path) -> dict[str, Any]:
+def search_by_category(category: str, design_root: Path) -> dict[str, Any]:
     """Search for all documents in a category."""
-    index_path = atlas_root / "index" / "by-category" / f"{category}.json"
+    index_path = design_root / "index" / "by-category" / f"{category}.json"
 
     if not index_path.exists():
         return {"found": False, "category": category, "message": "No documents found for category"}
@@ -96,17 +96,17 @@ def search_by_category(category: str, atlas_root: Path) -> dict[str, Any]:
         return {"found": False, "category": category, "error": "Invalid index file"}
 
 
-def search_blockers(atlas_root: Path) -> dict[str, Any]:
+def search_blockers(design_root: Path) -> dict[str, Any]:
     """Find all blocker reports across all agents (critical operation)."""
     # Search by category for blockers
-    result = search_by_category("reports", atlas_root)
+    result = search_by_category("reports", design_root)
 
     if not result["found"]:
         # Also check reports category which contains blockers subcategory
         blockers: list[dict] = []
 
         # Direct search in agents directories
-        agents_dir = atlas_root / "agents"
+        agents_dir = design_root / "agents"
         if agents_dir.exists():
             for agent_dir in agents_dir.iterdir():
                 if not agent_dir.is_dir():
@@ -126,7 +126,7 @@ def search_blockers(atlas_root: Path) -> dict[str, Any]:
                             blockers.append({
                                 "agent": agent_dir.name,
                                 "task_id": task_dir.name,
-                                "path": str(md_file.relative_to(atlas_root)),
+                                "path": str(md_file.relative_to(design_root)),
                                 "filename": md_file.name,
                             })
 
@@ -151,10 +151,10 @@ def search_blockers(atlas_root: Path) -> dict[str, Any]:
     }
 
 
-def search_fulltext(pattern: str, atlas_root: Path) -> dict[str, Any]:
+def search_fulltext(pattern: str, design_root: Path) -> dict[str, Any]:
     """Search document contents for a pattern."""
     results: list[dict] = []
-    agents_dir = atlas_root / "agents"
+    agents_dir = design_root / "agents"
 
     if not agents_dir.exists():
         return {"found": False, "pattern": pattern, "message": "No agents directory"}
@@ -180,7 +180,7 @@ def search_fulltext(pattern: str, atlas_root: Path) -> dict[str, Any]:
 
                     results.append({
                         "agent": agent_dir.name,
-                        "path": str(md_file.relative_to(atlas_root)),
+                        "path": str(md_file.relative_to(design_root)),
                         "matches": len(matching_lines),
                         "preview": matching_lines[:3] if matching_lines else [],
                     })
@@ -198,7 +198,7 @@ def search_fulltext(pattern: str, atlas_root: Path) -> dict[str, Any]:
 def main() -> int:
     """Main entry point."""
     parser = argparse.ArgumentParser(
-        description="ATLAS Cross-Agent Document Search"
+        description="EOA Cross-Agent Document Search"
     )
 
     subparsers = parser.add_subparsers(dest="command", help="Search commands")
@@ -206,36 +206,36 @@ def main() -> int:
     # by-task
     task_parser = subparsers.add_parser("by-task", help="Search by task ID")
     task_parser.add_argument("task_id", help="Task ID (e.g., GH-42)")
-    task_parser.add_argument("--atlas-root", type=Path, help="ATLAS root")
+    task_parser.add_argument("--design-root", type=Path, help="Design root")
     task_parser.add_argument("--json", action="store_true", help="JSON output")
 
     # by-agent
     agent_parser = subparsers.add_parser("by-agent", help="Search by agent name")
     agent_parser.add_argument("agent_name", help="Agent full name")
-    agent_parser.add_argument("--atlas-root", type=Path, help="ATLAS root")
+    agent_parser.add_argument("--design-root", type=Path, help="Design root")
     agent_parser.add_argument("--json", action="store_true", help="JSON output")
 
     # by-date
     date_parser = subparsers.add_parser("by-date", help="Search by date")
     date_parser.add_argument("date", help="Date (YYYY-MM-DD)")
-    date_parser.add_argument("--atlas-root", type=Path, help="ATLAS root")
+    date_parser.add_argument("--design-root", type=Path, help="Design root")
     date_parser.add_argument("--json", action="store_true", help="JSON output")
 
     # by-category
     cat_parser = subparsers.add_parser("by-category", help="Search by category")
     cat_parser.add_argument("category", help="Category name")
-    cat_parser.add_argument("--atlas-root", type=Path, help="ATLAS root")
+    cat_parser.add_argument("--design-root", type=Path, help="Design root")
     cat_parser.add_argument("--json", action="store_true", help="JSON output")
 
     # blockers
     block_parser = subparsers.add_parser("blockers", help="Find all blocker reports")
-    block_parser.add_argument("--atlas-root", type=Path, help="ATLAS root")
+    block_parser.add_argument("--design-root", type=Path, help="Design root")
     block_parser.add_argument("--json", action="store_true", help="JSON output")
 
     # fulltext
     ft_parser = subparsers.add_parser("fulltext", help="Full-text search")
     ft_parser.add_argument("pattern", help="Search pattern")
-    ft_parser.add_argument("--atlas-root", type=Path, help="ATLAS root")
+    ft_parser.add_argument("--design-root", type=Path, help="Design root")
     ft_parser.add_argument("--json", action="store_true", help="JSON output")
 
     args = parser.parse_args()
@@ -244,20 +244,20 @@ def main() -> int:
         parser.print_help()
         return 1
 
-    atlas_root = args.atlas_root or get_atlas_root()
+    design_root = args.design_root or get_design_root()
 
     if args.command == "by-task":
-        result = search_by_task(args.task_id, atlas_root)
+        result = search_by_task(args.task_id, design_root)
     elif args.command == "by-agent":
-        result = search_by_agent(args.agent_name, atlas_root)
+        result = search_by_agent(args.agent_name, design_root)
     elif args.command == "by-date":
-        result = search_by_date(args.date, atlas_root)
+        result = search_by_date(args.date, design_root)
     elif args.command == "by-category":
-        result = search_by_category(args.category, atlas_root)
+        result = search_by_category(args.category, design_root)
     elif args.command == "blockers":
-        result = search_blockers(atlas_root)
+        result = search_blockers(design_root)
     elif args.command == "fulltext":
-        result = search_fulltext(args.pattern, atlas_root)
+        result = search_fulltext(args.pattern, design_root)
     else:
         parser.print_help()
         return 1

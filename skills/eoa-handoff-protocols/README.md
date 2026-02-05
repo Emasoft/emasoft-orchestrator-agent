@@ -1,6 +1,6 @@
-# ao-shared
+# eoa-handoff-protocols
 
-Shared reference documents used across multiple Atlas Orchestrator skills.
+Shared reference documents used across multiple EOA (Emasoft Orchestrator Agent) skills.
 
 ## Contents
 

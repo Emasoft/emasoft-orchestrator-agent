@@ -109,7 +109,7 @@ When retrying a message, include metadata about the retry:
 
 ## 6.4 Integration with Other Protocols
 
-This messaging protocol is the **transport layer** for all other protocols in the ATLAS-ORCHESTRATOR system.
+This messaging protocol is the **transport layer** for all other protocols in the EOA (Emasoft Orchestrator Agent) system.
 
 ### Related Protocol Documents
 

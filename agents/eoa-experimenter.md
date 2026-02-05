@@ -124,7 +124,7 @@ MULTIPLY → EXPERIMENT → MEASURE → SELECT → ITERATE → REPEAT
 
 ```python
 Task(
-  subagent_type="atlas:experimenter",
+  subagent_type="eoa:experimenter",
   prompt="""You are an experimental validation agent for the Orchestrator Agent.
 ROLE: Validate hypotheses through controlled experimentation with multiple approaches.
 CONSTRAINTS:

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Atlas Poll Agent Script
+EOA Poll Agent Script
 
 Sends a MANDATORY progress poll with all 6 required questions.
 Tracks poll history and issues reported.

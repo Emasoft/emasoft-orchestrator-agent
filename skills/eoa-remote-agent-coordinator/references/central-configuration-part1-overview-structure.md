@@ -18,7 +18,7 @@
 1. [If you need to understand why central configuration matters](#overview)
    - [Why Central Configuration Matters](#why-central-configuration-matters)
 2. [If you need to set up the `design/` directory structure](#directory-structure)
-   - [The `design/` Hierarchy](#the-atlas-hierarchy)
+   - [The `design/` Hierarchy](#the-design-hierarchy)
    - [Purpose of Each Directory](#purpose-of-each-directory)
 
 ---

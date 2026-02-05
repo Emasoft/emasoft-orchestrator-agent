@@ -1,6 +1,6 @@
 # Monorepo Base Structure Template
 
-This template defines the foundational structure for monorepo projects managed by ATLAS orchestrator.
+This template defines the foundational structure for monorepo projects managed by EOA orchestrator.
 Use this as the base for all monorepo compositions before applying workspace-specific templates.
 
 ---
@@ -263,9 +263,9 @@ log_info "All checks passed!"
 
 ---
 
-## ATLAS Pipeline Labels for Monorepo
+## EOA Pipeline Labels for Monorepo
 
-In addition to standard ATLAS labels, monorepos use workspace-specific labels:
+In addition to standard EOA labels, monorepos use workspace-specific labels:
 
 | Label | Color | Description |
 |-------|-------|-------------|
@@ -364,7 +364,7 @@ utils = { path = "../utils", version = "{{VERSION}}" }
 - [ ] All packages build: `{{BUILD_ALL_CMD}}`
 - [ ] All tests pass: `{{TEST_ALL_CMD}}`
 
-### ATLAS Compliance
+### EOA Compliance
 - [ ] Workspace labels created in GitHub
 - [ ] CI workflow uses change detection
 - [ ] Branch naming includes workspace scope

@@ -5,7 +5,7 @@ license: Apache-2.0
 compatibility: Requires AI Maestro installed.
 metadata:
   version: 1.0.0
-  author: atlas-orchestrator
+  author: emasoft-orchestrator-agent
   tags: "communication, code-review, documentation, collaboration"
   audience: AI agents working with human developers
   prerequisites: None

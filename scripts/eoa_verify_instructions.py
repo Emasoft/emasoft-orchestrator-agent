@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Atlas Verify Instructions Script
+EOA Verify Instructions Script
 
 Manages the Instruction Verification Protocol for remote agents.
 Tracks verification status and handles the verification flow.

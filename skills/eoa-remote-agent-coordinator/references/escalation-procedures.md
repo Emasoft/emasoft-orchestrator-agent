@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document defines when and how the ATLAS-ORCHESTRATOR escalates issues to the user or higher authority. Proper escalation ensures problems are addressed without exceeding orchestrator's decision-making scope.
+This document defines when and how the EOA (Emasoft Orchestrator Agent) escalates issues to the user or higher authority. Proper escalation ensures problems are addressed without exceeding orchestrator's decision-making scope.
 
 ## Contents
 

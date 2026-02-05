@@ -103,8 +103,8 @@ Swift on Windows is experimental. Use macOS or Linux for production builds.
 - [ ] Xcode CLT installed (macOS): `xcode-select -p`
 
 ### Configuration
-- [ ] .swift-format exists with ATLAS standard config
-- [ ] .swiftlint.yml exists with ATLAS standard config
+- [ ] .swift-format exists with EOA standard config
+- [ ] .swiftlint.yml exists with EOA standard config
 - [ ] Package.swift has swift-argument-parser (for CLI)
 - [ ] Package.swift has swift-format plugin
 
@@ -134,7 +134,7 @@ Swift on Windows is experimental. Use macOS or Linux for production builds.
 - [ ] Uses Codable for JSON serialization
 - [ ] Uses ArgumentParser for CLI argument parsing
 
-### ATLAS Compliance
+### EOA Compliance
 - [ ] Labels configured in GitHub
 - [ ] Branch follows convention: `feature/{{TASK_ID}}-*`
 - [ ] Commits follow convention: `feat({{TASK_ID}}): *`

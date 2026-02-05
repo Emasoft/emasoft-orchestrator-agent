@@ -50,8 +50,8 @@ cmake --build build
 - [ ] clang-tidy installed: `clang-tidy --version`
 
 ### Configuration
-- [ ] .clang-format exists with ATLAS standard config
-- [ ] .clang-tidy exists with ATLAS standard config
+- [ ] .clang-format exists with EOA standard config
+- [ ] .clang-tidy exists with EOA standard config
 - [ ] CMakeLists.txt uses modern CMake (target-based)
 - [ ] conanfile.txt or vcpkg.json includes nlohmann_json
 - [ ] conanfile.txt or vcpkg.json includes CLI11
@@ -81,7 +81,7 @@ cmake --build build
 - [ ] Separate lint and format jobs configured
 - [ ] Uses Conan or vcpkg for dependency management
 
-### ATLAS Compliance
+### EOA Compliance
 - [ ] Labels configured in GitHub
 - [ ] Branch follows convention: `feature/{{TASK_ID}}-*`
 - [ ] Commits follow convention: `feat({{TASK_ID}}): *`

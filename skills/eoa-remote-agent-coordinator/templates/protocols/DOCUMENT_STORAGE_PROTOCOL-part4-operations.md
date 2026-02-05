@@ -53,11 +53,11 @@ fi
 # Set in remote agent environment
 export ATLAS_ROLE="remote"
 export ATLAS_AGENT_NAME="helper-agent-macos-arm64"
-export ATLAS_STORAGE_ROOT="${PROJECT_ROOT}/design/received"
-export ATLAS_TASKS_DIR="${ATLAS_STORAGE_ROOT}/tasks"
-export ATLAS_SPECS_DIR="${ATLAS_STORAGE_ROOT}/specs"
-export ATLAS_PLANS_DIR="${ATLAS_STORAGE_ROOT}/plans"
-export ATLAS_SYNC_DIR="${ATLAS_STORAGE_ROOT}/sync"
+export EOA_STORAGE_ROOT="${PROJECT_ROOT}/design/received"
+export ATLAS_TASKS_DIR="${EOA_STORAGE_ROOT}/tasks"
+export ATLAS_SPECS_DIR="${EOA_STORAGE_ROOT}/specs"
+export ATLAS_PLANS_DIR="${EOA_STORAGE_ROOT}/plans"
+export ATLAS_SYNC_DIR="${EOA_STORAGE_ROOT}/sync"
 ```
 
 ### Orchestrator Variables
@@ -66,10 +66,10 @@ export ATLAS_SYNC_DIR="${ATLAS_STORAGE_ROOT}/sync"
 # Set in orchestrator environment
 export ATLAS_ROLE="orchestrator"
 export ATLAS_AGENT_NAME="orchestrator"
-export ATLAS_STORAGE_ROOT="${PROJECT_ROOT}/.atlas"
-export ATLAS_AGENTS_DIR="${ATLAS_STORAGE_ROOT}/agents"
-export ATLAS_SENT_DIR="${ATLAS_STORAGE_ROOT}/sent"
-export ATLAS_INDEX_DIR="${ATLAS_STORAGE_ROOT}/index"
+export EOA_STORAGE_ROOT="${PROJECT_ROOT}/design"
+export ATLAS_AGENTS_DIR="${EOA_STORAGE_ROOT}/agents"
+export ATLAS_SENT_DIR="${EOA_STORAGE_ROOT}/sent"
+export ATLAS_INDEX_DIR="${EOA_STORAGE_ROOT}/index"
 ```
 
 ---
@@ -118,7 +118,7 @@ cat "$ATLAS_INDEX_DIR/by-category/blockers.json" | jq '.[]'
 Add to project `.gitignore`:
 
 ```gitignore
-# ATLAS Document Storage (local cache, not committed)
+# EOA Document Storage (local cache, not committed)
 design/
 
 # Exception: Keep folder structure template

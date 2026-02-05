@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Atlas Modify Module Script
+EOA Modify Module Script
 
 Handles add, modify, and remove operations for modules during
 Orchestration Phase. Supports dynamic flexibility.

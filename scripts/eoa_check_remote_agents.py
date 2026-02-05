@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Atlas Check Remote Agents Script
+EOA Check Remote Agents Script
 
 Polls all active remote agents for progress updates using the
 MANDATORY Proactive Progress Polling Protocol.

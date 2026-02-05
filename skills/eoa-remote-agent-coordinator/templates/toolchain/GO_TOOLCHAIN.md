@@ -91,7 +91,7 @@ This template is split into multiple files for better organization:
 ### Part 3: Patterns and Verification
 **File**: [GO_TOOLCHAIN-part3-patterns.md](./GO_TOOLCHAIN-part3-patterns.md)
 - Verification checklist for Go toolchain setup
-- Common Go patterns for ATLAS compliance
+- Common Go patterns for EOA Compliance
 - Error handling patterns
 - JSON handling patterns
 - CLI structure with Cobra

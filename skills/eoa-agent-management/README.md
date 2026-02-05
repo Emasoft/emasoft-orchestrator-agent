@@ -1,6 +1,6 @@
 # Agent Management Commands Skill
 
-Provides commands for registering, assigning work to, and monitoring remote agents (AI agents and human developers) in the ATLAS orchestration workflow.
+Provides commands for registering, assigning work to, and monitoring remote agents (AI agents and human developers) in the EOA orchestration workflow.
 
 ## When to Use
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Atlas Start Orchestration Script
+EOA Start Orchestration Script
 
 Activates Orchestration Phase Mode after plan approval.
 Sets up module tracking and prepares for agent assignment.

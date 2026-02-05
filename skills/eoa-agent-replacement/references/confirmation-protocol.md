@@ -148,7 +148,7 @@ replacement_history:
 #!/bin/bash
 # update_state_for_replacement.sh
 
-STATE_FILE="$CLAUDE_PROJECT_DIR/.atlas/state.yaml"
+STATE_FILE="$CLAUDE_PROJECT_DIR/design/state.yaml"
 FAILED_AGENT="$1"
 NEW_AGENT="$2"
 NEW_SESSION="$3"

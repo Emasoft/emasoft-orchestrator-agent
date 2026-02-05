@@ -1,7 +1,7 @@
 # GitHub Project Setup Template
 
 ## Overview
-This template provides commands and configuration for setting up a GitHub project board with ATLAS orchestrator integration.
+This template provides commands and configuration for setting up a GitHub project board with EOA orchestrator integration.
 
 ## Project Creation
 
@@ -25,10 +25,10 @@ gh project list --owner {{GITHUB_OWNER}} --format json | jq '.projects[] | selec
 # Store the ID as {{PROJECT_ID}}
 ```
 
-## Standard ATLAS Columns
+## Standard EOA Columns
 
 ### Column Structure
-The ATLAS orchestrator uses a standard four-column workflow:
+The EOA orchestrator uses a standard four-column workflow:
 
 1. **Backlog** - Tasks awaiting assignment
 2. **In Progress** - Tasks actively being worked on
@@ -264,8 +264,8 @@ gh project field-list {{PROJECT_NUMBER}} --owner {{GITHUB_OWNER}} --format json 
 # Full setup example
 export GITHUB_OWNER="myorg"
 export REPO_NAME="myrepo"
-export PROJECT_NAME="ATLAS Development"
-export PROJECT_DESCRIPTION="ATLAS orchestrator task tracking"
+export PROJECT_NAME="EOA Development"
+export PROJECT_DESCRIPTION="EOA orchestrator task tracking"
 
 # 1. Create project
 gh project create --owner $GITHUB_OWNER --title "$PROJECT_NAME" --body "$PROJECT_DESCRIPTION"

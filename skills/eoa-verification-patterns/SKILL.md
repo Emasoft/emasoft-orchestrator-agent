@@ -10,7 +10,7 @@ agent: eoa-main
 context: fork
 ---
 
-# Verification Patterns for Atlas Orchestrator
+# Verification Patterns for EOA (Emasoft Orchestrator Agent)
 
 ## Overview
 

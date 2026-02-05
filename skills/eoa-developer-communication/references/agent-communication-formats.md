@@ -22,7 +22,7 @@
 
 ---
 
-This document defines standardized message formats for inter-agent communication in the atlas-orchestrator system.
+This document defines standardized message formats for inter-agent communication in the emasoft multi-agent system.
 
 ---
 

@@ -18,7 +18,7 @@ OUTPUTS:
   - scripts/ (any helper scripts needed)
 
 This allows orchestrators to generate lean, task-specific skills rather than
-giving agents the full atlas-orchestrator skill.
+giving agents the full emasoft-orchestrator-agent skill.
 """
 
 import argparse

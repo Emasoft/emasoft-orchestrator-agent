@@ -1,6 +1,6 @@
 # Module Management Commands
 
-Dynamic module manipulation commands for Atlas orchestration. Enables adding, modifying, removing, prioritizing, and reassigning modules during the Orchestration Phase.
+Dynamic module manipulation commands for EOA orchestration. Enables adding, modifying, removing, prioritizing, and reassigning modules during the Orchestration Phase.
 
 ## When to Use
 

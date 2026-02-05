@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """
-ATLAS Document Download and Storage Manager
+EOA Document Download and Storage Manager
 
 Downloads .md files from GitHub issue comments and stores them in the
-standardized ATLAS folder structure with read-only enforcement.
+standardized EOA folder structure with read-only enforcement.
 
 Usage:
-    python atlas_download.py download --url URL --task-id TASK_ID --category CATEGORY
-    python atlas_download.py init --project-root PATH
-    python atlas_download.py lookup --task-id TASK_ID
-    python atlas_download.py verify --project-root PATH
+    python eoa_download.py download --url URL --task-id TASK_ID --category CATEGORY
+    python eoa_download.py init --project-root PATH
+    python eoa_download.py lookup --task-id TASK_ID
+    python eoa_download.py verify --project-root PATH
 """
 
 from __future__ import annotations
@@ -88,23 +88,23 @@ DOCUMENT_TYPE_MAP: dict[str, tuple[str, str | None]] = {
 
 
 def get_storage_root(project_root: Path | None = None) -> Path:
-    """Get the ATLAS storage root directory."""
+    """Get the EOA storage root directory."""
     if project_root:
-        return project_root / "design" / "received"
+        return project_root / ".eoa" / "received"
 
-    env_root = os.environ.get("ATLAS_STORAGE_ROOT")
+    env_root = os.environ.get("EOA_STORAGE_ROOT")
     if env_root:
         return Path(env_root)
 
     cwd = Path.cwd()
-    return cwd / "design" / "received"
+    return cwd / ".eoa" / "received"
 
 
 def init_storage(project_root: Path) -> None:
-    """Initialize the ATLAS storage directory structure."""
+    """Initialize the EOA storage directory structure."""
     storage_root = get_storage_root(project_root)
 
-    print(f"Initializing ATLAS storage at: {storage_root}")
+    print(f"Initializing EOA storage at: {storage_root}")
 
     # Create root
     storage_root.mkdir(parents=True, exist_ok=True)
@@ -122,15 +122,15 @@ def init_storage(project_root: Path) -> None:
 
     # Create .gitkeep
     gitkeep = storage_root.parent / ".gitkeep"
-    gitkeep.write_text("# ATLAS document storage - do not delete this folder\n")
+    gitkeep.write_text("# EOA document storage - do not delete this folder\n")
 
     # Update .gitignore if in git repo
     gitignore_path = project_root / ".gitignore"
-    gitignore_entry = "\n# ATLAS Document Storage (local cache)\ndesign/\n!design/.gitkeep\n"
+    gitignore_entry = "\n# EOA Document Storage (local cache)\n.eoa/\n!.eoa/.gitkeep\n"
 
     if gitignore_path.exists():
         content = gitignore_path.read_text()
-        if "design/" not in content:
+        if ".eoa/" not in content:
             with gitignore_path.open("a") as f:
                 f.write(gitignore_entry)
             print(f"Updated {gitignore_path}")
@@ -138,7 +138,7 @@ def init_storage(project_root: Path) -> None:
         gitignore_path.write_text(gitignore_entry)
         print(f"Created {gitignore_path}")
 
-    print("ATLAS storage initialized successfully")
+    print("EOA storage initialized successfully")
 
 
 def compute_sha256(file_path: Path) -> str:
@@ -176,12 +176,18 @@ def extract_attachment_url(comment_url: str) -> str | None:
         print(f"ERROR: Invalid comment URL format: {comment_url}")
         return None
 
-    owner, repo, _issue_num, comment_id = match.groups()
+    owner, repo, _, comment_id = match.groups()
 
     # Fetch comment body via gh CLI
     try:
         result = subprocess.run(
-            ["gh", "api", f"repos/{owner}/{repo}/issues/comments/{comment_id}", "--jq", ".body"],
+            [
+                "gh",
+                "api",
+                f"repos/{owner}/{repo}/issues/comments/{comment_id}",
+                "--jq",
+                ".body",
+            ],
             capture_output=True,
             text=True,
             check=True,
@@ -308,7 +314,7 @@ def download_document(
         },
         "download": {
             "timestamp": datetime.now(timezone.utc).isoformat(),
-            "agent": os.environ.get("ATLAS_AGENT_NAME", "unknown"),
+            "agent": os.environ.get("EOA_AGENT_NAME", "unknown"),
             "sha256": sha256,
             "file_size_bytes": file_path.stat().st_size,
         },
@@ -365,12 +371,14 @@ def lookup_documents(
                         except json.JSONDecodeError:
                             pass
 
-                    results.append({
-                        "path": str(md_file),
-                        "category": cat,
-                        "task_id": task_id,
-                        "metadata": metadata,
-                    })
+                    results.append(
+                        {
+                            "path": str(md_file),
+                            "category": cat,
+                            "task_id": task_id,
+                            "metadata": metadata,
+                        }
+                    )
 
     return results
 
@@ -390,10 +398,12 @@ def verify_storage(project_root: Path | None = None) -> dict[str, Any]:
     }
 
     if not storage_root.exists():
-        report["issues"].append({
-            "type": "missing_root",
-            "message": f"Storage root does not exist: {storage_root}",
-        })
+        report["issues"].append(
+            {
+                "type": "missing_root",
+                "message": f"Storage root does not exist: {storage_root}",
+            }
+        )
         return report
 
     for category in CATEGORIES:
@@ -412,22 +422,26 @@ def verify_storage(project_root: Path | None = None) -> dict[str, Any]:
             # Check read-only
             mode = md_file.stat().st_mode
             if mode & stat.S_IWUSR or mode & stat.S_IWGRP or mode & stat.S_IWOTH:
-                report["issues"].append({
-                    "type": "writable_file",
-                    "path": str(md_file),
-                    "message": "File is not read-only",
-                })
+                report["issues"].append(
+                    {
+                        "type": "writable_file",
+                        "path": str(md_file),
+                        "message": "File is not read-only",
+                    }
+                )
 
             # Check metadata exists
             metadata_file = md_file.with_suffix("").with_name(
                 f"{md_file.stem}_metadata.json"
             )
             if not metadata_file.exists():
-                report["issues"].append({
-                    "type": "missing_metadata",
-                    "path": str(md_file),
-                    "message": "Metadata file missing",
-                })
+                report["issues"].append(
+                    {
+                        "type": "missing_metadata",
+                        "path": str(md_file),
+                        "message": "Metadata file missing",
+                    }
+                )
             else:
                 # Verify SHA256
                 try:
@@ -436,17 +450,21 @@ def verify_storage(project_root: Path | None = None) -> dict[str, Any]:
                     if stored_hash:
                         current_hash = compute_sha256(md_file)
                         if stored_hash != current_hash:
-                            report["issues"].append({
-                                "type": "integrity_violation",
-                                "path": str(md_file),
-                                "message": f"SHA256 mismatch: stored={stored_hash[:16]}... current={current_hash[:16]}...",
-                            })
+                            report["issues"].append(
+                                {
+                                    "type": "integrity_violation",
+                                    "path": str(md_file),
+                                    "message": f"SHA256 mismatch: stored={stored_hash[:16]}... current={current_hash[:16]}...",
+                                }
+                            )
                 except json.JSONDecodeError:
-                    report["issues"].append({
-                        "type": "invalid_metadata",
-                        "path": str(metadata_file),
-                        "message": "Metadata JSON is invalid",
-                    })
+                    report["issues"].append(
+                        {
+                            "type": "invalid_metadata",
+                            "path": str(metadata_file),
+                            "message": "Metadata JSON is invalid",
+                        }
+                    )
 
         report["stats"]["by_category"][category] = cat_stats
 
@@ -456,7 +474,7 @@ def verify_storage(project_root: Path | None = None) -> dict[str, Any]:
 def main() -> int:
     """Main entry point."""
     parser = argparse.ArgumentParser(
-        description="ATLAS Document Download and Storage Manager",
+        description="EOA Document Download and Storage Manager",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
 
@@ -490,11 +508,15 @@ def main() -> int:
     lookup_parser = subparsers.add_parser("lookup", help="Find documents by task ID")
     lookup_parser.add_argument("--task-id", required=True, help="Task ID to search")
     lookup_parser.add_argument("--category", help="Filter by category")
-    lookup_parser.add_argument("--project-root", type=Path, help="Project root directory")
+    lookup_parser.add_argument(
+        "--project-root", type=Path, help="Project root directory"
+    )
 
     # verify command
     verify_parser = subparsers.add_parser("verify", help="Verify storage integrity")
-    verify_parser.add_argument("--project-root", type=Path, help="Project root directory")
+    verify_parser.add_argument(
+        "--project-root", type=Path, help="Project root directory"
+    )
     verify_parser.add_argument(
         "--json",
         action="store_true",
@@ -545,7 +567,7 @@ def main() -> int:
         if args.json:
             print(json.dumps(report, indent=2))
         else:
-            print("\n=== ATLAS Storage Verification Report ===\n")
+            print("\n=== EOA Storage Verification Report ===\n")
             print(f"Storage Root: {report['storage_root']}")
             print(f"Total Files: {report['stats']['total_files']}")
             print(f"Total Size: {report['stats']['total_size_bytes']} bytes")

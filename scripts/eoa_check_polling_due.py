@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Atlas Orchestrator: Proactive Progress Polling Check
+EOA: Proactive Progress Polling Check
 MANDATORY ENFORCEMENT HOOK
 
 This UserPromptSubmit hook checks if any active assignments have overdue

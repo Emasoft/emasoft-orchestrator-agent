@@ -27,8 +27,8 @@ Two-Phase Mode separates orchestration into two distinct phases:
 
 | Output Type | Location | Description |
 |-------------|----------|-------------|
-| Plan Phase State | `.atlas-orchestrator/plan-phase.md` | YAML frontmatter with requirements, modules, criteria |
-| Orchestration State | `.atlas-orchestrator/orchestration-phase.md` | YAML frontmatter with agent assignments, module status |
+| Plan Phase State | `.claude/orchestrator-plan-phase.local.md` | YAML frontmatter with requirements, modules, criteria |
+| Orchestration State | `.claude/orchestrator-orchestration-phase.local.md` | YAML frontmatter with agent assignments, module status |
 | Design Documents | `design/<platform>/` | Templates, handoffs, RDD files, specs |
 | GitHub Issues | GitHub repository | Module issues created from approved plan |
 | Claude Tasks | Claude Code session | Persistent task tracking across compacting |

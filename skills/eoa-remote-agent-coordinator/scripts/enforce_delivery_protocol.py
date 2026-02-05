@@ -20,7 +20,7 @@ from pathlib import Path
 from typing import Any, List, Optional, Tuple
 
 
-ACK_TRACKING_FILE = Path.home() / ".atlas-orchestrator" / "ack-tracking.json"
+ACK_TRACKING_FILE = Path.home() / ".emasoft-orchestrator" / "ack-tracking.json"
 
 
 @dataclass
@@ -390,7 +390,7 @@ def cmd_mark_ack(args: argparse.Namespace) -> int:
         return 1
 
 
-def cmd_pending_acks(args: argparse.Namespace) -> int:
+def cmd_pending_acks(_args: argparse.Namespace) -> int:
     """Check pending acknowledgments"""
     enforcer = DocumentDeliveryEnforcer()
     pending = enforcer.get_pending_acks()

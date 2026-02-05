@@ -12,7 +12,7 @@
 
 ## 4.1 Priority Levels Explained
 
-Atlas orchestration uses four priority levels to indicate the urgency and importance of modules.
+EOA orchestration uses four priority levels to indicate the urgency and importance of modules.
 
 ### Priority Level Definitions
 

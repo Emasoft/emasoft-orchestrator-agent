@@ -67,7 +67,7 @@ gh pr ready {{PR_NUMBER}} \
 ### Merge PR
 
 ```bash
-# Squash merge (recommended for ATLAS)
+# Squash merge (recommended for EOA)
 gh pr merge {{PR_NUMBER}} \
   --repo {{GITHUB_OWNER}}/{{REPO_NAME}} \
   --squash \
@@ -79,13 +79,13 @@ gh pr merge {{PR_NUMBER}} \
 
 ## Automated PR Creation Script
 
-Save as `scripts/create-atlas-pr.sh`:
+Save as `scripts/create-eoa-pr.sh`:
 
 ```bash
 #!/bin/bash
 set -e
 
-# Usage: ./create-atlas-pr.sh TASK_ID TITLE ISSUE_NUMBER
+# Usage: ./create-eoa-pr.sh TASK_ID TITLE ISSUE_NUMBER
 
 TASK_ID="$1"
 TITLE="$2"

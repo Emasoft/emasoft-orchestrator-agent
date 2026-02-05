@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Atlas Register Agent Script
+EOA Register Agent Script
 
 Registers a remote agent (AI or human) for module assignment
 during Orchestration Phase.

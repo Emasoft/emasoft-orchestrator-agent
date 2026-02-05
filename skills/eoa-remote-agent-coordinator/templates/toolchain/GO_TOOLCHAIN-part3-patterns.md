@@ -2,7 +2,7 @@
 
 **Parent**: [GO_TOOLCHAIN.md](./GO_TOOLCHAIN.md)
 
-This file contains verification checklists and common Go patterns for ATLAS compliance.
+This file contains verification checklists and common Go patterns for EOA Compliance.
 
 ---
 
@@ -19,7 +19,7 @@ This file contains verification checklists and common Go patterns for ATLAS comp
 ### Configuration
 - [ ] go.mod exists with correct module path
 - [ ] go.sum exists (after dependencies installed)
-- [ ] .golangci.yml exists with ATLAS standard config
+- [ ] .golangci.yml exists with EOA standard config
 - [ ] Standard directory structure: cmd/, pkg/, internal/, test/
 
 ### Verification Commands Pass
@@ -38,7 +38,7 @@ This file contains verification checklists and common Go patterns for ATLAS comp
 - [ ] Coverage job configured
 - [ ] go.mod tidy check present
 
-### ATLAS Compliance
+### EOA Compliance
 - [ ] Labels configured in GitHub
 - [ ] Branch follows convention
 - [ ] Commits follow convention
@@ -49,7 +49,7 @@ This file contains verification checklists and common Go patterns for ATLAS comp
 
 ---
 
-## Common Go Patterns for ATLAS
+## Common Go Patterns for EOA
 
 ### Error Handling Pattern
 

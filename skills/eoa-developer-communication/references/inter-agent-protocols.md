@@ -20,7 +20,7 @@
 
 ---
 
-This document defines the protocols for communication between agents in the atlas-orchestrator system.
+This document defines the protocols for communication between agents in the emasoft multi-agent system.
 
 ---
 

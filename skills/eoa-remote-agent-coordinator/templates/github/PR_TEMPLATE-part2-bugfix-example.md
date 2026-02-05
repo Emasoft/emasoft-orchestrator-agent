@@ -25,8 +25,8 @@ Closes #87
 - Added validation for override values
 
 ### Files Modified
-- `src/atlas/platform/detector.py` - Updated detection logic
-- `src/atlas/config/environment.py` - Added override variable
+- `src/eoa/platform/detector.py` - Updated detection logic
+- `src/eoa/config/environment.py` - Added override variable
 - `tests/test_platform_detector.py` - Added override tests
 - `docker/Dockerfile` - Set ATLAS_PLATFORM_OVERRIDE=docker
 - `docs/platform-detection.md` - Updated documentation
@@ -183,8 +183,8 @@ source templates/toolchains/macos-docker-debug.md
 uv run pytest tests/test_platform_detector.py -v
 
 # 4. Test in Docker
-docker build -t atlas-test .
-docker run atlas-test python -c "from atlas.platform import get_platform; print(get_platform())"
+docker build -t eoa-test .
+docker run eoa-test python -c "from eoa.platform import get_platform; print(get_platform())"
 # Should print: docker
 ```
 

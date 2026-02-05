@@ -18,7 +18,7 @@ When compiling context for a failed agent, gather information from these sources
 
 | Source | Location | Information Type |
 |--------|----------|------------------|
-| Orchestrator State File | `$CLAUDE_PROJECT_DIR/.atlas/state.yaml` | Assignments, task UUIDs, status |
+| Orchestrator State File | `$CLAUDE_PROJECT_DIR/design/state.yaml` | Assignments, task UUIDs, status |
 | GitHub Issues | Repository issue tracker | Requirements, discussions, blockers |
 | AI Maestro History | AI Maestro API | All messages to/from agent |
 | Design Documents | `$CLAUDE_PROJECT_DIR/design/` | Requirements, specifications |
@@ -49,7 +49,7 @@ Extract all information about the failed agent from the orchestrator state file.
 ### State File Location
 
 ```bash
-STATE_FILE="$CLAUDE_PROJECT_DIR/.atlas/state.yaml"
+STATE_FILE="$CLAUDE_PROJECT_DIR/design/state.yaml"
 ```
 
 ### Information to Extract
@@ -88,7 +88,7 @@ registered_agents:
 # Extract failed agent info from state file
 
 AGENT_ID="$1"
-STATE_FILE="$CLAUDE_PROJECT_DIR/.atlas/state.yaml"
+STATE_FILE="$CLAUDE_PROJECT_DIR/design/state.yaml"
 
 # Extract assignments
 yq ".active_assignments[] | select(.agent == \"$AGENT_ID\")" "$STATE_FILE" > assignments.yaml
@@ -300,7 +300,7 @@ context_compilation:
 ### State File Missing
 
 If state file is not found:
-1. Check alternative locations: `.atlas/`, `docs_dev/`, project root
+1. Check alternative locations: `design/`, `docs_dev/`, project root
 2. Reconstruct from GitHub Issues if possible
 3. Flag gap in handoff document
 

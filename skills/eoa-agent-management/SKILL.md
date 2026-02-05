@@ -15,7 +15,7 @@ agent: eoa-main
 
 ## Overview
 
-Master the registration, assignment, and monitoring of remote agents (AI agents and human developers) in the ATLAS orchestration workflow.
+Master the registration, assignment, and monitoring of remote agents (AI agents and human developers) in the EOA orchestration workflow.
 
 ## Prerequisites
 
@@ -30,10 +30,10 @@ Master the registration, assignment, and monitoring of remote agents (AI agents 
 
 | Output Type | Format | Location |
 |-------------|--------|----------|
-| Agent registry | YAML state file | `.atlas/agents.yaml` |
-| Assignment records | YAML state file | `.atlas/assignments.yaml` |
-| Progress logs | Timestamped logs | `.atlas/logs/polls/` |
-| Verification status | YAML state file | `.atlas/verification_status.yaml` |
+| Agent registry | YAML state file | `design/agents.yaml` |
+| Assignment records | YAML state file | `design/assignments.yaml` |
+| Progress logs | Timestamped logs | `design/logs/polls/` |
+| Verification status | YAML state file | `design/verification_status.yaml` |
 
 ---
 
@@ -53,7 +53,7 @@ Copy this checklist and track your progress:
 
 - [ ] Verify Python 3.8+, PyYAML, GitHub CLI, and AI Maestro are ready
 - [ ] Register agent with `/register-agent` (AI or human type)
-- [ ] Verify agent appears in `.atlas/agents.yaml`
+- [ ] Verify agent appears in `design/agents.yaml`
 - [ ] Assign module with `/assign-module`
 - [ ] Send verification request to agent
 - [ ] Wait for agent to repeat key requirements
@@ -61,7 +61,7 @@ Copy this checklist and track your progress:
 - [ ] Authorize implementation after successful verification
 - [ ] Begin polling every 10-15 minutes with `/check-agents`
 - [ ] Respond immediately to any reported issues or blockers
-- [ ] Track progress in `.atlas/logs/polls/`
+- [ ] Track progress in `design/logs/polls/`
 - [ ] Verify deliverables upon completion
 
 ---

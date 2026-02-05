@@ -26,9 +26,9 @@ Closes #42
 - Implemented key rotation mechanism
 
 ### Files Modified
-- `src/atlas/security/ssh_manager.py` - New SSH key management module
-- `src/atlas/agents/remote_connection.py` - Added SSH authentication
-- `src/atlas/config/security.py` - Added SSH configuration
+- `src/eoa/security/ssh_manager.py` - New SSH key management module
+- `src/eoa/agents/remote_connection.py` - Added SSH authentication
+- `src/eoa/config/security.py` - Added SSH configuration
 - `tests/test_ssh_manager.py` - SSH manager tests
 - `tests/test_remote_connection.py` - Updated connection tests
 - `docs/ssh-authentication.md` - New documentation

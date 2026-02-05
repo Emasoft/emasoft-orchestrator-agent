@@ -45,9 +45,9 @@ send-aimaestro-message.sh "{{SENDER}}" \
   normal response
 ```
 
-### 2.1.4 Step 4: Store in ATLAS Storage (MANDATORY)
+### 2.1.4 Step 4: Store in EOA Design Storage (MANDATORY)
 
-Downloaded documents MUST be stored in the standardized ATLAS folder structure.
+Downloaded documents MUST be stored in the standardized EOA Document Storage folder structure.
 See **DOCUMENT_STORAGE_PROTOCOL.md** for complete details.
 
 ```bash

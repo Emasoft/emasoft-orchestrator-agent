@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Atlas Reassign Module Script
+EOA Reassign Module Script
 
 Reassigns a module from one agent to another.
 Notifies both old and new agents.

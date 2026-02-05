@@ -20,7 +20,7 @@
 
 ---
 
-## Toolchain Lifecycle in ATLAS
+## Toolchain Lifecycle in EOA
 
 ### Phase 1: Detection (Design/Specification Stage)
 

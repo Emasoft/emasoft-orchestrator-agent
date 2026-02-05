@@ -95,13 +95,13 @@ curl -s "http://localhost:23000/api/agents" | jq '.[] | select(.session | contai
 
 ```bash
 # Check expected location
-ls -la "$CLAUDE_PROJECT_DIR/.atlas/state.yaml"
+ls -la "$CLAUDE_PROJECT_DIR/design/state.yaml"
 
 # Check alternative locations
 find "$CLAUDE_PROJECT_DIR" -name "state.yaml" -o -name "*.state.yaml"
 
-# Check if .atlas directory exists
-ls -la "$CLAUDE_PROJECT_DIR/.atlas/"
+# Check if design directory exists
+ls -la "$CLAUDE_PROJECT_DIR/design/"
 ```
 
 **Solutions:**
@@ -119,7 +119,7 @@ ls -la "$CLAUDE_PROJECT_DIR/.atlas/"
 ISSUES=$(gh issue list --assignee "@failed-agent" --json number,title,state,labels)
 
 # Create minimal state
-cat > "$CLAUDE_PROJECT_DIR/.atlas/state.yaml" << EOF
+cat > "$CLAUDE_PROJECT_DIR/design/state.yaml" << EOF
 active_assignments:
 $(echo "$ISSUES" | jq -r '.[] | "  - module: \"issue-" + (.number|tostring) + "\"\n    github_issue: \"#" + (.number|tostring) + "\"\n    status: \"unknown\""')
 EOF
@@ -497,8 +497,8 @@ If multiple systems fail during replacement:
 
 If critical data is lost:
 
-1. **Check backups**: `ls $CLAUDE_PROJECT_DIR/.atlas/*.bak*`
-2. **Check git history**: `git log --all --full-history -- .atlas/state.yaml`
+1. **Check backups**: `ls $CLAUDE_PROJECT_DIR/design/*.bak*`
+2. **Check git history**: `git log --all --full-history -- design/state.yaml`
 3. **Reconstruct from GitHub**: Use issues/PRs as source of truth
 4. **Document gaps**: Clearly flag what's unknown
 

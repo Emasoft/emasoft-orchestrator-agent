@@ -1,14 +1,14 @@
-# Toolchain Integration with ATLAS Pipeline
+# Toolchain Integration with EOA Pipeline
 
 **Version**: 1.0.0
 **Last Updated**: 2026-01-05
-**Purpose**: Define how toolchain templates integrate with ATLAS pipeline stages and remote agent workflows.
+**Purpose**: Define how toolchain templates integrate with EOA pipeline stages and remote agent workflows.
 
 ---
 
 ## Executive Summary
 
-This document bridges toolchain templates (language-specific development environments) with ATLAS pipeline stages. It specifies WHEN to apply toolchains, WHICH toolchain to use, and HOW to configure them for remote agents.
+This document bridges toolchain templates (language-specific development environments) with EOA pipeline stages. It specifies WHEN to apply toolchains, WHICH toolchain to use, and HOW to configure them for remote agents.
 
 **Key Principle**: Every remote agent receives a COMPILED toolchain configuration (no template variables) matching the project's language and target platforms.
 
@@ -29,7 +29,7 @@ This document has been split into 3 parts for better navigation. Each part is un
   - When each pipeline stage uses toolchain actions
   - Required checklists per stage
   - Template types per stage
-- Toolchain Lifecycle in ATLAS
+- Toolchain Lifecycle in EOA
   - Phase 1: Detection (Design/Specification Stage)
   - Phase 2: Compilation (Task Handoff Stage)
   - Phase 3: Setup (Remote Agent)
@@ -108,7 +108,7 @@ This document has been split into 3 parts for better navigation. Each part is un
 | Task | Go To |
 |------|-------|
 | Understand pipeline stages | [Part 1 - Pipeline Mapping](./TOOLCHAIN_INTEGRATION-part1-pipeline-variables.md#pipeline-stage-to-toolchain-mapping) |
-| Learn toolchain lifecycle | [Part 1 - Lifecycle](./TOOLCHAIN_INTEGRATION-part1-pipeline-variables.md#toolchain-lifecycle-in-atlas) |
+| Learn toolchain lifecycle | [Part 1 - Lifecycle](./TOOLCHAIN_INTEGRATION-part1-pipeline-variables.md#toolchain-lifecycle-in-eoa) |
 | Understand variables | [Part 1 - Variables](./TOOLCHAIN_INTEGRATION-part1-pipeline-variables.md#variable-substitution-rules) |
 | Detect project language | [Part 2 - Language Detection](./TOOLCHAIN_INTEGRATION-part2-language-platform.md#language-detection-rules) |
 | Select toolchain | [Part 2 - Selection Matrix](./TOOLCHAIN_INTEGRATION-part2-language-platform.md#toolchain-selection-matrix) |
@@ -125,7 +125,7 @@ This document has been split into 3 parts for better navigation. Each part is un
 
 ## Key Concepts Summary
 
-- **Toolchains bridge orchestrator and remote agents**: Language-agnostic ATLAS workflow connects to language-specific execution environments via compiled toolchain configurations
+- **Toolchains bridge orchestrator and remote agents**: Language-agnostic EOA workflow connects to language-specific execution environments via compiled toolchain configurations
 - **Four-phase lifecycle**: Detection (analyze project) → Compilation (fill template variables) → Setup (remote agent executes) → Verification (review/pre-merge validation)
 - **No template variables reach remote agents**: Orchestrator MUST compile all `{{VARIABLE}}` placeholders before handoff; remote agents receive ready-to-execute configurations
 - **Language detection drives toolchain selection**: File patterns (e.g., `Cargo.toml` → Rust, `pyproject.toml` → Python) automatically select the appropriate toolchain template
@@ -171,4 +171,4 @@ This document has been split into 3 parts for better navigation. Each part is un
 
 ---
 
-**REMEMBER**: Toolchains are the bridge between ATLAS orchestrator's language-agnostic workflow and remote agents' language-specific execution. A well-compiled toolchain eliminates ambiguity and ensures consistent development environments across all agents.
+**REMEMBER**: Toolchains are the bridge between EOA orchestrator's language-agnostic workflow and remote agents' language-specific execution. A well-compiled toolchain eliminates ambiguity and ensures consistent development environments across all agents.

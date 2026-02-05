@@ -1,7 +1,7 @@
 # Two-Phase Mode Skill
 
 **Version**: 1.0.0
-**For**: ATLAS-ORCHESTRATOR Plugin v2.4.0+
+**For**: EOA (Emasoft Orchestrator Agent) Plugin v2.4.0+
 
 ## Overview
 
@@ -168,7 +168,7 @@ Both files use YAML frontmatter format and are gitignored (`.local.md` suffix).
 
 ## Requirements
 
-- ATLAS-ORCHESTRATOR Plugin v2.4.0+
+- EOA (Emasoft Orchestrator Agent) Plugin v2.4.0+
 - AI Maestro running (configurable via `AIMAESTRO_API` environment variable, default: `http://localhost:23000`)
 - GitHub CLI (`gh`) installed and authenticated
 - Python 3.8+ with PyYAML

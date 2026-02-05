@@ -1,7 +1,7 @@
 # Monorepo Workspace Package Template
 
 This template defines how to create and configure individual packages/modules within a monorepo.
-Each workspace package should follow this structure for ATLAS orchestrator compatibility.
+Each workspace package should follow this structure for EOA orchestrator compatibility.
 
 ---
 

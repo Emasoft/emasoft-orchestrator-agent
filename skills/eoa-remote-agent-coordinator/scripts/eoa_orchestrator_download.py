@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-ATLAS Orchestrator Download Manager
+EOA Orchestrator Download Manager
 
 Downloads .md files from GitHub issue comments and stores them in the
 orchestrator's agent-specific folder structure. Updates cross-agent indexes.
 
 Usage:
-    python atlas_orchestrator_download.py download --url URL --agent AGENT --task-id TASK_ID --category CATEGORY
-    python atlas_orchestrator_download.py index-rebuild [--atlas-root PATH]
+    python eoa_orchestrator_download.py download --url URL --agent AGENT --task-id TASK_ID --category CATEGORY
+    python eoa_orchestrator_download.py index-rebuild [--design-root PATH]
 """
 
 from __future__ import annotations
@@ -42,13 +42,13 @@ RECEIVED_CATEGORIES = {
 }
 
 
-def get_atlas_root() -> Path:
-    """Get ATLAS storage root from environment or current directory."""
+def get_design_root() -> Path:
+    """Get Design storage root from environment or current directory."""
     if "ATLAS_STORAGE_ROOT" in os.environ:
         return Path(os.environ["ATLAS_STORAGE_ROOT"])
     if "PROJECT_ROOT" in os.environ:
-        return Path(os.environ["PROJECT_ROOT"]) / ".atlas"
-    return Path.cwd() / ".atlas"
+        return Path(os.environ["PROJECT_ROOT"]) / "design"
+    return Path.cwd() / "design"
 
 
 def compute_sha256(file_path: Path) -> str:
@@ -79,7 +79,7 @@ def extract_attachment_url(comment_url: str) -> str | None:
     if not match:
         return None
 
-    owner, repo, _issue_num, comment_id = match.groups()
+    owner, repo, _, comment_id = match.groups()
 
     try:
         result = subprocess.run(
@@ -107,9 +107,9 @@ def extract_attachment_url(comment_url: str) -> str | None:
     return None
 
 
-def ensure_agent_registered(agent_name: str, atlas_root: Path) -> Path:
+def ensure_agent_registered(agent_name: str, design_root: Path) -> Path:
     """Ensure agent folder exists, return agent directory path."""
-    agent_dir = atlas_root / "agents" / agent_name
+    agent_dir = design_root / "agents" / agent_name
 
     if not agent_dir.exists():
         # Create minimal agent structure
@@ -150,7 +150,7 @@ def update_agent_stats(agent_dir: Path) -> None:
 
 
 def update_index(
-    atlas_root: Path,
+    design_root: Path,
     task_id: str,
     agent_name: str,
     category: str,
@@ -158,7 +158,7 @@ def update_index(
     timestamp: str,
 ) -> None:
     """Update cross-agent search indexes."""
-    index_dir = atlas_root / "index"
+    index_dir = design_root / "index"
 
     # Update by-task index
     task_index_path = index_dir / "by-task" / f"{task_id}.json"
@@ -277,11 +277,11 @@ def download_to_agent_folder(
     category: str,
     subcategory: str | None = None,
     doc_type: str | None = None,
-    atlas_root: Path | None = None,
+    design_root: Path | None = None,
 ) -> dict[str, Any]:
     """Download document to agent-specific folder."""
-    if atlas_root is None:
-        atlas_root = get_atlas_root()
+    if design_root is None:
+        design_root = get_design_root()
 
     if category not in RECEIVED_CATEGORIES:
         return {
@@ -290,7 +290,7 @@ def download_to_agent_folder(
         }
 
     # Ensure agent is registered
-    agent_dir = ensure_agent_registered(agent_name, atlas_root)
+    agent_dir = ensure_agent_registered(agent_name, design_root)
 
     # Determine target folder
     cat_config = RECEIVED_CATEGORIES[category]
@@ -395,16 +395,16 @@ def download_to_agent_folder(
 
     # Update indexes
     update_index(
-        atlas_root=atlas_root,
+        design_root=design_root,
         task_id=task_id,
         agent_name=agent_name,
         category=category,
-        doc_path=str(file_path.relative_to(atlas_root)),
+        doc_path=str(file_path.relative_to(design_root)),
         timestamp=timestamp.isoformat(),
     )
 
     # Update orchestrator stats
-    orch_json = atlas_root / "orchestrator.json"
+    orch_json = design_root / "orchestrator.json"
     if orch_json.exists():
         try:
             orch_meta = json.loads(orch_json.read_text())
@@ -424,12 +424,12 @@ def download_to_agent_folder(
     }
 
 
-def rebuild_indexes(atlas_root: Path | None = None) -> dict[str, Any]:
+def rebuild_indexes(design_root: Path | None = None) -> dict[str, Any]:
     """Rebuild all cross-agent indexes from stored documents."""
-    if atlas_root is None:
-        atlas_root = get_atlas_root()
+    if design_root is None:
+        design_root = get_design_root()
 
-    index_dir = atlas_root / "index"
+    index_dir = design_root / "index"
 
     # Clear existing indexes
     for index_type in ["by-task", "by-agent", "by-category", "by-date"]:
@@ -439,7 +439,7 @@ def rebuild_indexes(atlas_root: Path | None = None) -> dict[str, Any]:
                 f.unlink()
 
     # Rebuild from all agent documents
-    agents_dir = atlas_root / "agents"
+    agents_dir = design_root / "agents"
     stats = {"agents_scanned": 0, "documents_indexed": 0, "errors": 0}
 
     if not agents_dir.exists():
@@ -469,11 +469,11 @@ def rebuild_indexes(atlas_root: Path | None = None) -> dict[str, Any]:
                 timestamp = metadata.get("download", {}).get("timestamp", datetime.now(timezone.utc).isoformat())
 
                 update_index(
-                    atlas_root=atlas_root,
+                    design_root=design_root,
                     task_id=task_id,
                     agent_name=agent_dir.name,
                     category=category,
-                    doc_path=str(md_file.relative_to(atlas_root)),
+                    doc_path=str(md_file.relative_to(design_root)),
                     timestamp=timestamp,
                 )
                 stats["documents_indexed"] += 1
@@ -486,7 +486,7 @@ def rebuild_indexes(atlas_root: Path | None = None) -> dict[str, Any]:
 def main() -> int:
     """Main entry point."""
     parser = argparse.ArgumentParser(
-        description="ATLAS Orchestrator Download Manager"
+        description="EOA Orchestrator Download Manager"
     )
 
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
@@ -504,12 +504,12 @@ def main() -> int:
     )
     dl_parser.add_argument("--subcategory", help="Subcategory")
     dl_parser.add_argument("--doc-type", help="Document type for filename")
-    dl_parser.add_argument("--atlas-root", type=Path, help="ATLAS storage root")
+    dl_parser.add_argument("--design-root", type=Path, help="Design storage root")
     dl_parser.add_argument("--json", action="store_true", help="Output as JSON")
 
     # index-rebuild command
     idx_parser = subparsers.add_parser("index-rebuild", help="Rebuild all indexes")
-    idx_parser.add_argument("--atlas-root", type=Path, help="ATLAS storage root")
+    idx_parser.add_argument("--design-root", type=Path, help="Design storage root")
     idx_parser.add_argument("--json", action="store_true", help="Output as JSON")
 
     args = parser.parse_args()
@@ -526,7 +526,7 @@ def main() -> int:
             category=args.category,
             subcategory=args.subcategory,
             doc_type=args.doc_type,
-            atlas_root=args.atlas_root,
+            design_root=args.design_root,
         )
 
         if args.json:
@@ -542,7 +542,7 @@ def main() -> int:
                 return 1
 
     elif args.command == "index-rebuild":
-        result = rebuild_indexes(args.atlas_root)
+        result = rebuild_indexes(args.design_root)
 
         if args.json:
             print(json.dumps(result, indent=2))

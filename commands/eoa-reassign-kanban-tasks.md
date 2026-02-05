@@ -212,7 +212,7 @@ Labels Updated: 2 issues
 Comments Added: 2 issues
 Audit Log: logs/reassignment-20260131T143000Z.yaml
 
-State file updated: .atlas/state.yaml
+State file updated: design/state.yaml
 ```
 
 ### Partial Success

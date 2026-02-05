@@ -13,7 +13,7 @@
 
 ## 1.1 When to Add Modules During Orchestration
 
-Module addition is a feature of Atlas orchestration that allows dynamic scope expansion. This section explains when adding modules is appropriate.
+Module addition is a feature of EOA orchestration that allows dynamic scope expansion. This section explains when adding modules is appropriate.
 
 ### Appropriate Scenarios for Adding Modules
 
@@ -35,7 +35,7 @@ Module addition is a feature of Atlas orchestration that allows dynamic scope ex
 
 ### Dynamic Flexibility Concept
 
-Atlas orchestration supports "dynamic flexibility" which means the plan can evolve during execution. When a module is added:
+EOA orchestration supports "dynamic flexibility" which means the plan can evolve during execution. When a module is added:
 
 1. The total module count increases
 2. The stop hook now includes this module

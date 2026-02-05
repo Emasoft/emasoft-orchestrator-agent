@@ -72,7 +72,7 @@ Add design folder tracking to Plan Phase state file:
 ```yaml
 # In design/state/plan-phase.md
 design_folders:
-  root: ".atlas"
+  root: "design"
   platforms:
     - web
     - ios

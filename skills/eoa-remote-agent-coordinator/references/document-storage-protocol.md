@@ -1,4 +1,4 @@
-# ATLAS Document Storage Protocol v2.0
+# Document Storage Protocol v2.0
 
 
 ## Contents
@@ -142,7 +142,7 @@ python scripts/eoa_search.py <!-- TODO: Rename to eoa_search.py --> by-task GH-4
 
 ### 5.1 What the Skill Provides
 
-Remote agents should install the `atlas-agent-storage` skill for managing their local document storage. This skill provides:
+Remote agents should install the `eoa-agent-storage` skill for managing their local document storage. This skill provides:
 
 - Download script for receiving documents from orchestrator
 - Read-only enforcement
@@ -152,7 +152,7 @@ Remote agents should install the `atlas-agent-storage` skill for managing their 
 ### 5.2 Installation on Remote Agent
 
 ```bash
-cp -r atlas-agent-storage ~/.claude/skills/
+cp -r eoa-agent-storage ~/.claude/skills/
 ```
 
 See `templates/protocols/DOCUMENT_STORAGE_PROTOCOL.md` for complete protocol specification.

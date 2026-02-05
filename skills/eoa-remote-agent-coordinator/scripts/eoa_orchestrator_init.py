@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ATLAS Orchestrator Storage Initialization
+EOA Orchestrator Storage Initialization
 
 Initializes the orchestrator's document storage structure for tracking
 documents from all remote agents, including:
@@ -25,17 +25,17 @@ def get_project_root() -> Path:
 
 def init_orchestrator_storage(project_root: Path) -> dict:
     """Initialize orchestrator storage structure."""
-    atlas_root = project_root / "design"
+    design_root = project_root / "design"
 
     # Directory structure for orchestrator
     directories = [
-        atlas_root / "agents",
-        atlas_root / "sent" / "all-agents" / "sync",
-        atlas_root / "index" / "by-task",
-        atlas_root / "index" / "by-agent",
-        atlas_root / "index" / "by-date",
-        atlas_root / "index" / "by-category",
-        atlas_root / "archive" / "acks",
+        design_root / "agents",
+        design_root / "sent" / "all-agents" / "sync",
+        design_root / "index" / "by-task",
+        design_root / "index" / "by-agent",
+        design_root / "index" / "by-date",
+        design_root / "index" / "by-category",
+        design_root / "archive" / "acks",
     ]
 
     created = []
@@ -46,10 +46,10 @@ def init_orchestrator_storage(project_root: Path) -> dict:
 
     # Create .gitkeep files
     gitkeep_dirs = [
-        atlas_root / "agents",
-        atlas_root / "sent",
-        atlas_root / "index",
-        atlas_root / "archive",
+        design_root / "agents",
+        design_root / "sent",
+        design_root / "index",
+        design_root / "archive",
     ]
     for directory in gitkeep_dirs:
         gitkeep = directory / ".gitkeep"
@@ -57,13 +57,13 @@ def init_orchestrator_storage(project_root: Path) -> dict:
             gitkeep.touch()
 
     # Create orchestrator metadata
-    metadata_path = atlas_root / "orchestrator.json"
+    metadata_path = design_root / "orchestrator.json"
     if not metadata_path.exists():
         metadata = {
             "schema_version": "2.0.0",
             "role": "orchestrator",
             "initialized_at": datetime.now(timezone.utc).isoformat(),
-            "storage_root": str(atlas_root),
+            "storage_root": str(design_root),
             "registered_agents": [],
             "total_tasks_delegated": 0,
             "total_documents_sent": 0,
@@ -74,26 +74,26 @@ def init_orchestrator_storage(project_root: Path) -> dict:
 
     # Update .gitignore if needed
     gitignore_path = project_root / ".gitignore"
-    atlas_pattern = "design/"
+    design_pattern = "design/"
 
     if gitignore_path.exists():
         content = gitignore_path.read_text()
-        if atlas_pattern not in content:
+        if design_pattern not in content:
             with gitignore_path.open("a") as f:
-                f.write(f"\n# ATLAS Document Storage (local, not committed)\n{atlas_pattern}\n")
+                f.write(f"\n# EOA Document Storage (local, not committed)\n{design_pattern}\n")
     else:
-        gitignore_path.write_text(f"# ATLAS Document Storage (local, not committed)\n{atlas_pattern}\n")
+        gitignore_path.write_text(f"# EOA Document Storage (local, not committed)\n{design_pattern}\n")
 
     # Initialize empty category indexes
     category_indexes = ["tasks", "reports", "acks", "blockers", "sync"]
     for category in category_indexes:
-        index_path = atlas_root / "index" / "by-category" / f"{category}.json"
+        index_path = design_root / "index" / "by-category" / f"{category}.json"
         if not index_path.exists():
             index_path.write_text("[]")
 
     return {
         "success": True,
-        "storage_root": str(atlas_root),
+        "storage_root": str(design_root),
         "directories_created": created,
         "role": "orchestrator",
     }
@@ -104,7 +104,7 @@ def main():
     import argparse
 
     parser = argparse.ArgumentParser(
-        description="Initialize ATLAS orchestrator storage"
+        description="Initialize EOA orchestrator storage"
     )
     parser.add_argument(
         "--project-root",
@@ -128,7 +128,7 @@ def main():
         if args.json:
             print(json.dumps(result, indent=2))
         else:
-            print(f"ATLAS orchestrator storage initialized at: {result['storage_root']}")
+            print(f"EOA orchestrator storage initialized at: {result['storage_root']}")
             if result["directories_created"]:
                 print(f"Created {len(result['directories_created'])} directories")
             else:

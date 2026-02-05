@@ -248,8 +248,8 @@ python3 eoa_init_design_folders.py <!-- TODO: Script not implemented --> --platf
 # Initialize for multiple platforms
 python3 eoa_init_design_folders.py <!-- TODO: Script not implemented --> --platforms web ios android
 
-# Initialize with custom root (default: .atlas)
-python3 eoa_init_design_folders.py <!-- TODO: Script not implemented --> --platforms web --root custom-atlas
+# Initialize with custom root (default: design)
+python3 eoa_init_design_folders.py <!-- TODO: Script not implemented --> --platforms web --root custom-design
 
 # Skip template file creation
 python3 eoa_init_design_folders.py <!-- TODO: Script not implemented --> --platforms web --no-templates
@@ -257,7 +257,7 @@ python3 eoa_init_design_folders.py <!-- TODO: Script not implemented --> --platf
 
 **Arguments:**
 - `--platforms` (required): Platform names (e.g., web ios android)
-- `--root` (optional): Root folder name (default: .atlas)
+- `--root` (optional): Root folder name (default: design)
 - `--no-templates` (optional): Skip creating template files
 
 **Actions:**
@@ -324,7 +324,7 @@ python3 eoa_compile_handoff.py <!-- TODO: Script not implemented --> auth-core i
 - `--platform` (required): Platform name (e.g., web, ios, android)
 - `--template` (optional): Custom template path
 - `--preview` (optional): Preview without saving
-- `--root` (optional): Design folder root (default: .atlas)
+- `--root` (optional): Design folder root (default: design)
 
 **Template placeholders:**
 | Placeholder | Filled With |

@@ -32,7 +32,7 @@ eoa-remote-agent-coordinator/
 | `bug-reporting-protocol.md` | Bug report handling |
 | `central-configuration.md` | Central source of truth |
 | `change-notification-protocol.md` | Change notification system |
-| `document-storage-atlas.md` | ATLAS document storage |
+| `document-storage-protocol.md` | Document storage protocol |
 | `echo-acknowledgment-protocol.md` | ACK protocol |
 | `error-handling-protocol.md` | FAIL-FAST and error reports |
 | `escalation-procedures.md` | Escalation rules |

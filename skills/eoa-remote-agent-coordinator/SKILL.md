@@ -14,7 +14,7 @@ agent: eoa-main
 
 ## Overview
 
-The Remote Agent Coordinator enables the ATLAS-ORCHESTRATOR to delegate coding tasks to remote AI agents and human developers via the AI Maestro messaging system. This is the ONLY mechanism through which actual code is written.
+The Remote Agent Coordinator enables the EOA (Emasoft Orchestrator Agent) to delegate coding tasks to remote AI agents and human developers via the AI Maestro messaging system. This is the ONLY mechanism through which actual code is written.
 
 **Critical Principle**: The orchestrator NEVER writes code. It creates precise instructions and sends them to remote agents who execute the coding work.
 
@@ -294,7 +294,7 @@ Templates provide pre-configured setups for rapid project initialization.
 
 ---
 
-## ATLAS Document Storage Protocol
+## Document Storage Protocol
 
 Documents are NEVER embedded in AI Maestro messages - only GitHub issue comment URLs.
 
@@ -304,7 +304,7 @@ Documents are NEVER embedded in AI Maestro messages - only GitHub issue comment 
 3. Require ACK with SHA256 hash
 4. Lock files read-only after download
 
-**Full protocol**: [document-storage-atlas.md](./references/document-storage-atlas.md)
+**Full protocol**: [document-storage-protocol.md](./references/document-storage-protocol.md)
 - 1.0 Storage architecture
 - 2.0 Document delivery rules
 - 3.0 Orchestrator scripts
@@ -431,6 +431,25 @@ Every task delegation MUST include:
 2. Ensure agent followed 4-verification-loop protocol
 3. Request fixes for failing criteria
 4. Do NOT merge until all criteria pass
+
+---
+
+## Design Document Scripts
+
+This script helps locate design documents when coordinating with remote agents:
+
+| Script | Purpose | Usage |
+|--------|---------|-------|
+| `eoa_design_search.py` | Search design documents for task delegation | `python scripts/eoa_design_search.py --type <TYPE> --status <STATUS>` |
+
+Use `eoa_design_search.py` when:
+- Looking up design specifications to include in task delegations
+- Finding related designs for context when assigning work
+- Verifying design status before creating implementation tasks
+
+### Script Location
+
+The script is located at `../../scripts/eoa_design_search.py` relative to this skill.
 
 ---
 

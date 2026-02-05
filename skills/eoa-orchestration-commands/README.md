@@ -1,6 +1,6 @@
 # Orchestration Commands Skill
 
-A comprehensive skill documenting all orchestration phase commands in the ATLAS Tool-Chain plugin.
+A comprehensive skill documenting all orchestration phase commands in the EOA Tool-Chain.
 
 ## Purpose
 

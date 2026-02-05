@@ -22,7 +22,7 @@ This skill teaches orchestrators how to dynamically manage modules during the Or
 - Orchestration Phase active (Plan Phase completed and approved)
 - GitHub CLI (gh) authenticated
 - AI Maestro running for agent notifications
-- State file `design/state/exec-phase.md` exists Modules are the atomic units of work in Atlas orchestration. Each module represents one feature, component, or deliverable that an agent will implement.
+- State file `design/state/exec-phase.md` exists Modules are the atomic units of work in EOA orchestration. Each module represents one feature, component, or deliverable that an agent will implement.
 
 **CRITICAL RULE**: Every module is tied 1:1 to a GitHub Issue. When you add a module, an issue is created. When you remove a module, the issue is closed. When you modify a module, the issue is updated. This linkage ensures traceability and transparency.
 
@@ -132,7 +132,7 @@ This skill teaches orchestrators how to dynamically manage modules during the Or
 
 ## The Module-Issue Relationship
 
-Every module in Atlas orchestration has a corresponding GitHub Issue. This relationship is fundamental and cannot be bypassed.
+Every module in EOA orchestration has a corresponding GitHub Issue. This relationship is fundamental and cannot be bypassed.
 
 ### Why Modules Map to Issues
 

@@ -14,7 +14,7 @@ agent: eoa-main
 
 ## Overview
 
-This skill provides shared reference documents that are used across multiple Atlas Orchestrator skills.
+This skill provides shared reference documents that are used across multiple EOA (Emasoft Orchestrator Agent) skills.
 
 ## Prerequisites
 

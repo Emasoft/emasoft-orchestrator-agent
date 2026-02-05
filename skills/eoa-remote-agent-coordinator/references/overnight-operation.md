@@ -12,7 +12,7 @@
 
 ## Overview
 
-The ATLAS-ORCHESTRATOR can coordinate remote developer agents autonomously while the user is away. This document describes the complete autonomous operation protocol.
+The EOA (Emasoft Orchestrator Agent) can coordinate remote developer agents autonomously while the user is away. This document describes the complete autonomous operation protocol.
 
 ## Prerequisites Checklist
 

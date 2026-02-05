@@ -9,6 +9,7 @@ skills:
   - eoa-implementer-interview-protocol
   - eoa-label-taxonomy
   - eoa-messaging-templates
+  - eoa-remote-agent-coordinator
 ---
 
 # Orchestrator Main Agent

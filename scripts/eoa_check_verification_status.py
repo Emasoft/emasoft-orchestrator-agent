@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Atlas Orchestrator: Instruction Verification Status Check
+EOA: Instruction Verification Status Check
 MANDATORY ENFORCEMENT HOOK
 
 This PreToolUse hook checks if instruction verification is complete
