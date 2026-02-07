@@ -139,18 +139,11 @@ rm -f .claude/orchestrator.lock
 # 5. Document
 echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) CANCELLED - priority change" >> orchestrator.log
 
-# 6. Notify agents
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "to": "implementer-1",
-    "subject": "Orchestration Paused",
-    "priority": "high",
-    "content": {
-      "type": "pause_notification",
-      "message": "Please save your progress. Orchestration paused."
-    }
-  }'
+# 6. Notify agents using the agent-messaging skill:
+# Recipient: each active agent
+# Subject: "Orchestration Paused"
+# Content: "Please save your progress. Orchestration paused."
+# Type: pause_notification, Priority: high
 ```
 
 ## Recovery After Cancellation

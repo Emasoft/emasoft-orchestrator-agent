@@ -123,10 +123,9 @@ Write: /path/to/docker-compose.yml  # NO - config is implementation
 
 **Allowed Actions**:
 ```bash
-# Sending AI Maestro messages (use official CLI)
-# See official skill: ~/.claude/skills/agent-messaging/SKILL.md
-# Syntax: send-aimaestro-message.sh <to> <subject> <message> [priority] [type]
-send-aimaestro-message.sh <agent> "<subject>" '<json>' <priority> <type>
+# Sending AI Maestro messages
+# Use the agent-messaging skill to send task delegations
+# Specify: recipient, subject, content, type, priority
 
 # Creating delegation documents
 Write: /path/to/tasks/delegation-GH-42.md
@@ -149,9 +148,8 @@ docker-compose up    # NO - agent sets up infrastructure
 
 **Allowed Actions**:
 ```bash
-# Checking for messages (use official CLI)
-# See official skill: ~/.claude/skills/agent-messaging/SKILL.md
-check-aimaestro-messages.sh
+# Checking for messages
+# Use the agent-messaging skill to check inbox for unread messages
 
 # Reading PR status
 gh pr view 42

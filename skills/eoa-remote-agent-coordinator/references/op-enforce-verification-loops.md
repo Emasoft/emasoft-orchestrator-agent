@@ -64,79 +64,47 @@ echo '{"task_id": "'"$TASK_ID"'", "agent": "'"$AGENT_NAME"'", "pr_request_count"
 
 ### Step 2: Respond Based on Count
 
-```bash
-if [ $PR_REQUEST_COUNT -lt 5 ]; then
-  # Verification loop response
-  RESPONSE_MESSAGE="Check your changes for errors. This is verification request $PR_REQUEST_COUNT of 4 required before PR approval."
+If the PR request count is less than 5 (verification loop not yet complete):
 
-  curl -X POST "${AIMAESTRO_API:-http://localhost:23000}/api/messages" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "from": "orchestrator",
-      "to": "'"$AGENT_NAME"'",
-      "subject": "Verification Required: #'"$TASK_ID"' ('"$PR_REQUEST_COUNT"'/4)",
-      "priority": "normal",
-      "content": {
-        "type": "verification",
-        "message": "'"$RESPONSE_MESSAGE"'",
-        "data": {
-          "task_id": "'"$TASK_ID"'",
-          "verification_loop": '$PR_REQUEST_COUNT',
-          "remaining_loops": '$((4 - PR_REQUEST_COUNT))'
-        }
-      }
-    }'
-else
-  # 5th request - make approval decision
-  # Proceed to final review
-  echo "5th PR request - proceeding to final approval decision"
-fi
-```
+Send a verification request message using the `agent-messaging` skill:
+- **Recipient**: the agent requesting PR (by session name)
+- **Subject**: "Verification Required: #[TASK_ID] ([COUNT]/4)"
+- **Content**: "Check your changes for errors. This is verification request [COUNT] of 4 required before PR approval."
+- **Type**: `verification`
+- **Priority**: `normal`
+- **Data**: include `task_id`, `verification_loop` (current count), `remaining_loops`
+
+**Verify**: confirm message delivery.
+
+If the PR request count reaches 5, proceed to final approval decision.
 
 ### Step 3: Final Approval Decision (5th Request)
 
+Review the agent's final submission against acceptance criteria.
+
+**If criteria are met**, send an approval message using the `agent-messaging` skill:
+- **Recipient**: the agent
+- **Subject**: "PR Approved: #[TASK_ID]"
+- **Content**: "You may now create a PR for task #[TASK_ID]. Ensure all tests pass before submission."
+- **Type**: `approval`
+- **Priority**: `normal`
+- **Data**: include `task_id`, `pr_approved` (true)
+
+**If criteria are NOT met**, send a rejection message using the `agent-messaging` skill:
+- **Recipient**: the agent
+- **Subject**: "PR Rejected: #[TASK_ID]"
+- **Content**: "PR creation not approved. Issues found: [list]. Address these issues and request PR permission again."
+- **Type**: `rejection`
+- **Priority**: `high`
+- **Data**: include `task_id`, `pr_approved` (false), `issues` (array)
+
+**Verify**: confirm message delivery in both cases.
+
 ```bash
-# Review agent's final submission
-# Check against acceptance criteria
-
+# NOTE: The logic below handles tracking the verification state
 CRITERIA_MET=true  # Determine from review
-
-if [ "$CRITERIA_MET" = true ]; then
-  # Approve PR creation
-  curl -X POST "${AIMAESTRO_API:-http://localhost:23000}/api/messages" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "from": "orchestrator",
-      "to": "'"$AGENT_NAME"'",
-      "subject": "PR Approved: #'"$TASK_ID"'",
-      "priority": "normal",
-      "content": {
-        "type": "approval",
-        "message": "You may now create a PR for task #'"$TASK_ID"'. Ensure all tests pass before submission.",
-        "data": {
-          "task_id": "'"$TASK_ID"'",
-          "pr_approved": true
-        }
-      }
-    }'
-else
-  # Reject with reasons
-  curl -X POST "${AIMAESTRO_API:-http://localhost:23000}/api/messages" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "from": "orchestrator",
-      "to": "'"$AGENT_NAME"'",
-      "subject": "PR Rejected: #'"$TASK_ID"'",
-      "priority": "high",
-      "content": {
-        "type": "rejection",
-        "message": "PR creation not approved. Issues found:\n'"$REJECTION_REASONS"'\n\nAddress these issues and request PR permission again.",
-        "data": {
-          "task_id": "'"$TASK_ID"'",
-          "pr_approved": false,
-          "issues": '"$ISSUES_JSON"'
-        }
-      }
+# Then send the appropriate approval or rejection message
+# using the agent-messaging skill as described above
     }'
 
   # Reset verification count for another 4 loops

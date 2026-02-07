@@ -122,23 +122,12 @@ if [ "$ALL_PASSING" = true ] && [ ${#MISSING_CRITERIA[@]} -eq 0 ]; then
   # Add completion comment
   gh issue comment $TASK_ID --body "Task completed successfully. PR #$PR_NUMBER approved."
 
-  # Send approval to agent
-  curl -X POST "${AIMAESTRO_API:-http://localhost:23000}/api/messages" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "from": "orchestrator",
-      "to": "'"$AGENT_NAME"'",
-      "subject": "Task Approved: #'"$TASK_ID"'",
-      "priority": "normal",
-      "content": {
-        "type": "approval",
-        "message": "Task #'"$TASK_ID"' has been verified and approved. PR #'"$PR_NUMBER"' ready for merge.",
-        "data": {
-          "task_id": "'"$TASK_ID"'",
-          "pr_number": "'$PR_NUMBER'"
-        }
-      }
-    }'
+  # Send approval to agent using the agent-messaging skill:
+  # Recipient: the agent session name
+  # Subject: "Task Approved: #[TASK_ID]"
+  # Content: "Task #[TASK_ID] has been verified and approved. PR #[PR_NUMBER] ready for merge."
+  # Type: approval, Priority: normal
+  # Data: task_id, pr_number
 else
   # Verification failed
   echo "VERIFICATION FAILED"
@@ -146,20 +135,14 @@ else
   # Send revision request
   MISSING_JSON=$(printf '%s\n' "${MISSING_CRITERIA[@]}" | jq -R . | jq -s .)
 
-  curl -X POST "${AIMAESTRO_API:-http://localhost:23000}/api/messages" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "from": "orchestrator",
-      "to": "'"$AGENT_NAME"'",
-      "subject": "Revision Required: #'"$TASK_ID"'",
-      "priority": "high",
-      "content": {
-        "type": "revision",
-        "message": "Completion verification failed. Please address the following:\n'"$(printf '%s\n' "${MISSING_CRITERIA[@]}")"'\n\nUpdate PR and report completion again.",
-        "data": {
-          "task_id": "'"$TASK_ID"'",
-          "missing_criteria": '"$MISSING_JSON"'
-        }
+  # Send revision request using the agent-messaging skill:
+  # Recipient: the agent session name
+  # Subject: "Revision Required: #[TASK_ID]"
+  # Content: "Completion verification failed. Please address the following: [missing criteria]. Update PR and report completion again."
+  # Type: revision, Priority: high
+  # Data: task_id, missing_criteria (array)
+  #
+  # Verify: confirm message delivery
       }
     }'
 fi

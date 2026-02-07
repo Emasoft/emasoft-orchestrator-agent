@@ -199,29 +199,17 @@ AI Maestro notifications may fail. This section covers recovery.
 
 ### Diagnosing Notification Failures
 
-**Check AI Maestro is running**:
-```bash
-curl http://localhost:23000/health
-```
+**Check AI Maestro is running**: Use the `agent-messaging` skill to perform a health check.
 
-**Check message was sent**:
-```bash
-# List recent messages
-curl "http://localhost:23000/api/messages?agent=orchestrator-master&action=sent"
-```
+**Check message was sent**: Use the `agent-messaging` skill to list recently sent messages for your session.
 
 ### AI Maestro Not Running
 
 **Problem**: AI Maestro service is down.
 
 **Solution**:
-```bash
-# Start AI Maestro
-ai-maestro start
-
-# Verify it's running
-curl http://localhost:23000/health
-```
+1. Start AI Maestro service
+2. Verify it is running using the `agent-messaging` skill health check
 
 ### Agent Session Not Found
 
@@ -236,20 +224,14 @@ curl http://localhost:23000/health
 
 If automated notification failed, send manually:
 
-```bash
-# Send notification manually
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "to": "agent-session-name",
-    "subject": "[UPDATE] Module: {name} - Spec Change",
-    "priority": "high",
-    "content": {
-      "type": "notification",
-      "message": "The specifications for your assigned module have been updated..."
-    }
-  }'
-```
+Send a notification manually using the `agent-messaging` skill:
+- **Recipient**: the agent session name
+- **Subject**: "[UPDATE] Module: {name} - Spec Change"
+- **Content**: "The specifications for your assigned module have been updated..."
+- **Type**: `notification`
+- **Priority**: `high`
+
+**Verify**: confirm message delivery.
 
 ### Direct Agent Communication
 
@@ -385,18 +367,11 @@ When force-removing an assigned module:
 # 1. Force remove
 /remove-module oauth-facebook --force
 
-# 2. Manually notify agent
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "to": "agent-session",
-    "subject": "[STOP] Module Removed: oauth-facebook",
-    "priority": "high",
-    "content": {
-      "type": "notification",
-      "message": "The module oauth-facebook has been removed. Stop any work immediately."
-    }
-  }'
+# 2. Manually notify agent using the agent-messaging skill:
+# Recipient: the agent session name
+# Subject: "[STOP] Module Removed: oauth-facebook"
+# Content: "The module oauth-facebook has been removed. Stop any work immediately."
+# Type: notification, Priority: high
 ```
 
 ### Force Removal Audit Trail

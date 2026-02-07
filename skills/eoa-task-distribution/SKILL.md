@@ -376,13 +376,9 @@ gh issue list --label "status:ready" --json number,title,labels,createdAt | \
 
 ### Example 2: Check Agent Availability via AI Maestro
 
-```bash
-# Query agent's current task count
-curl -s "$AIMAESTRO_API/api/agents/implementer-1/status" | jq '.active_tasks'
-
-# Check agent's last seen timestamp
-curl -s "$AIMAESTRO_API/api/agents/implementer-1" | jq '.last_seen'
-```
+Use the `ai-maestro-agents-management` skill to query agent availability:
+- Query the agent registry for `implementer-1` to get their current task count
+- Check the agent's last seen timestamp to determine if they are responsive
 
 ### Example 3: Assign Task with Full Protocol
 
@@ -400,22 +396,13 @@ gh issue edit $ISSUE --add-label "assign:$AGENT"
 # 3. Update status
 gh issue edit $ISSUE --remove-label "status:ready" --add-label "status:in-progress"
 
-# 4. Send AI Maestro message
-curl -X POST "$AIMAESTRO_API/api/messages" \
-  -H "Content-Type: application/json" \
-  -d "{
-    \"from\": \"orchestrator\",
-    \"to\": \"$AGENT\",
-    \"subject\": \"Task Assignment: Implement feature X\",
-    \"priority\": \"high\",
-    \"content\": {
-      \"type\": \"request\",
-      \"message\": \"You are assigned issue #$ISSUE. Success criteria: implement X, pass tests. Report when complete.\",
-      \"data\": {
-        \"issue_number\": $ISSUE
-      }
-    }
-  }"
+# 4. Send task assignment using the agent-messaging skill:
+# - Recipient: $AGENT
+# - Subject: "Task Assignment: Implement feature X"
+# - Content: "You are assigned issue #$ISSUE. Success criteria: implement X, pass tests. Report when complete."
+# - Type: request, Priority: high
+# - Data: issue_number
+# Verify: confirm message delivery
 ```
 
 ### Example 4: Handle Circular Dependency

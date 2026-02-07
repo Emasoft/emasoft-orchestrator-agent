@@ -34,48 +34,26 @@ Verify that the AI Maestro messaging system is running and accessible before att
 
 ### Step 1: Check API Health Endpoint
 
-```bash
-# Check AI Maestro health
-HEALTH_RESPONSE=$(curl -s -w "\n%{http_code}" "${AIMAESTRO_API:-http://localhost:23000}/api/health")
-HTTP_CODE=$(echo "$HEALTH_RESPONSE" | tail -n1)
-BODY=$(echo "$HEALTH_RESPONSE" | head -n-1)
+Use the `agent-messaging` skill to perform a health check on the AI Maestro service. Verify it returns a healthy status (HTTP 200).
 
-if [ "$HTTP_CODE" = "200" ]; then
-  echo "AI Maestro is healthy"
-else
-  echo "AI Maestro unavailable: HTTP $HTTP_CODE"
-  exit 1
-fi
-```
+**Verify**: confirm the health check response indicates the service is operational.
 
 ### Step 2: Verify Agent Registry Access
 
-```bash
-# List registered agents
-AGENTS=$(curl -s "${AIMAESTRO_API:-http://localhost:23000}/api/agents")
-AGENT_COUNT=$(echo "$AGENTS" | jq '.agents | length')
+Use the `agent-messaging` skill to query the agent registry and list all registered agents. Verify at least one remote agent is registered.
 
-if [ "$AGENT_COUNT" -gt 0 ]; then
-  echo "Agent registry accessible: $AGENT_COUNT agents registered"
-else
-  echo "WARNING: No agents registered in AI Maestro"
-fi
-```
+**Verify**: confirm the agent count is greater than zero.
 
 ### Step 3: Test Message Send Capability
 
-```bash
-# Send test ping to self (optional validation)
-curl -X POST "${AIMAESTRO_API:-http://localhost:23000}/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "orchestrator",
-    "to": "orchestrator",
-    "subject": "Health Check Ping",
-    "priority": "low",
-    "content": {"type": "ping", "message": "Self-test"}
-  }'
-```
+Optionally, send a self-test ping message using the `agent-messaging` skill:
+- **Recipient**: your own session name (self-ping)
+- **Subject**: "Health Check Ping"
+- **Content**: "Self-test"
+- **Type**: `ping`
+- **Priority**: `low`
+
+**Verify**: confirm the message was sent successfully.
 
 ## Success Criteria
 

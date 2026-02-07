@@ -23,10 +23,7 @@ Process integration/review results received from Integrator (EIA) after a review
 
 ## Steps
 
-1. **Check inbox for EIA response**:
-   ```bash
-   curl -s "http://localhost:23000/api/messages?agent=eoa-main&action=list&status=unread" | jq '.messages[] | select(.from == "eia-main")'
-   ```
+1. **Check inbox for EIA response** using the `agent-messaging` skill. Retrieve unread messages for your session and filter for messages from the EIA agent.
 
 2. **Parse the response content**:
    - `content.type`: Should be "response"

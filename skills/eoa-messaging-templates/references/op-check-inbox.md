@@ -24,16 +24,15 @@ Check for unread messages in your AI Maestro inbox.
 
 ## Steps
 
-1. **Execute inbox query**:
-   ```bash
-   curl -s "http://localhost:23000/api/messages?agent=$SESSION_NAME&action=list&status=unread" | jq '.messages[].content.message'
-   ```
+1. **Check your inbox** using the `agent-messaging` skill to retrieve all unread messages for your session.
 
 2. **Process messages by priority**: URGENT > HIGH > NORMAL
 
-3. **Respond to messages** that require acknowledgment
+3. **Respond to messages** that require acknowledgment using the `agent-messaging` skill.
 
-4. **Mark messages as read** after processing
+4. **Mark messages as read** after processing using the `agent-messaging` skill.
+
+**Verify**: confirm all unread messages have been processed.
 
 ## Output
 
@@ -55,13 +54,11 @@ JSON array of messages with fields:
 
 ## Example
 
-```bash
-# Check unread messages
-curl -s "http://localhost:23000/api/messages?agent=eoa-main&action=list&status=unread" | jq '.'
+Check your inbox using the `agent-messaging` skill:
+- **Retrieve unread messages**: list all unread messages for session `eoa-main`
+- **Get unread count**: query the unread count for session `eoa-main`
 
-# Get unread count only
-curl -s "http://localhost:23000/api/messages?agent=eoa-main&action=unread-count"
-```
+**Verify**: confirm messages were retrieved successfully.
 
 ## Critical Rule
 

@@ -221,7 +221,7 @@ Orchestrator spawns sub-agent:
 
 Sub-agent:
   - Implements auth module
-  - Runs: curl -X POST http://localhost:23000/api/messages ...
+  - Sends external message via AI Maestro
   -> RULE 16 VIOLATION: Sub-agent sent external message
 ```
 
@@ -238,7 +238,7 @@ Sub-agent:
 Orchestrator:
   - Receives sub-agent report
   - Decides to notify helper-agent-generic
-  - Sends: curl -X POST http://localhost:23000/api/messages ...
+  - Uses the agent-messaging skill to send the notification
   -> RULE 16 COMPLIANT: Only orchestrator sends external message
 ```
 

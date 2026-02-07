@@ -1,6 +1,6 @@
 # AI Maestro Communication Examples
 
-This document provides complete curl command examples for common AI Maestro messaging scenarios.
+This document provides intent-based examples for common AI Maestro messaging scenarios. Use the `agent-messaging` skill for all message operations.
 
 ## Table of Contents
 
@@ -33,68 +33,40 @@ This document provides complete curl command examples for common AI Maestro mess
 
 ## Example 1: Send Task Assignment
 
-```bash
-curl -X POST "$AIMAESTRO_API/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "orchestrator",
-    "to": "implementer-1",
-    "subject": "Task Assignment: Implement auth module",
-    "priority": "high",
-    "content": {
-      "type": "request",
-      "message": "You are assigned: Implement authentication module. Success criteria: JWT tokens, session management, tests passing.",
-      "data": {
-        "task_id": "auth-core",
-        "issue_number": "42",
-        "handoff_doc": "docs_dev/handoffs/auth-core.md"
-      }
-    }
-  }'
-```
+Send a task assignment message using the `agent-messaging` skill:
+- **Recipient**: `implementer-1`
+- **Subject**: "Task Assignment: Implement auth module"
+- **Content**: "You are assigned: Implement authentication module. Success criteria: JWT tokens, session management, tests passing."
+- **Type**: `request`
+- **Priority**: `high`
+- **Data**: include `task_id` ("auth-core"), `issue_number` ("42"), `handoff_doc` path
+
+**Verify**: confirm message delivery.
 
 ---
 
 ## Example 2: Send Status Request
 
-```bash
-curl -X POST "$AIMAESTRO_API/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "orchestrator",
-    "to": "implementer-1",
-    "subject": "Status Request: #42",
-    "priority": "normal",
-    "content": {
-      "type": "request",
-      "message": "What is your current status on #42? Report progress, blockers, and next steps.",
-      "data": {
-        "task_id": "42"
-      }
-    }
-  }'
-```
+Send a status request message using the `agent-messaging` skill:
+- **Recipient**: `implementer-1`
+- **Subject**: "Status Request: #42"
+- **Content**: "What is your current status on #42? Report progress, blockers, and next steps."
+- **Type**: `request`
+- **Priority**: `normal`
+- **Data**: include `task_id` ("42")
+
+**Verify**: confirm message delivery.
 
 ---
 
 ## Example 3: Escalate to Assistant Manager
 
-```bash
-curl -X POST "$AIMAESTRO_API/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "orchestrator",
-    "to": "assistant-manager",
-    "subject": "Approval Required: Requirement Change",
-    "priority": "high",
-    "content": {
-      "type": "request",
-      "message": "Implementer identified issue with immutable requirement. User decision required.",
-      "data": {
-        "operation": "requirement_change",
-        "risk_level": "high",
-        "justification": "Current requirement infeasible with available APIs"
-      }
-    }
-  }'
-```
+Send an escalation message using the `agent-messaging` skill:
+- **Recipient**: `assistant-manager`
+- **Subject**: "Approval Required: Requirement Change"
+- **Content**: "Implementer identified issue with immutable requirement. User decision required."
+- **Type**: `request`
+- **Priority**: `high`
+- **Data**: include `operation` ("requirement_change"), `risk_level` ("high"), `justification`
+
+**Verify**: confirm message delivery.

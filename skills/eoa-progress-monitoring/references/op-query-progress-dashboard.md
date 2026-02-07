@@ -97,9 +97,10 @@ echo "Stale tasks (>2h): $STALE_COUNT"
 ### Step 5: Query Agent Message Activity
 
 ```bash
-# Get recent activity from AI Maestro
-RECENT_MESSAGES=$(curl -s "${AIMAESTRO_API:-http://localhost:23000}/api/messages?agent=orchestrator&action=list&limit=50" | \
-  jq -r '.messages | group_by(.from) | .[] | {agent: .[0].from, count: length, last: .[0].timestamp}')
+# Use the agent-messaging skill to retrieve recent messages (last 50)
+# from the orchestrator's inbox, then group by sender to produce
+# per-agent activity counts and last-seen timestamps
+RECENT_MESSAGES=$(# retrieve and group messages by agent)
 
 echo "Agent activity:"
 echo "$RECENT_MESSAGES"

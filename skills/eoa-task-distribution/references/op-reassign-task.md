@@ -65,36 +65,20 @@ gh issue edit $ISSUE --remove-label "assign:$OLD_AGENT"
 # Step 4: Add new assignment
 gh issue edit $ISSUE --add-label "assign:$NEW_AGENT"
 
-# Step 5: Message new agent
-curl -X POST "$AIMAESTRO_API/api/messages" \
-  -H "Content-Type: application/json" \
-  -d "{
-    \"to\": \"$NEW_AGENT\",
-    \"subject\": \"Task Reassignment: Issue #$ISSUE\",
-    \"priority\": \"high\",
-    \"content\": {
-      \"type\": \"reassignment\",
-      \"message\": \"Task #$ISSUE has been reassigned to you from $OLD_AGENT. Reason: $REASON. Please review existing progress and continue.\",
-      \"data\": {
-        \"issue_number\": $ISSUE,
-        \"previous_agent\": \"$OLD_AGENT\",
-        \"partial_progress\": \"See issue comments for work completed so far\"
-      }
-    }
-  }"
+# Step 5: Message new agent using the agent-messaging skill:
+# - Recipient: $NEW_AGENT
+# - Subject: "Task Reassignment: Issue #$ISSUE"
+# - Content: "Task #$ISSUE has been reassigned to you from $OLD_AGENT. Reason: $REASON. Please review existing progress and continue."
+# - Type: reassignment, Priority: high
+# - Data: issue_number, previous_agent, partial_progress
+# Verify: confirm delivery
 
-# Step 6: Notify old agent
-curl -X POST "$AIMAESTRO_API/api/messages" \
-  -H "Content-Type: application/json" \
-  -d "{
-    \"to\": \"$OLD_AGENT\",
-    \"subject\": \"Task Reassigned: Issue #$ISSUE\",
-    \"priority\": \"normal\",
-    \"content\": {
-      \"type\": \"notification\",
-      \"message\": \"Task #$ISSUE has been reassigned to $NEW_AGENT. Reason: $REASON.\"
-    }
-  }"
+# Step 6: Notify old agent using the agent-messaging skill:
+# - Recipient: $OLD_AGENT
+# - Subject: "Task Reassigned: Issue #$ISSUE"
+# - Content: "Task #$ISSUE has been reassigned to $NEW_AGENT. Reason: $REASON."
+# - Type: notification, Priority: normal
+# Verify: confirm delivery
 ```
 
 ## Partial Progress Gathering

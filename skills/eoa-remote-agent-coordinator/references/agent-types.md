@@ -54,17 +54,13 @@ Orchestrator                    AI Agent
     |                               |
 ```
 
-**Message format**:
-```bash
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "to": "<SESSION_NAME>",
-    "subject": "[TASK] Module: auth-core",
-    "priority": "high",
-    "content": {"type": "assignment", "message": "..."}
-  }'
-```
+**Message format**: Send a task assignment message using the `agent-messaging` skill:
+- **Recipient**: the agent session name
+- **Subject**: "[TASK] Module: auth-core"
+- **Type**: `assignment`
+- **Priority**: `high`
+
+**Verify**: confirm message delivery.
 
 ### 4.1.3 Session Requirements
 
@@ -74,10 +70,7 @@ To use an AI agent:
 2. **AI Maestro hook installed**: The session must have AI Maestro hooks configured
 3. **Session name known**: Must use the full session name (e.g., `helper-agent-generic`)
 
-**Verify session is active**:
-```bash
-curl -s "http://localhost:23000/api/agents" | jq '.agents[].session_name'
-```
+**Verify session is active**: Use the `agent-messaging` skill to query the agent registry and list all registered session names.
 
 ### 4.1.4 Capabilities and Limitations
 

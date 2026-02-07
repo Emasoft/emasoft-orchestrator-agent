@@ -84,20 +84,13 @@ gh issue comment <ISSUE_NUM> --body "**Task Completed**
 
 ### Step 6: Notify Orchestrator
 
-```bash
-# Send completion notification
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "to": "orchestrator-master",
-    "subject": "Task Complete: Issue #<ISSUE_NUM>",
-    "priority": "normal",
-    "content": {
-      "type": "task_complete",
-      "message": "Issue #<ISSUE_NUM> completed by <agent-id>"
-    }
-  }'
-```
+Send a completion notification using the `agent-messaging` skill:
+- **Recipient**: `orchestrator-master`
+- **Subject**: "Task Complete: Issue #<ISSUE_NUM>"
+- **Content**: "Issue #<ISSUE_NUM> completed by <agent-id>"
+- **Type**: `task_complete`, **Priority**: `normal`
+
+**Verify**: confirm message delivery.
 
 ## Output
 

@@ -75,11 +75,11 @@ This document defines standardized protocols for handling edge cases and failure
 
 The Orchestrator relies on AI Maestro for inter-agent communication. Detect unavailability through:
 
-| Check | Command | Failure Indicator |
-|-------|---------|-------------------|
-| API Health | `curl -s "$AIMAESTRO_API/health"` | HTTP 503/504 or timeout |
-| Connection Test | `curl -m 10 "$AIMAESTRO_API/api/messages?agent=$SESSION_NAME&action=unread-count"` | Connection timeout after 10 seconds |
-| Agent Registry | `curl -s "$AIMAESTRO_API/api/agents"` | Registry unreachable or empty response |
+| Check | Method | Failure Indicator |
+|-------|--------|-------------------|
+| API Health | Use `agent-messaging` skill health check | HTTP 503/504 or timeout |
+| Connection Test | Use `agent-messaging` skill to query unread count | Connection timeout after 10 seconds |
+| Agent Registry | Use `agent-messaging` skill to query agent registry | Registry unreachable or empty response |
 
 ### 1.2 Response Workflow
 
@@ -122,14 +122,7 @@ When AI Maestro is unavailable, follow this protocol:
 
 Process queued messages when AI Maestro recovers:
 
-```bash
-# Flush queue on recovery
-for msg in .claude/queue/outbox/*.json; do
-  curl -X POST "$AIMAESTRO_API/api/messages" \
-    -H "Content-Type: application/json" \
-    -d @"$msg" && rm "$msg"
-done
-```
+When AI Maestro recovers, flush the queue by sending each queued message using the `agent-messaging` skill, then remove the processed queue files.
 
 ### 1.4 Fallback Coordination
 
@@ -237,28 +230,24 @@ AI agents collaborate asynchronously and may be hibernated for extended periods.
 Follow this escalation sequence **in order**:
 
 **Step 1: First Reminder (when state = No ACK or No Progress)**
-```bash
-curl -X POST "$AIMAESTRO_API/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "to": "'$AGENT_NAME'",
-    "subject": "Progress Check: Task '$TASK_ID'",
-    "priority": "high",
-    "content": {"type": "status_request", "message": "Please provide status update for task '$TASK_ID'. Awaiting response."}
-  }'
-```
+
+Send a first reminder using the `agent-messaging` skill:
+- **Recipient**: the unresponsive agent session name
+- **Subject**: "Progress Check: Task <TASK_ID>"
+- **Content**: "Please provide status update for task <TASK_ID>. Awaiting response."
+- **Type**: `status_request`, **Priority**: `high`
+
+**Verify**: confirm message delivery.
 
 **Step 2: Urgent Reminder (when state = Unresponsive after Step 1)**
-```bash
-curl -X POST "$AIMAESTRO_API/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "to": "'$AGENT_NAME'",
-    "subject": "URGENT: Task '$TASK_ID' - Response Required",
-    "priority": "urgent",
-    "content": {"type": "escalation", "message": "No response to previous reminder. Task may be reassigned if no response."}
-  }'
-```
+
+Send an urgent escalation using the `agent-messaging` skill:
+- **Recipient**: the unresponsive agent session name
+- **Subject**: "URGENT: Task <TASK_ID> - Response Required"
+- **Content**: "No response to previous reminder. Task may be reassigned if no response."
+- **Type**: `escalation`, **Priority**: `urgent`
+
+**Verify**: confirm message delivery.
 
 **Step 3: Escalate to User or Reassign (when still unresponsive after Step 2)**
 - If user online: Present options (wait, reassign, abort)

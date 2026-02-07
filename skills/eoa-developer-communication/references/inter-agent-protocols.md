@@ -75,26 +75,18 @@ Sub-agents prepare content but NEVER send externally.
 
 ### 2.1 If sending messages to remote agents
 
-The orchestrator sends messages via AI Maestro:
+The orchestrator sends messages using the `agent-messaging` skill:
+- **Recipient**: the target agent session name
+- **Subject**: the message subject
+- **Content**: the message body
+- **Type**: `request`, `assignment`, or `approval` as appropriate
+- **Priority**: `normal`, `high`, or `urgent`
 
-```bash
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "to": "agent-session-name",
-    "subject": "Subject",
-    "priority": "normal|high|urgent",
-    "content": {"type": "request|assignment|approval", "message": "..."}
-  }'
-```
+**Verify**: confirm message delivery.
 
 ### 2.2 If receiving messages from orchestrator
 
-Remote agents check their inbox:
-
-```bash
-curl -s "http://localhost:23000/api/messages?agent=$SESSION_NAME&action=list&status=unread"
-```
+Remote agents use the `agent-messaging` skill to check their inbox for unread messages.
 
 ---
 

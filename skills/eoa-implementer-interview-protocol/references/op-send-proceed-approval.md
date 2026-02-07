@@ -52,21 +52,13 @@ Send official authorization for the implementer to begin work. PROCEED is the fo
    - Reminder of acceptance criteria
    - Expected deliverables
 
-3. **Send via AI Maestro API**:
-   ```bash
-   curl -X POST "$AIMAESTRO_API/api/messages" \
-     -H "Content-Type: application/json" \
-     -d '{
-       "from": "orchestrator",
-       "to": "<implementer_agent_id>",
-       "subject": "PROCEED: <issue_number>",
-       "priority": "high",
-       "content": {
-         "type": "approval",
-         "message": "<proceed_message>"
-       }
-     }'
-   ```
+3. **Send the PROCEED** using the `agent-messaging` skill:
+   - **Recipient**: the implementer agent session name
+   - **Subject**: "PROCEED: <issue_number>"
+   - **Content**: the proceed message with reminders and acceptance criteria
+   - **Type**: `approval`, **Priority**: `high`
+
+   **Verify**: confirm message delivery.
 
 4. **Update state file**:
    - Module status: `pending` → `in_progress`

@@ -68,9 +68,9 @@ echo "Task assigned at: $ASSIGNED_AT"
 ### Step 2: Get Agent's Last Message
 
 ```bash
-# Query AI Maestro for agent's messages about this task
-LAST_MESSAGE=$(curl -s "${AIMAESTRO_API:-http://localhost:23000}/api/messages?agent=orchestrator&action=list" | \
-  jq -r '.messages[] | select(.from == "'"$AGENT_NAME"'") | {timestamp, subject, type: .content.type}' | head -1)
+# Use the agent-messaging skill to check inbox for messages from this agent.
+# Filter by sender matching $AGENT_NAME and extract the most recent message.
+LAST_MESSAGE=$(# retrieve most recent message from $AGENT_NAME)
 
 LAST_ACTIVITY=$(echo "$LAST_MESSAGE" | jq -r '.timestamp')
 MESSAGE_TYPE=$(echo "$LAST_MESSAGE" | jq -r '.type')
@@ -82,9 +82,9 @@ echo "Message type: $MESSAGE_TYPE"
 ### Step 3: Check for ACK
 
 ```bash
-# Look for ACK message from agent
-ACK_EXISTS=$(curl -s "${AIMAESTRO_API:-http://localhost:23000}/api/messages?agent=orchestrator&action=list" | \
-  jq -r '.messages[] | select(.from == "'"$AGENT_NAME"'" and (.subject | contains("[ACK]") or .content.type == "ack"))' | head -1)
+# Use the agent-messaging skill to check inbox for ACK messages from this agent.
+# Filter by sender matching $AGENT_NAME and subject containing "[ACK]" or content.type == "ack"
+ACK_EXISTS=$(# retrieve ACK message from $AGENT_NAME)
 
 if [ -n "$ACK_EXISTS" ]; then
   HAS_ACK=true
@@ -96,9 +96,9 @@ fi
 ### Step 4: Check for Blocker Report
 
 ```bash
-# Check if agent reported being blocked
-BLOCKED=$(curl -s "${AIMAESTRO_API:-http://localhost:23000}/api/messages?agent=orchestrator&action=list" | \
-  jq -r '.messages[] | select(.from == "'"$AGENT_NAME"'" and .content.type == "blocked")' | head -1)
+# Use the agent-messaging skill to check inbox for blocker reports from this agent.
+# Filter by sender matching $AGENT_NAME and content.type == "blocked"
+BLOCKED=$(# retrieve blocker report from $AGENT_NAME)
 
 if [ -n "$BLOCKED" ]; then
   IS_BLOCKED=true
@@ -110,9 +110,9 @@ fi
 ### Step 5: Check for Completion Report
 
 ```bash
-# Check if agent reported completion
-COMPLETED=$(curl -s "${AIMAESTRO_API:-http://localhost:23000}/api/messages?agent=orchestrator&action=list" | \
-  jq -r '.messages[] | select(.from == "'"$AGENT_NAME"'" and (.subject | contains("[DONE]") or .content.type == "completion"))' | head -1)
+# Use the agent-messaging skill to check inbox for completion reports from this agent.
+# Filter by sender matching $AGENT_NAME and subject containing "[DONE]" or content.type == "completion"
+COMPLETED=$(# retrieve completion report from $AGENT_NAME)
 
 if [ -n "$COMPLETED" ]; then
   IS_COMPLETE=true
@@ -157,8 +157,9 @@ else
 fi
 
 # Check for unresponsive (multiple reminders sent)
-REMINDER_COUNT=$(curl -s "${AIMAESTRO_API:-http://localhost:23000}/api/messages?agent=$AGENT_NAME&action=list" | \
-  jq '[.messages[] | select(.from == "orchestrator" and .content.type == "reminder")] | length')
+# Use the agent-messaging skill to count reminder messages sent to this agent.
+# Filter messages sent to $AGENT_NAME where from == "orchestrator" and content.type == "reminder"
+REMINDER_COUNT=$(# count reminder messages sent to $AGENT_NAME)
 
 if [ "$REMINDER_COUNT" -gt 2 ] && [ "$STATE_DURATION" -gt 60 ]; then
   AGENT_STATE="Unresponsive"

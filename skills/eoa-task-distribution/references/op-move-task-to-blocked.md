@@ -60,10 +60,11 @@ CURRENT_STATUS="status:in-review"
 BLOCKER_REASON="Missing AWS credentials"
 AGENT="implementer-1"
 
-# Step 1: Acknowledge blocker
-curl -X POST "$AIMAESTRO_API/api/messages" \
-  -H "Content-Type: application/json" \
-  -d "{\"to\":\"$AGENT\",\"subject\":\"Blocker Acknowledged\",\"content\":{\"type\":\"ack\",\"message\":\"Blocker received for #$ISSUE\"}}"
+# Step 1: Acknowledge blocker using the agent-messaging skill:
+# - Recipient: $AGENT
+# - Subject: "Blocker Acknowledged"
+# - Content: "Blocker received for #$ISSUE"
+# - Type: ack
 
 # Step 4: Update labels
 gh issue edit $ISSUE --remove-label "$CURRENT_STATUS" --add-label "status:blocked"

@@ -85,17 +85,13 @@ All AI Maestro messages use this format:
 
 ### Sending Messages
 
-```bash
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '<json-payload>'
-```
+Send messages using the `agent-messaging` skill. Provide the JSON payload with recipient, subject, priority, and content fields as described above.
 
 ### Checking Inbox
 
-```bash
-curl -s "http://localhost:23000/api/messages?agent=$SESSION_NAME&action=list&status=unread" | jq '.messages[].content.message'
-```
+Check your inbox using the `agent-messaging` skill. Retrieve all unread messages for your session and process the content of each message.
+
+**Verify**: confirm all messages are delivered or received as expected.
 
 ---
 

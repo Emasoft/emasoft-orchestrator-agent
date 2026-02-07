@@ -29,10 +29,10 @@
 ~/.claude/skills/agent-messaging/SKILL.md
 ```
 
-This skill is maintained by AI Maestro and automatically updated when the API changes. It provides:
-- `check-aimaestro-messages.sh` - Check your inbox
-- `read-aimaestro-message.sh <id>` - Read and mark messages as read
-- `send-aimaestro-message.sh` - Send messages
+This skill is maintained by AI Maestro and automatically updated when the API changes. It provides operations for:
+- Checking your inbox for unread messages
+- Reading and marking messages as read
+- Sending messages to other agents
 
 **This document describes the MESSAGE PROTOCOL (formats, types, schemas) for EOA (Emasoft Orchestrator Agent) coordination, NOT the API usage.**
 
@@ -150,18 +150,14 @@ This protocol reference is split into focused sections. Read only what you need:
 
 ## Quick Reference
 
-### Essential Commands
+### Essential Operations
 
-```bash
-# Send a message
-send-aimaestro-message.sh target-agent "Subject" "Message" normal task
+Use the `agent-messaging` skill for all messaging operations:
+- **Send a message**: specify recipient, subject, message body, priority, and type
+- **Check inbox**: retrieve all unread messages for your session
+- **Read specific message**: retrieve and mark a message as read by its ID
 
-# Check inbox
-check-aimaestro-messages.sh
-
-# Read specific message
-read-aimaestro-message.sh <message-id>
-```
+**Verify**: confirm each operation completes successfully.
 
 ### Priority Quick Guide
 

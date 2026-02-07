@@ -119,7 +119,7 @@
 **Cause**: AI Maestro messaging issue or agent offline.
 
 **Solution**:
-1. Verify AIMAESTRO_API is accessible: `curl ${AIMAESTRO_API:-http://localhost:23000}/api/health`
+1. Verify AI Maestro is accessible using the `agent-messaging` skill health check
 2. Check agent is registered: `/orchestration-status`
 3. Retry assignment with `/assign-module`
 4. If persistent, reassign to different agent: `/reassign-module`

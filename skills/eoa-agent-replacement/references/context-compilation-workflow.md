@@ -150,13 +150,11 @@ Retrieve all AI Maestro messages to/from the failed agent.
 
 ### Query Messages
 
-```bash
-# Messages TO the failed agent
-curl -s "http://localhost:23000/api/messages?to=$FAILED_AGENT_SESSION&action=list" | jq '.messages'
+Use the `agent-messaging` skill to retrieve:
+- All messages **sent to** the failed agent session
+- All messages **received from** the failed agent session
 
-# Messages FROM the failed agent
-curl -s "http://localhost:23000/api/messages?from=$FAILED_AGENT_SESSION&action=list" | jq '.messages'
-```
+This provides the full bidirectional communication history for context compilation.
 
 ### Important Message Types to Extract
 

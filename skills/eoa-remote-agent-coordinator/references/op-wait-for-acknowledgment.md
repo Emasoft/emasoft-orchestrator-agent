@@ -54,9 +54,9 @@ while true; do
     break
   fi
 
-  # Check for ACK message
-  ACK_MESSAGE=$(curl -s "${AIMAESTRO_API:-http://localhost:23000}/api/messages?agent=orchestrator&action=list" | \
-    jq -r '.messages[] | select(.from == "'"$AGENT_NAME"'" and .subject | contains("[ACK]")) | .content.message' | head -1)
+  # Check for ACK message using the agent-messaging skill
+  # Query inbox for messages from the target agent containing "[ACK]" in the subject
+  # Use the agent-messaging skill to retrieve and filter messages
 
   if [ -n "$ACK_MESSAGE" ]; then
     echo "ACK received from $AGENT_NAME"
@@ -83,24 +83,18 @@ QUESTIONS=$(echo "$ACK_MESSAGE" | grep -A5 "Questions:" | tail -n +2)
 
 If timeout reached without ACK:
 
+Send a reminder message using the `agent-messaging` skill:
+- **Recipient**: the agent session name
+- **Subject**: "Reminder: ACK Required for #[TASK_ID]"
+- **Content**: "Please acknowledge receipt of task #[TASK_ID] immediately. No ACK received within 5 minutes."
+- **Type**: `reminder`
+- **Priority**: `high`
+- **Data**: include `task_id`, `original_assignment_time`
+
+**Verify**: confirm message delivery.
+
 ```bash
-# Send reminder
-curl -X POST "${AIMAESTRO_API:-http://localhost:23000}/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "orchestrator",
-    "to": "'"$AGENT_NAME"'",
-    "subject": "Reminder: ACK Required for #'"$TASK_ID"'",
-    "priority": "high",
-    "content": {
-      "type": "reminder",
-      "message": "Please acknowledge receipt of task #'"$TASK_ID"' immediately. No ACK received within 5 minutes.",
-      "data": {
-        "task_id": "'"$TASK_ID"'",
-        "original_assignment_time": "'"$SENT_TIMESTAMP"'"
-      }
-    }
-  }'
+# NOTE: The reminder is sent using the agent-messaging skill as described above
 
 # Log timeout for escalation tracking
 echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) | NO_ACK | #$TASK_ID | $AGENT_NAME | Reminder sent" >> assignment_log.txt

@@ -38,11 +38,7 @@ ECOS notifications arrive via AI Maestro with specific message format:
 
 ### Step 2: Check Message Queue
 
-```bash
-# Check for ECOS messages
-curl -s "http://localhost:23000/api/messages?agent=$SESSION_NAME&action=list&status=unread" \
-  | jq '.messages[] | select(.from == "ecos")'
-```
+Use the `agent-messaging` skill to check your inbox for unread messages, then filter for messages from ECOS (where `from` equals `ecos`).
 
 ### Step 3: Identify Notification Type
 
@@ -56,22 +52,14 @@ curl -s "http://localhost:23000/api/messages?agent=$SESSION_NAME&action=list&sta
 
 ### Step 4: Acknowledge Notification
 
-```bash
-# Send acknowledgment to ECOS
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "to": "ecos",
-    "subject": "ACK: Replacement for <failed_agent>",
-    "priority": "high",
-    "content": {
-      "type": "acknowledgment",
-      "message": "Received replacement notification. Beginning context compilation.",
-      "failed_agent": "<failed_agent>",
-      "replacement_agent": "<replacement_agent>"
-    }
-  }'
-```
+Send an acknowledgment using the `agent-messaging` skill:
+- **Recipient**: `ecos`
+- **Subject**: "ACK: Replacement for <failed_agent>"
+- **Content**: "Received replacement notification. Beginning context compilation."
+- **Type**: `acknowledgment`, **Priority**: `high`
+- **Data**: include `failed_agent`, `replacement_agent`
+
+**Verify**: confirm message delivery.
 
 ### Step 5: Pause New Assignments
 
@@ -112,8 +100,9 @@ echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) ECOS_NOTIFICATION: Failed=$failed_agent Rep
 # Full notification handling sequence
 
 # 1. Check for ECOS notifications
-ECOS_MSG=$(curl -s "http://localhost:23000/api/messages?agent=orchestrator-master&action=list&status=unread" \
-  | jq -r '.messages[] | select(.content.type == "replacement_required")')
+# Use the agent-messaging skill to check your inbox for unread messages,
+# then filter for messages where content.type == "replacement_required"
+ECOS_MSG=$(# retrieve unread messages and filter by content type)
 
 if [ -n "$ECOS_MSG" ]; then
   # 2. Extract details
@@ -125,19 +114,12 @@ if [ -n "$ECOS_MSG" ]; then
   echo "ECOS: Replacing $FAILED with $REPLACEMENT due to $REASON"
 
   # 4. Acknowledge
-  curl -X POST "http://localhost:23000/api/messages" \
-    -H "Content-Type: application/json" \
-    -d "{
-      \"to\": \"ecos\",
-      \"subject\": \"ACK: Replacement for $FAILED\",
-      \"priority\": \"high\",
-      \"content\": {
-        \"type\": \"acknowledgment\",
-        \"message\": \"Beginning replacement process\",
-        \"failed_agent\": \"$FAILED\",
-        \"replacement_agent\": \"$REPLACEMENT\"
-      }
-    }"
+  # Use the agent-messaging skill to send acknowledgment:
+  # - Recipient: ecos
+  # - Subject: "ACK: Replacement for $FAILED"
+  # - Content: "Beginning replacement process"
+  # - Type: acknowledgment, Priority: high
+  # - Data: failed_agent=$FAILED, replacement_agent=$REPLACEMENT
 
   # 5. Proceed to context compilation
   echo "Proceed to: op-compile-task-context"

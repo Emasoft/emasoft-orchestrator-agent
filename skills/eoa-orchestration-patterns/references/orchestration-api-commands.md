@@ -26,26 +26,14 @@
 
 ### 1.2 Sending task assignments to remote agents
 
-**API endpoint:** `POST http://localhost:23000/api/messages`
+Send task assignments using the `agent-messaging` skill:
+- **Recipient**: the remote agent session name (e.g., `remote-dev-001`)
+- **Subject**: "Task Assignment: Implement module X"
+- **Content**: "Please implement..."
+- **Type**: `task-assignment`, **Priority**: `high`
+- **Data**: include `taskId`, `deadline`
 
-**Example task assignment:**
-
-```bash
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "eoa-orchestrator",
-    "to": "remote-dev-001",
-    "subject": "Task Assignment: Implement module X",
-    "priority": "high",
-    "content": {
-      "type": "task-assignment",
-      "message": "Please implement...",
-      "taskId": "1",
-      "deadline": "2h"
-    }
-  }'
-```
+**Verify**: confirm message delivery.
 
 ### 1.3 Message types for EOA
 

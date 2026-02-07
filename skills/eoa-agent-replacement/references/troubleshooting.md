@@ -20,16 +20,10 @@
 
 **Diagnostic Steps:**
 
-```bash
-# Check AI Maestro inbox for all messages
-curl -s "http://localhost:23000/api/messages?agent=$SESSION_NAME&action=list" | jq '.messages[] | select(.content.type == "agent_replacement")'
-
-# Check AI Maestro service health
-curl -s "http://localhost:23000/api/health"
-
-# Check if orchestrator session is registered
-curl -s "http://localhost:23000/api/agents" | jq '.[] | select(.session == "'$SESSION_NAME'")'
-```
+Use the `agent-messaging` skill to:
+- Check your inbox for messages with content type "agent_replacement"
+- Perform a health check on the AI Maestro service
+- Query the agent registry to verify your session is registered
 
 **Solutions:**
 
@@ -42,20 +36,13 @@ curl -s "http://localhost:23000/api/agents" | jq '.[] | select(.session == "'$SE
 
 **Manual Recovery:**
 
-```bash
-# Request ECOS to resend notification
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "to": "ecos-controller",
-    "subject": "[EOA] Request: Resend Replacement Notification",
-    "priority": "high",
-    "content": {
-      "type": "request",
-      "message": "Did not receive replacement notification for agent implementer-1. Please resend."
-    }
-  }'
-```
+Send a resend request using the `agent-messaging` skill:
+- **Recipient**: `ecos-controller`
+- **Subject**: "[EOA] Request: Resend Replacement Notification"
+- **Content**: "Did not receive replacement notification for agent implementer-1. Please resend."
+- **Type**: `request`, **Priority**: `high`
+
+**Verify**: confirm message delivery.
 
 ### 7.1.2 Confirmation Not Delivered
 
@@ -65,13 +52,9 @@ curl -X POST "http://localhost:23000/api/messages" \
 
 **Diagnostic Steps:**
 
-```bash
-# Check sent messages
-curl -s "http://localhost:23000/api/messages?from=$SESSION_NAME&action=list" | jq '.messages[] | select(.subject | contains("Replacement Complete"))'
-
-# Verify ECOS session exists
-curl -s "http://localhost:23000/api/agents" | jq '.[] | select(.session | contains("ecos"))'
-```
+Use the `agent-messaging` skill to:
+- List sent messages and filter for "Replacement Complete" subjects
+- Query the agent registry to verify the ECOS session exists
 
 **Solutions:**
 
@@ -176,13 +159,9 @@ git ls-remote origin
 
 **Diagnostic Steps:**
 
-```bash
-# Test AI Maestro API
-curl -s "http://localhost:23000/api/messages?agent=$SESSION_NAME&limit=1"
-
-# Check message count
-curl -s "http://localhost:23000/api/messages?agent=$SESSION_NAME&action=count"
-```
+Use the `agent-messaging` skill to:
+- Test the AI Maestro API by retrieving the most recent message
+- Check the total message count for your session
 
 **Solutions:**
 
@@ -372,13 +351,9 @@ query {
 
 **Diagnostic Steps:**
 
-```bash
-# Verify new agent session exists
-curl -s "http://localhost:23000/api/agents" | jq '.[] | select(.session == "helper-agent-2")'
-
-# Check if agent received message
-curl -s "http://localhost:23000/api/messages?to=helper-agent-2&action=list" | jq '.messages[-1]'
-```
+Use the `agent-messaging` skill to:
+- Verify the new agent session (e.g., `helper-agent-2`) exists in the agent registry
+- Check if the agent received the handoff message by listing messages sent to that agent
 
 **Solutions:**
 
@@ -391,21 +366,14 @@ curl -s "http://localhost:23000/api/messages?to=helper-agent-2&action=list" | jq
 
 **Escalation Path:**
 
-```bash
-# After 3 reminders, escalate
-curl -X POST "http://localhost:23000/api/messages" \
-  -d '{
-    "to": "ecos-controller",
-    "subject": "[EOA-ESCALATE] Replacement Agent Not Responding",
-    "priority": "urgent",
-    "content": {
-      "type": "escalation",
-      "message": "Replacement agent helper-agent-2 has not acknowledged handoff after 3 reminders. Please provide alternative agent.",
-      "failed_original_agent": "implementer-1",
-      "failed_replacement_agent": "implementer-2"
-    }
-  }'
-```
+After 3 reminders, send an escalation using the `agent-messaging` skill:
+- **Recipient**: `ecos-controller`
+- **Subject**: "[EOA-ESCALATE] Replacement Agent Not Responding"
+- **Content**: "Replacement agent helper-agent-2 has not acknowledged handoff after 3 reminders. Please provide alternative agent."
+- **Type**: `escalation`, **Priority**: `urgent`
+- **Data**: include `failed_original_agent`, `failed_replacement_agent`
+
+**Verify**: confirm escalation delivery.
 
 ### 7.5.2 Requirements Confusion
 
@@ -474,7 +442,7 @@ pip list | grep -E "PyYAML|requests"
 gh auth status
 
 # Test AI Maestro connection
-curl http://localhost:23000/api/health
+Use the agent-messaging skill to perform a health check on the AI Maestro service
 ```
 
 If any fail, report the error output to the orchestrator.

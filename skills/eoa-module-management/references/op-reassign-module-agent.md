@@ -70,37 +70,19 @@ Transfer a module from one implementer agent to another. This involves notifying
    - New agent is different from current
    - New agent is registered
 
-2. **Request progress report** from old agent (if responsive):
-   ```bash
-   curl -X POST "$AIMAESTRO_API/api/messages" \
-     -H "Content-Type: application/json" \
-     -d '{
-       "from": "orchestrator",
-       "to": "<old_agent>",
-       "subject": "Progress Report Request: <module_id>",
-       "priority": "urgent",
-       "content": {
-         "type": "request",
-         "message": "Please provide current progress on module before reassignment."
-       }
-     }'
-   ```
+2. **Request progress report** from old agent (if responsive). Send using the `agent-messaging` skill:
+   - **Recipient**: the old agent session name
+   - **Subject**: "Progress Report Request: <module_id>"
+   - **Content**: "Please provide current progress on module before reassignment."
+   - **Type**: `request`, **Priority**: `urgent`
 
-3. **Notify old agent to stop**:
-   ```bash
-   curl -X POST "$AIMAESTRO_API/api/messages" \
-     -H "Content-Type: application/json" \
-     -d '{
-       "from": "orchestrator",
-       "to": "<old_agent>",
-       "subject": "STOP: Module Reassigned - <module_id>",
-       "priority": "urgent",
-       "content": {
-         "type": "command",
-         "message": "Stop work on this module immediately. It is being reassigned."
-       }
-     }'
-   ```
+3. **Notify old agent to stop**. Send using the `agent-messaging` skill:
+   - **Recipient**: the old agent session name
+   - **Subject**: "STOP: Module Reassigned - <module_id>"
+   - **Content**: "Stop work on this module immediately. It is being reassigned."
+   - **Type**: `command`, **Priority**: `urgent`
+
+   **Verify**: confirm both messages were delivered.
 
 4. **Update state file**:
    ```yaml

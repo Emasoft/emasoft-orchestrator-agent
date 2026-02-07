@@ -72,26 +72,15 @@ EOF
 
 ### Step 2: Send to EAMA (User Communication Channel)
 
-```bash
-curl -X POST "${AIMAESTRO_API:-http://localhost:23000}/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "orchestrator",
-    "to": "eama-main",
-    "subject": "[ESCALATION] '"$ESCALATION_TYPE"': '"$BRIEF_DESCRIPTION"'",
-    "priority": "'"$URGENCY"'",
-    "content": {
-      "type": "escalation",
-      "message": "User decision required.\n\n## Category\n'"$ESCALATION_TYPE"'\n\n## Context\n'"$CONTEXT"'\n\n## Options\n'"$OPTIONS_TEXT"'\n\n## Impact\nBlocking task: '"$BLOCKING_TASK"'\n\n## Urgency\n'"$URGENCY"'",
-      "data": {
-        "escalation_id": "'"$ESCALATION_ID"'",
-        "type": "'"$ESCALATION_TYPE"'",
-        "blocking_task": "'"$BLOCKING_TASK"'",
-        "options": '"$OPTIONS_JSON"'
-      }
-    }
-  }'
-```
+Send an escalation message to EAMA using the `agent-messaging` skill:
+- **Recipient**: `eama-main`
+- **Subject**: "[ESCALATION] [escalation_type]: [brief_description]"
+- **Content**: "User decision required." followed by category, context, options, impact (blocking task), and urgency
+- **Type**: `escalation`
+- **Priority**: the urgency level
+- **Data**: include `escalation_id`, `type`, `blocking_task`, `options`
+
+**Verify**: confirm message delivery.
 
 ### Step 3: Update Blocked Task (if applicable)
 
@@ -193,23 +182,15 @@ if [ -n "$BLOCKING_TASK" ]; then
 fi
 
 # Notify assigned agent
-curl -X POST "${AIMAESTRO_API:-http://localhost:23000}/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "orchestrator",
-    "to": "'"$ASSIGNED_AGENT"'",
-    "subject": "Decision Made: '"$ESCALATION_ID"'",
-    "priority": "high",
-    "content": {
-      "type": "decision",
-      "message": "User has made a decision on your blocked task.\n\nDecision: '"$DECISION"'\n\nYou may now proceed with task #'"$BLOCKING_TASK"'.",
-      "data": {
-        "escalation_id": "'"$ESCALATION_ID"'",
-        "decision": "'"$DECISION"'",
-        "task_id": "'"$BLOCKING_TASK"'"
-      }
-    }
-  }'
+Send a decision notification to the assigned agent using the `agent-messaging` skill:
+- **Recipient**: the assigned agent session name
+- **Subject**: "Decision Made: [escalation_id]"
+- **Content**: "User has made a decision on your blocked task. Decision: [decision]. You may now proceed with task #[blocking_task]."
+- **Type**: `decision`
+- **Priority**: `high`
+- **Data**: include `escalation_id`, `decision`, `task_id`
+
+**Verify**: confirm message delivery.
 ```
 
 ## Related Operations

@@ -40,8 +40,8 @@ Proactively poll remote agents for progress updates every 10-15 minutes during a
 
 ```bash
 # Get last message from agent about this task
-LAST_UPDATE=$(curl -s "${AIMAESTRO_API:-http://localhost:23000}/api/messages?agent=orchestrator&action=list" | \
-  jq -r '.messages[] | select(.from == "'"$AGENT_NAME"'" and .content.data.task_id == "'"$TASK_ID"'") | .timestamp' | head -1)
+# Use the agent-messaging skill to query inbox messages, filtering for
+# messages from the target agent about the specific task ID
 
 # Calculate minutes since last update
 LAST_UPDATE_EPOCH=$(date -j -f "%Y-%m-%dT%H:%M:%S" "$LAST_UPDATE" +%s 2>/dev/null || echo 0)
@@ -55,23 +55,18 @@ echo "Minutes since last update: $MINUTES_SINCE"
 
 If more than 10-15 minutes since last update:
 
+Send a status request using the `agent-messaging` skill:
+- **Recipient**: the agent session name
+- **Subject**: "Status Check: #[TASK_ID]"
+- **Content**: "Please provide a progress update for task #[TASK_ID]. Report: 1. Current progress 2. Any blockers 3. Anything unclear 4. Estimated time to completion"
+- **Type**: `status-request`
+- **Priority**: `normal`
+- **Data**: include `task_id`, `last_known_update`
+
+**Verify**: confirm message delivery.
+
 ```bash
-curl -X POST "${AIMAESTRO_API:-http://localhost:23000}/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "orchestrator",
-    "to": "'"$AGENT_NAME"'",
-    "subject": "Status Check: #'"$TASK_ID"'",
-    "priority": "normal",
-    "content": {
-      "type": "status-request",
-      "message": "Please provide a progress update for task #'"$TASK_ID"'.\n\nReport:\n1. Current progress (percentage or milestone)\n2. Any blockers or issues\n3. Anything unclear\n4. Estimated time to completion",
-      "data": {
-        "task_id": "'"$TASK_ID"'",
-        "last_known_update": "'"$LAST_UPDATE"'"
-      }
-    }
-  }'
+# NOTE: The status request is sent using the agent-messaging skill as described above
 ```
 
 ### Step 3: Mandatory Poll Questions

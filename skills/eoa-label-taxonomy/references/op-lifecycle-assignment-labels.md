@@ -61,20 +61,13 @@ gh issue edit <ISSUE_NUM> \
 
 ### Step 5: Notify Agent (if using AI Maestro)
 
-```bash
-# Send assignment notification via AI Maestro
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "to": "<agent-session>",
-    "subject": "Task Assignment: Issue #<ISSUE_NUM>",
-    "priority": "high",
-    "content": {
-      "type": "task_assignment",
-      "message": "You have been assigned issue #<ISSUE_NUM>: <TITLE>"
-    }
-  }'
-```
+Send an assignment notification using the `agent-messaging` skill:
+- **Recipient**: the agent session name
+- **Subject**: "Task Assignment: Issue #<ISSUE_NUM>"
+- **Content**: "You have been assigned issue #<ISSUE_NUM>: <TITLE>"
+- **Type**: `task_assignment`, **Priority**: `high`
+
+**Verify**: confirm message delivery.
 
 ### Step 6: Add Assignment Comment
 
@@ -125,15 +118,11 @@ gh issue comment 42 --body "**Assigned to implementer-1**
 - Effort: m (4-8 hours)
 - Acceptance criteria in issue description"
 
-# Notify via AI Maestro
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "to": "helper-agent-generic",
-    "subject": "Task Assignment: Issue #42",
-    "priority": "high",
-    "content": {"type": "task_assignment", "message": "Assigned: Implement auth module (issue #42)"}
-  }'
+# Notify via AI Maestro using the agent-messaging skill:
+# - Recipient: helper-agent-generic
+# - Subject: "Task Assignment: Issue #42"
+# - Content: "Assigned: Implement auth module (issue #42)"
+# - Type: task_assignment, Priority: high
 ```
 
 ### Example 3: Reassignment

@@ -347,19 +347,14 @@ Task UUID: {task_uuid}
 
 ### Sending Messages via AI Maestro
 
-```bash
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "to": "{session_name}",
-    "subject": "{subject_with_prefix}",
-    "priority": "{priority}",
-    "content": {
-      "type": "{message_type}",
-      "message": "{message_body}"
-    }
-  }'
-```
+Send messages using the `agent-messaging` skill with these fields:
+- **Recipient**: the target agent session name
+- **Subject**: subject line with appropriate prefix (e.g., `[TASK]`, `[PROGRESS]`, etc.)
+- **Priority**: `normal`, `high`, or `urgent`
+- **Content type**: the message type identifier
+- **Message**: the message body text
+
+**Verify**: confirm message delivery.
 
 **Content types**:
 - `assignment` - New task assignment

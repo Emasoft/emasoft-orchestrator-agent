@@ -26,38 +26,35 @@
 # Verify agent has required LSP servers
 # Assign first task with ACK protocol
 
-curl -X POST "$AIMAESTRO_API/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "orchestrator",
-    "to": "implementer-new",
-    "subject": "First Task Assignment",
-    "priority": "high",
-    "content": {
-      "type": "request",
-      "message": "[ACK REQUIRED] Task: Implement feature X. Before starting, reply: [ACK] task-001 - RECEIVED",
-      "data": {"task_id": "task-001"}
-    }
-  }'
+Send the first task assignment using the `agent-messaging` skill:
+- **Recipient**: `implementer-new`
+- **Subject**: "First Task Assignment"
+- **Content**: "[ACK REQUIRED] Task: Implement feature X. Before starting, reply: [ACK] task-001 - RECEIVED"
+- **Type**: `request`
+- **Priority**: `high`
+- **Data**: include `task_id` ("task-001")
+
+**Verify**: confirm message delivery and wait for ACK.
 ```
 
 ### 1.2 Task delegation with ACK instructions
 
 This example shows the full delegation message structure:
 
-```bash
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "to": "implementer-1",
-    "subject": "Task: Implement auth-core module",
-    "priority": "high",
-    "content": {
-      "type": "task",
-      "message": "[TASK] auth-core\n\n================================================================================\nACKNOWLEDGMENT REQUIRED (MANDATORY)\n================================================================================\n\nBefore starting work, you MUST reply with an acknowledgment in this exact format:\n\n[ACK] auth-core - {status}\nUnderstanding: {1-line summary of what you will do}\n\nStatus options:\n- RECEIVED - Task received, will begin work immediately\n- CLARIFICATION_NEEDED - Need more info (list your questions below)\n- REJECTED - Cannot accept task (explain why)\n- QUEUED - Have prior tasks, will start after completing them\n\nDO NOT begin work until you have sent this acknowledgment.\n================================================================================\n\nContext: JWT authentication implementation for user login\nScope: src/auth/\nTests: pytest tests/auth/"
-    }
-  }'
-```
+Send a full delegation message using the `agent-messaging` skill:
+- **Recipient**: `implementer-1`
+- **Subject**: "Task: Implement auth-core module"
+- **Priority**: `high`
+- **Type**: `task`
+- **Content**: Include the full task description with mandatory ACK protocol:
+  - Task identifier: `auth-core`
+  - ACK format: `[ACK] auth-core - {status}` with Understanding line
+  - Status options: RECEIVED, CLARIFICATION_NEEDED, REJECTED, QUEUED
+  - Context: JWT authentication implementation for user login
+  - Scope: `src/auth/`
+  - Tests: `pytest tests/auth/`
+
+**Verify**: confirm message delivery and wait for ACK response.
 
 **Expected ACK response:**
 ```
@@ -109,22 +106,15 @@ The orchestrator tracks verification state per task:
 
 This shows the 10-15 minute polling cycle during active work:
 
-```bash
-# Every 10-15 minutes during active work
-curl -X POST "$AIMAESTRO_API/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "orchestrator",
-    "to": "implementer-1",
-    "subject": "Progress Check",
-    "priority": "normal",
-    "content": {
-      "type": "request",
-      "message": "1. Current progress? 2. Next steps? 3. Any issues? 4. Anything unclear? 5. Difficulties? 6. Need anything?",
-      "data": {"poll_id": "poll-123"}
-    }
-  }'
-```
+Every 10-15 minutes during active work, send a progress check using the `agent-messaging` skill:
+- **Recipient**: `implementer-1`
+- **Subject**: "Progress Check"
+- **Content**: "1. Current progress? 2. Next steps? 3. Any issues? 4. Anything unclear? 5. Difficulties? 6. Need anything?"
+- **Type**: `request`
+- **Priority**: `normal`
+- **Data**: include `poll_id`
+
+**Verify**: confirm message delivery.
 
 **Timeline example:**
 ```

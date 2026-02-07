@@ -34,8 +34,9 @@ HANDOFF_ID="$1"
 EXPECTED_CHECKPOINT="$2"
 
 # Fetch ACK message
-ACK=$(curl -s "http://localhost:23000/api/messages?action=list&status=unread" | \
-  jq --arg hid "$HANDOFF_ID" '.messages[] | select(.content.handoff_id == $hid)')
+# Use the agent-messaging skill to check your inbox for unread messages,
+# then filter for the message whose content.handoff_id matches $HANDOFF_ID
+ACK=$(# retrieve unread messages and filter by handoff_id)
 
 if [ -z "$ACK" ]; then
   echo "ERROR: No ACK received for handoff $HANDOFF_ID"

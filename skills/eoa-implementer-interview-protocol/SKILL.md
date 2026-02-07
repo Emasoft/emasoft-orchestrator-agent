@@ -278,13 +278,11 @@ Copy this checklist and track your progress:
 - Example 4: Send post-task verification questions
 - Example 5: Send APPROVED and handoff to integrator
 
-**Quick example - Pre-task interview**:
-```bash
-curl -X POST "$AIMAESTRO_API/api/messages" -H "Content-Type: application/json" \
-  -d '{"from": "orchestrator", "to": "implementer-1", "subject": "Pre-Task Interview: #42",
-       "priority": "high", "content": {"type": "request",
-       "message": "## Pre-Task Interview: #42\n\n1. Task Summary?\n2. Acceptance Criteria?\n3. Concerns?\n4. Approach?\n5. Blockers?"}}'
-```
+**Quick example - Pre-task interview**: Send using the `agent-messaging` skill:
+- **Recipient**: `implementer-1`
+- **Subject**: "Pre-Task Interview: #42"
+- **Content**: "Pre-Task Interview: #42 - 1. Task Summary? 2. Acceptance Criteria? 3. Concerns? 4. Approach? 5. Blockers?"
+- **Type**: `request`, **Priority**: `high`
 
 ---
 

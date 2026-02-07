@@ -29,29 +29,28 @@
 
 ## 2.1 Basic Send Syntax
 
-**Use the official CLI:** `send-aimaestro-message.sh` (see `~/.claude/skills/agent-messaging/SKILL.md`)
+Use the `agent-messaging` skill to send messages (see `~/.claude/skills/agent-messaging/SKILL.md`).
 
-### Command Syntax
-
-```bash
-send-aimaestro-message.sh <to> <subject> <message> [priority] [type]
-```
-
-### Parameters
+### Required Parameters
 
 | Parameter | Required | Description |
 |-----------|----------|-------------|
-| `to` | YES | Recipient's full session name |
-| `subject` | YES | Brief subject line |
-| `message` | YES | Message content (string or JSON) |
-| `priority` | NO | `low`, `normal`, `high`, or `urgent` (default: `normal`) |
-| `type` | NO | Message type (default: `task`) |
+| Recipient | YES | Recipient's full session name |
+| Subject | YES | Brief subject line |
+| Message | YES | Message content (string or JSON) |
+| Priority | NO | `low`, `normal`, `high`, or `urgent` (default: `normal`) |
+| Type | NO | Message type (default: `task`) |
 
 ### Basic Example
 
-```bash
-send-aimaestro-message.sh dev-agent-1 "Status check" "How is GH-42 progressing?" normal status-request
-```
+Send a status request using the `agent-messaging` skill:
+- **Recipient**: `dev-agent-1`
+- **Subject**: "Status check"
+- **Content**: "How is GH-42 progressing?"
+- **Type**: `status-request`
+- **Priority**: `normal`
+
+**Verify**: confirm message delivery.
 
 ---
 
@@ -61,51 +60,33 @@ For complex JSON content, use a variable or heredoc:
 
 ### Simple Task Assignment
 
-```bash
-send-aimaestro-message.sh dev-agent-1 \
-  "Implement Feature GH-42" \
-  '{"type":"task","task_id":"GH-42","instructions":"Complete implementation of user authentication","completion_criteria":["All tests pass","PR created"],"report_back":true}' \
-  high task
-```
+Send a task assignment message using the `agent-messaging` skill:
+- **Recipient**: `dev-agent-1`
+- **Subject**: "Implement Feature GH-42"
+- **Content**: JSON with `task_id` ("GH-42"), `instructions`, `completion_criteria`, `report_back` (true)
+- **Type**: `task`
+- **Priority**: `high`
 
-### Using Heredoc for Complex Content
+### Complex Task Assignment
 
-```bash
-MESSAGE=$(cat <<'EOF'
-{
-  "type": "task",
-  "task_id": "GH-42",
-  "instructions": "Implement user authentication with OAuth2 support",
-  "completion_criteria": [
-    "All unit tests pass",
-    "Integration tests pass",
-    "PR created with description",
-    "No linting errors"
-  ],
-  "test_requirements": [
-    "test_auth_login",
-    "test_auth_logout",
-    "test_oauth_flow"
-  ],
-  "report_back": true
-}
-EOF
-)
+For complex task assignments, prepare the content JSON with all required fields and send using the `agent-messaging` skill:
+- **Recipient**: `dev-agent-1`
+- **Subject**: "Implement Auth GH-42"
+- **Content**: JSON with `task_id`, `instructions`, `completion_criteria` (array), `test_requirements` (array), `report_back` (true)
+- **Type**: `task`
+- **Priority**: `high`
 
-send-aimaestro-message.sh dev-agent-1 "Implement Auth GH-42" "$MESSAGE" high task
-```
+**Verify**: confirm message delivery in both cases.
 
 ---
 
-## 2.3 Check Inbox Command
+## 2.3 Check Inbox
 
-**Use the official CLI:** `check-aimaestro-messages.sh`
+Check your inbox using the `agent-messaging` skill to retrieve all unread messages.
 
 ### List All Unread Messages
 
-```bash
-check-aimaestro-messages.sh
-```
+Use the `agent-messaging` skill to list all unread messages for your session.
 
 ### Example Output
 
@@ -120,19 +101,11 @@ Unread messages (3):
 
 ## 2.4 Read and Mark Message as Read
 
-**Use the official CLI:** `read-aimaestro-message.sh`
-
-### Command Syntax
-
-```bash
-read-aimaestro-message.sh <message-id>
-```
+Use the `agent-messaging` skill to read a specific message by its ID and mark it as read.
 
 ### Example
 
-```bash
-read-aimaestro-message.sh msg-1767802409759-h3x4ajo
-```
+Read message `msg-1767802409759-h3x4ajo` using the `agent-messaging` skill. This retrieves the full message content and marks it as read.
 
 ### Example Output
 
@@ -161,31 +134,23 @@ Content:
 
 ### Complete Send-Receive-Respond Flow
 
-**Step 1: Orchestrator sends task**
-```bash
-send-aimaestro-message.sh dev-agent-1 "GH-42 Implementation" \
-  '{"type":"task","task_id":"GH-42","instructions":"Implement feature X"}' \
-  high task
-```
+**Step 1: Orchestrator sends task** using the `agent-messaging` skill:
+- **Recipient**: `dev-agent-1`
+- **Subject**: "GH-42 Implementation"
+- **Content**: task assignment with `task_id`, `instructions`
+- **Type**: `task`, **Priority**: `high`
 
-**Step 2: Agent checks inbox**
-```bash
-check-aimaestro-messages.sh
-# Output: 1 unread message from orchestrator-master
-```
+**Step 2: Agent checks inbox** using the `agent-messaging` skill to list unread messages.
 
-**Step 3: Agent reads message**
-```bash
-read-aimaestro-message.sh msg-1767802409759-h3x4ajo
-# Displays full message content, marks as read
-```
+**Step 3: Agent reads message** using the `agent-messaging` skill with the specific message ID. This displays full content and marks it as read.
 
-**Step 4: Agent sends acknowledgment**
-```bash
-send-aimaestro-message.sh orchestrator-master "ACK: GH-42" \
-  '{"type":"task-acknowledgment","task_id":"GH-42","understood":true,"estimated_completion":"2h"}' \
-  normal ack
-```
+**Step 4: Agent sends acknowledgment** using the `agent-messaging` skill:
+- **Recipient**: `orchestrator-master`
+- **Subject**: "ACK: GH-42"
+- **Content**: acknowledgment with `task_id`, `understood` (true), `estimated_completion`
+- **Type**: `ack`, **Priority**: `normal`
+
+**Verify**: confirm each step completes successfully.
 
 ---
 

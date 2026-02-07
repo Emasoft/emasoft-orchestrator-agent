@@ -109,19 +109,10 @@ uv venv --python 3.12
 source .venv/bin/activate
 # ... implement feature ...
 
-# Step 5: Report back
-curl -X POST "$AIMAESTRO_API/api/messages" -d '{
-  "to": "orchestrator-master",
-  "content": {
-    "type": "task-completion",
-    "status": "success",
-    "configs_followed": [
-      "design/config/toolchain.md",
-      "design/config/standards.md",
-      "design/specs/requirements.md"
-    ]
-  }
-}'
+# Step 5: Report back using the agent-messaging skill
+# Send a task-completion message to orchestrator-master
+# Include: type (task-completion), status (success),
+# and the list of configs followed
 ```
 
 ---
@@ -241,18 +232,15 @@ Every update to any file in `design/config/` or `design/specs/` MUST trigger a c
 echo "Updated content" >> design/config/toolchain.md
 
 # 2. Send change notification
-curl -X POST "$AIMAESTRO_API/api/messages" -d '{
-  "to": "broadcast:all-active",
-  "subject": "CONFIG UPDATE: toolchain.md changed",
-  "priority": "high",
-  "content": {
-    "type": "config-change-notification",
-    "changed_files": ["design/config/toolchain.md"],
-    "change_summary": "Updated Python to 3.12",
-    "action_required": "Re-read config",
-    "acknowledge_required": true
-  }
-}'
+Send a config change notification to all active agents using the `agent-messaging` skill:
+- **Recipient**: broadcast to all active agents
+- **Subject**: "CONFIG UPDATE: toolchain.md changed"
+- **Content**: notification of changed files and required action
+- **Type**: `config-change-notification`
+- **Priority**: `high`
+- **Data**: include `changed_files`, `change_summary`, `action_required`, `acknowledge_required` (true)
+
+**Verify**: confirm message delivery to all active agents.
 
 # 3. Monitor for acknowledgments
 # (See change-notification-protocol.md for ack tracking)

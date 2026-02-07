@@ -140,18 +140,15 @@ This file contains all agent names and their AI Maestro addresses.
 
 > For all message templates (task assignment, delegation, status requests, completion reports, escalations), see **eoa-messaging-templates** skill and reference doc **ai-maestro-message-templates.md**.
 
-**Basic format:**
-```bash
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "eoa-<project>",
-    "to": "<target-agent>",
-    "subject": "...",
-    "priority": "normal|high|urgent",
-    "content": {"type": "...", "message": "...", "task_uuid": "..."}
-  }'
-```
+**To send a message**, use the `agent-messaging` skill:
+- **From**: your EOA session name (e.g., `eoa-<project>`)
+- **To**: target agent session name
+- **Subject**: descriptive subject line
+- **Priority**: `normal`, `high`, or `urgent`
+- **Content type**: `task`, `status`, `blocker`, `request`, or `report`
+- **Message**: the message body text, optionally including a `task_uuid`
+
+**Verify**: confirm the message was delivered successfully.
 
 ## Record-Keeping
 

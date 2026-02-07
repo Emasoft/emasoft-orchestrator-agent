@@ -49,24 +49,14 @@ HANDOFF_URL="https://github.com/<OWNER>/<REPO>/blob/main/docs/handoffs/handoff-*
 
 ### Step 3: Send AI Maestro Notification
 
-```bash
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d "{
-    \"to\": \"$REPLACEMENT_AGENT_SESSION\",
-    \"subject\": \"URGENT: Task Handoff from $FAILED_AGENT\",
-    \"priority\": \"urgent\",
-    \"content\": {
-      \"type\": \"task_handoff\",
-      \"message\": \"You are receiving tasks from $FAILED_AGENT due to $FAILURE_REASON. Please review the handoff document and acknowledge receipt.\",
-      \"handoff_url\": \"$HANDOFF_URL\",
-      \"failed_agent\": \"$FAILED_AGENT\",
-      \"tasks\": [\"#42\", \"#45\"],
-      \"ack_required\": true,
-      \"ack_timeout_minutes\": 30
-    }
-  }"
-```
+Send the handoff notification using the `agent-messaging` skill:
+- **Recipient**: the replacement agent session name
+- **Subject**: "URGENT: Task Handoff from <FAILED_AGENT>"
+- **Content**: "You are receiving tasks from <FAILED_AGENT> due to <FAILURE_REASON>. Please review the handoff document and acknowledge receipt."
+- **Type**: `task_handoff`, **Priority**: `urgent`
+- **Data**: include `handoff_url`, `failed_agent`, `tasks` list, `ack_required: true`, `ack_timeout_minutes: 30`
+
+**Verify**: confirm message delivery and note the message ID for tracking.
 
 ### Step 4: Include Urgency and Timeout
 
@@ -112,22 +102,17 @@ echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) HANDOFF_SENT to=$REPLACEMENT_AGENT" >> orch
 
 If no ACK within timeout:
 
-```bash
-# Retry notification
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d "{
-    \"to\": \"$REPLACEMENT_AGENT_SESSION\",
-    \"subject\": \"REMINDER: Task Handoff Acknowledgment Needed\",
-    \"priority\": \"urgent\",
-    \"content\": {
-      \"type\": \"ack_reminder\",
-      \"message\": \"Please acknowledge the task handoff sent at $SEND_TIME. Tasks are waiting.\",
-      \"original_handoff_url\": \"$HANDOFF_URL\"
-    }
-  }"
+Send a retry reminder using the `agent-messaging` skill:
+- **Recipient**: the replacement agent session name
+- **Subject**: "REMINDER: Task Handoff Acknowledgment Needed"
+- **Content**: "Please acknowledge the task handoff sent at <SEND_TIME>. Tasks are waiting."
+- **Type**: `ack_reminder`, **Priority**: `urgent`
+- **Data**: include `original_handoff_url`
 
-# If still no response, escalate to user
+**Verify**: confirm message delivery.
+
+If still no response, escalate to user:
+```bash
 gh issue comment <ISSUE_NUM> --body "@USER: Replacement agent $REPLACEMENT_AGENT has not acknowledged handoff. Manual intervention may be needed."
 ```
 
@@ -169,24 +154,13 @@ HANDOFF_URL=$(gh issue view "$PRIMARY_ISSUE" --json url --jq '.url')
 
 # 2. Send AI Maestro notification
 echo "Sending notification to $REPLACEMENT_SESSION..."
-RESPONSE=$(curl -s -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d "{
-    \"to\": \"$REPLACEMENT_SESSION\",
-    \"subject\": \"URGENT: Task Handoff from $FAILED_AGENT\",
-    \"priority\": \"urgent\",
-    \"content\": {
-      \"type\": \"task_handoff\",
-      \"message\": \"You are receiving tasks from $FAILED_AGENT. Review handoff at: $HANDOFF_URL\",
-      \"handoff_url\": \"$HANDOFF_URL\",
-      \"failed_agent\": \"$FAILED_AGENT\",
-      \"ack_required\": true,
-      \"ack_timeout_minutes\": 30
-    }
-  }")
-
-MSG_ID=$(echo "$RESPONSE" | jq -r '.message_id')
-echo "Notification sent. Message ID: $MSG_ID"
+# Use the agent-messaging skill to send the handoff notification:
+# - Recipient: $REPLACEMENT_SESSION
+# - Subject: "URGENT: Task Handoff from $FAILED_AGENT"
+# - Content: "You are receiving tasks from $FAILED_AGENT. Review handoff at: $HANDOFF_URL"
+# - Type: task_handoff, Priority: urgent
+# - Data: handoff_url, failed_agent, ack_required: true, ack_timeout_minutes: 30
+# Verify: confirm delivery and capture message ID
 
 # 3. Log for timeout tracking
 echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) HANDOFF_SENT msg_id=$MSG_ID to=$REPLACEMENT_SESSION" >> orchestrator.log

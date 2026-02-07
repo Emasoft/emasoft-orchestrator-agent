@@ -45,21 +45,13 @@ Error: Session 'helper-agent-generic' not found in AI Maestro.
 
 **Solutions**:
 
-1. **Verify session is running**:
-   ```bash
-   # List all AI Maestro sessions
-   curl -s "http://localhost:23000/api/agents" | jq '.agents[].session_name'
-   ```
+1. **Verify session is running**: Use the `agent-messaging` skill to query the agent registry and list all registered session names.
 
 2. **Check for typos**:
    - Session names are case-sensitive
    - Use full name (e.g., `helper-agent-generic` not `generic`)
 
-3. **Restart AI Maestro if needed**:
-   ```bash
-   # Check AI Maestro status
-   curl -s "http://localhost:23000/health"
-   ```
+3. **Restart AI Maestro if needed**: Use the `agent-messaging` skill to perform a health check on the AI Maestro service.
 
 4. **Wait and retry**:
    - New sessions may take a few seconds to register
@@ -190,15 +182,9 @@ AI Maestro error: Connection refused.
 
 **Solutions**:
 
-1. **Check AI Maestro service**:
-   ```bash
-   curl -s "http://localhost:23000/health"
-   ```
+1. **Check AI Maestro service**: Use the `agent-messaging` skill to perform a health check.
 
-2. **Verify session is still active**:
-   ```bash
-   curl -s "http://localhost:23000/api/agents" | jq '.agents[] | select(.session_name == "helper-agent-generic")'
-   ```
+2. **Verify session is still active**: Use the `agent-messaging` skill to query the agent registry and check if the session (e.g., `helper-agent-generic`) is registered and active.
 
 3. **Retry assignment**:
    - Wait a moment and try again
@@ -232,10 +218,7 @@ Agent does not respond to progress poll within expected time.
    Please respond immediately with your status.
    ```
 
-2. **Check session status**:
-   ```bash
-   curl -s "http://localhost:23000/api/agents" | jq '.agents[] | select(.session_name == "helper-agent-generic") | .status'
-   ```
+2. **Check session status**: Use the `agent-messaging` skill to query the agent registry and check the status of the specific session.
 
 3. **Consider reassignment** if unresponsive for >30 minutes
 
@@ -289,10 +272,7 @@ Error: Cannot connect to AI Maestro at http://localhost:23000
 
 **Solutions**:
 
-1. **Check if service is running**:
-   ```bash
-   curl -s "http://localhost:23000/health"
-   ```
+1. **Check if service is running**: Use the `agent-messaging` skill to perform a health check on the AI Maestro service.
 
 2. **Restart AI Maestro** (ask user):
    ```bash

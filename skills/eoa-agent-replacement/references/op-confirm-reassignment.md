@@ -21,17 +21,9 @@ Use this operation after sending the handoff to verify the replacement is comple
 
 Monitor AI Maestro for acknowledgment:
 
-```bash
-# Check for ACK message from replacement agent
-ACK_MSG=$(curl -s "http://localhost:23000/api/messages?agent=$SESSION_NAME&action=list&status=unread" \
-  | jq '.messages[] | select(.content.type == "ack" and .from == "'$REPLACEMENT_SESSION'")')
+Use the `agent-messaging` skill to check your inbox for unread messages from the replacement agent session. Filter for messages where `content.type` equals `ack` and `from` matches the replacement session name.
 
-if [ -n "$ACK_MSG" ]; then
-  echo "ACK received"
-else
-  echo "Waiting for ACK..."
-fi
-```
+If an ACK message is found, proceed. If not, continue waiting.
 
 ### Step 2: Verify ACK Content
 
@@ -53,21 +45,14 @@ echo "ETA: $ETA"
 
 If replacement agent has questions:
 
-```bash
-# Send clarification response
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d "{
-    \"to\": \"$REPLACEMENT_SESSION\",
-    \"subject\": \"RE: Task Handoff Clarifications\",
-    \"priority\": \"high\",
-    \"content\": {
-      \"type\": \"clarification\",
-      \"message\": \"<answers to questions>\",
-      \"original_handoff\": \"$HANDOFF_URL\"
-    }
-  }"
-```
+Send a clarification using the `agent-messaging` skill:
+- **Recipient**: the replacement agent session name
+- **Subject**: "RE: Task Handoff Clarifications"
+- **Content**: answers to the agent's questions
+- **Type**: `clarification`, **Priority**: `high`
+- **Data**: include `original_handoff` URL
+
+**Verify**: confirm message delivery.
 
 ### Step 4: Update Orchestrator State
 
@@ -102,23 +87,14 @@ with open('design/state/exec-phase.md', 'r') as f:
 
 ### Step 6: Notify ECOS of Completion
 
-```bash
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d "{
-    \"to\": \"ecos\",
-    \"subject\": \"Replacement Complete: $FAILED_AGENT -> $REPLACEMENT_AGENT\",
-    \"priority\": \"normal\",
-    \"content\": {
-      \"type\": \"replacement_complete\",
-      \"failed_agent\": \"$FAILED_AGENT\",
-      \"replacement_agent\": \"$REPLACEMENT_AGENT\",
-      \"tasks_transferred\": [42, 45],
-      \"ack_received\": true,
-      \"completion_time\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"
-    }
-  }"
-```
+Send a completion notification using the `agent-messaging` skill:
+- **Recipient**: `ecos`
+- **Subject**: "Replacement Complete: <FAILED_AGENT> -> <REPLACEMENT_AGENT>"
+- **Content**: "Agent replacement completed successfully."
+- **Type**: `replacement_complete`, **Priority**: `normal`
+- **Data**: include `failed_agent`, `replacement_agent`, `tasks_transferred`, `ack_received: true`, `completion_time`
+
+**Verify**: confirm message delivery.
 
 ### Step 7: Create Audit Log Entry
 
@@ -190,8 +166,9 @@ HANDOFF_URL="https://github.com/owner/repo/issues/42#issuecomment-12345"
 
 # 1. Check for ACK
 echo "Checking for ACK from $REPLACEMENT_SESSION..."
-ACK_MSG=$(curl -s "http://localhost:23000/api/messages?agent=orchestrator-master&action=list&status=unread" \
-  | jq -r '.messages[] | select(.content.type == "ack" and .from == "'$REPLACEMENT_SESSION'")')
+# Use the agent-messaging skill to check inbox for unread ACK messages
+# from the replacement agent session
+ACK_MSG=$(# retrieve unread messages and filter by content.type == "ack" and from == $REPLACEMENT_SESSION)
 
 if [ -z "$ACK_MSG" ]; then
   echo "ERROR: No ACK received. Timeout may be needed."
@@ -223,19 +200,12 @@ EOF
 
 # 4. Notify ECOS
 echo "Notifying ECOS..."
-curl -s -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d "{
-    \"to\": \"ecos\",
-    \"subject\": \"Replacement Complete\",
-    \"priority\": \"normal\",
-    \"content\": {
-      \"type\": \"replacement_complete\",
-      \"failed_agent\": \"$FAILED_AGENT\",
-      \"replacement_agent\": \"$REPLACEMENT_AGENT\",
-      \"ack_received\": true
-    }
-  }"
+# Use the agent-messaging skill to notify ECOS:
+  # - Recipient: ecos
+  # - Subject: "Replacement Complete"
+  # - Content: replacement details
+  # - Type: replacement_complete, Priority: normal
+  # - Data: failed_agent, replacement_agent, ack_received: true
 
 # 5. Add GitHub comment
 gh issue comment "$PRIMARY_ISSUE" --body "**Replacement Complete**

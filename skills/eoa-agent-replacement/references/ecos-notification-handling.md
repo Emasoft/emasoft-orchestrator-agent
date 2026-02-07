@@ -269,12 +269,7 @@ If replacement agent also fails during handoff:
 
 ### AI Maestro Integration
 
-All ECOS notifications arrive via AI Maestro. Check inbox regularly:
-
-```bash
-curl -s "http://localhost:23000/api/messages?agent=$SESSION_NAME&action=list&status=unread" | \
-  jq '.messages[] | select(.content.type == "agent_replacement")'
-```
+All ECOS notifications arrive via AI Maestro. Use the `agent-messaging` skill to check your inbox regularly for unread messages and filter for those where `content.type` equals `agent_replacement`.
 
 ### State File Integration
 

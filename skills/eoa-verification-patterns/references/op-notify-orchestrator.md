@@ -57,23 +57,14 @@ python shared/testing_protocol.py \
   --output test-results.json
 ```
 
-Or direct API call:
+Or send directly using the `agent-messaging` skill:
+- **Recipient**: `orchestrator-master`
+- **Subject**: "Verification Complete: GH-42"
+- **Content**: "[TESTS] 45 total: 42 passed, 2 failed, 1 skipped (12.5s)"
+- **Type**: `verification-complete`, **Priority**: `high`
+- **Data**: include `task_id`, `status`
 
-```bash
-curl -X POST "$AIMAESTRO_API/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "to": "orchestrator-master",
-    "subject": "Verification Complete: GH-42",
-    "priority": "high",
-    "content": {
-      "type": "verification-complete",
-      "task_id": "GH-42",
-      "status": "passed",
-      "message": "[TESTS] 45 total: 42 passed, 2 failed, 1 skipped (12.5s)"
-    }
-  }'
-```
+**Verify**: confirm message delivery.
 
 ### Step 3: Wait for Acknowledgment
 
@@ -134,52 +125,33 @@ COVERAGE: 85% lines, 72% branches
 
 For long-running test suites, send progress updates:
 
-```bash
-curl -X POST "$AIMAESTRO_API/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "to": "orchestrator-master",
-    "subject": "Test Progress: GH-42",
-    "priority": "normal",
-    "content": {
-      "type": "progress-update",
-      "task_id": "GH-42",
-      "phase": "running-tests",
-      "progress_percent": 50,
-      "details": "5000/10000 tests complete, 2 failures so far"
-    }
-  }'
-```
+Send a progress update using the `agent-messaging` skill:
+- **Recipient**: `orchestrator-master`
+- **Subject**: "Test Progress: GH-42"
+- **Content**: "5000/10000 tests complete, 2 failures so far"
+- **Type**: `progress-update`, **Priority**: `normal`
+- **Data**: include `task_id`, `phase: running-tests`, `progress_percent: 50`
+
+**Verify**: confirm message delivery.
 
 ## Additional Attempts Request
 
 If more time is needed:
 
-```bash
-curl -X POST "$AIMAESTRO_API/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "to": "orchestrator-master",
-    "subject": "Extension Request: GH-42",
-    "priority": "high",
-    "content": {
-      "type": "additional-attempts-request",
-      "task_id": "GH-42",
-      "requested_additional_attempts": 3,
-      "reason": "Integration tests running (10k+ tests)",
-      "current_progress": "80% complete"
-    }
-  }'
-```
+Send an extension request using the `agent-messaging` skill:
+- **Recipient**: `orchestrator-master`
+- **Subject**: "Extension Request: GH-42"
+- **Content**: "Integration tests running (10k+ tests), 80% complete"
+- **Type**: `additional-attempts-request`, **Priority**: `high`
+- **Data**: include `task_id`, `requested_additional_attempts: 3`, `reason`, `current_progress`
+
+**Verify**: confirm message delivery.
 
 ## Troubleshooting
 
 ### Notification Not Delivered
 
-1. Verify AI Maestro is running:
-   ```bash
-   curl $AIMAESTRO_API/api/health
-   ```
+1. Use the `agent-messaging` skill to perform a health check on the AI Maestro service.
 
 2. Check agent session name is correct
 

@@ -38,22 +38,14 @@ ECOS sends replacement notifications via AI Maestro with message type `agent_rep
 
 ### Step 1: Acknowledge ECOS Notification
 
-**Immediately** send acknowledgment to ECOS:
+**Immediately** send an acknowledgment message to ECOS using the `agent-messaging` skill:
+- **Recipient**: `ecos-monitor`
+- **Subject**: "ACK: Agent Replacement"
+- **Content**: "Replacement protocol initiated for [failed_agent_session]"
+- **Type**: `acknowledgment`
+- **Priority**: `high`
 
-```bash
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "orchestrator-master",
-    "to": "ecos-monitor",
-    "subject": "ACK: Agent Replacement",
-    "priority": "high",
-    "content": {
-      "type": "acknowledgment",
-      "message": "Replacement protocol initiated for [failed_agent_session]"
-    }
-  }'
-```
+**Verify**: confirm message delivery.
 
 ### Step 2: Compile Context for Failed Agent
 
@@ -166,20 +158,14 @@ This command:
 
 Send via AI Maestro:
 
-```bash
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "orchestrator-master",
-    "to": "implementer-2",
-    "subject": "Task Handoff from [failed_agent]",
-    "priority": "high",
-    "content": {
-      "type": "replacement_handoff",
-      "message": "You are replacing [failed_agent] on task [task_id]. Full handoff document: [URL]. CRITICAL: Read entire handoff before starting work. User requirements are immutable (RULE 14). Acknowledge receipt and complete Instruction Verification Protocol."
-    }
-  }'
-```
+Send a handoff message to the replacement agent using the `agent-messaging` skill:
+- **Recipient**: `implementer-2` (the replacement agent)
+- **Subject**: "Task Handoff from [failed_agent]"
+- **Content**: "You are replacing [failed_agent] on task [task_id]. Full handoff document: [URL]. CRITICAL: Read entire handoff before starting work. User requirements are immutable (RULE 14). Acknowledge receipt and complete Instruction Verification Protocol."
+- **Type**: `replacement_handoff`
+- **Priority**: `high`
+
+**Verify**: confirm message delivery.
 
 ### Step 6: Wait for Acknowledgment
 
@@ -195,20 +181,14 @@ The replacement agent MUST send acknowledgment confirming:
 
 After replacement agent acknowledges:
 
-```bash
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "orchestrator-master",
-    "to": "ecos-monitor",
-    "subject": "Replacement Complete",
-    "priority": "normal",
-    "content": {
-      "type": "completion",
-      "message": "Replacement protocol completed. New agent [replacement_agent_session] acknowledged and ready. Task UUID [task_uuid] preserved."
-    }
-  }'
-```
+Send a completion confirmation to ECOS using the `agent-messaging` skill:
+- **Recipient**: `ecos-monitor`
+- **Subject**: "Replacement Complete"
+- **Content**: "Replacement protocol completed. New agent [replacement_agent_session] acknowledged and ready. Task UUID [task_uuid] preserved."
+- **Type**: `completion`
+- **Priority**: `normal`
+
+**Verify**: confirm message delivery.
 
 ## Quick Command Reference
 

@@ -430,7 +430,7 @@ When ECOS notifies EOA of agent failure or context loss:
 **Cause**: API endpoint unreachable or agent identifier incorrect.
 
 **Solution**:
-1. Verify API health: `curl ${AIMAESTRO_API:-http://localhost:23000}/api/health`
+1. Verify API health using the `agent-messaging` skill health check
 2. Check agent ID format (use full session name, not alias)
 3. Verify agent is registered in AI Maestro
 4. Check network connectivity

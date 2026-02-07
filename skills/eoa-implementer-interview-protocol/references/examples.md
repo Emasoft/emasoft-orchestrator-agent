@@ -10,121 +10,70 @@
 
 ## Example 1: Send Pre-Task Interview Questions
 
-```bash
-# Via AI Maestro
-curl -X POST "$AIMAESTRO_API/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "orchestrator",
-    "to": "implementer-1",
-    "subject": "Pre-Task Interview: #42",
-    "priority": "high",
-    "content": {
-      "type": "request",
-      "message": "## Pre-Task Interview: #42\n\n1. **Task Summary**: In your own words, what does this task require?\n\n2. **Acceptance Criteria**: What must be true for this task to be complete?\n\n3. **Concerns**: Any concerns about requirements, design, capability, or dependencies?\n\n4. **Approach**: Briefly describe how you plan to implement this.\n\n5. **Blockers**: Is anything preventing you from starting immediately?\n\nReply with answers. Do NOT start until I confirm PROCEED.",
-      "data": {
-        "issue_number": 42
-      }
-    }
-  }'
-```
+Send a pre-task interview message using the `agent-messaging` skill:
+- **Recipient**: `implementer-1`
+- **Subject**: "Pre-Task Interview: #42"
+- **Content**: Pre-task interview questions covering: task summary, acceptance criteria, concerns, approach, and blockers. Include instruction "Reply with answers. Do NOT start until I confirm PROCEED."
+- **Type**: `request`
+- **Priority**: `high`
+- **Data**: include `issue_number` (42)
+
+**Verify**: confirm message delivery and wait for interview response.
 
 ## Example 2: Escalate Design Concern to Architect
 
-```bash
-# Implementer reports: "API design uses synchronous calls, but requirement needs real-time updates"
-curl -X POST "$AIMAESTRO_API/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "orchestrator",
-    "to": "architect",
-    "subject": "Design Review Required: #42",
-    "priority": "high",
-    "content": {
-      "type": "request",
-      "message": "Implementer identified design issue for task #42. Issue: API design uses synchronous calls, but requirement needs real-time updates. Please review and advise on design modification.",
-      "data": {
-        "task_id": "42",
-        "implementer": "implementer-1",
-        "concern": "Synchronous API incompatible with real-time requirement",
-        "design_doc": "docs/design/api-v2-design.md"
-      }
-    }
-  }'
-```
+When the implementer reports a design issue (e.g., "API design uses synchronous calls, but requirement needs real-time updates"), send an escalation using the `agent-messaging` skill:
+- **Recipient**: `architect`
+- **Subject**: "Design Review Required: #42"
+- **Content**: "Implementer identified design issue for task #42. Issue: [description]. Please review and advise on design modification."
+- **Type**: `request`
+- **Priority**: `high`
+- **Data**: include `task_id`, `implementer`, `concern`, `design_doc`
+
+**Verify**: confirm message delivery.
 
 ## Example 3: Send PROCEED After Satisfactory Interview
 
-```bash
-curl -X POST "$AIMAESTRO_API/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "orchestrator",
-    "to": "implementer-1",
-    "subject": "PROCEED: #42",
-    "priority": "normal",
-    "content": {
-      "type": "approval",
-      "message": "## PROCEED: #42\n\nYour understanding is confirmed. You may begin implementation.\n\n**Reminders**:\n- Follow the design document\n- Respect immutable requirements (see FORBIDDEN section)\n- Report blockers immediately\n- Report completion when done (do NOT create PR yet)\n\nGood luck!"
-    }
-  }'
-```
+Send a PROCEED approval using the `agent-messaging` skill:
+- **Recipient**: `implementer-1`
+- **Subject**: "PROCEED: #42"
+- **Content**: "Your understanding is confirmed. You may begin implementation. Reminders: Follow design document, respect immutable requirements, report blockers immediately, report completion when done (do NOT create PR yet)."
+- **Type**: `approval`
+- **Priority**: `normal`
+
+**Verify**: confirm message delivery.
 
 ## Example 4: Send Post-Task Verification Questions
 
-```bash
-curl -X POST "$AIMAESTRO_API/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "orchestrator",
-    "to": "implementer-1",
-    "subject": "Post-Task Interview: #42",
-    "priority": "high",
-    "content": {
-      "type": "request",
-      "message": "## Post-Task Interview: #42\n\n1. **Requirements Checklist**: For each requirement, confirm:\n   - [ ] REQ-001: Real-time updates - Implemented? Where?\n   - [ ] REQ-002: Authentication - Implemented? Where?\n\n2. **Testing Evidence**: What tests did you write? Do all pass?\n\n3. **Code Quality**: Did you run linting? Any TODOs left?\n\n4. **Documentation**: Did you update relevant docs?\n\n5. **Self-Review**: Any concerns about the implementation?\n\nReply with evidence."
-    }
-  }'
-```
+Send post-task verification questions using the `agent-messaging` skill:
+- **Recipient**: `implementer-1`
+- **Subject**: "Post-Task Interview: #42"
+- **Content**: Post-task interview questions covering: requirements checklist (each requirement confirmed), testing evidence, code quality, documentation, self-review. Include instruction "Reply with evidence."
+- **Type**: `request`
+- **Priority**: `high`
+
+**Verify**: confirm message delivery and wait for verification response.
 
 ## Example 5: Send APPROVED and Handoff to Integrator
 
+**Step 1**: Send APPROVED message to implementer using the `agent-messaging` skill:
+- **Recipient**: `implementer-1`
+- **Subject**: "APPROVED: #42"
+- **Content**: "Verification complete. Create PR now. PR Requirements: Title format, link to #42, include test evidence. Report PR number when created."
+- **Type**: `approval`
+- **Priority**: `normal`
+
+**Step 2**: After implementer reports PR #123 created, update issue status:
 ```bash
-# Send APPROVED to implementer
-curl -X POST "$AIMAESTRO_API/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "orchestrator",
-    "to": "implementer-1",
-    "subject": "APPROVED: #42",
-    "priority": "normal",
-    "content": {
-      "type": "approval",
-      "message": "## APPROVED: #42\n\nVerification complete. Create PR now.\n\n**PR Requirements**:\n- Title: [Feature] Real-time API updates (#42)\n- Link: Closes #42\n- Include test evidence\n\nReport PR number when created."
-    }
-  }'
-
-# After implementer reports PR #123 created:
-# Update issue status
 gh issue edit 42 --remove-label "status:in-progress" --add-label "status:needs-review"
-
-# Notify Integrator
-curl -X POST "$AIMAESTRO_API/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "orchestrator",
-    "to": "integrator",
-    "subject": "PR Ready for Review: #123",
-    "priority": "high",
-    "content": {
-      "type": "request",
-      "message": "PR #123 is ready for review. Task: #42. Pre-verified by orchestrator.",
-      "data": {
-        "pr_number": 123,
-        "issue_number": 42,
-        "implementer": "implementer-1",
-        "verification_status": "pre-verified"
-      }
-    }
-  }'
 ```
+
+**Step 3**: Notify Integrator using the `agent-messaging` skill:
+- **Recipient**: `integrator`
+- **Subject**: "PR Ready for Review: #123"
+- **Content**: "PR #123 is ready for review. Task: #42. Pre-verified by orchestrator."
+- **Type**: `request`
+- **Priority**: `high`
+- **Data**: include `pr_number` (123), `issue_number` (42), `implementer`, `verification_status` ("pre-verified")
+
+**Verify**: confirm all messages delivered.

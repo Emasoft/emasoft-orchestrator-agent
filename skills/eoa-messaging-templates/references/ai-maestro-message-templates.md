@@ -1,6 +1,6 @@
 # AI Maestro Message Templates for EOA
 
-Complete reference for all AI Maestro curl command templates used by Emasoft Orchestrator Agent (EOA).
+Complete reference for all AI Maestro message templates used by Emasoft Orchestrator Agent (EOA). Use the `agent-messaging` skill for all message operations.
 
 ## Contents
 
@@ -39,24 +39,15 @@ Complete reference for all AI Maestro curl command templates used by Emasoft Orc
 }
 ```
 
-**EOA acknowledgment curl command:**
+**EOA acknowledgment:** Send an acknowledgment message using the `agent-messaging` skill:
+- **Recipient**: `ecos-main`
+- **Subject**: "ACK: Task Assignment [Task Name]"
+- **Content**: "Task received and logged. UUID: [task-uuid]. Expected completion: [timestamp]."
+- **Type**: `acknowledgment`
+- **Priority**: `normal`
+- **Additional fields**: `task_uuid`, `status` ("received")
 
-```bash
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "eoa-[project-name]",
-    "to": "ecos-main",
-    "subject": "ACK: Task Assignment [Task Name]",
-    "priority": "normal",
-    "content": {
-      "type": "acknowledgment",
-      "message": "Task received and logged. UUID: [task-uuid]. Expected completion: [timestamp].",
-      "task_uuid": "[task-uuid]",
-      "status": "received"
-    }
-  }'
-```
+**Verify**: confirm message delivery.
 
 **Key fields:**
 - `from`: Your EOA session name (e.g., `eoa-myproject`)
@@ -70,35 +61,15 @@ curl -X POST "http://localhost:23000/api/messages" \
 
 **Use case:** When EOA delegates a task to an implementer, tester, or specialized sub-agent.
 
-**EOA to sub-agent curl command:**
+**EOA to sub-agent:** Send a task assignment message using the `agent-messaging` skill:
+- **Recipient**: the sub-agent session name (e.g., `svgbbox-impl-01`)
+- **Subject**: "Task Assignment: [Task Name]"
+- **Content**: detailed task description with all context needed
+- **Type**: `assignment`
+- **Priority**: `normal`, `high`, or `urgent` as appropriate
+- **Additional fields**: `task_uuid`, `deadline` (ISO8601), `acceptance_criteria` (array), `deliverables` (array), `github_issue` (URL)
 
-```bash
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "eoa-[project-name]",
-    "to": "[sub-agent-name]",
-    "subject": "Task Assignment: [Task Name]",
-    "priority": "normal|high|urgent",
-    "content": {
-      "type": "assignment",
-      "message": "Detailed task description with all context needed",
-      "task_uuid": "[task-uuid]",
-      "deadline": "[ISO8601 timestamp]",
-      "acceptance_criteria": [
-        "All tests pass",
-        "Documentation updated",
-        "Code reviewed"
-      ],
-      "deliverables": [
-        "Completion report",
-        "Test results log",
-        "Artifacts (if any)"
-      ],
-      "github_issue": "[issue-url]"
-    }
-  }'
-```
+**Verify**: confirm message delivery.
 
 **Expected sub-agent acknowledgment format:**
 
@@ -128,23 +99,15 @@ curl -X POST "http://localhost:23000/api/messages" \
 
 **Use case:** When EOA needs to check progress on a delegated task (e.g., overdue, critical path, user request).
 
-**EOA to sub-agent curl command:**
+**EOA to sub-agent:** Send a status request message using the `agent-messaging` skill:
+- **Recipient**: the sub-agent session name
+- **Subject**: "Status Request: [Task Name]"
+- **Content**: "Please provide status update on task [task-uuid]. Expected completion was [timestamp]."
+- **Type**: `request`
+- **Priority**: `normal`
+- **Additional fields**: `task_uuid`
 
-```bash
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "eoa-[project-name]",
-    "to": "[sub-agent-name]",
-    "subject": "Status Request: [Task Name]",
-    "priority": "normal",
-    "content": {
-      "type": "request",
-      "message": "Please provide status update on task [task-uuid]. Expected completion was [timestamp].",
-      "task_uuid": "[task-uuid]"
-    }
-  }'
-```
+**Verify**: confirm message delivery.
 
 **Expected sub-agent response format:**
 
@@ -177,25 +140,15 @@ curl -X POST "http://localhost:23000/api/messages" \
 
 **Use case:** When EOA verifies a delegated task is complete and reports results back to ECOS.
 
-**EOA to ECOS curl command:**
+**EOA to ECOS:** Send a completion report message using the `agent-messaging` skill:
+- **Recipient**: `ecos-main`
+- **Subject**: "Task Complete: [Task Name]"
+- **Content**: "[1-2 line summary]\nKey finding: [one-line summary]\nDetails: docs_dev/orchestration/reports/[task-uuid].md"
+- **Type**: `completion`
+- **Priority**: `normal`
+- **Additional fields**: `task_uuid`, `completion_timestamp` (ISO8601), `all_criteria_met` (boolean)
 
-```bash
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "eoa-[project-name]",
-    "to": "ecos-main",
-    "subject": "Task Complete: [Task Name]",
-    "priority": "normal",
-    "content": {
-      "type": "completion",
-      "message": "[1-2 line summary]\nKey finding: [one-line summary]\nDetails: docs_dev/orchestration/reports/[task-uuid].md",
-      "task_uuid": "[task-uuid]",
-      "completion_timestamp": "[ISO8601]",
-      "all_criteria_met": true
-    }
-  }'
-```
+**Verify**: confirm message delivery.
 
 **Key fields:**
 - `type`: `"completion"` for task completion reports
@@ -216,27 +169,15 @@ curl -X POST "http://localhost:23000/api/messages" \
 
 **Use case:** When EOA encounters a blocker that requires ECOS intervention (agent failure, technical blocker, requirement conflict).
 
-**EOA to ECOS curl command:**
+**EOA to ECOS:** Send an escalation message using the `agent-messaging` skill:
+- **Recipient**: `ecos-main`
+- **Subject**: "ESCALATION: [Issue Description]"
+- **Content**: "Escalation reason and details"
+- **Type**: `escalation`
+- **Priority**: `urgent`
+- **Additional fields**: `task_uuid`, `failed_agent`, `failure_reason`, `attempts` (number), `request` ("Agent replacement", "Technical guidance", or "User decision")
 
-```bash
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "eoa-[project-name]",
-    "to": "ecos-main",
-    "subject": "ESCALATION: [Issue Description]",
-    "priority": "urgent",
-    "content": {
-      "type": "escalation",
-      "message": "Escalation reason and details",
-      "task_uuid": "[task-uuid]",
-      "failed_agent": "[agent-name]",
-      "failure_reason": "Specific reason for escalation",
-      "attempts": 3,
-      "request": "Agent replacement|Technical guidance|User decision"
-    }
-  }'
-```
+**Verify**: confirm message delivery.
 
 **Key fields:**
 - `priority`: Always `"urgent"` for escalations
@@ -267,36 +208,15 @@ curl -X POST "http://localhost:23000/api/messages" \
 - A budget or cost decision must be made by the user
 - A feature scope question can only be answered by the user
 
-**EOA to EAMA curl command:**
+**EOA to EAMA:** Send a blocker escalation message using the `agent-messaging` skill:
+- **Recipient**: `eama-assistant-manager`
+- **Subject**: "BLOCKER: Task requires user decision"
+- **Content**: brief description of the blocker and what user input is needed
+- **Type**: `blocker-escalation`
+- **Priority**: `high`
+- **Additional fields**: `task_uuid`, `issue_number`, `blocker_type` (one of: "user-decision", "clarification", "access-needed", "cost-decision", "scope-question"), `blocker_issue_number`, `blocker_description`, `impact`, `options` (array of option descriptions with trade-offs), `recommended` (recommended option with reason), `blocked_since` (ISO8601), `deadline` (ISO8601 or null), `request` ("User input required to unblock")
 
-```bash
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "eoa-[project-name]",
-    "to": "eama-assistant-manager",
-    "subject": "BLOCKER: Task requires user decision",
-    "priority": "high",
-    "content": {
-      "type": "blocker-escalation",
-      "message": "[Brief description of the blocker and what user input is needed]",
-      "task_uuid": "[task-uuid]",
-      "issue_number": "[GitHub issue number]",
-      "blocker_type": "user-decision|clarification|access-needed|cost-decision|scope-question",
-      "blocker_issue_number": "[GitHub issue number tracking the blocker]",
-      "blocker_description": "[Detailed description of what is blocking progress]",
-      "impact": "[What work is prevented and which agents are waiting]",
-      "options": [
-        "Option 1: [description and trade-offs]",
-        "Option 2: [description and trade-offs]"
-      ],
-      "recommended": "Option [N]: [brief reason]",
-      "blocked_since": "[ISO8601 timestamp when block was detected]",
-      "deadline": "[ISO8601 timestamp if time-sensitive, or null]",
-      "request": "User input required to unblock"
-    }
-  }'
-```
+**Verify**: confirm message delivery.
 
 **Key fields:**
 - `to`: Always `"eama-assistant-manager"` (EAMA's session name)
@@ -342,21 +262,16 @@ http://localhost:23000/api/messages
 
 ### Generic Message Template
 
-```bash
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "<sender-session-name>",
-    "to": "<recipient-session-name>",
-    "subject": "<subject-line>",
-    "priority": "normal|high|urgent",
-    "content": {
-      "type": "<message-type>",
-      "message": "<message-body>",
-      ...additional fields...
-    }
-  }'
-```
+Send a message using the `agent-messaging` skill with these fields:
+- **From**: your session name (`<sender-session-name>`)
+- **To**: recipient session name (`<recipient-session-name>`)
+- **Subject**: descriptive subject line
+- **Priority**: `normal`, `high`, or `urgent`
+- **Content type**: the message type identifier
+- **Message**: the message body text
+- **Additional fields**: as needed for the specific message type
+
+**Verify**: confirm the message was delivered successfully.
 
 ### Required Fields
 
@@ -416,8 +331,8 @@ Examples:
 
 ### Error Handling
 
-If curl command fails:
-1. Check AI Maestro service is running: `curl http://localhost:23000/health`
+If message delivery fails:
+1. Verify AI Maestro service is running using the `agent-messaging` skill health check
 2. Verify session names are correct (no typos)
 3. Validate JSON syntax (use `jq` to check)
 4. Check network connectivity to localhost
@@ -425,21 +340,12 @@ If curl command fails:
 
 ### Testing Messages
 
-To test AI Maestro connectivity:
+To test AI Maestro connectivity, use the `agent-messaging` skill:
+- **Health check**: verify the AI Maestro service is running and responding
+- **List unread messages**: retrieve unread messages for your session (e.g., `eoa-myproject`)
+- **Get unread count**: query how many unread messages exist
 
-```bash
-# Check if AI Maestro is running
-curl -s "http://localhost:23000/health"
-
-# Expected response:
-{"status":"ok","version":"1.0.0"}
-
-# List unread messages
-curl -s "http://localhost:23000/api/messages?agent=eoa-myproject&action=list&status=unread" | jq '.'
-
-# Get unread count
-curl -s "http://localhost:23000/api/messages?agent=eoa-myproject&action=unread-count"
-```
+**Verify**: confirm the health check response indicates the service is operational.
 
 ---
 
@@ -447,24 +353,15 @@ curl -s "http://localhost:23000/api/messages?agent=eoa-myproject&action=unread-c
 
 ### ACK Pattern (All Messages)
 
-**Always send acknowledgment after receiving any message:**
+**Always send acknowledgment after receiving any message.** Use the `agent-messaging` skill:
+- **Recipient**: the original sender
+- **Subject**: "ACK: [Original Subject]"
+- **Content**: brief confirmation message
+- **Type**: `acknowledgment`
+- **Priority**: `normal`
+- **Additional fields**: `task_uuid` (if applicable), `status` ("received", "understood", or "in_progress")
 
-```bash
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "eoa-[project-name]",
-    "to": "[sender]",
-    "subject": "ACK: [Original Subject]",
-    "priority": "normal",
-    "content": {
-      "type": "acknowledgment",
-      "message": "[Brief confirmation message]",
-      "task_uuid": "[task-uuid if applicable]",
-      "status": "[received|understood|in_progress]"
-    }
-  }'
-```
+**Verify**: confirm acknowledgment delivery.
 
 ### Minimal Report Pattern (All Responses to ECOS)
 

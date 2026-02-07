@@ -338,54 +338,27 @@ All AI Maestro messages follow JSON format with required fields: `from`, `to`, `
 
 **EOA Response (ACK):**
 
-```bash
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "eoa-[project-name]",
-    "to": "ecos-main",
-    "subject": "ACK: Task Assignment [Task Name]",
-    "priority": "normal",
-    "content": {
-      "type": "acknowledgment",
-      "message": "Task received and logged. UUID: [task-uuid]. Expected completion: [timestamp].",
-      "task_uuid": "[task-uuid]",
-      "status": "received"
-    }
-  }'
-```
+Send an acknowledgment using the `agent-messaging` skill:
+- **Recipient**: `ecos-main`
+- **Subject**: "ACK: Task Assignment [Task Name]"
+- **Content**: "Task received and logged. UUID: [task-uuid]. Expected completion: [timestamp]."
+- **Type**: `acknowledgment`, **Priority**: `normal`
+- **Data**: include `task_uuid`, `status: received`
+
+**Verify**: confirm message delivery.
 
 ### Message Type: Delegation
 
 **EOA to Sub-Agent:**
 
-```bash
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "eoa-[project-name]",
-    "to": "[sub-agent-name]",
-    "subject": "Task Assignment: [Task Name]",
-    "priority": "normal|high|urgent",
-    "content": {
-      "type": "assignment",
-      "message": "Detailed task description with all context needed",
-      "task_uuid": "[task-uuid]",
-      "deadline": "[ISO8601 timestamp]",
-      "acceptance_criteria": [
-        "All tests pass",
-        "Documentation updated",
-        "Code reviewed"
-      ],
-      "deliverables": [
-        "Completion report",
-        "Test results log",
-        "Artifacts (if any)"
-      ],
-      "github_issue": "[issue-url]"
-    }
-  }'
-```
+Send a task assignment using the `agent-messaging` skill:
+- **Recipient**: the sub-agent session name
+- **Subject**: "Task Assignment: [Task Name]"
+- **Content**: "Detailed task description with all context needed"
+- **Type**: `assignment`, **Priority**: `normal`, `high`, or `urgent` as appropriate
+- **Data**: include `task_uuid`, `deadline`, `acceptance_criteria`, `deliverables`, `github_issue`
+
+**Verify**: confirm message delivery.
 
 **Sub-Agent Response (ACK):**
 
@@ -407,21 +380,14 @@ curl -X POST "http://localhost:23000/api/messages" \
 
 **EOA to Sub-Agent:**
 
-```bash
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "eoa-[project-name]",
-    "to": "[sub-agent-name]",
-    "subject": "Status Request: [Task Name]",
-    "priority": "normal",
-    "content": {
-      "type": "request",
-      "message": "Please provide status update on task [task-uuid]. Expected completion was [timestamp].",
-      "task_uuid": "[task-uuid]"
-    }
-  }'
-```
+Send a status request using the `agent-messaging` skill:
+- **Recipient**: the sub-agent session name
+- **Subject**: "Status Request: [Task Name]"
+- **Content**: "Please provide status update on task [task-uuid]. Expected completion was [timestamp]."
+- **Type**: `request`, **Priority**: `normal`
+- **Data**: include `task_uuid`
+
+**Verify**: confirm message delivery.
 
 **Sub-Agent Response:**
 
@@ -445,37 +411,24 @@ curl -X POST "http://localhost:23000/api/messages" \
 
 **EOA to ECOS:**
 
-```bash
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "eoa-[project-name]",
-    "to": "ecos-main",
-    "subject": "Task Complete: [Task Name]",
-    "priority": "normal",
-    "content": {
-      "type": "completion",
-      "message": "[1-2 line summary]\nKey finding: [one-line summary]\nDetails: docs_dev/orchestration/reports/[task-uuid].md",
-      "task_uuid": "[task-uuid]",
-      "completion_timestamp": "[ISO8601]",
-      "all_criteria_met": true
-    }
-  }'
-```
+Send a completion report using the `agent-messaging` skill:
+- **Recipient**: `ecos-main`
+- **Subject**: "Task Complete: [Task Name]"
+- **Content**: "[1-2 line summary]. Key finding: [one-line summary]. Details: docs_dev/orchestration/reports/[task-uuid].md"
+- **Type**: `completion`, **Priority**: `normal`
+- **Data**: include `task_uuid`, `completion_timestamp`, `all_criteria_met: true`
+
+**Verify**: confirm message delivery.
 
 ### Message Type: Escalation
 
 **EOA to ECOS:**
 
-```bash
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "eoa-[project-name]",
-    "to": "ecos-main",
-    "subject": "ESCALATION: [Issue Description]",
-    "priority": "urgent",
-    "content": {
+Send an escalation using the `agent-messaging` skill:
+- **Recipient**: `ecos-main`
+- **Subject**: "ESCALATION: [Issue Description]"
+- **Type**: `escalation`, **Priority**: `urgent`
+- **Content and Data**: include relevant escalation details such as `{
       "type": "escalation",
       "message": "Escalation reason and details",
       "task_uuid": "[task-uuid]",

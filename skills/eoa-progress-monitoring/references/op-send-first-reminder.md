@@ -49,49 +49,27 @@ TASK_TITLE=$(gh issue view $TASK_ID --json title | jq -r '.title')
 
 If agent has not acknowledged the task:
 
-```bash
-curl -X POST "${AIMAESTRO_API:-http://localhost:23000}/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "orchestrator",
-    "to": "'"$AGENT_NAME"'",
-    "subject": "Reminder: ACK Required for #'"$TASK_ID"'",
-    "priority": "normal",
-    "content": {
-      "type": "reminder",
-      "message": "Task #'"$TASK_ID"' ('"$TASK_TITLE"') was assigned to you but no acknowledgment has been received.\n\nPlease send an ACK message confirming:\n1. You received the task\n2. Your understanding of the requirements\n3. Any questions you have\n\nACK Format:\n[ACK] Task #'"$TASK_ID"' - <your understanding>\nQuestions: <list or \"none\">",
-      "data": {
-        "task_id": "'"$TASK_ID"'",
-        "reminder_type": "ack_required",
-        "escalation_level": 1
-      }
-    }
-  }'
-```
+Send a reminder using the `agent-messaging` skill:
+- **Recipient**: the agent session name (`$AGENT_NAME`)
+- **Subject**: "Reminder: ACK Required for #<TASK_ID>"
+- **Content**: "Task #<TASK_ID> (<TASK_TITLE>) was assigned to you but no acknowledgment has been received. Please send an ACK message confirming: 1. You received the task 2. Your understanding of the requirements 3. Any questions you have"
+- **Type**: `reminder`, **Priority**: `normal`
+- **Data**: include `task_id`, `reminder_type: ack_required`, `escalation_level: 1`
+
+**Verify**: confirm message delivery.
 
 ### Step 3: Send Progress Request (No Progress State)
 
 If agent acknowledged but has not provided updates:
 
-```bash
-curl -X POST "${AIMAESTRO_API:-http://localhost:23000}/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "orchestrator",
-    "to": "'"$AGENT_NAME"'",
-    "subject": "Status Request: #'"$TASK_ID"'",
-    "priority": "normal",
-    "content": {
-      "type": "status-request",
-      "message": "What is your current status on task #'"$TASK_ID"' ('"$TASK_TITLE"')?\n\nPlease report:\n1. Current progress (percentage or milestone)\n2. Any blockers or issues encountered\n3. Anything unclear in the requirements\n4. Any difficulties you are facing\n5. Estimated time to completion",
-      "data": {
-        "task_id": "'"$TASK_ID"'",
-        "reminder_type": "progress_required",
-        "escalation_level": 1
-      }
-    }
-  }'
-```
+Send a status request using the `agent-messaging` skill:
+- **Recipient**: the agent session name (`$AGENT_NAME`)
+- **Subject**: "Status Request: #<TASK_ID>"
+- **Content**: "What is your current status on task #<TASK_ID> (<TASK_TITLE>)? Please report: 1. Current progress 2. Any blockers 3. Anything unclear 4. Any difficulties 5. Estimated time to completion"
+- **Type**: `status-request`, **Priority**: `normal`
+- **Data**: include `task_id`, `reminder_type: progress_required`, `escalation_level: 1`
+
+**Verify**: confirm message delivery.
 
 ### Step 4: Log Reminder
 

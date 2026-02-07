@@ -50,10 +50,9 @@ Monitor agents based on their current state:
 
 ### 2.1 Check Agent State
 
-```bash
-# Get agent's last message timestamp from AI Maestro
-curl -s "$AIMAESTRO_API/api/messages?agent=$AGENT_NAME&action=list" | jq '.messages[0].timestamp'
+Use the `agent-messaging` skill to retrieve the agent's last message timestamp. Query the message list for the agent and extract the timestamp of the most recent message.
 
+```bash
 # Get task assignment event
 gh issue view $ISSUE --json timelineItems | jq '.timelineItems[] | select(.label == "assign:$AGENT_NAME")'
 ```
@@ -396,9 +395,8 @@ Follow these steps to monitor agent progress:
 ```bash
 # Get agent's last message timestamp
 AGENT="implementer-1"
-LAST_MESSAGE=$(curl -s "$AIMAESTRO_API/api/messages?agent=$AGENT&action=list" | \
-  jq -r '.messages[0].timestamp')
-
+# Use the agent-messaging skill to retrieve messages for the agent
+# and extract the timestamp of the most recent message
 echo "Agent $AGENT last seen: $LAST_MESSAGE"
 
 # Get task assignment timestamp
@@ -411,46 +409,25 @@ echo "Task #$ISSUE assigned at: $ASSIGNED_AT"
 
 ### Example 2: Send First Reminder
 
-```bash
-# Send normal priority status request
-curl -X POST "$AIMAESTRO_API/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "orchestrator",
-    "to": "implementer-1",
-    "subject": "Status Request: #42",
-    "priority": "normal",
-    "content": {
-      "type": "request",
-      "message": "What is your current status on #42? Report progress, blockers, and next steps.",
-      "data": {
-        "task_id": "42"
-      }
-    }
-  }'
-```
+Send a status request using the `agent-messaging` skill:
+- **Recipient**: `implementer-1`
+- **Subject**: "Status Request: #42"
+- **Content**: "What is your current status on #42? Report progress, blockers, and next steps."
+- **Type**: `request`, **Priority**: `normal`
+- **Data**: include `task_id: 42`
+
+**Verify**: confirm message delivery.
 
 ### Example 3: Escalate to Urgent
 
-```bash
-# After no response to first reminder
-curl -X POST "$AIMAESTRO_API/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "orchestrator",
-    "to": "implementer-1",
-    "subject": "URGENT: #42 - Response Required",
-    "priority": "urgent",
-    "content": {
-      "type": "escalation",
-      "message": "No response received. Please provide status immediately or task may be reassigned.",
-      "data": {
-        "task_id": "42",
-        "escalation_level": 2
-      }
-    }
-  }'
-```
+Send an urgent escalation using the `agent-messaging` skill:
+- **Recipient**: `implementer-1`
+- **Subject**: "URGENT: #42 - Response Required"
+- **Content**: "No response received. Please provide status immediately or task may be reassigned."
+- **Type**: `escalation`, **Priority**: `urgent`
+- **Data**: include `task_id: 42`, `escalation_level: 2`
+
+**Verify**: confirm message delivery.
 
 ### Example 4: Handle Blocker Report
 

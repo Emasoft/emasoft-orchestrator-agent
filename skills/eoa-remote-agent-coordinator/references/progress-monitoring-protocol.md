@@ -81,12 +81,9 @@
 
 PROACTIVELY poll for updates from remote agents at regular intervals.
 
-**For messaging, use the official AI Maestro skill:** `~/.claude/skills/agent-messaging/SKILL.md`
+Check your inbox using the `agent-messaging` skill to retrieve any unread messages from remote agents.
 
-```bash
-# Check for unread messages using official CLI
-check-aimaestro-messages.sh
-```
+**Verify**: confirm all unread messages have been processed.
 
 ### 3.2 Expected Update Events by Task Type
 

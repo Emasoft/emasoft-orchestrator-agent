@@ -223,13 +223,10 @@ Priority Order:
 
 ### 5.2 Non-Blocking Message Check
 
-```bash
-# Quick status check (non-blocking)
-curl -s "http://localhost:23000/api/messages?agent=$SESSION_NAME&action=unread-count"
+Use the `agent-messaging` skill to perform a quick non-blocking unread message count check.
 
-# If count > 0, read messages before continuing
-# If count = 0, continue with current task
-```
+If the unread count is greater than 0, read messages before continuing.
+If the unread count is 0, continue with the current task.
 
 ---
 

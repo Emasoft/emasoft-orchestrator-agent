@@ -36,35 +36,25 @@ Send a prepared task delegation message to a remote agent via AI Maestro.
 
 ### Step 1: Verify Agent Availability
 
-```bash
-# Check agent is registered and not already assigned
-AGENT_STATUS=$(curl -s "${AIMAESTRO_API:-http://localhost:23000}/api/agents/$AGENT_NAME")
-AGENT_STATE=$(echo "$AGENT_STATUS" | jq -r '.state')
+Use the `agent-messaging` skill to query the agent registry and verify the target agent is available (state is "available" or "idle"). If the agent is busy, log a warning.
 
-if [ "$AGENT_STATE" != "available" ] && [ "$AGENT_STATE" != "idle" ]; then
-  echo "WARNING: Agent $AGENT_NAME is currently $AGENT_STATE"
-fi
-```
+**Verify**: confirm agent state before proceeding.
 
 ### Step 2: Send Task Message
 
+Send a task delegation message using the `agent-messaging` skill:
+- **Recipient**: the target agent session name
+- **Subject**: "Task Assignment: #[ISSUE_NUMBER] - [TASK_TITLE]"
+- **Content**: the full delegation message with instructions
+- **Type**: `task`
+- **Priority**: `normal`
+- **Data**: include `task_id`, `files_in_scope`, `completion_criteria`
+
+**Verify**: confirm message delivery.
+
 ```bash
-curl -X POST "${AIMAESTRO_API:-http://localhost:23000}/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "orchestrator",
-    "to": "'"$AGENT_NAME"'",
-    "subject": "Task Assignment: #'"$ISSUE_NUMBER"' - '"$TASK_TITLE"'",
-    "priority": "normal",
-    "content": {
-      "type": "task",
-      "message": "'"$DELEGATION_MESSAGE"'",
-      "data": {
-        "task_id": "'"$ISSUE_NUMBER"'",
-        "files_in_scope": '"$FILES_JSON"',
-        "completion_criteria": '"$CRITERIA_JSON"'
-      }
-    }
+# NOTE: The delegation message is sent using the agent-messaging skill
+# The data fields include task_id, files_in_scope, and completion_criteria
   }'
 ```
 

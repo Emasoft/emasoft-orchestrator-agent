@@ -60,21 +60,19 @@ gh issue edit $ISSUE --remove-label "status:ready" --add-label "status:in-progre
 ### Step 4: Send AI Maestro Message
 
 ```bash
-curl -X POST "$AIMAESTRO_API/api/messages" \
-  -H "Content-Type: application/json" \
-  -d "{
-    \"from\": \"orchestrator\",
-    \"to\": \"$AGENT\",
-    \"subject\": \"Task Assignment: Issue #$ISSUE\",
-    \"priority\": \"high\",
-    \"content\": {
-      \"type\": \"request\",
-      \"message\": \"You are assigned issue #$ISSUE. Success criteria: [criteria]. Report when complete.\",
-      \"data\": {
-        \"task_id\": \"$ISSUE\",
-        \"issue_number\": $ISSUE,
-        \"handoff_doc\": \"docs_dev/handoffs/task-$ISSUE.md\"
-      }
+# Send task assignment using the agent-messaging skill:
+# - Recipient: $AGENT
+# - Subject: "Task Assignment: Issue #$ISSUE"
+# - Content: "You are assigned issue #$ISSUE. Success criteria: [criteria]. Report when complete."
+# - Type: request, Priority: high
+# - Data: task_id, issue_number, handoff_doc
+# Verify: confirm message delivery
+# {
+#   "data": {
+#     "task_id": "$ISSUE",
+#     "issue_number": $ISSUE,
+#     "handoff_doc": "docs_dev/handoffs/task-$ISSUE.md"
+#   }
     }
   }"
 ```

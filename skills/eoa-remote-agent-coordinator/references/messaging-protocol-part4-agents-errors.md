@@ -63,13 +63,7 @@ The API automatically resolves multiple formats:
 
 Always use full session names when sending messages. Aliases may be ambiguous if multiple agents have similar names.
 
-```bash
-# Good
-send-aimaestro-message.sh libs-svg-svgbbox "Subject" "Message"
-
-# Avoid (ambiguous)
-send-aimaestro-message.sh svgbbox "Subject" "Message"
-```
+When sending messages using the `agent-messaging` skill, always use the full session name (e.g., `libs-svg-svgbbox`) rather than a short alias (e.g., `svgbbox`) to avoid ambiguity.
 
 ---
 
@@ -97,10 +91,7 @@ echo '{"type":"task","message":"test"}' | jq .
 
 ### 4.3.2 Fixing 404 Errors
 
-1. List all registered agents:
-   ```bash
-   curl $AIMAESTRO_API/api/agents
-   ```
+1. List all registered agents using the `agent-messaging` skill to query the agent registry.
 2. Verify exact session name spelling (case-sensitive)
 3. Check if agent session has expired
 4. Wait for agent re-registration if recently restarted
@@ -122,14 +113,13 @@ When a message cannot be delivered:
 
 ### Retry Example
 
-```bash
-for i in 1 2 3; do
-  if send-aimaestro-message.sh agent "Subject" "Message"; then
-    break
-  fi
-  sleep $((5 * 3 ** (i-1)))
-done
-```
+Attempt to send the message using the `agent-messaging` skill with exponential backoff:
+- Attempt 1: send immediately
+- Attempt 2: wait 5 seconds, then retry
+- Attempt 3: wait 15 seconds, then retry
+- If all attempts fail: mark agent as potentially offline and escalate
+
+**Verify**: confirm delivery succeeded on at least one attempt.
 
 ---
 

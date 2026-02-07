@@ -102,21 +102,13 @@ At least one of `name`, `criteria`, or `priority` must be provided.
    - Update body if criteria changed
    - Update labels if priority changed
 
-6. **Notify assigned agent** (if applicable):
-   ```bash
-   curl -X POST "$AIMAESTRO_API/api/messages" \
-     -H "Content-Type: application/json" \
-     -d '{
-       "from": "orchestrator",
-       "to": "<assigned_agent>",
-       "subject": "Module Modified: <module_id>",
-       "priority": "high",
-       "content": {
-         "type": "notification",
-         "message": "Module specifications updated. Review changes before continuing."
-       }
-     }'
-   ```
+6. **Notify assigned agent** (if applicable). Send using the `agent-messaging` skill:
+   - **Recipient**: the assigned agent session name
+   - **Subject**: "Module Modified: <module_id>"
+   - **Content**: "Module specifications updated. Review changes before continuing."
+   - **Type**: `notification`, **Priority**: `high`
+
+   **Verify**: confirm message delivery.
 
 7. **Log the modification** in orchestration log
 

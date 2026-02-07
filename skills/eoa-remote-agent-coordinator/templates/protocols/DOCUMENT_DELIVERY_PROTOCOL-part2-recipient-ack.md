@@ -35,15 +35,14 @@ curl -L -H "Authorization: token $GITHUB_TOKEN" \
 
 ### 2.1.3 Step 3: Send ACK (MANDATORY)
 
-**For messaging, use the official AI Maestro skill:** `~/.claude/skills/agent-messaging/SKILL.md`
+Send an acknowledgment using the `agent-messaging` skill:
+- **Recipient**: `{{SENDER}}` (the sender's session name)
+- **Subject**: "[ACK] {{TASK_ID}} - RECEIVED"
+- **Content**: JSON with `type` ("acknowledgment"), `task_id`, `message` ("[ACK] {{TASK_ID}} - RECEIVED - Document: {{FILENAME}} downloaded from {{GITHUB_COMMENT_URL}}")
+- **Type**: `response`
+- **Priority**: `normal`
 
-```bash
-# Syntax: send-aimaestro-message.sh <to> <subject> <message> [priority] [type]
-send-aimaestro-message.sh "{{SENDER}}" \
-  "[ACK] {{TASK_ID}} - RECEIVED" \
-  "{\"type\":\"acknowledgment\",\"task_id\":\"{{TASK_ID}}\",\"message\":\"[ACK] {{TASK_ID}} - RECEIVED - Document: {{FILENAME}} downloaded from {{GITHUB_COMMENT_URL}}\"}" \
-  normal response
-```
+**Verify**: confirm acknowledgment delivery.
 
 ### 2.1.4 Step 4: Store in EOA Design Storage (MANDATORY)
 

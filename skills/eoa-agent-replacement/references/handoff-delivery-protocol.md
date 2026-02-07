@@ -84,27 +84,16 @@ cp "$HANDOFF_FILE" "$HANDOFF_DIR/"
 }
 ```
 
-### Send via CLI
+### Send Notification
 
-```bash
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "to": "helper-agent-2",
-    "subject": "[HANDOFF] Agent Replacement - You are replacing implementer-1",
-    "priority": "urgent",
-    "content": {
-      "type": "replacement_handoff",
-      "message": "You are replacing implementer-1 due to context_loss. Full handoff: https://github.com/owner/repo/issues/42#issuecomment-123456",
-      "handoff_id": "handoff-uuid-123",
-      "handoff_url": "https://github.com/owner/repo/issues/42#issuecomment-123456",
-      "failed_agent": {"id": "implementer-1", "session": "helper-agent-generic"},
-      "tasks": ["task-uuid-1", "task-uuid-2"],
-      "urgency": "immediate",
-      "ack_required_within": "5 minutes"
-    }
-  }'
-```
+Send using the `agent-messaging` skill:
+- **Recipient**: `helper-agent-2`
+- **Subject**: "[HANDOFF] Agent Replacement - You are replacing implementer-1"
+- **Content**: "You are replacing implementer-1 due to context_loss. Full handoff: <HANDOFF_URL>"
+- **Type**: `replacement_handoff`, **Priority**: `urgent`
+- **Data**: include `handoff_id`, `handoff_url`, `failed_agent` (id and session), `tasks` list, `urgency: immediate`, `ack_required_within: 5 minutes`
+
+**Verify**: confirm message delivery.
 
 ### Message Priority
 
@@ -294,21 +283,11 @@ After ACK received:
 
 ### AI Maestro Message Not Delivered
 
-1. Verify replacement agent session exists:
-   ```bash
-   curl "http://localhost:23000/api/agents?session=$REPLACEMENT_SESSION"
-   ```
+1. Use the `agent-messaging` skill to verify the replacement agent session exists in the agent registry.
 
-2. Check AI Maestro service status:
-   ```bash
-   curl "http://localhost:23000/api/health"
-   ```
+2. Use the `agent-messaging` skill to perform a health check on the AI Maestro service.
 
-3. Retry with explicit session name:
-   ```bash
-   curl -X POST "http://localhost:23000/api/messages" \
-     -d '{"to": "full-session-name", ...}'
-   ```
+3. Retry sending the notification using the `agent-messaging` skill with the full explicit session name.
 
 ### GitHub Upload Failed
 

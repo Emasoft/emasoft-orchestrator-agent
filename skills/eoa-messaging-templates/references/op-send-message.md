@@ -33,20 +33,9 @@ Send a message to another agent via AI Maestro messaging system.
    - `priority`: `high`, `normal`, or `low`
    - `content`: Object with `type` and `message` fields
 
-2. **Execute curl command**:
-   ```bash
-   curl -X POST "http://localhost:23000/api/messages" \
-     -H "Content-Type: application/json" \
-     -d '{
-       "from": "<sender>",
-       "to": "<recipient>",
-       "subject": "<subject>",
-       "priority": "<priority>",
-       "content": {"type": "<type>", "message": "<message>"}
-     }'
-   ```
+2. **Send the message** using the `agent-messaging` skill with the prepared payload.
 
-3. **Verify response** contains `{"status": "sent", "message_id": "..."}`
+3. **Verify**: confirm the response indicates successful delivery (status "sent" with a message ID).
 
 4. **Log the message** in delegation/coordination log
 
@@ -67,17 +56,11 @@ Send a message to another agent via AI Maestro messaging system.
 
 ## Example
 
-```bash
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "eoa-main",
-    "to": "eia-main",
-    "subject": "PR #123 Review Request",
-    "priority": "high",
-    "content": {
-      "type": "request",
-      "message": "Please review PR #123 for code quality and CI compliance."
-    }
-  }'
-```
+Send a review request message using the `agent-messaging` skill:
+- **Recipient**: `eia-main`
+- **Subject**: "PR #123 Review Request"
+- **Content**: "Please review PR #123 for code quality and CI compliance."
+- **Type**: `request`
+- **Priority**: `high`
+
+**Verify**: confirm message delivery.

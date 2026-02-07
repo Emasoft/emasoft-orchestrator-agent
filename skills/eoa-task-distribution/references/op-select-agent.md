@@ -71,19 +71,10 @@ Match score: 2/2 required = 100% match
 
 ## Command
 
-```bash
-# Query agent status via AI Maestro
-AGENT="implementer-1"
-TASK_COUNT=$(curl -s "$AIMAESTRO_API/api/agents/$AGENT/status" | jq '.active_tasks')
-LAST_SEEN=$(curl -s "$AIMAESTRO_API/api/agents/$AGENT" | jq -r '.last_seen')
-
-# Check if agent is available
-if [ "$TASK_COUNT" -lt 3 ]; then
-  echo "Agent $AGENT available (load: $TASK_COUNT)"
-else
-  echo "Agent $AGENT at capacity (load: $TASK_COUNT)"
-fi
-```
+Use the `ai-maestro-agents-management` skill to query agent availability:
+- Query agent registry for `implementer-1` to get their active task count and last seen timestamp
+- If the agent has fewer than 3 active tasks, they are available
+- If they have 3 or more, they are at capacity
 
 ## Output
 

@@ -63,10 +63,9 @@ The session name must match an active AI Maestro session.
 
 Before registering, verify the session exists and is active:
 
-```bash
-# Check if session exists in AI Maestro
-curl -s "http://localhost:23000/api/agents" | jq '.agents[] | select(.session_name == "helper-agent-generic")'
-```
+Use the `agent-messaging` skill to query the agent registry and verify whether the session (e.g., `helper-agent-generic`) exists and is active.
+
+**Verify**: confirm the agent is listed and active in the registry.
 
 If the session doesn't exist:
 1. Ask the user to start the session

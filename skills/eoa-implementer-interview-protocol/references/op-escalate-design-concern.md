@@ -50,21 +50,13 @@ Escalate design-related concerns from the implementer to the Architect agent (EA
    - Current architectural context
    - Request for design decision
 
-3. **Send to Architect via AI Maestro**:
-   ```bash
-   curl -X POST "$AIMAESTRO_API/api/messages" \
-     -H "Content-Type: application/json" \
-     -d '{
-       "from": "orchestrator",
-       "to": "architect",
-       "subject": "Design Review Request: <issue_number>",
-       "priority": "high",
-       "content": {
-         "type": "escalation",
-         "message": "<escalation_message>"
-       }
-     }'
-   ```
+3. **Send to Architect** using the `agent-messaging` skill:
+   - **Recipient**: `architect`
+   - **Subject**: "Design Review Request: <issue_number>"
+   - **Content**: the escalation message with design concern details
+   - **Type**: `escalation`, **Priority**: `high`
+
+   **Verify**: confirm message delivery.
 
 4. **Update implementer** that concern is being reviewed
 

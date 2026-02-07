@@ -56,11 +56,7 @@ You have a new message from [sender] about [subject]. Please check your inbox.
 
 ### Checking Subconscious Status
 
-```bash
-# Verify by checking for messages
-check-aimaestro-messages.sh
-# If subconscious is running, you'll see inbox notifications
-```
+Verify by checking your inbox using the `agent-messaging` skill. If the subconscious polling is running, you will see inbox notifications automatically.
 
 ### Key Implications
 

@@ -152,25 +152,12 @@ gh issue comment $TASK_ID --body "Blocker tracked in #$BLOCKER_ISSUE"
 
 ```bash
 # CRITICAL: Immediate user notification - no waiting period
-curl -X POST "${AIMAESTRO_API:-http://localhost:23000}/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "orchestrator",
-    "to": "eama-main",
-    "subject": "[BLOCKER] Task #'"$TASK_ID"' blocked - User action required",
-    "priority": "urgent",
-    "content": {
-      "type": "blocker-escalation",
-      "message": "**Task Blocked - Immediate Attention Required**\n\n**Task:** #'"$TASK_ID"'\n**Agent:** '"$AGENT_NAME"'\n**Blocker:** '"$BLOCKER_DESCRIPTION"'\n**Category:** '"$BLOCKER_CATEGORY"'\n**What is needed:** '"$WAITING_ON"'\n**Impact:** '"$IMPACT"'\n\n**Blocker tracking issue:** #'"$BLOCKER_ISSUE"'\n\nPlease provide resolution or guidance.",
-      "data": {
-        "task_id": "'"$TASK_ID"'",
-        "blocker_issue": "'"$BLOCKER_ISSUE"'",
-        "agent": "'"$AGENT_NAME"'",
-        "category": "'"$BLOCKER_CATEGORY"'",
-        "previous_status": "'"$CURRENT_STATUS"'"
-      }
-    }
-  }'
+# Send blocker escalation using the agent-messaging skill:
+# - Recipient: eama-main
+# - Subject: "[BLOCKER] Task #$TASK_ID blocked - User action required"
+# - Content: "Task Blocked - Immediate Attention Required. Task: #$TASK_ID, Agent: $AGENT_NAME, Blocker: $BLOCKER_DESCRIPTION, Category: $BLOCKER_CATEGORY, What is needed: $WAITING_ON, Impact: $IMPACT, Blocker tracking issue: #$BLOCKER_ISSUE. Please provide resolution or guidance."
+# - Type: blocker-escalation, Priority: urgent
+# - Data: task_id, blocker_issue, agent, category, previous_status
 ```
 
 ### Step 7: Check for Alternative Work
@@ -180,22 +167,12 @@ curl -X POST "${AIMAESTRO_API:-http://localhost:23000}/api/messages" \
 AVAILABLE_TASKS=$(gh issue list --label "status:ready" --json number,title | jq -r '.[] | "#\(.number) - \(.title)"')
 
 if [ -n "$AVAILABLE_TASKS" ]; then
-  curl -X POST "${AIMAESTRO_API:-http://localhost:23000}/api/messages" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "from": "orchestrator",
-      "to": "'"$AGENT_NAME"'",
-      "subject": "Blocker Acknowledged - Alternative Tasks Available",
-      "priority": "normal",
-      "content": {
-        "type": "info",
-        "message": "Your blocker on #'"$TASK_ID"' has been recorded and escalated.\n\nWhile waiting for resolution, you may work on:\n'"$AVAILABLE_TASKS"'\n\nWould you like to be assigned one of these tasks?",
-        "data": {
-          "blocked_task": "'"$TASK_ID"'",
-          "available_tasks": '"$(echo "$AVAILABLE_TASKS" | jq -R . | jq -s .)"'
-        }
-      }
-    }'
+  # Send alternative tasks notification using the agent-messaging skill:
+  # - Recipient: $AGENT_NAME
+  # - Subject: "Blocker Acknowledged - Alternative Tasks Available"
+  # - Content: "Your blocker on #$TASK_ID has been recorded and escalated. While waiting for resolution, you may work on: $AVAILABLE_TASKS. Would you like to be assigned one of these tasks?"
+  # - Type: info, Priority: normal
+  # - Data: blocked_task, available_tasks
 fi
 ```
 

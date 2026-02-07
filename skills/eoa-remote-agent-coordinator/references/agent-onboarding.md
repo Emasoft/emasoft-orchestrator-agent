@@ -166,14 +166,9 @@ Run the environment verification script:
 
 **Test Messaging**:
 
-**For messaging, use the official AI Maestro skill:** `~/.claude/skills/agent-messaging/SKILL.md`
+Check your inbox using the `agent-messaging` skill. It should show no unread messages after a fresh onboarding.
 
-```bash
-# Check inbox using official CLI
-check-aimaestro-messages.sh
-
-# Should show no unread messages
-```
+**Verify**: confirm inbox is empty (no unread messages).
 
 #### 5. Run Sample Build/Test
 
@@ -392,14 +387,14 @@ Orchestrator will reply with:
 |-------|---------|----------|
 | **Dependencies fail to install** | `uv sync` fails with errors | Check Python version (must be 3.11+), Clear cache: `uv cache clean`, Retry: `uv sync --reinstall` |
 | **Tests fail on fresh clone** | Existing tests fail locally | Verify environment with `./scripts/verify-environment.sh`, Check database is running (if needed), Check environment variables in `.env.example` |
-| **AI Maestro connection fails** | CLI returns error | Verify AI Maestro server is running: `check-aimaestro-messages.sh`, Check firewall settings, Verify session name in config matches format |
+| **AI Maestro connection fails** | CLI returns error | Verify AI Maestro server is running using the `agent-messaging` skill health check, Check firewall settings, Verify session name in config matches format |
 | **Git identity not set** | `git commit` fails with identity error | Set name: `git config user.name "YourName"`, Set email: `git config user.email "your@email.com"` |
 | **Pre-commit hooks fail** | `git commit` blocked by hooks | Install pre-commit: `pip install pre-commit`, Setup hooks: `pre-commit install`, Run manually: `pre-commit run --all-files` |
 | **Cannot push to remote** | `git push` fails with permission error | Verify SSH key added to GitHub, Verify branch permissions, Create branch with correct prefix: `feature/`, `bugfix/` |
 | **Verification task unclear** | Don't understand what to implement | Send clarification request via AI Maestro, Reference `task-instruction-format.md`, Ask specific questions in message |
 | **Tests pass locally, fail on CI** | PR shows test failures | Check CI logs for environment differences, Verify all dependencies in `requirements.txt`, Check for absolute paths in tests |
 | **Message format rejected** | AI Maestro returns error | Verify JSON syntax: `content` must be object, not string, Check required fields: `to`, `subject`, `priority`, `content`, Use standard `type` values from protocol |
-| **No response from orchestrator** | Sent message but no reply | Check inbox: `check-aimaestro-messages.sh`, Verify orchestrator session is active, Wait up to 15 minutes, resend if needed |
+| **No response from orchestrator** | Sent message but no reply | Check your inbox using the `agent-messaging` skill, Verify orchestrator session is active, Wait up to 15 minutes, resend if needed |
 
 ### Getting Help
 

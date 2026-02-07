@@ -94,30 +94,16 @@ This loads ONLY the emasoft-orchestrator-agent plugin into that Claude Code sess
 ## 4. How EOA is Created
 
 ### ECOS Spawns EOA
-The ECOS (Chief of Staff) agent spawns EOA instances using the `aimaestro-agent.sh` script:
+ECOS (Chief of Staff) spawns EOA instances using the `ai-maestro-agents-management` skill to create a new agent session:
 
-```bash
-SESSION_NAME="eoa-<project>-orchestrator"
+- **Session name**: `eoa-<project>-orchestrator`
+- **Working directory**: `~/agents/<session-name>`
+- **Task**: "Orchestrate tasks for <project>"
+- **Plugin**: `emasoft-orchestrator-agent` (loaded via `--plugin-dir`)
+- **Agent**: `eoa-orchestrator-main-agent`
+- **Additional flags**: skip permissions for automation, enable Chrome DevTools MCP, add `/tmp` as working directory
 
-aimaestro-agent.sh create $SESSION_NAME \
-  --dir ~/agents/$SESSION_NAME \
-  --task "Orchestrate tasks for <project>" \
-  -- --dangerously-skip-permissions --chrome --add-dir /tmp \
-  --plugin-dir ~/agents/$SESSION_NAME/.claude/plugins/emasoft-orchestrator-agent \
-  --agent eoa-orchestrator-main-agent
-```
-
-### Breakdown
-
-| Flag | Value | Purpose |
-|------|-------|---------|
-| `--dir` | `~/agents/$SESSION_NAME` | Sets working directory for the orchestrator |
-| `--task` | Task description | Initial task prompt for the orchestrator |
-| `--dangerously-skip-permissions` | - | Skip permission dialogs for automation |
-| `--chrome` | - | Enable Chrome DevTools MCP |
-| `--add-dir` | `/tmp` | Add /tmp as allowed working directory |
-| `--plugin-dir` | `~/agents/$SESSION_NAME/.claude/plugins/emasoft-orchestrator-agent` | Load EOA plugin |
-| `--agent` | `eoa-orchestrator-main-agent` | Start with this agent from the plugin |
+**Verify**: confirm the agent session was created and is responsive.
 
 ### Pre-Spawn Setup
 Before spawning, ECOS must:
@@ -207,50 +193,35 @@ See skill: eia-code-review  ← WRONG (EIA plugin not loaded)
 ### Sending Messages from EOA
 
 #### To ECOS (Chief of Staff)
-```bash
-curl -X POST "$AIMAESTRO_API/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "eoa-svgbbox-orchestrator",
-    "to": "ecos-chief-of-staff-one",
-    "subject": "Task Status Update",
-    "priority": "normal",
-    "content": {
-      "type": "status",
-      "message": "Completed 3/5 tasks. Task #4 blocked on API dependency."
-    }
-  }'
-```
+
+Send a status message to ECOS using the `agent-messaging` skill:
+- **Recipient**: `ecos-chief-of-staff-one`
+- **Subject**: "Task Status Update"
+- **Content**: "Completed 3/5 tasks. Task #4 blocked on API dependency."
+- **Type**: `status`
+- **Priority**: `normal`
+
+**Verify**: confirm message delivery.
 
 #### To Implementer Agent
-```bash
-curl -X POST "$AIMAESTRO_API/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "eoa-svgbbox-orchestrator",
-    "to": "implementer-svgbbox-tests",
-    "subject": "New Task Assignment",
-    "priority": "high",
-    "content": {
-      "type": "task",
-      "message": "Implement unit tests for calculateBBox() function. See GitHub issue #42."
-    }
-  }'
-```
+
+Send a task assignment message to an implementer using the `agent-messaging` skill:
+- **Recipient**: `implementer-svgbbox-tests`
+- **Subject**: "New Task Assignment"
+- **Content**: "Implement unit tests for calculateBBox() function. See GitHub issue #42."
+- **Type**: `task`
+- **Priority**: `high`
+
+**Verify**: confirm message delivery.
 
 ### Reading Messages (EOA Inbox)
 
-```bash
-# Check unread count
-curl -s "$AIMAESTRO_API/api/messages?agent=$SESSION_NAME&action=unread-count"
+Check your inbox using the `agent-messaging` skill:
+- **Check unread count**: query how many unread messages exist for your session
+- **List unread messages**: retrieve all unread messages for your session
+- **Mark as read**: mark a specific message as read by its message ID
 
-# List all unread messages
-curl -s "$AIMAESTRO_API/api/messages?agent=$SESSION_NAME&action=list&status=unread"
-
-# Mark message as read
-curl -X POST "$AIMAESTRO_API/api/messages" \
-  -d '{"action":"mark-read","message_id":"<msg-id>"}'
-```
+**Verify**: confirm all unread messages have been processed.
 
 ### Message Priority Levels
 
@@ -284,7 +255,7 @@ curl -X POST "$AIMAESTRO_API/api/messages" \
 
 #### 2. Distribute Tasks to Implementers
 - Break down tasks into implementer-sized units
-- Spawn implementer agents via `aimaestro-agent.sh`
+- Spawn implementer agents using the `ai-maestro-agents-management` skill
 - Send task assignments via AI Maestro messages
 - Ensure no conflicting tasks (e.g., two agents editing same file)
 
@@ -339,13 +310,11 @@ EOA → [Task Complete] → EIA (for review)
 
 ### Session Lifecycle Management
 
-EOA session lifecycle is managed by ECOS via `aimaestro-agent.sh`.
+EOA session lifecycle is managed by ECOS using the `ai-maestro-agents-management` skill.
 
 ### Wake (Resume Session)
 
-```bash
-aimaestro-agent.sh wake eoa-<project>-orchestrator
-```
+Use the `ai-maestro-agents-management` skill to wake the session `eoa-<project>-orchestrator`.
 
 **When to wake**:
 - New tasks assigned by ECOS
@@ -359,9 +328,7 @@ aimaestro-agent.sh wake eoa-<project>-orchestrator
 
 ### Hibernate (Pause Session)
 
-```bash
-aimaestro-agent.sh hibernate eoa-<project>-orchestrator
-```
+Use the `ai-maestro-agents-management` skill to hibernate the session `eoa-<project>-orchestrator`.
 
 **When to hibernate**:
 - All tasks distributed and in progress
@@ -375,9 +342,7 @@ aimaestro-agent.sh hibernate eoa-<project>-orchestrator
 
 ### Terminate (End Session)
 
-```bash
-aimaestro-agent.sh terminate eoa-<project>-orchestrator
-```
+Use the `ai-maestro-agents-management` skill to terminate the session `eoa-<project>-orchestrator`.
 
 **When to terminate**:
 - All tasks completed and reviewed
@@ -411,12 +376,12 @@ This prevents EOA from consuming resources while waiting for implementers.
 #### Issue: EOA cannot access ECOS skills
 **Symptom**: `Skill 'ecos-strategic-planning' not found`
 **Cause**: Plugin mutual exclusivity - EOA doesn't have ECOS plugin loaded
-**Solution**: Use AI Maestro messaging to request ECOS assistance
+**Solution**: Use the `agent-messaging` skill to request ECOS assistance
 
 #### Issue: AI Maestro message not received
 **Symptom**: Implementer didn't get task assignment
 **Cause**: Wrong session name or API endpoint
-**Solution**: Verify session name in registry, check `$AIMAESTRO_API`
+**Solution**: Verify session name in registry, check AI Maestro connectivity using the `agent-messaging` skill
 
 #### Issue: Kanban updates not reflected in GitHub
 **Symptom**: Labels added but kanban column unchanged
@@ -431,7 +396,7 @@ This prevents EOA from consuming resources while waiting for implementers.
 #### Issue: EOA session terminated unexpectedly
 **Symptom**: Tmux session not found
 **Cause**: System restart or manual kill
-**Solution**: ECOS recreates session with `aimaestro-agent.sh create`
+**Solution**: ECOS recreates the session using the `ai-maestro-agents-management` skill
 
 ---
 

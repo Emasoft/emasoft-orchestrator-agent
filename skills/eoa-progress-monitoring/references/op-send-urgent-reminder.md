@@ -58,15 +58,10 @@ echo "First reminder was sent at: $FIRST_REMINDER_TIME"
 # Check if agent responded after first reminder
 FIRST_REMINDER_EPOCH=$(date -j -f "%Y-%m-%dT%H:%M:%S" "${FIRST_REMINDER_TIME%.*}" +%s)
 
-RESPONSE_AFTER_REMINDER=$(curl -s "${AIMAESTRO_API:-http://localhost:23000}/api/messages?agent=orchestrator&action=list" | \
-  jq -r '.messages[] | select(.from == "'"$AGENT_NAME"'") | .timestamp' | \
-  while read ts; do
-    ts_epoch=$(date -j -f "%Y-%m-%dT%H:%M:%S" "${ts%.*}" +%s 2>/dev/null || echo 0)
-    if [ "$ts_epoch" -gt "$FIRST_REMINDER_EPOCH" ]; then
-      echo "found"
-      break
-    fi
-  done)
+# Use the agent-messaging skill to check inbox for messages from the agent
+# received after the first reminder timestamp. Filter by sender matching
+# $AGENT_NAME and timestamp after $FIRST_REMINDER_EPOCH.
+RESPONSE_AFTER_REMINDER=$(# check if agent responded after first reminder)
 
 if [ "$RESPONSE_AFTER_REMINDER" = "found" ]; then
   echo "Agent responded after first reminder. No urgent escalation needed."
@@ -79,24 +74,15 @@ fi
 ```bash
 TASK_TITLE=$(gh issue view $TASK_ID --json title | jq -r '.title')
 
-curl -X POST "${AIMAESTRO_API:-http://localhost:23000}/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "orchestrator",
-    "to": "'"$AGENT_NAME"'",
-    "subject": "URGENT: #'"$TASK_ID"' - Response Required Immediately",
-    "priority": "urgent",
-    "content": {
-      "type": "escalation",
-      "message": "**URGENT ESCALATION**\n\nNo response received for task #'"$TASK_ID"' ('"$TASK_TITLE"').\n\nA first reminder was sent at '"$FIRST_REMINDER_TIME"' with no response.\n\n**Action Required:**\nPlease respond immediately with your current status. If no response is received within the next 30 minutes, this task may be reassigned.\n\nIf you are blocked, experiencing issues, or unable to continue, please report that as well.\n\n**Respond with:**\n- Current progress\n- Any blockers\n- Why there was no earlier response\n- Estimated completion time",
-      "data": {
-        "task_id": "'"$TASK_ID"'",
-        "escalation_level": 2,
-        "first_reminder_time": "'"$FIRST_REMINDER_TIME"'",
-        "reassignment_warning": true
-      }
-    }
-  }'
+TASK_TITLE=$(gh issue view $TASK_ID --json title | jq -r '.title')
+
+# Send urgent escalation using the agent-messaging skill:
+# - Recipient: $AGENT_NAME
+# - Subject: "URGENT: #$TASK_ID - Response Required Immediately"
+# - Content: "URGENT ESCALATION: No response received for task #$TASK_ID ($TASK_TITLE). A first reminder was sent at $FIRST_REMINDER_TIME with no response. Please respond immediately with your current status. If no response within 30 minutes, this task may be reassigned."
+# - Type: escalation, Priority: urgent
+# - Data: task_id, escalation_level: 2, first_reminder_time, reassignment_warning: true
+# Verify: confirm message delivery
 ```
 
 ### Step 4: Log Escalation

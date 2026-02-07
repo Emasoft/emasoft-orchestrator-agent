@@ -49,12 +49,9 @@ Send a request from Orchestrator (EOA) to Integrator (EIA) for code integration 
    }
    ```
 
-3. **Send via AI Maestro**:
-   ```bash
-   curl -X POST "http://localhost:23000/api/messages" \
-     -H "Content-Type: application/json" \
-     -d '<prepared_payload>'
-   ```
+3. **Send the message** using the `agent-messaging` skill with the prepared payload.
+
+   **Verify**: confirm the message was delivered successfully.
 
 4. **Log the request** in orchestration log
 
@@ -76,22 +73,12 @@ Send a request from Orchestrator (EOA) to Integrator (EIA) for code integration 
 
 ## Example
 
-```bash
-curl -X POST "http://localhost:23000/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "eoa-main",
-    "to": "eia-main",
-    "subject": "Integration Request: PR #456",
-    "priority": "high",
-    "content": {
-      "type": "request",
-      "message": "Please perform code review and CI verification on PR #456",
-      "data": {
-        "pr_number": "456",
-        "repo": "Emasoft/my-project",
-        "review_type": "code_review"
-      }
-    }
-  }'
-```
+Send an integration request using the `agent-messaging` skill:
+- **Recipient**: `eia-main`
+- **Subject**: "Integration Request: PR #456"
+- **Content**: "Please perform code review and CI verification on PR #456"
+- **Type**: `request`
+- **Priority**: `high`
+- **Data**: include `pr_number`, `repo`, and `review_type` fields
+
+**Verify**: confirm message delivery.

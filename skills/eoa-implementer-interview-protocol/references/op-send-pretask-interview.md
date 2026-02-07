@@ -50,21 +50,13 @@ Send structured interview questions to an implementer agent BEFORE they begin wo
 
 2. **Format the message** using the pre-task interview template
 
-3. **Send via AI Maestro API**:
-   ```bash
-   curl -X POST "$AIMAESTRO_API/api/messages" \
-     -H "Content-Type: application/json" \
-     -d '{
-       "from": "orchestrator",
-       "to": "<implementer_agent_id>",
-       "subject": "Pre-Task Interview: <issue_number>",
-       "priority": "high",
-       "content": {
-         "type": "request",
-         "message": "<formatted_interview_questions>"
-       }
-     }'
-   ```
+3. **Send the interview** using the `agent-messaging` skill:
+   - **Recipient**: the implementer agent session name
+   - **Subject**: "Pre-Task Interview: <issue_number>"
+   - **Content**: the formatted interview questions
+   - **Type**: `request`, **Priority**: `high`
+
+   **Verify**: confirm message delivery.
 
 4. **Log the interview request** in handoff document
 

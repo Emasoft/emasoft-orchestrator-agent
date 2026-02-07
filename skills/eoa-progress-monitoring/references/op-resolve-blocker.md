@@ -119,24 +119,12 @@ echo "Assigned agent: $ASSIGNED_AGENT"
 
 ```bash
 if [ -n "$ASSIGNED_AGENT" ]; then
-  curl -X POST "${AIMAESTRO_API:-http://localhost:23000}/api/messages" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "from": "orchestrator",
-      "to": "'"$ASSIGNED_AGENT"'",
-      "subject": "Blocker Resolved: #'"$TASK_ID"' - Please Resume",
-      "priority": "high",
-      "content": {
-        "type": "unblocked",
-        "message": "Good news! The blocker on task #'"$TASK_ID"' has been resolved.\n\n**Resolution:** '"$RESOLUTION_DETAILS"'\n\n**Previous Status Restored:** '"$PREVIOUS_STATUS"'\n\nPlease resume work on this task and report your progress.",
-        "data": {
-          "task_id": "'"$TASK_ID"'",
-          "blocker_issue": "'"$BLOCKER_ISSUE"'",
-          "previous_status": "'"$PREVIOUS_STATUS"'",
-          "resolution": "'"$RESOLUTION_DETAILS"'"
-        }
-      }
-    }'
+  # Send unblocked notification using the agent-messaging skill:
+  # - Recipient: $ASSIGNED_AGENT
+  # - Subject: "Blocker Resolved: #$TASK_ID - Please Resume"
+  # - Content: "Good news! The blocker on task #$TASK_ID has been resolved. Resolution: $RESOLUTION_DETAILS. Previous Status Restored: $PREVIOUS_STATUS. Please resume work on this task and report your progress."
+  # - Type: unblocked, Priority: high
+  # - Data: task_id, blocker_issue, previous_status, resolution
 fi
 ```
 
