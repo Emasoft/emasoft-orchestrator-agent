@@ -8,6 +8,8 @@ metadata:
   version: 1.0.0
 context: fork
 agent: eoa-main
+workflow-instruction: "Step 17"
+procedure: "proc-execute-task"
 ---
 
 # Progress Monitoring Skill

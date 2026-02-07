@@ -8,6 +8,8 @@ metadata:
   version: 1.0.0
 context: fork
 agent: eoa-main
+workflow-instruction: "Steps 14, 19"
+procedure: "proc-clarify-tasks, proc-complete-task"
 ---
 
 # Implementer Interview Protocol

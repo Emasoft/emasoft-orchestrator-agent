@@ -8,6 +8,8 @@ metadata:
   version: 1.0.0
 context: fork
 agent: eoa-main
+workflow-instruction: "support"
+procedure: "support-skill"
 ---
 
 # EOA Label Taxonomy

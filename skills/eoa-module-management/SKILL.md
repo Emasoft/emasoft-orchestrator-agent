@@ -9,6 +9,8 @@ metadata:
 user-invocable: false
 context: fork
 agent: eoa-main
+workflow-instruction: "Steps 11, 16"
+procedure: "proc-create-task-docs, proc-update-tasks"
 ---
 
 # Module Management Commands Skill

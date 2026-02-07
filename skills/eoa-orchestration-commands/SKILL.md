@@ -9,6 +9,8 @@ metadata:
 user-invocable: false
 context: fork
 agent: eoa-main
+workflow-instruction: "support"
+procedure: "support-skill"
 ---
 
 # Orchestration Commands Skill

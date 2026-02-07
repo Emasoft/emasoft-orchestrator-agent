@@ -8,6 +8,8 @@ metadata:
   version: 1.0.0
 context: fork
 agent: eoa-main
+workflow-instruction: "Steps 13, 16, 18, 22"
+procedure: "proc-populate-kanban, proc-update-tasks, proc-update-kanban-status, proc-handle-failed-pr"
 ---
 
 # Task Distribution Skill

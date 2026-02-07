@@ -11,6 +11,8 @@ metadata:
   prerequisites: None
 context: fork
 agent: eoa-main
+workflow-instruction: "Steps 14, 15, 22"
+procedure: "proc-clarify-tasks, proc-handle-feedback, proc-handle-failed-pr"
 ---
 
 # Developer Communication Skill

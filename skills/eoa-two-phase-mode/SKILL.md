@@ -8,6 +8,8 @@ metadata:
   version: 2.6.0
 context: fork
 agent: eoa-main
+workflow-instruction: "Step 10"
+procedure: "proc-decompose-design"
 ---
 
 # Two-Phase Mode Skill

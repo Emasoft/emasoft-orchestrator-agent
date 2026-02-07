@@ -8,6 +8,8 @@ metadata:
   version: 1.0.0
 context: fork
 agent: eoa-main
+workflow-instruction: "Step 20"
+procedure: "proc-request-pr-review"
 ---
 
 # EOA Shared Communication Templates

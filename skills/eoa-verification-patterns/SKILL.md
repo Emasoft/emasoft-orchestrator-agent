@@ -8,6 +8,8 @@ metadata:
   version: "1.0.0"
 agent: eoa-main
 context: fork
+workflow-instruction: "Step 19"
+procedure: "proc-complete-task"
 ---
 
 # Verification Patterns for EOA (Emasoft Orchestrator Agent)

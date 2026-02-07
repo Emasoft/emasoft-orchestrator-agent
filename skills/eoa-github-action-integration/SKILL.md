@@ -8,6 +8,8 @@ metadata:
   version: 1.0.0
 agent: eoa-main
 context: fork
+workflow-instruction: "support"
+procedure: "support-skill"
 ---
 
 # Claude Code Action Integration

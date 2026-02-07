@@ -8,6 +8,8 @@ metadata:
   version: 1.2.0
 context: fork
 agent: eoa-main
+workflow-instruction: "Step 17"
+procedure: "proc-execute-task"
 ---
 
 # Remote Agent Coordinator

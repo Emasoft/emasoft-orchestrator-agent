@@ -3,7 +3,7 @@ name: eoa-label-taxonomy
 description: Complete GitHub label taxonomy for the emasoft multi-agent system. Manage labels for issue tracking and agent coordination. Trigger with label operations.
 license: Apache-2.0
 metadata:
-  author: Anthropic
+  author: Emasoft
   version: 1.0.0
 context: fork
 agent: eoa-main
