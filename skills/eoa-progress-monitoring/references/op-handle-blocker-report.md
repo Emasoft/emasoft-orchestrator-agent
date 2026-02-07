@@ -186,7 +186,7 @@ fi
 - [ ] Add `status:blocked` label to the blocked task
 - [ ] Add blocker details as comment on the blocked task issue
 - [ ] Create a separate GitHub issue for the blocker (`type:blocker` label)
-- [ ] Send blocker-escalation message to EAMA via AI Maestro IMMEDIATELY
+- [ ] Send blocker-escalation message to EAMA via AI Maestro using the `agent-messaging` skill IMMEDIATELY
 - [ ] Check if other unblocked tasks can be assigned to the waiting agent
 
 ## Success Criteria

@@ -44,7 +44,7 @@ Handle agent replacement scenarios triggered by ECOS (Emergency Context-loss Ope
 2. Compile all task context from the failed agent (assignments, progress, blockers, file changes)
 3. Generate a comprehensive handoff document with all necessary context
 4. Reassign GitHub Project kanban tasks to the replacement agent
-5. Send the handoff document to the new agent and request acknowledgment
+5. Send the handoff document to the new agent using the `agent-messaging` skill and request acknowledgment
 6. Confirm replacement by verifying ACK, updating state, and notifying ECOS
 
 **Use this skill when**: ECOS notifies you of agent failure, context loss, unresponsive behavior, or manual replacement is needed.
@@ -59,7 +59,7 @@ Copy this checklist and track your progress:
 - [ ] Compile all task context from failed agent
 - [ ] Generate comprehensive handoff document
 - [ ] Reassign GitHub Project kanban tasks
-- [ ] Send handoff document to new agent via AI Maestro
+- [ ] Send handoff document to new agent via AI Maestro using the `agent-messaging` skill
 - [ ] Confirm ACK receipt and requirements understanding
 - [ ] Update orchestrator state file
 - [ ] Notify ECOS of successful replacement
@@ -150,7 +150,7 @@ See: [kanban-reassignment-protocol.md](references/kanban-reassignment-protocol.m
 
 ## Step 5: Send Handoff to New Agent
 
-Upload handoff to GitHub issue, send AI Maestro message with URL, include urgency level, request ACK within timeout.
+Upload handoff to GitHub issue, send AI Maestro message using the `agent-messaging` skill with URL, include urgency level, request ACK within timeout.
 
 See: [handoff-delivery-protocol.md](references/handoff-delivery-protocol.md) - 5.1 Document Upload, 5.2 AI Maestro Notification, 5.3 ACK Requirements, 5.4 Timeout Handling
 

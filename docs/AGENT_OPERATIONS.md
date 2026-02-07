@@ -256,7 +256,7 @@ Check your inbox using the `agent-messaging` skill:
 #### 2. Distribute Tasks to Implementers
 - Break down tasks into implementer-sized units
 - Spawn implementer agents using the `ai-maestro-agents-management` skill
-- Send task assignments via AI Maestro messages
+- Send task assignments via AI Maestro messages using the `agent-messaging` skill
 - Ensure no conflicting tasks (e.g., two agents editing same file)
 
 #### 3. Monitor Progress via Kanban
@@ -403,10 +403,13 @@ This prevents EOA from consuming resources while waiting for implementers.
 ## 11. References
 
 ### Related Documentation
-- [EAA_AGENT_OPERATIONS.md](../../emasoft-architect-agent/docs/AGENT_OPERATIONS.md) - Architect operations
-- [EIA_AGENT_OPERATIONS.md](../../emasoft-integrator-agent/docs/AGENT_OPERATIONS.md) - Integrator operations
-- [ECOS_AGENT_OPERATIONS.md](../../emasoft-chief-of-staff-agent/docs/AGENT_OPERATIONS.md) - Chief of Staff operations
-- [EAMA_AGENT_OPERATIONS.md](../../emasoft-assistant-manager-agent/docs/AGENT_OPERATIONS.md) - Assistant Manager operations
+
+> **Cross-Plugin References**: Each Emasoft agent plugin is installed independently. The following plugins have their own AGENT_OPERATIONS.md documenting their role-specific operations. Communication between plugins happens via the `agent-messaging` skill.
+
+- **EAA (Architect Agent)** - Architecture design, planning, and decision records. Plugin: `emasoft-architect-agent`
+- **EIA (Integrator Agent)** - Code review, quality gates, PR management. Plugin: `emasoft-integrator-agent`
+- **ECOS (Chief of Staff)** - Agent lifecycle management, coordination, and team registry. Plugin: `emasoft-chief-of-staff`
+- **EAMA (Assistant Manager)** - User communication and role routing. Plugin: `emasoft-assistant-manager-agent`
 
 ### External References
 - [AI Maestro API Documentation](https://github.com/Emasoft/ai-maestro/blob/main/docs/API.md)

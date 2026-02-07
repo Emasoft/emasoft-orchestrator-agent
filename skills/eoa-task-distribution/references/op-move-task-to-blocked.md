@@ -49,7 +49,7 @@ Move a task to the Blocked column when an agent reports the task cannot proceed,
 4. Update labels: remove current `status:*`, add `status:blocked`
 5. Add blocker details as comment on the issue (include previous status)
 6. Create a separate GitHub issue for the blocker itself (`type:blocker` label)
-7. Send blocker-escalation message to EAMA IMMEDIATELY
+7. Send blocker-escalation message to EAMA using the `agent-messaging` skill IMMEDIATELY
 8. Check if other unblocked tasks can be assigned to the waiting agent
 
 ## Commands
@@ -114,7 +114,7 @@ gh issue create --title "BLOCKER: $BLOCKER_REASON" --label "type:blocker" \
 - [ ] Remove current `status:*` label, add `status:blocked`
 - [ ] Add blocker details as comment on the blocked task issue (include `Previous status: $CURRENT_STATUS`)
 - [ ] Create a separate GitHub issue for the blocker (`type:blocker` label, referencing the blocked task)
-- [ ] Send blocker-escalation message to EAMA via AI Maestro (include `blocker_issue_number`)
+- [ ] Send blocker-escalation message to EAMA via AI Maestro using the `agent-messaging` skill (include `blocker_issue_number`)
 - [ ] Check if other unblocked tasks can be assigned to the waiting agent
 
 ## Error Handling

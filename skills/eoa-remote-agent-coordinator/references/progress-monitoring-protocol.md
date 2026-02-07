@@ -68,7 +68,7 @@
 ## 2.0 Proactive Monitoring Principles
 
 1. **PROACTIVELY poll** for agent status every 10-15 minutes during active work
-2. **PROACTIVELY send** status request messages if no update received
+2. **PROACTIVELY send** status request messages using the `agent-messaging` skill if no update received
 3. **PROACTIVELY offer** solutions when agents report blockers
 4. **PROACTIVELY remind** agents of pending tasks (no arbitrary deadlines per RULE 13)
 5. **PROACTIVELY verify** that agents don't stop until ALL tasks are complete
@@ -137,7 +137,7 @@ The orchestrator MUST PROACTIVELY ensure implementers don't stop prematurely:
 
 If no update received after expected checkpoint:
 
-1. **IMMEDIATELY** - Send status-request message (don't wait)
+1. **IMMEDIATELY** - Send status-request message using the `agent-messaging` skill (don't wait)
 2. **After 5 minutes** - Send follow-up with increased urgency
 3. **After 10 minutes** - Send "Are you stuck? I can help" message
 4. **After 15 minutes** - Mark agent as potentially offline, prepare reassignment
@@ -271,3 +271,14 @@ If no update received after expected checkpoint:
 3. If technical blocker, consider reassigning to agent with different expertise
 4. If external dependency, escalate to user for external action
 5. Document all attempted solutions in GitHub Issue for future reference
+
+---
+
+## Verification
+
+After completing each monitoring cycle:
+
+- [ ] **Verify**: confirm all status request messages were delivered via the `agent-messaging` skill's sent messages feature
+- [ ] **Verify**: confirm agent responses were received and processed within expected timeframes
+- [ ] **Verify**: confirm any escalation messages reached ECOS or EAMA successfully
+- [ ] **Verify**: confirm kanban board reflects current task statuses accurately

@@ -174,7 +174,7 @@ This file contains all agent names and their AI Maestro addresses.
 2. Assess: moderate complexity, needs implementer
 3. Select agent: `project-impl-01` (has capacity)
 4. Create GitHub issue with label `assigned:project-impl-01`
-5. Send AI Maestro assignment message with success criteria
+5. Send AI Maestro assignment message using the `agent-messaging` skill with success criteria
 6. Wait for ACK → Log delegation
 7. Monitor progress via polling (every 2-4 hours)
 8. Receive completion report → Verify all criteria met
@@ -188,7 +188,7 @@ This file contains all agent names and their AI Maestro addresses.
 2. Review blocker: technical issue (e.g., missing API)
 3. Check attempts: first failure
 4. Decision: escalate to ECOS (blocker requires user input)
-5. Send escalation message to ECOS with failure details
+5. Send escalation message to ECOS using the `agent-messaging` skill with failure details
 6. Wait for ECOS guidance (resolve blocker or reassign)
 
 ## Example 3: Multi-Agent Coordination

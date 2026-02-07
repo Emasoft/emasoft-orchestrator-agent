@@ -96,7 +96,7 @@ ORCHESTRATOR                              REMOTE AGENT
 
 ### 2.1 Step 1: Send Module Assignment
 
-Send AI Maestro message with:
+Send AI Maestro message using the `agent-messaging` skill with:
 - Module name and description
 - GitHub Issue link
 - Task UUID for tracking

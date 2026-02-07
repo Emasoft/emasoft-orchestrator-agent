@@ -62,7 +62,7 @@ Follow these steps in order. Mark each complete before proceeding:
 - [ ] **Implement feature** - According to task specification
 - [ ] **Run tests locally** - All tests must pass
 - [ ] **Create PR** - Following project PR template
-- [ ] **Send completion report** - Via AI Maestro message
+- [ ] **Send completion report** - Via AI Maestro message using the `agent-messaging` skill
 
 ### Phase 4: Registration
 
@@ -403,7 +403,7 @@ Orchestrator will reply with:
 1. **Check documentation** - Re-read relevant section in Required Reading List
 2. **Search existing issues** - Someone may have had same problem
 3. **Send clarification message** - Ask orchestrator specific question
-4. **Escalate if blocked >1 hour** - Send escalation message
+4. **Escalate if blocked >1 hour** - Send escalation message using the `agent-messaging` skill
 
 **Clarification Message Format**:
 

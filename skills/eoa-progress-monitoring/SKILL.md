@@ -247,7 +247,7 @@ gh issue edit $ISSUE --remove-label "status:blocked" --add-label "$PREVIOUS_STAT
 gh issue comment $ISSUE --body "Unblocked. Blocker #$BLOCKER_ISSUE resolved. Returning to $PREVIOUS_STATUS."
 
 # Notify agent that blocker is resolved
-# (send message via AI Maestro)
+# (send message via AI Maestro using the agent-messaging skill)
 ```
 
 ### 5.5 Blocker Lifecycle Checklist
@@ -262,7 +262,7 @@ Copy this checklist and track your progress:
 - [ ] Move task to Blocked column on Kanban board
 - [ ] Add blocker details as comment on the blocked task issue (include `Previous status: $CURRENT_STATUS`)
 - [ ] Create a separate GitHub issue for the blocker (`type:blocker` label, referencing the blocked task)
-- [ ] Send blocker-escalation message to EAMA via AI Maestro (include `blocker_issue_number`)
+- [ ] Send blocker-escalation message to EAMA via AI Maestro using the `agent-messaging` skill (include `blocker_issue_number`)
 - [ ] Check if other unblocked tasks can be assigned to the waiting agent
 
 **When the blocker is resolved:**

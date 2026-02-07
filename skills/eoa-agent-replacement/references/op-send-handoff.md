@@ -172,7 +172,7 @@ echo "Handoff delivery complete. Awaiting ACK within 30 minutes."
 
 - [ ] Upload handoff document to GitHub
 - [ ] Get URL for handoff document
-- [ ] Send AI Maestro notification to replacement agent
+- [ ] Send AI Maestro notification to replacement agent using the `agent-messaging` skill
 - [ ] Include urgency level
 - [ ] Specify ACK requirements
 - [ ] Set ACK timeout

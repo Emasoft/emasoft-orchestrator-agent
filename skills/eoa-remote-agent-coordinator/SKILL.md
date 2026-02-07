@@ -44,7 +44,7 @@ Follow these steps when coordinating remote agents:
 1. Verify AI Maestro is running and remote agents are registered
 2. Review the task requirements and prepare delegation instructions
 3. Include ACK protocol instructions in every task message (see MANDATORY section below)
-4. Send task delegation message via AI Maestro with complete instruction format
+4. Send task delegation message via AI Maestro using the `agent-messaging` skill with complete instruction format
 5. Wait for agent acknowledgment (timeout: 5 minutes)
 6. Monitor progress proactively every 10-15 minutes during active work
 7. Enforce 4-verification-loop protocol before approving any PR requests
@@ -452,7 +452,7 @@ When ECOS notifies EOA of agent failure or context loss:
 **Solution**:
 1. Ensure 10-15 minute polling cycle is active
 2. Include ALL mandatory poll questions (issues, unclear items, difficulties)
-3. If no response after 2 polls, send escalation message
+3. If no response after 2 polls, send escalation message using the `agent-messaging` skill
 4. Consider reassigning if agent unresponsive
 
 ### Issue: Module assignment conflicts between agents

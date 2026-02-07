@@ -302,7 +302,7 @@ When the agent requests PR permission for the 5th time (after completing all 4 v
 
 **Solution**:
 1. Close the unauthorized PR
-2. Send message reminding agent of PR notification requirement
+2. Send message using the `agent-messaging` skill reminding agent of PR notification requirement
 3. Include PR notification requirement text in message
 4. Agent must restart from loop 1
 5. If repeated, escalate to user about agent compliance

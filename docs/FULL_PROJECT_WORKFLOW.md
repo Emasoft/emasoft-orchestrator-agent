@@ -217,7 +217,7 @@ EOA ◄────────────────────────�
 #### Step 14: Agent Clarification
 **Actor**: EOA (Orchestrator) + IMPLEMENTER AGENTS
 **Action**:
-- Send to each agent a notification that their first task has been assigned
+- Send to each agent a notification using the `agent-messaging` skill that their first task has been assigned
 - Ask each agent if they need clarifications
 - The Orchestrator is the team lead with full project understanding (along with Architect)
 

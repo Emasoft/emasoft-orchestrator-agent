@@ -46,7 +46,7 @@ Reassign a task from one agent to another when the current agent is unresponsive
 2. Gather partial progress from original agent (check issue comments, PRs, branches)
 3. Remove current `assign:*` label from the issue
 4. Add `assign:<new-agent>` label to the issue
-5. Send reassignment message to new agent with full context and partial progress
+5. Send reassignment message to new agent using the `agent-messaging` skill with full context and partial progress
 6. Notify original agent that task has been reassigned
 7. Verify new agent sends ACK
 8. Log reassignment in delegation log
@@ -111,7 +111,7 @@ Include all partial progress in the reassignment message.
 - [ ] Gather partial progress from original agent (check issue comments, PRs, branches)
 - [ ] Remove current `assign:*` label from the issue
 - [ ] Add `assign:<new-agent>` label to the issue
-- [ ] Send reassignment message to new agent via AI Maestro (include all task context and partial progress)
+- [ ] Send reassignment message to new agent via AI Maestro using the `agent-messaging` skill (include all task context and partial progress)
 - [ ] Notify original agent via AI Maestro: "Task reassigned to <new-agent>"
 - [ ] Verify new agent sends ACK
 - [ ] Log reassignment in delegation log file

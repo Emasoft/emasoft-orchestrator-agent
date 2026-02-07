@@ -75,7 +75,7 @@ Adds a comment to each issue documenting the reassignment:
 | **Timestamp** | 2026-01-31T14:30:00Z |
 
 ### Handoff Document
-[Full context for new agent](handoff-url)
+Full context for new agent (include the handoff document path here)
 
 *Automated reassignment by EOA*
 ```
@@ -268,7 +268,7 @@ This command is typically used after generating a handoff:
 2. /eoa-reassign-kanban-tasks --from-agent X --to-agent Y --handoff-url URL
    → Updates: GitHub Issues
 
-3. Send AI Maestro message to new agent with handoff
+3. Send AI Maestro message to new agent with handoff using the `agent-messaging` skill
    → New agent begins work
 ```
 

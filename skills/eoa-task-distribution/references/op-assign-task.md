@@ -33,7 +33,7 @@ Assign a ready task to a selected agent by updating GitHub labels and sending an
 1. Remove any existing `assign:*` label from the issue
 2. Add new `assign:<agent-name>` label to the issue
 3. Update status from `status:ready` to `status:in-progress`
-4. Send task assignment message via AI Maestro
+4. Send task assignment message via AI Maestro using the `agent-messaging` skill
 5. Wait for agent ACK
 6. Log assignment in delegation log
 
@@ -128,7 +128,7 @@ After sending assignment, wait for agent acknowledgment. See eoa-progress-monito
 - [ ] Remove existing `assign:*` label from the issue
 - [ ] Add `assign:<agent-name>` label to the issue
 - [ ] Update status from `status:ready` to `status:in-progress`
-- [ ] Send task assignment message via AI Maestro
+- [ ] Send task assignment message via AI Maestro using the `agent-messaging` skill
 - [ ] Wait for agent ACK
 - [ ] Log assignment in delegation log file
 

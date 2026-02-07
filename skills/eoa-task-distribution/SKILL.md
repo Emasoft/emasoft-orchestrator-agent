@@ -38,7 +38,7 @@ Tasks are distributed following this order:
 | 2 | Sort by priority | `priority:critical` > `priority:high` > `priority:normal` > `priority:low` |
 | 3 | Check dependencies | Task's blockedBy list is empty |
 | 4 | Select agent | Match task requirements to available agents |
-| 5 | Assign task | Add `assign:<agent>` label, send AI Maestro message |
+| 5 | Assign task | Add `assign:<agent>` label, send AI Maestro message using the `agent-messaging` skill |
 
 ---
 
@@ -185,7 +185,7 @@ When reassigning a task (agent unresponsive or blocked):
 
 1. Remove current `assign:*` label
 2. Add `assign:<new-agent>` label
-3. Send reassignment message to new agent with context
+3. Send reassignment message to new agent using the `agent-messaging` skill with context
 4. Notify original agent: "Task reassigned"
 5. Include any partial progress from original agent
 
@@ -197,7 +197,7 @@ Copy this checklist and track your progress:
 - [ ] Gather partial progress from original agent (check issue comments, PRs, branches)
 - [ ] Remove current `assign:*` label from the issue
 - [ ] Add `assign:<new-agent>` label to the issue
-- [ ] Send reassignment message to new agent via AI Maestro (include all task context and partial progress)
+- [ ] Send reassignment message to new agent via AI Maestro using the `agent-messaging` skill (include all task context and partial progress)
 - [ ] Notify original agent via AI Maestro: "Task reassigned to <new-agent>"
 - [ ] Verify new agent sends ACK
 - [ ] Log reassignment in delegation log file
@@ -274,7 +274,7 @@ Copy this checklist and track your progress:
 - [ ] Remove current `status:*` label, add `status:blocked`
 - [ ] Add blocker details as comment on the blocked task issue (include `Previous status: $CURRENT_STATUS`)
 - [ ] Create a separate GitHub issue for the blocker (`type:blocker` label, referencing the blocked task)
-- [ ] Send blocker-escalation message to EAMA via AI Maestro (include `blocker_issue_number`)
+- [ ] Send blocker-escalation message to EAMA via AI Maestro using the `agent-messaging` skill (include `blocker_issue_number`)
 - [ ] Check if other unblocked tasks can be assigned to the waiting agent
 
 ### 7.5 Checklist: Move Task Back to Original Column (Blocker Resolved)
@@ -307,7 +307,7 @@ Follow these steps to distribute tasks to agents:
    5. Remove any existing `assign:*` label from the issue
    6. Add `assign:<agent-name>` label to the issue
    7. Update issue status from `status:ready` to `status:in-progress`
-   8. Send task assignment message via AI Maestro (see section 3.2)
+   8. Send task assignment message via AI Maestro using the `agent-messaging` skill (see section 3.2)
    9. Wait for agent ACK before considering next task
    10. Log assignment in delegation log file
 
@@ -327,7 +327,7 @@ Copy this checklist and track your progress:
 - [ ] Remove any existing `assign:*` label from the issue
 - [ ] Add `assign:<agent-name>` label to the issue
 - [ ] Update issue status from `status:ready` to `status:in-progress`
-- [ ] Send task assignment message via AI Maestro
+- [ ] Send task assignment message via AI Maestro using the `agent-messaging` skill
 - [ ] Wait for agent ACK before considering next task
 - [ ] Log assignment in delegation log file
 

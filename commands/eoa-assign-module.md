@@ -35,7 +35,7 @@ python3 "${CLAUDE_PLUGIN_ROOT}/scripts/eoa_assign_module.py" $ARGUMENTS
    - Sets initial status
 
 3. **Sends Assignment Message** (AI agents)
-   - Sends via AI Maestro
+   - Sends via AI Maestro using the `agent-messaging` skill
    - Includes GitHub Issue link
    - Includes task UUID
    - Requests instruction repetition

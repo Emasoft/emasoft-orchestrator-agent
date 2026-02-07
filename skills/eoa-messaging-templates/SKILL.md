@@ -31,7 +31,7 @@ This skill provides shared AI Maestro message templates and communication protoc
 1. Identify the communication scenario (task assignment, status report, approval request, etc.)
 2. Select the appropriate message template from section 2
 3. Fill in the template with task-specific details
-4. Send the message via AI Maestro API using curl or equivalent
+4. Send the message via AI Maestro using the `agent-messaging` skill
 5. Wait for response according to the message type and priority
 6. Log the message exchange in the appropriate delegation/coordination log
 
@@ -44,7 +44,7 @@ Copy this checklist and track your progress:
 - [ ] Select the appropriate message template from section 2
 - [ ] Fill in all required template fields (from, to, subject, priority, content)
 - [ ] Verify AI Maestro API is running (http://localhost:23000)
-- [ ] Send the message via AI Maestro API using curl
+- [ ] Send the message via AI Maestro using the `agent-messaging` skill
 - [ ] Wait for response according to message type and priority
 - [ ] Log the message exchange in the appropriate delegation/coordination log
 - [ ] If no response, follow escalation order from section 3.6

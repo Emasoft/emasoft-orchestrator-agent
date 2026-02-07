@@ -35,7 +35,7 @@ All documents (.md files) shared between agents MUST follow this protocol:
 1. **NEVER embed full document content in AI Maestro messages**
 2. Save document to local handoff directory: `docs_dev/handoffs/`
 3. Use standard filename format: `handoff-{uuid}-{from}-to-{to}.md`
-4. Send AI Maestro message with local file path only
+4. Send AI Maestro message using the `agent-messaging` skill with local file path only
 5. Recipient reads from local handoff directory
 
 ### Message Format
@@ -67,7 +67,7 @@ When orchestrator delegates a task to a remote agent:
 
 1. **Compile task template** with all variables substituted
 2. **Save to local handoff directory**: `docs_dev/handoffs/`
-3. **Send AI Maestro message** with local file path
+3. **Send AI Maestro message** using the `agent-messaging` skill with local file path
 4. **Wait for ACK** within timeout period
 5. **Track progress** via handoff status updates
 
@@ -116,7 +116,7 @@ When agent completes a task:
 1. **Create completion report** using template
 2. **Save to local handoff directory**: `docs_dev/handoffs/`
 3. **Update handoff file** with status: completed
-4. **Send AI Maestro message** with local file path
+4. **Send AI Maestro message** using the `agent-messaging` skill with local file path
 5. **Wait for orchestrator sign-off**
 
 ### Template Reference
@@ -132,7 +132,7 @@ When agent encounters a blocker:
 1. **Document blocker** with context and impact
 2. **Save to local handoff directory**: `docs_dev/handoffs/`
 3. **Update handoff file** with status: blocked
-4. **Send AI Maestro message** with URGENT priority and file path
+4. **Send AI Maestro message** using the `agent-messaging` skill with URGENT priority and file path
 5. **Wait for orchestrator response**
 
 ### Blocker Categories

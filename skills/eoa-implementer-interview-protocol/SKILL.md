@@ -185,9 +185,9 @@ Follow these steps to conduct implementer interviews:
 Copy this checklist and track your progress:
 
 **Pre-Task Interview:**
-- [ ] Send task assignment message via AI Maestro
+- [ ] Send task assignment message via AI Maestro using the `agent-messaging` skill
 - [ ] Wait for implementer ACK (acknowledgment)
-- [ ] Send pre-task interview questions
+- [ ] Send pre-task interview questions using the `agent-messaging` skill
 - [ ] Evaluate implementer's understanding summary
 - [ ] Check for concerns (requirements, design, capability, dependencies)
 - [ ] Escalate design concerns to Architect (EAA) if needed
@@ -211,9 +211,9 @@ Copy this checklist and track your progress:
 
 ### Pre-Task Interview Steps
 
-1. Send task assignment message via AI Maestro
+1. Send task assignment message via AI Maestro using the `agent-messaging` skill
 2. Wait for implementer ACK (acknowledgment)
-3. Send pre-task interview questions ([interview-templates.md](./references/interview-templates.md))
+3. Send pre-task interview questions using the `agent-messaging` skill ([interview-templates.md](./references/interview-templates.md))
 4. Evaluate implementer's understanding summary
 5. Check for concerns about requirements, design, capability, or dependencies
 6. If design concerns exist, escalate to Architect (EAA) ([escalation-messages.md](./references/escalation-messages.md))

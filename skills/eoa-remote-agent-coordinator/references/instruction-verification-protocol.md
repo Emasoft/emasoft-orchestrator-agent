@@ -40,7 +40,7 @@ This document describes the MANDATORY Instruction Verification Protocol that mus
 
 ### 1.2.1 Send Assignment with Verification Request
 
-When you send the assignment message, include the verification request:
+When you send the assignment message using the `agent-messaging` skill, include the verification request:
 
 ```markdown
 ## MANDATORY: Instruction Verification
@@ -350,3 +350,14 @@ The Instruction Verification Protocol ensures:
 4. **Accountability** - Clear authorization moment
 
 **Never skip this protocol.** The extra 5-10 minutes saves hours of rework.
+
+---
+
+## Verification
+
+After completing instruction verification:
+
+- [ ] **Verify**: confirm assignment message was delivered via the `agent-messaging` skill's sent messages feature
+- [ ] **Verify**: confirm agent sent back instruction summary matching requirements
+- [ ] **Verify**: confirm all agent questions were answered before PROCEED authorization
+- [ ] **Verify**: confirm PROCEED or HOLD status was communicated to the agent

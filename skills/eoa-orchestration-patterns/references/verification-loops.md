@@ -314,3 +314,14 @@ If issues remain after 4 loops:
 - [progress-monitoring.md](progress-monitoring.md) - Proactive monitoring protocol
 - [agent-selection-guide.md](agent-selection-guide.md) - Which agent for which task
 - [orchestrator-guardrails.md](orchestrator-guardrails.md) - Orchestrator role boundaries
+
+---
+
+## Verification
+
+After completing verification loops:
+
+- [ ] **Verify**: confirm all 4 verification loop results were recorded
+- [ ] **Verify**: confirm message delivery for each loop via the `agent-messaging` skill's sent messages feature
+- [ ] **Verify**: confirm PR approval or rejection decision was communicated to the agent
+- [ ] **Verify**: confirm EIA was notified if PR was approved for code review
