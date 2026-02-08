@@ -18,7 +18,7 @@ gh pr create \
   --body "$(cat pr-body.md)" \
   --base main \
   --head {{BRANCH_NAME}} \
-  --label "status:in-review" \
+  --label "status:ai-review" \
   --label "priority:{{PRIORITY}}" \
   --label "platform:{{PLATFORM}}" \
   --assignee "{{ASSIGNEE}}" \
@@ -143,7 +143,7 @@ PR_URL=$(gh pr create \
   --body "$(cat /tmp/pr-body.md)" \
   --base main \
   --head "$BRANCH_NAME" \
-  --label "status:in-review" \
+  --label "status:ai-review" \
   --json url \
   --jq .url)
 

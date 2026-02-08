@@ -144,7 +144,7 @@ curl -I https://github.com
 gh issue create \
   --title "[Module] {module_name}" \
   --body "{body}" \
-  --label "module,priority-{priority},status-todo"
+  --label "module,priority:{priority},status:todo"
 
 # Get issue number from output
 # Update state file:
@@ -164,7 +164,7 @@ gh issue edit {number} --title "[Module] {new_name}"
 gh issue edit {number} --body "{new_body}"
 
 # Update labels
-gh issue edit {number} --remove-label "priority-old" --add-label "priority-new"
+gh issue edit {number} --remove-label "priority:{old}" --add-label "priority:{new}"
 ```
 
 ### Issue Closure Failed

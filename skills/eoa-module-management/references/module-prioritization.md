@@ -126,10 +126,10 @@ When priority changes, the linked GitHub Issue labels are updated automatically.
 
 | Priority | GitHub Label |
 |----------|-------------|
-| `critical` | `priority-critical` |
-| `high` | `priority-high` |
-| `medium` | `priority-medium` |
-| `low` | `priority-low` |
+| `critical` | `priority:critical` |
+| `high` | `priority:high` |
+| `medium` | `priority:normal` |
+| `low` | `priority:low` |
 
 ### Label Update Process
 
@@ -140,12 +140,12 @@ When priority changes:
 
 **Before**:
 ```
-Labels: module, priority-medium, status-in-progress
+Labels: module, priority:normal, status:in-progress
 ```
 
 **After** (changed to critical):
 ```
-Labels: module, priority-critical, status-in-progress
+Labels: module, priority:critical, status:in-progress
 ```
 
 ### Label Update Command
@@ -154,10 +154,10 @@ The script uses `gh issue edit` to update labels:
 
 ```bash
 # Remove old label
-gh issue edit 42 --remove-label priority-medium
+gh issue edit 42 --remove-label priority:normal
 
 # Add new label
-gh issue edit 42 --add-label priority-critical
+gh issue edit 42 --add-label priority:critical
 ```
 
 ### If Labels Don't Exist
@@ -169,10 +169,10 @@ If the priority label doesn't exist in the repository:
 
 **Creating labels manually**:
 ```bash
-gh label create priority-critical --color "B60205" --description "Critical priority module"
-gh label create priority-high --color "D93F0B" --description "High priority module"
-gh label create priority-medium --color "FBCA04" --description "Medium priority module"
-gh label create priority-low --color "0E8A16" --description "Low priority module"
+gh label create priority:critical --color "B60205" --description "Critical priority module"
+gh label create priority:high --color "D93F0B" --description "High priority module"
+gh label create priority:normal --color "FBCA04" --description "Normal priority module"
+gh label create priority:low --color "0E8A16" --description "Low priority module"
 ```
 
 ---
@@ -254,7 +254,7 @@ Modified module: auth-core
   status: "pending"
 ```
 
-**GitHub Issue**: Label changed from `priority-medium` to `priority-critical`
+**GitHub Issue**: Label changed from `priority:normal` to `priority:critical`
 
 ### Example 2: Downgrade to Low
 

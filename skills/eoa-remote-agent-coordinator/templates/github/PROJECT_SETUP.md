@@ -28,12 +28,16 @@ gh project list --owner {{GITHUB_OWNER}} --format json | jq '.projects[] | selec
 ## Standard EOA Columns
 
 ### Column Structure
-The EOA orchestrator uses a standard four-column workflow:
+The EOA orchestrator uses a standard eight-column workflow:
 
-1. **Backlog** - Tasks awaiting assignment
-2. **In Progress** - Tasks actively being worked on
-3. **In Review** - Tasks awaiting review/verification
-4. **Done** - Completed tasks
+1. **Backlog** - Tasks awaiting triage or prioritization
+2. **Todo** - Tasks ready to start, assigned and prioritized
+3. **In Progress** - Tasks actively being worked on
+4. **AI Review** - Tasks awaiting Integrator AI review
+5. **Human Review** - Tasks requiring human review (big or sensitive tasks)
+6. **Merge/Release** - Tasks reviewed and ready to merge or release
+7. **Done** - Completed tasks
+8. **Blocked** - Tasks blocked by dependencies or external factors
 
 ### Add Status Field
 ```bash
@@ -42,7 +46,7 @@ gh project field-create {{PROJECT_NUMBER}} \
   --owner {{GITHUB_OWNER}} \
   --name "Status" \
   --data-type "SINGLE_SELECT" \
-  --single-select-options "Backlog,In Progress,In Review,Done"
+  --single-select-options "Backlog,Todo,In Progress,AI Review,Human Review,Merge/Release,Done,Blocked"
 ```
 
 ## Custom Fields
@@ -108,8 +112,11 @@ gh project field-create {{PROJECT_NUMBER}} \
 ```bash
 # Status tracking
 gh label create "status:backlog" --color "d4c5f9" --repo {{GITHUB_OWNER}}/{{REPO_NAME}}
+gh label create "status:todo" --color "D4C5F9" --description "Ready to start" --repo {{GITHUB_OWNER}}/{{REPO_NAME}}
 gh label create "status:in-progress" --color "fbca04" --repo {{GITHUB_OWNER}}/{{REPO_NAME}}
-gh label create "status:in-review" --color "0e8a16" --repo {{GITHUB_OWNER}}/{{REPO_NAME}}
+gh label create "status:ai-review" --color "0E8A16" --description "Integrator AI review" --repo {{GITHUB_OWNER}}/{{REPO_NAME}}
+gh label create "status:human-review" --color "FBCA04" --description "Human review (big tasks)" --repo {{GITHUB_OWNER}}/{{REPO_NAME}}
+gh label create "status:merge-release" --color "1D76DB" --description "Ready to merge" --repo {{GITHUB_OWNER}}/{{REPO_NAME}}
 gh label create "status:blocked" --color "d93f0b" --repo {{GITHUB_OWNER}}/{{REPO_NAME}}
 gh label create "status:done" --color "0075ca" --repo {{GITHUB_OWNER}}/{{REPO_NAME}}
 ```
@@ -240,7 +247,7 @@ jobs:
 After setup, verify:
 
 - [ ] Project created and visible in GitHub
-- [ ] All four status columns exist
+- [ ] All eight status columns exist
 - [ ] All custom fields added
 - [ ] All labels created with correct colors
 - [ ] Repository linked to project
@@ -274,7 +281,7 @@ gh project create --owner $GITHUB_OWNER --title "$PROJECT_NAME" --body "$PROJECT
 export PROJECT_NUMBER=3
 
 # 3. Add status field
-gh project field-create $PROJECT_NUMBER --owner $GITHUB_OWNER --name "Status" --data-type "SINGLE_SELECT" --single-select-options "Backlog,In Progress,In Review,Done"
+gh project field-create $PROJECT_NUMBER --owner $GITHUB_OWNER --name "Status" --data-type "SINGLE_SELECT" --single-select-options "Backlog,Todo,In Progress,AI Review,Human Review,Merge/Release,Done,Blocked"
 
 # 4. Add other fields (Platform, Priority, etc.)
 # ... repeat for each field above

@@ -5,7 +5,7 @@
 - 6.1 Issue creation format and labels
 - 6.2 Issue update synchronization
 - 6.3 Issue closure protocols
-- 6.4 Label conventions (module, priority-*, status-*)
+- 6.4 Label conventions (module, priority:*, status:*)
 - 6.5 Manual sync when automation fails
 - 6.6 Troubleshooting sync issues
 
@@ -59,10 +59,10 @@ Implementation of the {module_name} module (added during orchestration).
 | Label | Purpose |
 |-------|---------|
 | `module` | Identifies this issue as a module |
-| `priority-{level}` | Indicates priority (critical/high/medium/low) |
-| `status-todo` | Initial status |
+| `priority:{level}` | Indicates priority (critical/high/normal/low) |
+| `status:todo` | Initial status |
 
-**Example label set**: `module, priority-medium, status-todo`
+**Example label set**: `module, priority:normal, status:todo`
 
 ### Issue Creation Command
 
@@ -72,7 +72,7 @@ The script uses this gh command:
 gh issue create \
   --title "[Module] {module_name}" \
   --body "{body}" \
-  --label "module,priority-{priority},status-todo"
+  --label "module,priority:{priority},status:todo"
 ```
 
 ### Capturing Issue Number
@@ -128,7 +128,7 @@ When priority changes:
 
 **Issue update**:
 ```bash
-gh issue edit 42 --remove-label "priority-medium" --add-label "priority-critical"
+gh issue edit 42 --remove-label "priority:normal" --add-label "priority:critical"
 ```
 
 ### Status Change Sync
@@ -137,10 +137,10 @@ Status labels are updated as module progresses:
 
 | Module Status | Status Label |
 |---------------|-------------|
-| `pending` | `status-todo` |
-| `assigned` | `status-todo` (or `status-assigned`) |
-| `in-progress` | `status-in-progress` |
-| `complete` | `status-done` |
+| `pending` | `status:todo` |
+| `assigned` | `status:todo` (or `status:assigned`) |
+| `in-progress` | `status:in-progress` |
+| `complete` | `status:done` |
 
 ### Assignment Sync (Human Developers)
 
@@ -175,7 +175,7 @@ When a module is marked complete:
 
 1. Issue is closed
 2. PR is linked (if available)
-3. `status-done` label added
+3. `status:done` label added
 
 **Completion closure**:
 ```bash
@@ -224,19 +224,19 @@ EOA orchestration uses a specific set of labels for module tracking.
 
 | Label | Meaning | Color (suggested) |
 |-------|---------|-------------------|
-| `priority-critical` | Must complete first | Red (#B60205) |
-| `priority-high` | Should complete early | Orange (#D93F0B) |
-| `priority-medium` | Standard priority | Yellow (#FBCA04) |
-| `priority-low` | Nice to have | Green (#0E8A16) |
+| `priority:critical` | Must complete first | Red (#B60205) |
+| `priority:high` | Should complete early | Orange (#D93F0B) |
+| `priority:normal` | Standard priority | Yellow (#FBCA04) |
+| `priority:low` | Nice to have | Green (#0E8A16) |
 
 ### Status Labels
 
 | Label | Meaning | Color (suggested) |
 |-------|---------|-------------------|
-| `status-todo` | Not started | Gray (#EDEDED) |
-| `status-assigned` | Assigned to agent | Light Blue (#C2E0FF) |
-| `status-in-progress` | Work ongoing | Purple (#5319E7) |
-| `status-done` | Completed | Green (#0E8A16) |
+| `status:todo` | Not started | Gray (#EDEDED) |
+| `status:assigned` | Assigned to agent | Light Blue (#C2E0FF) |
+| `status:in-progress` | Work ongoing | Purple (#5319E7) |
+| `status:done` | Completed | Green (#0E8A16) |
 
 ### Creating Labels in Repository
 
@@ -247,16 +247,16 @@ If labels don't exist, create them:
 gh label create "module" --color "0052CC" --description "EOA orchestration module"
 
 # Priority labels
-gh label create "priority-critical" --color "B60205" --description "Critical priority - must complete first"
-gh label create "priority-high" --color "D93F0B" --description "High priority - complete early"
-gh label create "priority-medium" --color "FBCA04" --description "Medium priority - standard"
-gh label create "priority-low" --color "0E8A16" --description "Low priority - nice to have"
+gh label create "priority:critical" --color "B60205" --description "Critical priority - must complete first"
+gh label create "priority:high" --color "D93F0B" --description "High priority - complete early"
+gh label create "priority:normal" --color "FBCA04" --description "Normal priority - standard"
+gh label create "priority:low" --color "0E8A16" --description "Low priority - nice to have"
 
 # Status labels
-gh label create "status-todo" --color "EDEDED" --description "Not yet started"
-gh label create "status-assigned" --color "C2E0FF" --description "Assigned to agent"
-gh label create "status-in-progress" --color "5319E7" --description "Work in progress"
-gh label create "status-done" --color "0E8A16" --description "Completed"
+gh label create "status:todo" --color "EDEDED" --description "Not yet started"
+gh label create "status:assigned" --color "C2E0FF" --description "Assigned to agent"
+gh label create "status:in-progress" --color "5319E7" --description "Work in progress"
+gh label create "status:done" --color "0E8A16" --description "Completed"
 ```
 
 ### Label Filtering
@@ -266,9 +266,9 @@ Useful GitHub filters for EOA modules:
 | Filter | Purpose |
 |--------|---------|
 | `label:module` | All modules |
-| `label:module label:priority-critical` | Critical modules |
-| `label:module label:status-in-progress` | Active modules |
-| `label:module -label:status-done` | Incomplete modules |
+| `label:module label:priority:critical` | Critical modules |
+| `label:module label:status:in-progress` | Active modules |
+| `label:module -label:status:done` | Incomplete modules |
 | `label:module is:open` | Open module issues |
 
 ---
@@ -315,7 +315,7 @@ medium
 - Added during: Orchestration Phase
 EOF
 )" \
-  --label "module,priority-medium,status-todo"
+  --label "module,priority:normal,status:todo"
 
 # Note the issue number from output
 # Update state file manually with issue number
@@ -327,10 +327,10 @@ If priority label didn't update:
 
 ```bash
 # Remove old label
-gh issue edit 42 --remove-label "priority-medium"
+gh issue edit 42 --remove-label "priority:normal"
 
 # Add new label
-gh issue edit 42 --add-label "priority-critical"
+gh issue edit 42 --add-label "priority:critical"
 ```
 
 ### Manual Body Update

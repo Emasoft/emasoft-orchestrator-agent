@@ -91,7 +91,7 @@ Implementation of the {module_name} module (added during orchestration).
 - Added during: Orchestration Phase
 """
 
-    labels = f"module,priority-{priority},status-todo"
+    labels = f"module,priority:{priority},status:todo"
 
     try:
         result = subprocess.run(
@@ -150,7 +150,7 @@ def update_github_issue_labels(
         if old_priority:
             subprocess.run(
                 ["gh", "issue", "edit", issue_num,
-                 "--remove-label", f"priority-{old_priority}"],
+                 "--remove-label", f"priority:{old_priority}"],
                 capture_output=True,
                 timeout=10
             )
@@ -158,7 +158,7 @@ def update_github_issue_labels(
         # Add new label
         result = subprocess.run(
             ["gh", "issue", "edit", issue_num,
-             "--add-label", f"priority-{new_priority}"],
+             "--add-label", f"priority:{new_priority}"],
             capture_output=True,
             timeout=10
         )

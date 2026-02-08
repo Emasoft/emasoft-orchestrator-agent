@@ -13,11 +13,13 @@ This document contains the valid label transitions and project board synchroniza
 ```mermaid
 graph TD
     A[Backlog] --> B[In Progress]
-    B --> C[In Review]
-    C --> D[Done]
-    C --> B
-    B --> E[Blocked]
-    E --> B
+    B --> C[AI Review]
+    C -->|big tasks| D[Human Review]
+    C -->|small tasks| E[Merge/Release]
+    D --> E[Merge/Release]
+    E --> F[Done]
+    B --> G[Blocked]
+    G --> B
     B --> A
 ```
 
@@ -31,28 +33,60 @@ gh issue edit {{ISSUE_NUMBER}} \
   --add-label "status:in-progress"
 ```
 
-#### In Progress → In Review
+#### In Progress → AI Review
 ```bash
 gh issue edit {{ISSUE_NUMBER}} \
   --repo {{GITHUB_OWNER}}/{{REPO_NAME}} \
   --remove-label "status:in-progress" \
-  --add-label "status:in-review"
+  --add-label "status:ai-review"
 ```
 
-#### In Review → Done
+#### AI Review → Human Review (big tasks requiring human approval)
 ```bash
 gh issue edit {{ISSUE_NUMBER}} \
   --repo {{GITHUB_OWNER}}/{{REPO_NAME}} \
-  --remove-label "status:in-review" \
-  --add-label "status:done"
+  --remove-label "status:ai-review" \
+  --add-label "status:human-review"
 ```
 
-#### In Review → In Progress (changes requested)
+#### AI Review → Merge/Release (small tasks that pass AI review)
 ```bash
 gh issue edit {{ISSUE_NUMBER}} \
   --repo {{GITHUB_OWNER}}/{{REPO_NAME}} \
-  --remove-label "status:in-review" \
+  --remove-label "status:ai-review" \
+  --add-label "status:merge-release"
+```
+
+#### Human Review → Merge/Release (human-approved tasks)
+```bash
+gh issue edit {{ISSUE_NUMBER}} \
+  --repo {{GITHUB_OWNER}}/{{REPO_NAME}} \
+  --remove-label "status:human-review" \
+  --add-label "status:merge-release"
+```
+
+#### Human Review → In Progress (changes requested by human reviewer)
+```bash
+gh issue edit {{ISSUE_NUMBER}} \
+  --repo {{GITHUB_OWNER}}/{{REPO_NAME}} \
+  --remove-label "status:human-review" \
   --add-label "status:in-progress"
+```
+
+#### AI Review → In Progress (changes requested by AI reviewer)
+```bash
+gh issue edit {{ISSUE_NUMBER}} \
+  --repo {{GITHUB_OWNER}}/{{REPO_NAME}} \
+  --remove-label "status:ai-review" \
+  --add-label "status:in-progress"
+```
+
+#### Merge/Release → Done
+```bash
+gh issue edit {{ISSUE_NUMBER}} \
+  --repo {{GITHUB_OWNER}}/{{REPO_NAME}} \
+  --remove-label "status:merge-release" \
+  --add-label "status:done"
 ```
 
 #### In Progress → Blocked

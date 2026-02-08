@@ -327,8 +327,8 @@ gh issue comment [ISSUE_NUM] --body "[ACK] Starting work."
 # Add progress update
 gh issue comment [ISSUE_NUM] --body "[PROGRESS] Checkpoint 2: 60% complete"
 
-# Move to In Review (after PR created)
-gh issue edit [ISSUE_NUM] --add-label "status:in-review"
+# Move to AI Review (after PR created)
+gh issue edit [ISSUE_NUM] --add-label "status:ai-review"
 ```
 
 ### Reporting Guidelines

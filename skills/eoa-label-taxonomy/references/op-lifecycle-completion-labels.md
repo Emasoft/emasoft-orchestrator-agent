@@ -60,16 +60,62 @@ gh issue edit <ISSUE_NUM> \
 # PR merged - continue to completion
 ```
 
-### Step 4: Apply Completion Labels
+### Step 4: Move to AI Review
+
+Once work is complete, the Integrator (EIA) reviews the deliverables.
 
 ```bash
-# Remove assignment and update status
+# Move from in-progress to ai-review
 gh issue edit <ISSUE_NUM> \
-  --remove-label "assign:<agent-id>,status:in-progress,review:approved" \
+  --remove-label "status:in-progress" \
+  --add-label "status:ai-review"
+```
+
+The Integrator will review the code, run quality gates, and either approve or request changes.
+
+### Step 5: Move to Human Review (BIG tasks only)
+
+For BIG tasks (tasks labeled `size:big` or `size:epic`), the user reviews the work via EAMA (Assistant Manager) before it can proceed.
+
+```bash
+# After AI review passes, move to human-review (BIG tasks only)
+gh issue edit <ISSUE_NUM> \
+  --remove-label "status:ai-review" \
+  --add-label "status:human-review"
+```
+
+> **Note:** Small tasks skip `status:human-review` and go directly from `status:ai-review` to `status:merge-release`.
+
+### Step 6: Move to Merge-Release
+
+After all reviews pass, the task is ready to merge.
+
+```bash
+# After review(s) approved, move to merge-release
+gh issue edit <ISSUE_NUM> \
+  --remove-label "status:ai-review,status:human-review,review:approved" \
+  --add-label "status:merge-release"
+```
+
+For small tasks skipping human review:
+
+```bash
+# Small tasks: directly from ai-review to merge-release
+gh issue edit <ISSUE_NUM> \
+  --remove-label "status:ai-review,review:approved" \
+  --add-label "status:merge-release"
+```
+
+### Step 7: Apply Completion Labels
+
+```bash
+# After merge is complete, mark as done
+gh issue edit <ISSUE_NUM> \
+  --remove-label "assign:<agent-id>,status:merge-release" \
   --add-label "status:done"
 ```
 
-### Step 5: Close Issue (if policy allows)
+### Step 8: Close Issue (if policy allows)
 
 ```bash
 # Close with completion comment
@@ -82,7 +128,7 @@ gh issue comment <ISSUE_NUM> --body "**Task Completed**
 - Status: done (issue remains open for final verification)"
 ```
 
-### Step 6: Notify Orchestrator
+### Step 9: Notify Orchestrator
 
 Send a completion notification using the `agent-messaging` skill:
 - **Recipient**: `orchestrator-master`
@@ -97,7 +143,7 @@ Send a completion notification using the `agent-messaging` skill:
 | Field | Type | Description |
 |-------|------|-------------|
 | Assignment Removed | Boolean | `assign:*` label removed |
-| Status Change | String | `status:in-progress` -> `status:done` |
+| Status Change | String | `status:in-progress` -> `status:ai-review` -> [`status:human-review` (BIG only)] -> `status:merge-release` -> `status:done` |
 | Issue State | String | Open or Closed |
 
 ## Error Handling
@@ -168,8 +214,10 @@ gh issue comment 42 --body "**Blocked**
 - [ ] Verify tests passing
 - [ ] Verify code reviewed (if required)
 - [ ] Handle PR review labels if applicable
+- [ ] Move to `status:ai-review` (Integrator reviews)
+- [ ] Move to `status:human-review` (BIG tasks only, user reviews via EAMA)
+- [ ] Move to `status:merge-release` (ready to merge)
 - [ ] Remove `assign:<agent>` label
-- [ ] Remove `status:in-progress`
 - [ ] Add `status:done`
 - [ ] Add completion comment
 - [ ] Close issue (if policy allows)

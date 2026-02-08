@@ -36,9 +36,21 @@ case "$NEW_STATUS" in
     OLD_LABEL_PATTERN="status:"
     NEW_LABEL="status:in-progress"
     ;;
-  "In Review")
+  "Todo")
     OLD_LABEL_PATTERN="status:"
-    NEW_LABEL="status:in-review"
+    NEW_LABEL="status:todo"
+    ;;
+  "AI Review")
+    OLD_LABEL_PATTERN="status:"
+    NEW_LABEL="status:ai-review"
+    ;;
+  "Human Review")
+    OLD_LABEL_PATTERN="status:"
+    NEW_LABEL="status:human-review"
+    ;;
+  "Merge/Release")
+    OLD_LABEL_PATTERN="status:"
+    NEW_LABEL="status:merge-release"
     ;;
   "Done")
     OLD_LABEL_PATTERN="status:"
@@ -50,7 +62,7 @@ case "$NEW_STATUS" in
     ;;
   *)
     echo "Error: Invalid status '$NEW_STATUS'"
-    echo "Valid: Backlog, In Progress, In Review, Done, Blocked"
+    echo "Valid: Backlog, Todo, In Progress, AI Review, Human Review, Merge/Release, Done, Blocked"
     exit 1
     ;;
 esac
@@ -126,7 +138,7 @@ echo "✅ Issue #$ISSUE_NUMBER status updated to: $NEW_STATUS"
 - [ ] Environment setup script tested
 - [ ] Agent authenticated to GitHub
 
-### Before Moving to "In Review"
+### Before Moving to "AI Review"
 - [ ] All acceptance criteria met
 - [ ] All tests passing locally
 - [ ] Code formatted and linted
@@ -135,6 +147,16 @@ echo "✅ Issue #$ISSUE_NUMBER status updated to: $NEW_STATUS"
 - [ ] PR created and linked
 - [ ] PR template filled completely
 - [ ] Test results included in PR
+
+### Before Moving to "Human Review"
+- [ ] AI review completed and approved
+- [ ] All AI-flagged issues resolved
+- [ ] PR ready for human reviewer
+
+### Before Moving to "Merge/Release"
+- [ ] Human review completed and approved
+- [ ] All review comments addressed
+- [ ] Final CI checks passing
 
 ### Before Moving to "Done"
 - [ ] PR approved by reviewer

@@ -106,7 +106,7 @@ if [[ -z "$OWNER" ]]; then
 fi
 
 # GraphQL query to fetch project items with pending statuses
-# Statuses to check: "In Progress", "In Review", "Blocked"
+# Statuses to check: "In Progress", "AI Review", "Human Review", "Merge/Release", "Blocked"
 QUERY='
 query($owner: String!, $number: Int!) {
   user(login: $owner) {
@@ -219,7 +219,7 @@ if [[ "$ITEMS" == "null" ]] || [[ -z "$ITEMS" ]]; then
     output_error "Project not found or no access"
 fi
 
-# Filter items by status (In Progress, In Review, Blocked)
+# Filter items by status (In Progress, AI Review, Human Review, Merge/Release, Blocked)
 # and format output
 PENDING_TASKS=$(echo "$ITEMS" | jq -c '
   [.[] |
@@ -230,7 +230,7 @@ PENDING_TASKS=$(echo "$ITEMS" | jq -c '
     ) as $status |
 
     # Filter for pending statuses
-    select($status == "In Progress" or $status == "In Review" or $status == "Blocked") |
+    select($status == "In Progress" or $status == "AI Review" or $status == "Human Review" or $status == "Merge/Release" or $status == "Blocked") |
 
     # Extract title and assignee
     {

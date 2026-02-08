@@ -27,19 +27,18 @@ EXEC_STATE_FILE = Path(".claude/orchestrator-exec-phase.local.md")
 # Required labels
 REQUIRED_LABELS = {
     "module": {"color": "0052CC", "description": "EOA orchestration module"},
-    "priority-critical": {"color": "B60205", "description": "Critical priority"},
-    "priority-high": {"color": "D93F0B", "description": "High priority"},
-    "priority-medium": {"color": "FBCA04", "description": "Medium priority"},
-    "priority-low": {"color": "0E8A16", "description": "Low priority"},
-    "status-backlog": {"color": "D4C5F9", "description": "In backlog"},
-    "status-todo": {"color": "EDEDED", "description": "Not yet started"},
-    "status-assigned": {"color": "C2E0FF", "description": "Assigned to agent"},
-    "status-in-progress": {"color": "5319E7", "description": "Work in progress"},
-    "status-ai-review": {"color": "BFDADC", "description": "Awaiting AI review"},
-    "status-human-review": {"color": "D4C5F9", "description": "Awaiting human review"},
-    "status-merge-release": {"color": "C2E0C6", "description": "Ready to merge/release"},
-    "status-blocked": {"color": "B60205", "description": "Blocked by dependency"},
-    "status-done": {"color": "0E8A16", "description": "Completed"},
+    "priority:critical": {"color": "B60205", "description": "Critical priority"},
+    "priority:high": {"color": "D93F0B", "description": "High priority"},
+    "priority:medium": {"color": "FBCA04", "description": "Medium priority"},
+    "priority:low": {"color": "0E8A16", "description": "Low priority"},
+    "status:backlog": {"color": "D4C5F9", "description": "In backlog"},
+    "status:todo": {"color": "EDEDED", "description": "Not yet started"},
+    "status:in-progress": {"color": "5319E7", "description": "Work in progress"},
+    "status:ai-review": {"color": "BFDADC", "description": "Awaiting AI review"},
+    "status:human-review": {"color": "D4C5F9", "description": "Awaiting human review"},
+    "status:merge-release": {"color": "C2E0C6", "description": "Ready to merge/release"},
+    "status:blocked": {"color": "B60205", "description": "Blocked by dependency"},
+    "status:done": {"color": "0E8A16", "description": "Completed"},
 }
 
 
@@ -210,15 +209,21 @@ def sync_module(module: dict[str, Any], plan_id: str, update_state: bool = True)
             # Create new issue
             title = f"[Module] {module.get('name', module.get('id'))}"
             body = generate_issue_body(module, plan_id)
-            labels = ["module", f"priority-{module.get('priority', 'medium')}"]
+            labels = ["module", f"priority:{module.get('priority', 'medium')}"]
 
-            status = module.get("status", "pending")
-            if status in ("pending", "assigned"):
-                labels.append("status-todo")
-            elif status in ("in-progress", "in_progress"):
-                labels.append("status-in-progress")
-            elif status == "complete":
-                labels.append("status-done")
+            status = module.get("status", "todo")
+            status_map = {
+                "backlog": "status:backlog",
+                "todo": "status:todo",
+                "in-progress": "status:in-progress",
+                "in_progress": "status:in-progress",
+                "ai-review": "status:ai-review",
+                "human-review": "status:human-review",
+                "merge-release": "status:merge-release",
+                "blocked": "status:blocked",
+                "done": "status:done",
+            }
+            labels.append(status_map.get(status, "status:todo"))
 
             new_issue = gh_issue_create(title, body, labels)
             if new_issue:
@@ -243,31 +248,29 @@ def sync_module(module: dict[str, Any], plan_id: str, update_state: bool = True)
 
             # Priority label
             priority = module.get("priority", "medium")
-            expected_priority = f"priority-{priority}"
+            expected_priority = f"priority:{priority}"
             for label in current_labels:
-                if label.startswith("priority-") and label != expected_priority:
+                if label.startswith("priority:") and label != expected_priority:
                     remove_labels.append(label)
             if expected_priority not in current_labels:
                 add_labels.append(expected_priority)
 
             # Status label
-            status = module.get("status", "pending")
+            status = module.get("status", "todo")
             status_map = {
-                "backlog": "status-backlog",
-                "pending": "status-todo",
-                "assigned": "status-todo",
-                "in-progress": "status-in-progress",
-                "in_progress": "status-in-progress",
-                "ai-review": "status-ai-review",
-                "human-review": "status-human-review",
-                "merge-release": "status-merge-release",
-                "blocked": "status-blocked",
-                "complete": "status-done",
-                "done": "status-done",
+                "backlog": "status:backlog",
+                "todo": "status:todo",
+                "in-progress": "status:in-progress",
+                "in_progress": "status:in-progress",
+                "ai-review": "status:ai-review",
+                "human-review": "status:human-review",
+                "merge-release": "status:merge-release",
+                "blocked": "status:blocked",
+                "done": "status:done",
             }
-            expected_status = status_map.get(status, "status-todo")
+            expected_status = status_map.get(status, "status:todo")
             for label in current_labels:
-                if label.startswith("status-") and label != expected_status:
+                if label.startswith("status:") and label != expected_status:
                     remove_labels.append(label)
             if expected_status not in current_labels:
                 add_labels.append(expected_status)
@@ -293,13 +296,21 @@ def sync_module(module: dict[str, Any], plan_id: str, update_state: bool = True)
 
         title = f"[Module] {module.get('name', module.get('id'))}"
         body = generate_issue_body(module, plan_id)
-        labels = ["module", f"priority-{module.get('priority', 'medium')}"]
+        labels = ["module", f"priority:{module.get('priority', 'medium')}"]
 
-        status = module.get("status", "pending")
-        if status in ("pending", "assigned"):
-            labels.append("status-todo")
-        elif status in ("in-progress", "in_progress"):
-            labels.append("status-in-progress")
+        status = module.get("status", "todo")
+        status_map = {
+            "backlog": "status:backlog",
+            "todo": "status:todo",
+            "in-progress": "status:in-progress",
+            "in_progress": "status:in-progress",
+            "ai-review": "status:ai-review",
+            "human-review": "status:human-review",
+            "merge-release": "status:merge-release",
+            "blocked": "status:blocked",
+            "done": "status:done",
+        }
+        labels.append(status_map.get(status, "status:todo"))
 
         new_issue = gh_issue_create(title, body, labels)
         if new_issue:
@@ -411,12 +422,12 @@ def cmd_verify(args: argparse.Namespace) -> int:
             if gh_issue_exists(issue_num):
                 # Check labels
                 labels = gh_get_issue_labels(issue_num)
-                expected_priority = f"priority-{module.get('priority', 'medium')}"
+                expected_priority = f"priority:{module.get('priority', 'medium')}"
 
                 if "module" not in labels:
                     issues.append(f"{module_id}: Missing 'module' label")
 
-                has_priority = any(label.startswith("priority-") for label in labels)
+                has_priority = any(label.startswith("priority:") for label in labels)
                 if not has_priority:
                     issues.append(f"{module_id}: Missing priority label")
                 elif expected_priority not in labels:

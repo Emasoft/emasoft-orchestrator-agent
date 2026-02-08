@@ -261,7 +261,7 @@ Check your inbox using the `agent-messaging` skill:
 
 #### 3. Monitor Progress via Kanban
 - Track task status using GitHub Projects labels
-- Update kanban columns: `To Do`, `In Progress`, `Review`, `Done`
+- Update kanban columns: `Todo`, `In Progress`, `AI Review`, `Human Review`, `Merge/Release`, `Done`, `Blocked`
 - Identify stalled tasks
 - Escalate blockers to ECOS
 

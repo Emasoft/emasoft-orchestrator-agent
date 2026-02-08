@@ -65,7 +65,7 @@ for module in modules:
     gh issue create \
       --title "[Module] $module.name" \
       --body "$module.description + $module.acceptance_criteria" \
-      --label "module,priority-$module.priority,status-todo"
+      --label "module,priority-$module.priority,status:todo"
 ```
 
 ### Step 4: Initialize Orchestration State

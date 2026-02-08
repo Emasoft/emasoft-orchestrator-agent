@@ -77,7 +77,9 @@ All projects managed by EOA orchestrator MUST use these standardized labels:
 |-------|-------|-------------|
 | `status:backlog` | `#EDEDED` | Not started |
 | `status:in-progress` | `#0052CC` | Work in progress |
-| `status:in-review` | `#FBCA04` | PR created, awaiting review |
+| `status:ai-review` | `#FBCA04` | Integrator AI review |
+| `status:human-review` | `#FF9F1C` | Awaiting human review |
+| `status:merge-release` | `#2EA44F` | Approved, ready to merge and release |
 | `status:blocked` | `#D93F0B` | Blocked by dependency |
 | `status:done` | `#0E8A16` | Completed and merged |
 | `type:feature` | `#1D76DB` | New feature |

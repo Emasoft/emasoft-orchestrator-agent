@@ -117,14 +117,14 @@ gh issue comment {{ISSUE_NUMBER}} \
 gh issue edit {{ISSUE_NUMBER}} \
   --repo {{GITHUB_OWNER}}/{{REPO_NAME}} \
   --remove-label "status:in-progress" \
-  --add-label "status:in-review"
+  --add-label "status:ai-review"
 
 # 2. Move card on kanban
 gh project item-edit \
   --project-id {{PROJECT_ID}} \
   --id {{ITEM_ID}} \
   --field-id {{STATUS_FIELD_ID}} \
-  --value "In Review"
+  --value "AI Review"
 
 # 3. Link PR to issue (automatic if PR body contains "Closes #{{ISSUE_NUMBER}}")
 
@@ -167,21 +167,41 @@ gh issue comment {{ISSUE_NUMBER}} \
 
 Agent is investigating and fixing failures."
 
-# 3. Do NOT move to "In Review"
+# 3. Do NOT move to "AI Review"
 # 4. Fix issues and re-run tests
 # 5. When fixed, proceed with Rule 4
 ```
 
-### Rule 6: Update Status When PR Merged
+### Rule 6: Update Status When PR Approved and Merged
 
-**When:** Pull request is merged (usually by orchestrator or human reviewer)
+**When:** Pull request is approved and merged (usually by orchestrator or human reviewer)
 
-**Actions:**
+**Transition flow:**
+- Standard tasks: `status:ai-review` → `status:merge-release` → `status:done`
+- Big/critical tasks: `status:ai-review` → `status:human-review` → `status:merge-release` → `status:done`
+
+**Actions (Step 1 - Move to Merge/Release after approval):**
 ```bash
 # 1. Update issue label
 gh issue edit {{ISSUE_NUMBER}} \
   --repo {{GITHUB_OWNER}}/{{REPO_NAME}} \
-  --remove-label "status:in-review" \
+  --remove-label "status:ai-review" \
+  --add-label "status:merge-release"
+
+# 2. Move card on kanban
+gh project item-edit \
+  --project-id {{PROJECT_ID}} \
+  --id {{ITEM_ID}} \
+  --field-id {{STATUS_FIELD_ID}} \
+  --value "Merge/Release"
+```
+
+**Actions (Step 2 - Move to Done after merge):**
+```bash
+# 1. Update issue label
+gh issue edit {{ISSUE_NUMBER}} \
+  --repo {{GITHUB_OWNER}}/{{REPO_NAME}} \
+  --remove-label "status:merge-release" \
   --add-label "status:done"
 
 # 2. Move card on kanban
@@ -201,6 +221,23 @@ gh issue close {{ISSUE_NUMBER}} \
 **Agent:** {{AGENT_NAME}}"
 ```
 
+**For big/critical tasks, add an intermediate human-review step:**
+```bash
+# After AI review passes, move to human review before merge
+gh issue edit {{ISSUE_NUMBER}} \
+  --repo {{GITHUB_OWNER}}/{{REPO_NAME}} \
+  --remove-label "status:ai-review" \
+  --add-label "status:human-review"
+
+gh project item-edit \
+  --project-id {{PROJECT_ID}} \
+  --id {{ITEM_ID}} \
+  --field-id {{STATUS_FIELD_ID}} \
+  --value "Human Review"
+
+# After human approval, proceed to merge-release (Step 1 above)
+```
+
 **Required Fields Before Transition:**
 - [ ] PR approved by reviewer
 - [ ] All CI checks passing
@@ -216,7 +253,7 @@ gh issue close {{ISSUE_NUMBER}} \
 # 1. Update labels
 gh issue edit {{ISSUE_NUMBER}} \
   --repo {{GITHUB_OWNER}}/{{REPO_NAME}} \
-  --remove-label "status:in-review" \
+  --remove-label "status:ai-review" \
   --add-label "status:in-progress"
 
 # 2. Move back to "In Progress"

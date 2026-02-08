@@ -23,7 +23,7 @@ This protocol defines when and how agents should update GitHub issue status and 
 **File:** [KANBAN_SYNC_PROTOCOL-part2-transitions-and-commands.md](./KANBAN_SYNC_PROTOCOL-part2-transitions-and-commands.md)
 
 - Valid Transitions (mermaid diagram)
-- Transition Commands (Backlog, In Progress, In Review, Done, Blocked)
+- Transition Commands (Backlog, Todo, In Progress, AI Review, Human Review, Merge/Release, Done, Blocked)
 - Project Board Sync Commands
   - Get Item ID for Issue
   - Update Status Field
@@ -37,7 +37,9 @@ This protocol defines when and how agents should update GitHub issue status and 
 - Automation Script (`scripts/sync-issue-status.sh`)
 - Required Fields Before Status Change
   - Before Moving to "In Progress"
-  - Before Moving to "In Review"
+  - Before Moving to "AI Review"
+  - Before Moving to "Human Review"
+  - Before Moving to "Merge/Release"
   - Before Moving to "Done"
   - Before Setting "Blocked"
 - Error Handling
@@ -48,15 +50,18 @@ This protocol defines when and how agents should update GitHub issue status and 
 
 ## Status States
 
-### Standard States
-1. **Backlog** - Task awaiting assignment
-2. **Todo** - Ready to start, dependencies resolved
-3. **In Progress** - Task actively being worked on
-4. **In Review** - Task awaiting review/verification
-5. **Done** - Task completed
+### Canonical 8-Column System
 
-### Special States
-- **Blocked** - Task cannot proceed due to external dependency
+| # | Column | Code | Label | Description |
+|---|--------|------|-------|-------------|
+| 1 | Backlog | backlog | status:backlog | Entry point for new tasks |
+| 2 | Todo | todo | status:todo | Ready to start, dependencies resolved |
+| 3 | In Progress | in-progress | status:in-progress | Active work |
+| 4 | AI Review | ai-review | status:ai-review | Integrator reviews ALL tasks |
+| 5 | Human Review | human-review | status:human-review | User reviews BIG tasks only |
+| 6 | Merge/Release | merge-release | status:merge-release | Ready to merge |
+| 7 | Done | done | status:done | Completed |
+| 8 | Blocked | blocked | status:blocked | Blocked at any stage |
 
 ---
 
@@ -66,49 +71,79 @@ This protocol defines when and how agents should update GitHub issue status and 
 | State | Label |
 |-------|-------|
 | Backlog | `status:backlog` |
+| Todo | `status:todo` |
 | In Progress | `status:in-progress` |
-| In Review | `status:in-review` |
+| AI Review | `status:ai-review` |
+| Human Review | `status:human-review` |
+| Merge/Release | `status:merge-release` |
 | Done | `status:done` |
 | Blocked | `status:blocked` |
 
 ### Valid Transitions
 
 ```
-Backlog ──────► In Progress ──────► In Review ──────► Done
-                    │                    │
-                    │◄───────────────────┘
-                    │                (changes requested)
-                    ▼
-                 Blocked
-                    │
-                    │
-                    ▼
-               In Progress
+Backlog ► Todo ► In Progress ► AI Review ─┬─► Merge/Release ► Done
+                     │                    │         ▲
+                     │                    ▼         │
+                     │              Human Review ───┘
+                     │              (big tasks only)
+                     │
+                     │◄──── AI Review (changes requested)
+                     │
+                     ▼
+                  Blocked
+                     │
+                     ▼
+                In Progress
 ```
 
 ### Quick Commands
 
-**Start work on issue:**
+**Move from Backlog to Todo:**
 ```bash
 gh issue edit {{ISSUE_NUMBER}} \
   --repo {{GITHUB_OWNER}}/{{REPO_NAME}} \
   --remove-label "status:backlog" \
+  --add-label "status:todo"
+```
+
+**Start work on issue (Todo to In Progress):**
+```bash
+gh issue edit {{ISSUE_NUMBER}} \
+  --repo {{GITHUB_OWNER}}/{{REPO_NAME}} \
+  --remove-label "status:todo" \
   --add-label "status:in-progress"
 ```
 
-**Submit for review:**
+**Submit for AI Review:**
 ```bash
 gh issue edit {{ISSUE_NUMBER}} \
   --repo {{GITHUB_OWNER}}/{{REPO_NAME}} \
   --remove-label "status:in-progress" \
-  --add-label "status:in-review"
+  --add-label "status:ai-review"
+```
+
+**Escalate to Human Review (big tasks only):**
+```bash
+gh issue edit {{ISSUE_NUMBER}} \
+  --repo {{GITHUB_OWNER}}/{{REPO_NAME}} \
+  --remove-label "status:ai-review" \
+  --add-label "status:human-review"
+```
+
+**Move to Merge/Release:**
+```bash
+gh issue edit {{ISSUE_NUMBER}} \
+  --repo {{GITHUB_OWNER}}/{{REPO_NAME}} \
+  --remove-label "status:ai-review" \
+  --add-label "status:merge-release"
 ```
 
 **Mark as done:**
 ```bash
 gh issue edit {{ISSUE_NUMBER}} \
   --repo {{GITHUB_OWNER}}/{{REPO_NAME}} \
-  --remove-label "status:in-review" \
+  --remove-label "status:merge-release" \
   --add-label "status:done"
 ```
 
@@ -147,7 +182,7 @@ The automation script handles both label updates and kanban board synchronizatio
 
 # Examples
 ./scripts/sync-issue-status.sh 42 "In Progress" "Started work"
-./scripts/sync-issue-status.sh 42 "In Review" "PR #123 ready for review"
+./scripts/sync-issue-status.sh 42 "AI Review" "PR #123 ready for review"
 ./scripts/sync-issue-status.sh 42 "Done" "Merged and deployed"
 ./scripts/sync-issue-status.sh 42 "Blocked" "Waiting for API key"
 ```

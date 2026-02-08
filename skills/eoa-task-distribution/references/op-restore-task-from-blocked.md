@@ -46,7 +46,7 @@ Move a task back to its PREVIOUS column when the blocker has been resolved, and 
 ```bash
 ISSUE=42
 BLOCKER_ISSUE=99
-PREVIOUS_STATUS="status:in-review"
+PREVIOUS_STATUS="status:ai-review"
 RESOLUTION="AWS credentials have been provisioned by DevOps team"
 AGENT="implementer-1"
 
@@ -81,7 +81,7 @@ gh issue edit $ISSUE --remove-label "status:blocked" --add-label "$PREVIOUS_STAT
   "unblocked": true,
   "issue_number": 42,
   "blocker_issue_closed": 99,
-  "restored_status": "status:in-review",
+  "restored_status": "status:ai-review",
   "agent_notified": "implementer-1"
 }
 ```
@@ -99,7 +99,7 @@ gh issue edit $ISSUE --remove-label "status:blocked" --add-label "$PREVIOUS_STAT
 - [ ] Add resolution comment on the blocked task issue
 - [ ] Close the blocker issue: `gh issue close $BLOCKER_ISSUE --comment "Resolved: [details]"`
 - [ ] Remove `status:blocked` label from the task
-- [ ] Restore previous status label on the task (e.g., `status:in-progress`, `status:in-review`)
+- [ ] Restore previous status label on the task (e.g., `status:in-progress`, `status:ai-review`)
 - [ ] Move task back to its PREVIOUS column on the Kanban board (not always "In Progress")
 - [ ] Notify the assigned agent via AI Maestro that the blocker is resolved and work can resume
 - [ ] Log the resolution in the issue timeline

@@ -59,10 +59,10 @@ Apply consistent labels:
 |-------|-------|
 | `module` | All module issues |
 | `priority-high` / `priority-medium` / `priority-low` | Priority level |
-| `status-todo` | Initial status |
-| `status-in-progress` | When assigned and started |
-| `status-review` | When PR submitted |
-| `status-done` | When completed |
+| `status:todo` | Initial status |
+| `status:in-progress` | When assigned and started |
+| `status:review` | When PR submitted |
+| `status:done` | When completed |
 
 ### Step 3: Create Issues Using gh CLI
 
@@ -90,7 +90,7 @@ high
 - Module ID: auth-core
 EOF
 )" \
-  --label "module,priority-high,status-todo"
+  --label "module,priority-high,status:todo"
 ```
 
 ### Step 4: Link Dependencies
@@ -178,7 +178,7 @@ medium
 - Design Doc: design/auth/google-oauth-spec.md
 EOF
 )" \
-  --label "module,priority-medium,status-blocked"
+  --label "module,priority-medium,status:blocked"
 ```
 
 ### Example: Batch Issue Creation Script
@@ -191,21 +191,21 @@ EOF
 AUTH_CORE=$(gh issue create \
   --title "[Module] Core Authentication" \
   --body "..." \
-  --label "module,priority-high,status-todo" \
+  --label "module,priority-high,status:todo" \
   --json number -q '.number')
 
 # Module 2: oauth-google (depends on auth-core)
 OAUTH_GOOGLE=$(gh issue create \
   --title "[Module] Google OAuth2" \
   --body "## Dependencies\nBlocked by: #$AUTH_CORE" \
-  --label "module,priority-medium,status-blocked" \
+  --label "module,priority-medium,status:blocked" \
   --json number -q '.number')
 
 # Module 3: oauth-github (depends on auth-core)
 OAUTH_GITHUB=$(gh issue create \
   --title "[Module] GitHub OAuth2" \
   --body "## Dependencies\nBlocked by: #$AUTH_CORE" \
-  --label "module,priority-medium,status-blocked" \
+  --label "module,priority-medium,status:blocked" \
   --json number -q '.number')
 
 echo "Created issues: auth-core=#$AUTH_CORE, oauth-google=#$OAUTH_GOOGLE, oauth-github=#$OAUTH_GITHUB"

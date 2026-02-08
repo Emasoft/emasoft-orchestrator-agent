@@ -138,7 +138,7 @@ Priority determines the order in which modules should be assigned and completed.
 |--------|-------------|
 | Assignment order | Critical modules assigned first |
 | Stop hook | All priorities must complete |
-| GitHub labels | `priority-critical`, `priority-high`, etc. |
+| GitHub labels | `priority:critical`, `priority:high`, etc. |
 | Agent attention | Agents told module priority |
 
 **Command Examples**:
@@ -199,8 +199,8 @@ Implementation of the {module_name} module (added during orchestration).
 | Label | Purpose |
 |-------|---------|
 | `module` | Identifies as module (not bug, not feature request) |
-| `priority-{level}` | Priority level (critical, high, medium, low) |
-| `status-todo` | Initial status |
+| `priority:{level}` | Priority level (critical, high, normal, low) |
+| `status:todo` | Initial status |
 
 ### If Issue Creation Fails
 

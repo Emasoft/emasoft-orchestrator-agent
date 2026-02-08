@@ -33,12 +33,14 @@ gh project item-list {PROJECT_NUMBER} --owner {OWNER}
 
 | Column | When to Move Here |
 |--------|-------------------|
-| Backlog | Task created, not started |
-| Ready | Task ready to be picked up |
-| In Progress | You sent ACK and started work |
-| In Review | PR created, awaiting review |
-| Done | PR merged, task verified |
-| Blocked | Cannot proceed, awaiting resolution |
+| Backlog | Entry point for new tasks |
+| Todo | Ready to start |
+| In Progress | Active work |
+| AI Review | Integrator reviews ALL tasks |
+| Human Review | User reviews BIG tasks only |
+| Merge/Release | Ready to merge |
+| Done | Completed |
+| Blocked | Blocked at any stage |
 
 ---
 
@@ -67,7 +69,7 @@ If project field IDs are complex, use labels instead:
 gh issue edit {ISSUE_NUM} --add-label "status:in-progress"
 
 # Remove old status label
-gh issue edit {ISSUE_NUM} --remove-label "status:ready"
+gh issue edit {ISSUE_NUM} --remove-label "status:todo"
 ```
 
 ---
@@ -76,10 +78,12 @@ gh issue edit {ISSUE_NUM} --remove-label "status:ready"
 
 | Label | Meaning |
 |-------|---------|
-| `status:backlog` | Not started |
-| `status:ready` | Ready for work |
+| `status:backlog` | Entry point for new tasks |
+| `status:todo` | Ready to start |
 | `status:in-progress` | Currently being worked on |
-| `status:in-review` | PR awaiting review |
+| `status:ai-review` | Integrator reviewing task |
+| `status:human-review` | User reviewing big task |
+| `status:merge-release` | Ready to merge |
 | `status:blocked` | Waiting for dependency |
 | `status:done` | Completed and merged |
 
@@ -92,7 +96,7 @@ gh issue edit {ISSUE_NUM} --remove-label "status:ready"
 ```bash
 # Update issue status
 gh issue edit {ISSUE_NUM} --add-label "status:in-progress"
-gh issue edit {ISSUE_NUM} --remove-label "status:ready"
+gh issue edit {ISSUE_NUM} --remove-label "status:todo"
 
 # Add comment
 gh issue comment {ISSUE_NUM} --body "[ACK] Starting work."
@@ -130,7 +134,7 @@ gh pr create --title "feat: {description}" \
 "
 
 # Update issue status
-gh issue edit {ISSUE_NUM} --add-label "status:in-review"
+gh issue edit {ISSUE_NUM} --add-label "status:ai-review"
 gh issue edit {ISSUE_NUM} --remove-label "status:in-progress"
 ```
 
@@ -219,7 +223,7 @@ gh project item-edit --project-id {PROJECT_ID} --id {ITEM_ID} \
 
 | Field | Typical Values |
 |-------|----------------|
-| Status | Backlog, Ready, In Progress, In Review, Done, Blocked |
+| Status | Backlog, Todo, In Progress, AI Review, Human Review, Merge/Release, Done, Blocked |
 | Priority | P0-Critical, P1-High, P2-Medium, P3-Low |
 | Component | Frontend, Backend, API, Database, CI/CD |
 | Platform | macOS, Windows, Linux, Cross-platform |
@@ -261,5 +265,5 @@ When working on a GitHub issue:
 - [ ] Feature branch created with issue number
 - [ ] Progress comments added at checkpoints
 - [ ] PR created with "Closes #X" in body
-- [ ] Issue moved to "In Review"
+- [ ] Issue moved to "AI Review"
 - [ ] Completion report sent after merge

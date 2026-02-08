@@ -63,7 +63,7 @@ python3 scripts/github_sync.py sync <module_id> --direction from-github
 |------------------|-------------------|
 | `name` | Issue title |
 | `acceptance_criteria` | Issue body |
-| `priority` | `priority-*` label |
+| `priority` | `priority:*` label |
 | `status` | `status:*` label |
 | `assigned_to` | Issue assignee |
 
@@ -255,16 +255,18 @@ Sync should run automatically after:
 | Label | Meaning |
 |-------|---------|
 | `module` | This issue tracks a module |
-| `priority-critical` | Critical priority |
-| `priority-high` | High priority |
-| `priority-medium` | Medium priority |
-| `priority-low` | Low priority |
-| `status:pending` | Not yet assigned |
-| `status:assigned` | Agent assigned |
+| `priority:critical` | Critical priority |
+| `priority:high` | High priority |
+| `priority:medium` | Medium priority |
+| `priority:low` | Low priority |
+| `status:backlog` | In backlog |
+| `status:todo` | Not yet started |
 | `status:in-progress` | Work underway |
-| `status:ai-review` | PR awaiting review |
-| `status:complete` | Module finished |
-| `status:wontfix` | Module cancelled |
+| `status:ai-review` | PR awaiting AI review |
+| `status:human-review` | Awaiting human review |
+| `status:merge-release` | Ready to merge/release |
+| `status:done` | Module finished |
+| `status:blocked` | Blocked by dependency |
 
 ---
 

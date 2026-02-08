@@ -237,7 +237,7 @@ The command:
 For each module, creates a GitHub Issue with:
 - Title: `[Module] {module_name}`
 - Body: Module description + acceptance criteria
-- Labels: `module`, `priority-{priority}`, `status-todo`
+- Labels: `module`, `priority-{priority}`, `status:todo`
 - Links to plan ID
 
 **Example Issue:**

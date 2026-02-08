@@ -67,7 +67,7 @@
 | Label | Description | Who Sets It |
 |-------|-------------|-------------|
 | `status:backlog` | In backlog, needs triage or is deferred | Created automatically, by user, or EOA after triage |
-| `status:ready` | Ready to be worked on | EOA when assigning |
+| `status:todo` | Ready to be worked on | EOA when assigning |
 | `status:in-progress` | Currently being worked on | Assigned agent when starting |
 | `status:blocked` | Cannot proceed (includes waiting for info, intentionally paused) | Agent when blocked, EOA or ECOS |
 | `status:ai-review` | Integrator reviews ALL tasks | Agent after completing work |
@@ -82,7 +82,7 @@
 
 **Status Workflow:**
 ```
-backlog → ready → in-progress → ai-review → human-review → merge-release → done
+backlog → todo → in-progress → ai-review → human-review → merge-release → done
                        ↓                        ↑ (BIG tasks only)
                     blocked → (resolved) → in-progress
 ```

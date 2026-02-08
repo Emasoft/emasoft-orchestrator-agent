@@ -35,7 +35,7 @@ Verification outcomes trigger automatic status transitions:
 
 | Verification Result | GitHub Action |
 |---------------------|---------------|
-| All tests pass (exit 0) | Move to "In Review" if PR exists |
+| All tests pass (exit 0) | Move to "AI Review" if PR exists |
 | Evidence collected | Add comment with evidence summary |
 | Verification failed | Move to "Blocked", add failure label |
 | Retry succeeded | Remove failure label, resume workflow |

@@ -56,7 +56,7 @@ Move a task to the Blocked column when an agent reports the task cannot proceed,
 
 ```bash
 ISSUE=42
-CURRENT_STATUS="status:in-review"
+CURRENT_STATUS="status:ai-review"
 BLOCKER_REASON="Missing AWS credentials"
 AGENT="implementer-1"
 
@@ -98,7 +98,7 @@ gh issue create --title "BLOCKER: $BLOCKER_REASON" --label "type:blocker" \
       "blocker_issue_number": "99",
       "assigned_agent": "impl-01",
       "blocker_category": "access-credentials",
-      "previous_status": "status:in-review",
+      "previous_status": "status:ai-review",
       "impact": "Cannot complete deployment testing"
     }
   }
