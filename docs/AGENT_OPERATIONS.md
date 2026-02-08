@@ -156,7 +156,7 @@ EOA needs architectural guidance
 ```markdown
 See skill: **eoa-orchestration-patterns**
 See skill: **eoa-task-distribution**
-See skill: **eoa-kanban-management**
+See skill: **eoa-label-taxonomy**
 ```
 
 **WRONG** (file paths):
