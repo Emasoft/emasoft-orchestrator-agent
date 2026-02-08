@@ -95,7 +95,7 @@ modules_status:
     pr: "#55"
     acceptance_criteria: "Users can register with email and password"
   - id: oauth-google
-    status: in_progress
+    status: in-progress
     github_issue: "#43"
     assigned_to: implementer-2
   - id: auth-2fa
@@ -168,7 +168,7 @@ Each module entry:
 | Field | Type | Description |
 |-------|------|-------------|
 | `id` | String | Module identifier |
-| `status` | String | `pending`, `in_progress`, `complete`, `blocked` |
+| `status` | String | `pending`, `in-progress`, `complete`, `blocked` |
 | `github_issue` | String | Issue number like "#42" |
 | `assigned_to` | String | Agent ID or null |
 | `pr` | String | PR number when submitted |

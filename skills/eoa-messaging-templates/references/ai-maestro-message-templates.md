@@ -260,6 +260,8 @@ When EAMA responds with the user's decision:
 http://localhost:23000/api/messages
 ```
 
+> **Note**: Do not call this API endpoint directly. Use the `agent-messaging` skill which handles the API format automatically.
+
 ### Generic Message Template
 
 Send a message using the `agent-messaging` skill with these fields:
@@ -359,7 +361,7 @@ To test AI Maestro connectivity, use the `agent-messaging` skill:
 - **Content**: brief confirmation message
 - **Type**: `acknowledgment`
 - **Priority**: `normal`
-- **Additional fields**: `task_uuid` (if applicable), `status` ("received", "understood", or "in_progress")
+- **Additional fields**: `task_uuid` (if applicable), `status` ("received", "understood", or "in-progress")
 
 **Verify**: confirm acknowledgment delivery.
 

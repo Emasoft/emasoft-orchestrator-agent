@@ -63,6 +63,8 @@ cp "$HANDOFF_FILE" "$HANDOFF_DIR/"
 
 ### Message Format
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "{{REPLACEMENT_AGENT_SESSION}}",
@@ -111,6 +113,8 @@ Send using the `agent-messaging` skill:
 
 The replacement agent MUST respond with:
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "{{ORCHESTRATOR_SESSION}}",
@@ -156,6 +160,8 @@ If replacement agent has questions:
 2. **UPDATE** handoff document if needed
 3. **RE-SEND** notification with updated URL
 4. **WAIT** for confirmation ACK
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {
@@ -207,6 +213,8 @@ Wait for ACK (timeout period based on urgency)
 
 ### Reminder Message
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "{{REPLACEMENT_AGENT_SESSION}}",
@@ -226,6 +234,8 @@ Wait for ACK (timeout period based on urgency)
 ### Escalation to ECOS
 
 After 2 reminders with no response:
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {

@@ -400,6 +400,67 @@ This prevents EOA from consuming resources while waiting for implementers.
 
 ---
 
+## Kanban Column System
+
+All projects use the canonical **8-column kanban system** on GitHub Projects:
+
+| Column | Code | Label |
+|--------|------|-------|
+| Backlog | `backlog` | `status:backlog` |
+| Todo | `todo` | `status:todo` |
+| In Progress | `in-progress` | `status:in-progress` |
+| AI Review | `ai-review` | `status:ai-review` |
+| Human Review | `human-review` | `status:human-review` |
+| Merge/Release | `merge-release` | `status:merge-release` |
+| Done | `done` | `status:done` |
+| Blocked | `blocked` | `status:blocked` |
+
+**Task routing**:
+- Small tasks: In Progress → AI Review → Merge/Release → Done
+- Big tasks: In Progress → AI Review → Human Review → Merge/Release → Done
+
+---
+
+## Wave 1-7 Skill Additions
+
+The following skills were added to EOA (2026-02-06 — 2026-02-07):
+
+| Skill | Purpose |
+|-------|---------|
+| `eoa-agent-replacement` | Agent failure detection and replacement protocols |
+| `eoa-remote-agent-coordinator` | Remote agent coordination and multi-host management |
+| `eoa-messaging-templates` | Standardized AI Maestro message templates |
+| `eoa-orchestration-patterns` | Task distribution, load balancing, dependency management |
+| `eoa-module-management` | Module lifecycle and dependency tracking |
+
+---
+
+## Scripts Reference
+
+| Script | Purpose |
+|--------|---------|
+| `scripts/pre-push-hook.py` | Pre-push validation (manifest, hooks, lint, Unicode compliance) |
+| `scripts/eoa_kanban_manager.py` | Kanban column management |
+| `scripts/eoa_validate_plugin.py` | Plugin structure validation |
+| `scripts/eoa_file_tracker.py` | File change tracking |
+| `scripts/eoa_download.py` | Plugin download utility |
+| `scripts/eoa_check_verification_status.py` | Verification status checking |
+| `scripts/eoa_check_polling_due.py` | Polling schedule management |
+| `scripts/eoa_stop_check/` | Stop condition evaluation (phase.py, tasks.py, utils.py) |
+
+---
+
+## Recent Changes (2026-02-07)
+
+- Added 8-column canonical kanban system (unified from 5 conflicting systems)
+- Added Wave 1-7 skills: agent-replacement, remote-coordinator, messaging-templates, orchestration-patterns, module-management
+- Added Unicode compliance check (step 4) to pre-push hook
+- Added `encoding="utf-8"` to all Python file operations
+- Unified kanban column names to dash format (`in-progress`, `ai-review`, `merge-release`)
+- Synchronized FULL_PROJECT_WORKFLOW.md, TEAM_REGISTRY_SPECIFICATION.md, ROLE_BOUNDARIES.md across all plugins
+
+---
+
 ## 11. References
 
 ### Related Documentation

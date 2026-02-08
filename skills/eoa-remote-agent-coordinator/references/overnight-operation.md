@@ -99,6 +99,8 @@ ORCHESTRATOR analyzes tasks:
 
 Send tasks to agents:
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "dev-agent-1",
@@ -246,6 +248,9 @@ Only for:
 - Critical infrastructure failure
 
 Message format:
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "user-notification-channel",
@@ -269,6 +274,9 @@ For:
 - Non-critical blockers
 
 Message format:
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "orchestrator-queue",

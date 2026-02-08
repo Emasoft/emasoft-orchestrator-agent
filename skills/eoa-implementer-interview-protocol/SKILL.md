@@ -7,6 +7,7 @@ metadata:
   author: Emasoft
   version: 1.0.0
 context: fork
+user-invocable: false
 agent: eoa-main
 workflow-instruction: "Steps 14, 19"
 procedure: "proc-clarify-tasks, proc-complete-task"
@@ -141,7 +142,7 @@ IMPLEMENTER                            ORCHESTRATOR
 
 After implementer creates PR and reports the number:
 
-1. Update issue status: `status:needs-review`
+1. Update issue status: `status:ai-review`
 2. Notify Integrator via AI Maestro (template in **eoa-messaging-templates**)
 3. Transfer responsibility from orchestrator to integrator
 
@@ -207,7 +208,7 @@ Copy this checklist and track your progress:
 - [ ] Send APPROVED or REVISE message
 - [ ] Wait for PR creation and PR number report
 - [ ] Notify Integrator (EIA) that PR is ready for review
-- [ ] Update issue status to `status:needs-review`
+- [ ] Update issue status to `status:ai-review`
 
 ### Pre-Task Interview Steps
 
@@ -235,7 +236,7 @@ Copy this checklist and track your progress:
 9. If verification fails, send REVISE message with specific issues
 10. Wait for PR creation and PR number report
 11. Notify Integrator (EIA) that PR is ready for review
-12. Update issue status to `status:needs-review`
+12. Update issue status to `status:ai-review`
 
 ---
 

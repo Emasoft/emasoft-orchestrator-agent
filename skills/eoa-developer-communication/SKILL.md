@@ -10,6 +10,7 @@ metadata:
   audience: AI agents working with human developers
   prerequisites: None
 context: fork
+user-invocable: false
 agent: eoa-main
 workflow-instruction: "Steps 14, 15, 22"
 procedure: "proc-clarify-tasks, proc-handle-feedback, proc-handle-failed-pr"

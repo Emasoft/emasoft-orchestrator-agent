@@ -90,7 +90,7 @@ def rotate_log_if_needed() -> None:
                 log_path.rename(f"{LOG_FILE}.old")
             except OSError:
                 # Log rotation failed - truncate instead
-                log_path.write_text("")
+                log_path.write_text("", encoding="utf-8")
     except OSError:
         pass
 

@@ -74,7 +74,7 @@ Read this section when:
   - Core Features (must be implemented on all platforms)
   - Platform-Specific Features (optional)
   - Experimental Features (not guaranteed to work)
-- **Feature Status Definitions** - implemented, in_progress, planned, not_supported, not_applicable
+- **Feature Status Definitions** - implemented, in-progress, planned, not_supported, not_applicable
 - **Generating Feature Parity Report** - Script to create markdown tables
 
 ### When to Read

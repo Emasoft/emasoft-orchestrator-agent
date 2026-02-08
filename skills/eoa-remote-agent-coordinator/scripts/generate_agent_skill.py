@@ -144,7 +144,7 @@ gh issue comment {issue_num} --body "[ACK] Starting work."
 gh issue comment {issue_num} --body "[PROGRESS] Checkpoint {{N}}: {{status}}"
 
 # After PR created
-gh issue edit {issue_num} --add-label "status:in-review"
+gh issue edit {issue_num} --add-label "status:ai-review"
 ```
 
 ---

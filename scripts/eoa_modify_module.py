@@ -211,7 +211,7 @@ def remove_module(data: dict, module_id: str, force: bool) -> bool:
         if module.get("id") == module_id:
             status = module.get("status", "pending")
 
-            if status in ("in_progress", "complete") and not force:
+            if status in ("in-progress", "in_progress", "complete") and not force:
                 print(f"ERROR: Cannot remove module with status '{status}'")
                 return False
 

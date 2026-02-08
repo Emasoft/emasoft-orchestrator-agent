@@ -105,7 +105,7 @@ feature_parity:
       description: "Automatic update mechanism"
       status:
         macos: "planned"
-        windows: "in_progress"
+        windows: "in-progress"
         linux: "planned"
       target_version:
         macos: "1.3.0"
@@ -118,7 +118,7 @@ feature_parity:
 ## Feature Status Definitions
 
 - **implemented**: Feature is complete and tested
-- **in_progress**: Feature is being developed
+- **in-progress**: Feature is being developed
 - **planned**: Feature is scheduled for development
 - **not_supported**: Platform cannot support this feature
 - **not_applicable**: Feature doesn't make sense on this platform

@@ -452,6 +452,9 @@ All 2000 lines analyzed. Summary written to detail file includes full stack trac
 **Required**: This agent uses AI Maestro for inter-agent messaging.
 
 **Message Format:**
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "[recipient-agent-name]",

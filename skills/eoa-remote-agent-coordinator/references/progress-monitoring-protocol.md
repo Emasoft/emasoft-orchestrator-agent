@@ -149,6 +149,8 @@ If no update received after expected checkpoint:
 
 ### 7.1 Status Request Message
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "<agent-session-name>",
@@ -164,6 +166,8 @@ If no update received after expected checkpoint:
 
 ### 7.2 Unblocking Assistance Message
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "<agent-session-name>",
@@ -178,6 +182,8 @@ If no update received after expected checkpoint:
 ```
 
 ### 7.3 Completion Verification Message
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {

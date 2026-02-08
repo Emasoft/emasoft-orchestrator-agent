@@ -62,7 +62,7 @@ active_assignments:
     module: "auth-core"
     github_issue: "#42"
     task_uuid: "task-uuid-12345"
-    status: "in_progress"
+    status: "in-progress"
     started: "2026-01-31T10:00:00Z"
     last_poll: "2026-01-31T14:00:00Z"
     instruction_verification:
@@ -260,7 +260,7 @@ context_compilation:
   state_file:
     assignments:
       - module: "auth-core"
-        status: "in_progress"
+        status: "in-progress"
         progress: 60
     verification_status: "verified"
 

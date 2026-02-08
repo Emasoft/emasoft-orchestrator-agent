@@ -418,7 +418,7 @@ Complete reference for all 16 Two-Phase Mode commands.
 
 **Restrictions:**
 - Only for modules with status "pending", "assigned", or "blocked"
-- Cannot reassign "in_progress" modules
+- Cannot reassign "in-progress" modules
 
 **Actions:**
 1. Notifies old agent to stop

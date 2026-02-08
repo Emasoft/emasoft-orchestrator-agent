@@ -28,7 +28,7 @@ Update GitHub issues with verification results to maintain issue tracking accura
 
 | Verification Result | GitHub Action |
 |---------------------|---------------|
-| All tests pass (exit 0) | Move to "In Review" if PR exists |
+| All tests pass (exit 0) | Move to "AI Review" if PR exists |
 | Evidence collected | Add comment with evidence summary |
 | Verification failed | Move to "Blocked", add failure label |
 | Retry succeeded | Remove failure label, resume workflow |
@@ -177,15 +177,15 @@ fi
 | `verified` | Verification passed |
 | `verification-failed` | Verification failed |
 | `blocked` | Issue blocked by verification failure |
-| `needs-review` | Verification passed, awaiting review |
+| `ai-review` | Verification passed, awaiting review |
 
 ## Status Transitions
 
 ```
-[In Progress] -> Verification Pass -> [In Review]
+[In Progress] -> Verification Pass -> [AI Review]
 [In Progress] -> Verification Fail -> [Blocked]
-[Blocked] -> Retry Success -> [In Progress] or [In Review]
-[In Review] -> PR Merged -> [Done]
+[Blocked] -> Retry Success -> [In Progress] or [AI Review]
+[AI Review] -> PR Merged -> [Done]
 ```
 
 ## Exit Criteria

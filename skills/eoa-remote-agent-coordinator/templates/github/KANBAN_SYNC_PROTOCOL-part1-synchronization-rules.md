@@ -66,6 +66,8 @@ gh issue comment {{ISSUE_NUMBER}} \
 cc @{{ORCHESTRATOR_OWNER}}"
 
 # 3. Notify orchestrator
+# Note: Use the `agent-messaging` skill to send messages instead of direct curl commands.
+# If the skill is unavailable in the remote agent's environment, the curl format below can be used as fallback.
 curl -X POST "{{AIMAESTRO_API}}/api/messages" \
   -H "Content-Type: application/json" \
   -d '{

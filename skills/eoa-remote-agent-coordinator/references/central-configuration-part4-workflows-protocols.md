@@ -55,6 +55,8 @@
 
 **WRONG** (embedding config in message):
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "dev-agent-1",
@@ -69,6 +71,8 @@
 ---
 
 **CORRECT** (referencing central config):
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {
@@ -134,6 +138,8 @@ source .venv/bin/activate
 
 ### Change Notification Message
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "all-active-agents",
@@ -161,6 +167,8 @@ source .venv/bin/activate
 
 **Acknowledgment message**:
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "orchestrator-master",
@@ -186,6 +194,8 @@ source .venv/bin/activate
 3. **Breaking changes** (incompatible requirements): Report conflict, wait for orchestrator decision
 
 **Conflict report**:
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {

@@ -45,7 +45,7 @@ def load_tracking_data() -> dict[str, Any]:
     tracking_file = get_tracking_file()
     if tracking_file.exists():
         try:
-            with open(tracking_file) as f:
+            with open(tracking_file, encoding="utf-8") as f:
                 return cast(dict[str, Any], json.load(f))
         except (json.JSONDecodeError, OSError):
             pass
@@ -57,7 +57,7 @@ def save_tracking_data(data: dict[str, Any]) -> None:
     tracking_file = get_tracking_file()
     temp_file = tracking_file.with_suffix(".tmp")
     try:
-        with open(temp_file, "w") as f:
+        with open(temp_file, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2)
         temp_file.replace(tracking_file)
     except OSError as e:

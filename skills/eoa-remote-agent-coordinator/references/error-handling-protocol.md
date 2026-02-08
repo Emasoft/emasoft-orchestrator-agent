@@ -64,6 +64,8 @@ Agents should stop work and report when:
 
 ### 2.1 Error Report Message Schema
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "orchestrator-master",
@@ -103,6 +105,8 @@ Agents should stop work and report when:
 
 The orchestrator MUST acknowledge error reports within 5 minutes:
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "<agent-session-name>",
@@ -119,6 +123,8 @@ The orchestrator MUST acknowledge error reports within 5 minutes:
 ### 3.2 Providing Solutions
 
 After analysis, provide concrete next steps:
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {

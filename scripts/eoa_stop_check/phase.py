@@ -330,7 +330,7 @@ def check_all_verifications() -> tuple[bool, str | None]:
 
     try:
         # Use full YAML parsing for nested structures
-        content = exec_path.read_text()
+        content = exec_path.read_text(encoding="utf-8")
         if not content.startswith("---"):
             return (True, None)
 
@@ -439,7 +439,7 @@ def check_config_feedback_requests() -> tuple[bool, str | None]:
 
     try:
         # Use full YAML parsing for nested structures
-        content = exec_path.read_text()
+        content = exec_path.read_text(encoding="utf-8")
         if not content.startswith("---"):
             return (True, None)
 

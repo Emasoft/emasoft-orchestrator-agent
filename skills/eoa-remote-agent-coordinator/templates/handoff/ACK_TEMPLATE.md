@@ -31,6 +31,9 @@
 3. **Sent via AI Maestro** with brief summary (NOT full document)
 
 **Message Format**:
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "{{SENDER_SESSION}}",

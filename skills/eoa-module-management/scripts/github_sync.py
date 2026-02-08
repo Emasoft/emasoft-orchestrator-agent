@@ -31,9 +31,14 @@ REQUIRED_LABELS = {
     "priority-high": {"color": "D93F0B", "description": "High priority"},
     "priority-medium": {"color": "FBCA04", "description": "Medium priority"},
     "priority-low": {"color": "0E8A16", "description": "Low priority"},
+    "status-backlog": {"color": "D4C5F9", "description": "In backlog"},
     "status-todo": {"color": "EDEDED", "description": "Not yet started"},
     "status-assigned": {"color": "C2E0FF", "description": "Assigned to agent"},
     "status-in-progress": {"color": "5319E7", "description": "Work in progress"},
+    "status-ai-review": {"color": "BFDADC", "description": "Awaiting AI review"},
+    "status-human-review": {"color": "D4C5F9", "description": "Awaiting human review"},
+    "status-merge-release": {"color": "C2E0C6", "description": "Ready to merge/release"},
+    "status-blocked": {"color": "B60205", "description": "Blocked by dependency"},
     "status-done": {"color": "0E8A16", "description": "Completed"},
 }
 
@@ -210,7 +215,7 @@ def sync_module(module: dict[str, Any], plan_id: str, update_state: bool = True)
             status = module.get("status", "pending")
             if status in ("pending", "assigned"):
                 labels.append("status-todo")
-            elif status == "in_progress":
+            elif status in ("in-progress", "in_progress"):
                 labels.append("status-in-progress")
             elif status == "complete":
                 labels.append("status-done")
@@ -248,10 +253,17 @@ def sync_module(module: dict[str, Any], plan_id: str, update_state: bool = True)
             # Status label
             status = module.get("status", "pending")
             status_map = {
+                "backlog": "status-backlog",
                 "pending": "status-todo",
                 "assigned": "status-todo",
+                "in-progress": "status-in-progress",
                 "in_progress": "status-in-progress",
-                "complete": "status-done"
+                "ai-review": "status-ai-review",
+                "human-review": "status-human-review",
+                "merge-release": "status-merge-release",
+                "blocked": "status-blocked",
+                "complete": "status-done",
+                "done": "status-done",
             }
             expected_status = status_map.get(status, "status-todo")
             for label in current_labels:
@@ -286,7 +298,7 @@ def sync_module(module: dict[str, Any], plan_id: str, update_state: bool = True)
         status = module.get("status", "pending")
         if status in ("pending", "assigned"):
             labels.append("status-todo")
-        elif status == "in_progress":
+        elif status in ("in-progress", "in_progress"):
             labels.append("status-in-progress")
 
         new_issue = gh_issue_create(title, body, labels)

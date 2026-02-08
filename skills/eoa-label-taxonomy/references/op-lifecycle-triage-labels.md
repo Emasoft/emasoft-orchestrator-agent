@@ -7,11 +7,11 @@ workflow-instruction: support
 
 ## When to Use
 
-Use this operation when triaging an issue that has `status:needs-triage` label.
+Use this operation when triaging an issue that has `status:backlog` label.
 
 ## Prerequisites
 
-- Issue exists with `status:needs-triage`
+- Issue exists with `status:backlog`
 - Issue has been analyzed for priority, effort, and scope
 - GitHub CLI (`gh`) authenticated
 
@@ -59,7 +59,7 @@ toolchain:rust
 | Condition | Status |
 |-----------|--------|
 | Ready for immediate work | `status:ready` |
-| Needs more info | `status:needs-info` |
+| Needs more info | `status:blocked` |
 | Blocked by other work | `status:blocked` |
 | Deferred to later | `status:backlog` |
 
@@ -68,17 +68,17 @@ toolchain:rust
 ```bash
 # Full triage - move to ready
 gh issue edit <ISSUE_NUM> \
-  --remove-label "status:needs-triage" \
+  --remove-label "status:backlog" \
   --add-label "priority:<priority>,effort:<effort>,status:ready"
 
 # With platform/toolchain
 gh issue edit <ISSUE_NUM> \
-  --remove-label "status:needs-triage" \
+  --remove-label "status:backlog" \
   --add-label "priority:<priority>,effort:<effort>,status:ready,platform:<platform>,toolchain:<toolchain>"
 
 # Move to backlog
 gh issue edit <ISSUE_NUM> \
-  --remove-label "status:needs-triage" \
+  --remove-label "status:backlog" \
   --add-label "priority:<priority>,effort:<effort>,status:backlog"
 ```
 
@@ -110,7 +110,7 @@ gh issue comment <ISSUE_NUM> --body "**Triage Complete**
 
 | Error | Cause | Solution |
 |-------|-------|----------|
-| Cannot estimate effort | Unclear scope | Request clarification, set `status:needs-info` |
+| Cannot estimate effort | Unclear scope | Request clarification, set `status:blocked` |
 | Priority unclear | No business context | Default to `priority:normal`, escalate if needed |
 | Missing component | Still unknown | Add comment requesting component identification |
 
@@ -121,7 +121,7 @@ gh issue comment <ISSUE_NUM> --body "**Triage Complete**
 ```bash
 # Bug ready for immediate work
 gh issue edit 123 \
-  --remove-label "status:needs-triage" \
+  --remove-label "status:backlog" \
   --add-label "priority:high,effort:m,status:ready,component:api"
 ```
 
@@ -130,7 +130,7 @@ gh issue edit 123 \
 ```bash
 # Feature deferred to backlog
 gh issue edit 124 \
-  --remove-label "status:needs-triage" \
+  --remove-label "status:backlog" \
   --add-label "priority:low,effort:xl,status:backlog"
 ```
 
@@ -139,8 +139,8 @@ gh issue edit 124 \
 ```bash
 # Cannot triage without more info
 gh issue edit 125 \
-  --remove-label "status:needs-triage" \
-  --add-label "status:needs-info"
+  --remove-label "status:backlog" \
+  --add-label "status:blocked"
 gh issue comment 125 --body "Cannot triage: Please provide steps to reproduce the issue."
 ```
 
@@ -151,7 +151,7 @@ gh issue comment 125 --body "Cannot triage: Please provide steps to reproduce th
 - [ ] Estimate effort (xs/s/m/l/xl)
 - [ ] Verify component is set
 - [ ] Determine appropriate next status
-- [ ] Remove `status:needs-triage`
+- [ ] Remove `status:backlog`
 - [ ] Add priority, effort, and new status labels
 - [ ] Add platform/toolchain if relevant
 - [ ] Add triage comment with summary

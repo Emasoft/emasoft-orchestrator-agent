@@ -184,7 +184,7 @@ active_assignments:
 
 **Restrictions:**
 - Only for modules with status "pending", "assigned", or "blocked"
-- Cannot reassign "in_progress" or "complete" modules
+- Cannot reassign "in-progress" or "complete" modules
 
 Actions:
 1. Notifies old agent (if AI) to stop work
@@ -352,21 +352,21 @@ Run /orchestration-status for details.
 
 ```
 Before adding module:
-  Modules: [A: done, B: in_progress]
+  Modules: [A: done, B: in-progress]
   Pending: 1
   Stop hook blocks: "1 module remaining"
 
 User: /add-module "Feature C"
 
 After adding module:
-  Modules: [A: done, B: in_progress, C: pending]
+  Modules: [A: done, B: in-progress, C: pending]
   Pending: 2
   Stop hook blocks: "2 modules remaining"
 
 User: /remove-module "Feature C"
 
 After removing module:
-  Modules: [A: done, B: in_progress]
+  Modules: [A: done, B: in-progress]
   Pending: 1
   Stop hook blocks: "1 module remaining"
 ```

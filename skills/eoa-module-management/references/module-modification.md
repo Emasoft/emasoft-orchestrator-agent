@@ -60,7 +60,7 @@ Not all modules can be modified. Restrictions depend on the module's current sta
 |--------|------------------|---------------------|---------------------|
 | `pending` | Yes | Yes | Yes |
 | `assigned` | Yes | Yes (with notification) | Yes (with notification) |
-| `in_progress` | Yes | Yes (with notification) | Yes (with notification) |
+| `in-progress` | Yes | Yes (with notification) | Yes (with notification) |
 | `complete` | No | No | No |
 
 ### Why Complete Modules Cannot Be Modified
@@ -96,7 +96,7 @@ Pending modules have not been started, so all modifications are allowed:
 
 ### In-Progress Modules: With Caution
 
-When modifying an in-progress module:
+When modifying an in-progress module (status `in-progress`):
 1. Agent may have started work based on old specs
 2. Changes may require rework
 3. Agent MUST be notified

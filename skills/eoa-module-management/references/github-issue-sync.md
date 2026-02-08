@@ -139,7 +139,7 @@ Status labels are updated as module progresses:
 |---------------|-------------|
 | `pending` | `status-todo` |
 | `assigned` | `status-todo` (or `status-assigned`) |
-| `in_progress` | `status-in-progress` |
+| `in-progress` | `status-in-progress` |
 | `complete` | `status-done` |
 
 ### Assignment Sync (Human Developers)

@@ -110,8 +110,8 @@
 
 | Action | Description | Why Exclusive |
 |--------|-------------|---------------|
-| Send AI Maestro messages | `curl -X POST .../api/messages` | Requires coordination context |
-| Check AI Maestro inbox | `curl .../api/messages?action=list` | Must process in priority order |
+| Send AI Maestro messages | Use the `agent-messaging` skill | Requires coordination context |
+| Check AI Maestro inbox | Use the `agent-messaging` skill | Must process in priority order |
 | `git commit` | Commit staged changes | Must track all commits |
 | `git push` | Push to remote | Must coordinate with PR workflow |
 | `gh pr create` | Create pull requests | Must track all PRs |

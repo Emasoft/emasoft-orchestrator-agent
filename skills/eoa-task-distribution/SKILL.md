@@ -7,6 +7,7 @@ metadata:
   author: Emasoft
   version: 1.0.0
 context: fork
+user-invocable: false
 agent: eoa-main
 workflow-instruction: "Steps 13, 16, 18, 22"
 procedure: "proc-populate-kanban, proc-update-tasks, proc-update-kanban-status, proc-handle-failed-pr"
@@ -96,6 +97,8 @@ gh issue edit $ISSUE --remove-label "status:ready" --add-label "status:in-progre
 ### 3.2 Send Assignment Message
 
 Use template from eoa-messaging-templates (section 2.1):
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {
@@ -211,7 +214,7 @@ If an agent reports that a distributed task is blocked, EOA must take IMMEDIATE 
 ### 7.1 Blocker Response Steps
 
 1. **Acknowledge** the blocker via AI Maestro message to the reporting agent
-2. **Record** the task's previous column BEFORE moving to Blocked (e.g., "In Development", "In Review", "Testing")
+2. **Record** the task's previous column BEFORE moving to Blocked (e.g., "In Progress", "AI Review", "Testing")
 3. **Move** the task to the Blocked column on the Kanban board
 4. **Update** labels: remove current `status:*`, add `status:blocked`
 5. **Add comment** to the blocked task issue with blocker details and previous status
@@ -229,6 +232,8 @@ If an agent reports that a distributed task is blocked, EOA must take IMMEDIATE 
 
 ### 7.2 Example Blocker Escalation Message
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "from": "eoa-orchestrator",
@@ -243,7 +248,7 @@ If an agent reports that a distributed task is blocked, EOA must take IMMEDIATE 
       "blocker_issue_number": "99",
       "assigned_agent": "impl-01",
       "blocker_category": "access-credentials",
-      "previous_status": "status:in-review",
+      "previous_status": "status:ai-review",
       "impact": "Cannot complete deployment testing"
     }
   }
@@ -286,7 +291,7 @@ Copy this checklist and track your progress:
 - [ ] Add resolution comment on the blocked task issue
 - [ ] Close the blocker issue: `gh issue close $BLOCKER_ISSUE --comment "Resolved: [details]"`
 - [ ] Remove `status:blocked` label from the task
-- [ ] Restore previous status label on the task (e.g., `status:in-progress`, `status:in-review`)
+- [ ] Restore previous status label on the task (e.g., `status:in-progress`, `status:ai-review`)
 - [ ] Move task back to its PREVIOUS column on the Kanban board (not always "In Progress")
 - [ ] Notify the assigned agent via AI Maestro that the blocker is resolved and work can resume
 - [ ] Log the resolution in the issue timeline

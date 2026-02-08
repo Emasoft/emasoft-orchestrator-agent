@@ -79,6 +79,8 @@ gh issue edit $ISSUE --remove-label "status:ready" --add-label "status:in-progre
 
 ## AI Maestro Message Format
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "from": "orchestrator",

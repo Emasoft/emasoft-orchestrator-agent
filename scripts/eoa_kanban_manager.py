@@ -38,9 +38,12 @@ PROJECT_ID = os.environ.get("GITHUB_PROJECT_ID", "")
 
 # Kanban columns
 KANBAN_COLUMNS = {
-    "to-do": "To-Do",
-    "in-dev": "In Development",
-    "in-review": "In Review",
+    "backlog": "Backlog",
+    "todo": "Todo",
+    "in-progress": "In Progress",
+    "ai-review": "AI Review",
+    "human-review": "Human Review",
+    "merge-release": "Merge/Release",
     "done": "Done",
     "blocked": "Blocked",
 }
@@ -76,7 +79,7 @@ def load_team_registry(repo_path: str | None = None) -> dict[str, Any]:
     if not registry_path.exists():
         raise FileNotFoundError(f"Team registry not found: {registry_path}")
 
-    with open(registry_path) as f:
+    with open(registry_path, encoding="utf-8") as f:
         return cast(dict[str, Any], json.load(f))
 
 
@@ -431,13 +434,13 @@ def get_ready_tasks(registry: dict[str, Any]) -> list[dict[str, Any]]:
         is_blocked = "blocked" in labels or "status:blocked" in labels
 
         # Check if already in progress
-        in_progress = "status:in-dev" in labels or "status:in-review" in labels
+        in_progress = "status:in-progress" in labels or "status:ai-review" in labels
 
         if is_blocked or in_progress:
             continue
 
         # Check if in to-do
-        is_todo = "status:to-do" in labels or not any(
+        is_todo = "status:todo" in labels or not any(
             label.startswith("status:") for label in labels
         )
 
@@ -665,7 +668,7 @@ def main() -> int:
         if args.command == "create-task":
             requirements_doc = None
             if args.requirements_doc:
-                with open(args.requirements_doc) as f:
+                with open(args.requirements_doc, encoding="utf-8") as f:
                     requirements_doc = f.read()
 
             result = create_task_issue(

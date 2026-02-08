@@ -279,7 +279,7 @@ Modified module: remember-me
 ```yaml
 - id: "oauth-google"
   priority: "medium"
-  status: "in_progress"
+  status: "in-progress"
   assigned_to: "implementer-1"
 ```
 

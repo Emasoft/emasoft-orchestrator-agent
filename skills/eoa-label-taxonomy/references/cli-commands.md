@@ -13,12 +13,13 @@ gh label create "assign:human" --color "FBCA04" --description "Human developer"
 
 ### Status Labels
 ```bash
-gh label create "status:needs-triage" --color "D4C5F9" --description "Needs review and prioritization"
-gh label create "status:backlog" --color "CFD3D7" --description "In backlog"
+gh label create "status:backlog" --color "CFD3D7" --description "In backlog, awaiting triage or deferred"
 gh label create "status:ready" --color "0E8A16" --description "Ready to work on"
 gh label create "status:in-progress" --color "FBCA04" --description "Currently being worked on"
-gh label create "status:blocked" --color "D73A4A" --description "Cannot proceed"
-gh label create "status:needs-review" --color "1D76DB" --description "PR ready for review"
+gh label create "status:blocked" --color "D73A4A" --description "Cannot proceed, waiting for info or intentionally paused"
+gh label create "status:ai-review" --color "1D76DB" --description "Integrator reviews ALL tasks"
+gh label create "status:human-review" --color "C2E0C6" --description "User reviews BIG tasks only"
+gh label create "status:merge-release" --color "5319E7" --description "Ready to merge"
 gh label create "status:done" --color "0E8A16" --description "Completed"
 ```
 
@@ -64,7 +65,7 @@ gh issue edit 42 --remove-label "assign:implementer-1"
 gh issue edit 42 --add-label "assign:implementer-2"
 
 # Update status
-gh issue edit 42 --remove-label "status:in-progress" --add-label "status:needs-review"
+gh issue edit 42 --remove-label "status:in-progress" --add-label "status:ai-review"
 ```
 
 ## Validate Label Cardinality

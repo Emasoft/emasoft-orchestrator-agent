@@ -235,6 +235,8 @@ The orchestrator assigns a small, self-contained feature to verify:
 
 When verification task is complete, send this message:
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "orchestrator-master",
@@ -290,6 +292,8 @@ When verification task is complete, send this message:
 
 After completing verification task, send registration message:
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "orchestrator-master",
@@ -325,6 +329,8 @@ Use these standard tags:
 
 Orchestrator will reply with:
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "dev-agent-5",
@@ -345,6 +351,8 @@ Orchestrator will reply with:
 
 **Change Availability**:
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "orchestrator-master",
@@ -361,6 +369,8 @@ Orchestrator will reply with:
 ```
 
 **Go Offline**:
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {
@@ -406,6 +416,8 @@ Orchestrator will reply with:
 4. **Escalate if blocked >1 hour** - Send escalation message using the `agent-messaging` skill
 
 **Clarification Message Format**:
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {

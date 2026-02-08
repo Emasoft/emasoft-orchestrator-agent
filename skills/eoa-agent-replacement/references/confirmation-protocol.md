@@ -191,6 +191,8 @@ echo "State file updated successfully"
 
 Send to ECOS when replacement is complete:
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "ecos-controller",
@@ -225,6 +227,8 @@ Send to ECOS when replacement is complete:
 
 If some tasks could not be reassigned:
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "ecos-controller",
@@ -256,6 +260,8 @@ If some tasks could not be reassigned:
 ### Failure Notification
 
 If replacement could not be completed:
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {

@@ -15,6 +15,9 @@
 **Protocol Reference**: See [../protocols/DOCUMENT_DELIVERY_PROTOCOL.md](../protocols/DOCUMENT_DELIVERY_PROTOCOL.md)
 
 **Message Format**:
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "{{ORCHESTRATOR_SESSION}}",

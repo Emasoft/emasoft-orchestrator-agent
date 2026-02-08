@@ -7,6 +7,7 @@ metadata:
   author: Emasoft
   version: 1.0.0
 context: fork
+user-invocable: false
 agent: eoa-main
 workflow-instruction: "support"
 procedure: "support-skill"
@@ -52,10 +53,13 @@ Copy this checklist and track your progress:
 - [ ] Log the label change if tracking is required
 
 **Label Lifecycle Checks:**
-- [ ] Issue created: Set `type:*`, `status:needs-triage`, optional `component:*`
+- [ ] Issue created: Set `type:*`, `status:backlog`, optional `component:*`
 - [ ] Issue triaged: Set `priority:*`, `effort:*`, `platform:*`/`toolchain:*` if relevant
-- [ ] Issue assigned: Add `assign:<agent>`, change `status:ready` → `status:in-progress`
-- [ ] Issue completed: Remove `assign:*`, change `status:in-progress` → `status:done`
+- [ ] Issue assigned: Add `assign:<agent>`, change `status:todo` → `status:in-progress`
+- [ ] Issue in AI review: Change `status:in-progress` → `status:ai-review`
+- [ ] Issue in human review: Change `status:ai-review` → `status:human-review` (BIG tasks only)
+- [ ] Issue ready to merge: Change review status → `status:merge-release`
+- [ ] Issue completed: Remove `assign:*`, change `status:merge-release` → `status:done`
 
 ---
 
@@ -116,6 +120,27 @@ Prefixes enable:
 | `toolchain:` | Required tools | 0+ | `toolchain:python` |
 | `review:` | PR review status | 0-1 | `review:approved` |
 
+### Kanban Columns (Canonical 8-Column System)
+
+The full workflow uses these 8 status columns:
+
+| # | Column Code | Display Name | Label | Description |
+|---|-------------|-------------|-------|-------------|
+| 1 | `backlog` | Backlog | `status:backlog` | Entry point for new tasks |
+| 2 | `todo` | Todo | `status:todo` | Ready to start |
+| 3 | `in-progress` | In Progress | `status:in-progress` | Active work |
+| 4 | `ai-review` | AI Review | `status:ai-review` | Integrator agent reviews ALL tasks |
+| 5 | `human-review` | Human Review | `status:human-review` | User reviews BIG tasks only (via EAMA) |
+| 6 | `merge-release` | Merge/Release | `status:merge-release` | Ready to merge |
+| 7 | `done` | Done | `status:done` | Completed |
+| 8 | `blocked` | Blocked | `status:blocked` | Blocked at any stage |
+
+**Task Routing Rules:**
+- **Small tasks**: In Progress -> AI Review -> Merge/Release -> Done
+- **Big tasks**: In Progress -> AI Review -> Human Review -> Merge/Release -> Done
+- **Human Review** is requested via EAMA (Assistant Manager asks user to test/review)
+- Not all tasks go through Human Review -- only significant changes requiring human judgment
+
 ---
 
 ## 3. Usage Rules
@@ -138,22 +163,34 @@ Prefixes enable:
 
 **When Issue Created:**
 1. Set `type:*` based on issue content
-2. Set `status:needs-triage`
+2. Set `status:backlog`
 3. Optionally set `component:*` if known
 
 **When Issue Triaged:**
 1. Set `priority:*`
 2. Set `effort:*`
 3. Set `platform:*` and `toolchain:*` if relevant
-4. Change `status:needs-triage` → `status:backlog` or `status:ready`
+4. Change `status:backlog` → `status:todo` (or keep in backlog)
 
 **When Issue Assigned:**
 1. Add `assign:<agent-name>`
-2. Change `status:ready` → `status:in-progress`
+2. Change `status:todo` → `status:in-progress`
+
+**When Work Done, AI Reviews:**
+1. Change `status:in-progress` → `status:ai-review`
+2. Integrator (EIA) reviews ALL tasks
+
+**When Human Review Needed (BIG tasks only):**
+1. Change `status:ai-review` → `status:human-review`
+2. User reviews the task
+
+**When Ready to Merge:**
+1. Change review status → `status:merge-release`
+2. Ready to merge and release
 
 **When Issue Completed:**
 1. Remove `assign:*` label
-2. Change `status:in-progress` → `status:done`
+2. Change `status:merge-release` → `status:done`
 
 ### 3.3 Common Mistakes to Avoid
 
@@ -206,7 +243,7 @@ Every issue MUST have:
 gh issue edit 42 --add-label "assign:implementer-1"
 
 # Update status
-gh issue edit 42 --remove-label "status:ready" --add-label "status:in-progress"
+gh issue edit 42 --remove-label "status:todo" --add-label "status:in-progress"
 
 # Query assigned issues
 gh issue list --label "assign:implementer-1"

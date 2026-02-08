@@ -145,6 +145,8 @@ I will then initiate a verification phase before approving the PR.
 
 **Every time the agent asks "Can I make a PR?", respond with this FULL message (4 times total):**
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "<agent-session-name>",
@@ -232,6 +234,8 @@ When the agent requests PR permission for the 5th time (after completing all 4 v
 
 **If NO issues were discovered or remain unfixed across all 4 loops:**
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "<agent-session-name>",
@@ -246,6 +250,8 @@ When the agent requests PR permission for the 5th time (after completing all 4 v
 ```
 
 **If issues WERE discovered and remain unfixed:**
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {

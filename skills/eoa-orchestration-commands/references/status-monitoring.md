@@ -27,7 +27,7 @@ The `/orchestration-status` command displays a comprehensive view of implementat
 ║ MODULE STATUS                                                  ║
 ╠════════════════════════════════════════════════════════════════╣
 ║ [✓] auth-core      #42  implementer-1  complete                ║
-║ [→] oauth-google   #43  implementer-2  in_progress (Poll: 5m)  ║
+║ [→] oauth-google   #43  implementer-2  in-progress (Poll: 5m)  ║
 ║ [ ] auth-2fa       #44  -              pending                 ║
 ╠════════════════════════════════════════════════════════════════╣
 ║ REGISTERED AGENTS                                              ║
@@ -73,7 +73,7 @@ The `/orchestration-status` command displays a comprehensive view of implementat
 | Icon | Status | Meaning |
 |------|--------|---------|
 | `[ ]` | pending | Not yet assigned or started |
-| `[→]` | in_progress | Being worked on by an agent |
+| `[→]` | in-progress | Being worked on by an agent |
 | `[✓]` | complete | Implementation finished and verified |
 | `[!]` | blocked | Agent stuck, needs intervention |
 | `[?]` | awaiting | Waiting for verification or review |
@@ -89,7 +89,7 @@ The `/orchestration-status` command displays a comprehensive view of implementat
 - `MODULE_ID`: Unique module identifier from plan
 - `ISSUE#`: GitHub issue number (if synced)
 - `AGENT`: Assigned agent ID or `-` if unassigned
-- `STATUS`: Text status (pending/in_progress/complete)
+- `STATUS`: Text status (pending/in-progress/complete)
 - `POLL_INFO`: Time since last poll (if in progress)
 
 ### Understanding Poll Timing

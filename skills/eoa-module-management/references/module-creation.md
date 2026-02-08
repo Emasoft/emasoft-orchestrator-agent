@@ -44,14 +44,14 @@ EOA orchestration supports "dynamic flexibility" which means the plan can evolve
 
 **Before adding a module**:
 ```
-Modules: [A: done, B: in_progress]
+Modules: [A: done, B: in-progress]
 Total: 2
 Remaining: 1
 ```
 
 **After adding module C**:
 ```
-Modules: [A: done, B: in_progress, C: pending]
+Modules: [A: done, B: in-progress, C: pending]
 Total: 3
 Remaining: 2
 ```

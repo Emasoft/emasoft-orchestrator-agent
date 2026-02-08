@@ -66,15 +66,14 @@
 
 | Label | Description | Who Sets It |
 |-------|-------------|-------------|
-| `status:needs-triage` | Needs review and prioritization | Created automatically or by user |
-| `status:backlog` | Ready but not started | EOA after triage |
+| `status:backlog` | In backlog, needs triage or is deferred | Created automatically, by user, or EOA after triage |
 | `status:ready` | Ready to be worked on | EOA when assigning |
 | `status:in-progress` | Currently being worked on | Assigned agent when starting |
-| `status:blocked` | Cannot proceed | Agent when blocked |
-| `status:needs-review` | PR ready for review | Agent after creating PR |
-| `status:needs-info` | Waiting for more information | Anyone when info missing |
-| `status:on-hold` | Intentionally paused | EOA or ECOS |
-| `status:done` | Completed | EIA after verification |
+| `status:blocked` | Cannot proceed (includes waiting for info, intentionally paused) | Agent when blocked, EOA or ECOS |
+| `status:ai-review` | Integrator reviews ALL tasks | Agent after completing work |
+| `status:human-review` | User reviews BIG tasks only | EIA after AI review passes |
+| `status:merge-release` | Ready to merge | EIA or user after review |
+| `status:done` | Completed | EIA after merge |
 
 **Rules:**
 - An issue should have EXACTLY ONE `status:*` label
@@ -83,11 +82,9 @@
 
 **Status Workflow:**
 ```
-needs-triage → backlog → ready → in-progress → needs-review → done
-                                      ↓
-                                   blocked → (resolved) → in-progress
-                                      ↓
-                                   on-hold → (resumed) → in-progress
+backlog → ready → in-progress → ai-review → human-review → merge-release → done
+                       ↓                        ↑ (BIG tasks only)
+                    blocked → (resolved) → in-progress
 ```
 
 ## Priority Labels (`priority:*`)

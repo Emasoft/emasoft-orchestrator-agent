@@ -8,6 +8,7 @@ metadata:
   version: 1.0.0
 agent: eoa-main
 context: fork
+user-invocable: false
 workflow-instruction: "support"
 procedure: "support-skill"
 ---

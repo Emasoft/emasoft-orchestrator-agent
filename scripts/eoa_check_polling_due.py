@@ -46,7 +46,7 @@ def parse_frontmatter(file_path: Path) -> tuple[dict, bool]:
         return {}, True  # Not existing is not an error
 
     try:
-        content = file_path.read_text()
+        content = file_path.read_text(encoding="utf-8")
     except Exception as e:
         log_error(f"Failed to read file {file_path}: {e}")
         return {}, False
@@ -111,7 +111,7 @@ def check_polling_status() -> tuple[list, list]:
         status = assignment.get("status", "unknown")
 
         # Only check assignments that are actively being worked
-        if status not in ("working", "in_progress"):
+        if status not in ("working", "in-progress", "in_progress"):
             continue
 
         # Get polling info

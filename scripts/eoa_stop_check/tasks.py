@@ -28,14 +28,14 @@ def check_claude_tasks(transcript_path: str) -> tuple[int, list[str]]:
 
     Claude Code's native TaskCreate/TaskUpdate/TaskList tools persist tasks
     across context compacting. This function parses the transcript JSON to
-    find pending and in_progress tasks.
+    find pending and in-progress tasks.
 
     Args:
         transcript_path: Path to transcript JSON file (can be empty to skip)
 
     Returns:
         Tuple of (pending_count, sample_tasks) where:
-        - pending_count: Number of pending + in_progress tasks
+        - pending_count: Number of pending + in-progress tasks
         - sample_tasks: List of up to 2 sample task subjects prefixed with [Task]
     """
     # Skip if no transcript path or file doesn't exist
@@ -107,11 +107,11 @@ def check_claude_tasks(transcript_path: str) -> tuple[int, list[str]]:
         # Use the last todos array (most recent state)
         todos = todos_arrays[-1]
 
-        # Filter for pending and in_progress tasks
+        # Filter for pending and in-progress tasks
         pending_tasks = [
             t
             for t in todos
-            if isinstance(t, dict) and t.get("status") in ("pending", "in_progress")
+            if isinstance(t, dict) and t.get("status") in ("pending", "in-progress", "in_progress")
         ]
 
         count = len(pending_tasks)
@@ -264,13 +264,13 @@ def check_todo_list(transcript_path: str) -> int:
     """Check Claude's internal TODO list via transcript.
 
     Parses the transcript JSON file to find the last todos array and
-    counts items with status "pending" or "in_progress".
+    counts items with status "pending" or "in-progress".
 
     Args:
         transcript_path: Path to transcript JSON file (can be empty to skip)
 
     Returns:
-        Number of pending + in_progress TODO items (0 if not found or error)
+        Number of pending + in-progress TODO items (0 if not found or error)
     """
     # Skip if no transcript path or file doesn't exist
     if not transcript_path or not Path(transcript_path).exists():
@@ -291,9 +291,9 @@ def check_todo_list(transcript_path: str) -> int:
         # Use the last todos array (most recent state)
         last_todos = todos_match[-1]
 
-        # Count pending and in_progress items by status field
+        # Count pending and in-progress items by status field
         pending_count = len(re.findall(r'"status":\s*"pending"', last_todos))
-        in_progress_count = len(re.findall(r'"status":\s*"in_progress"', last_todos))
+        in_progress_count = len(re.findall(r'"status":\s*"in.progress"', last_todos))
 
         count = pending_count + in_progress_count
         debug(f"TODO list pending: {count}")

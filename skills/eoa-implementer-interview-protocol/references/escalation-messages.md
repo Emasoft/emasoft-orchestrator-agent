@@ -12,6 +12,8 @@
 
 If implementer identifies design incompatibilities:
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "from": "orchestrator",
@@ -34,6 +36,8 @@ If implementer identifies design incompatibilities:
 ## Immutable Requirement Issues → Manager → User
 
 If implementer identifies issues with USER requirements:
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {

@@ -7,6 +7,7 @@ metadata:
   author: Emasoft
   version: 2.6.0
 context: fork
+user-invocable: false
 agent: eoa-main
 workflow-instruction: "Step 10"
 procedure: "proc-decompose-design"

@@ -82,6 +82,8 @@ gh issue create --title "BLOCKER: $BLOCKER_REASON" --label "type:blocker" \
 
 ## Escalation Message to EAMA
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "from": "eoa-orchestrator",

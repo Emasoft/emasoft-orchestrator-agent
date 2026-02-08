@@ -20,7 +20,7 @@ Claude Code provides built-in task management tools that:
 - **Persist across context compacting** - Tasks survive when conversation history is summarized
 - **Integrate with the orchestrator** - Stop hooks can query task status via transcript
 - **Support dependencies** - Tasks can block other tasks with `addBlockedBy`
-- **Track progress** - Status flows from `pending` to `in_progress` to `completed`
+- **Track progress** - Status flows from `pending` to `in-progress` to `completed`
 
 ### Key Advantages
 
@@ -58,13 +58,13 @@ Updates an existing task's status or properties.
 ```
 TaskUpdate(
   taskId="<task-id>",
-  status="in_progress"  # or "completed" or "pending"
+  status="in-progress"  # or "completed" or "pending"
 )
 ```
 
 **Status Values:**
 - `pending` - Task not yet started
-- `in_progress` - Task currently being worked on
+- `in-progress` - Task currently being worked on
 - `completed` - Task finished successfully
 
 **Dependency Parameters:**
@@ -120,7 +120,7 @@ When starting a workflow, create all required tasks upfront:
 
 Before starting work:
 ```
-TaskUpdate(taskId="1", status="in_progress")
+TaskUpdate(taskId="1", status="in-progress")
 ```
 
 After completing work:
@@ -185,7 +185,7 @@ The `check_claude_tasks()` function in `tasks.py`:
 1. Reads the transcript JSON file
 2. Finds all `"todos"` arrays (there may be multiple from different turns)
 3. Uses the **last** todos array (most recent state)
-4. Counts tasks with `status: "pending"` or `status: "in_progress"`
+4. Counts tasks with `status: "pending"` or `status: "in-progress"`
 5. Returns count and sample task subjects
 
 ### Blocking Logic
@@ -237,9 +237,9 @@ TaskUpdate(taskId="3", addBlocks=["4", "5"])
 
 ### Status Discipline
 
-1. **Always** set `in_progress` before starting work
+1. **Always** set `in-progress` before starting work
 2. **Always** set `completed` after finishing
-3. **Never** leave tasks in `in_progress` if you're not actively working on them
+3. **Never** leave tasks in `in-progress` if you're not actively working on them
 4. Use `pending` for tasks waiting to be started or blocked
 
 ### Verification Before Completion
@@ -258,5 +258,5 @@ Before marking a task completed:
 1. Use Claude Code native Tasks (TaskCreate, TaskUpdate, TaskList, TaskGet)
 2. Tasks persist across context compacting
 3. The orchestrator stop hook checks task status via transcript
-4. Follow the lifecycle: create → in_progress → completed
+4. Follow the lifecycle: create → in-progress → completed
 5. Use dependencies to enforce task ordering

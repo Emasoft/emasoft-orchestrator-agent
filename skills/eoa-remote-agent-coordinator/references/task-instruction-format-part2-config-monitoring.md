@@ -130,6 +130,8 @@ Secrets are **NEVER** sent in task instructions. Agent must:
 
 ### Secret Request Format
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "orchestrator-master",
@@ -174,6 +176,8 @@ Agents MUST:
 4. **Report conflicts** if current task cannot comply
 
 ### Config Update Acknowledgment
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {
@@ -237,6 +241,8 @@ ETA: 2 hours
 
 ### Status Request Message
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "[agent-id]",
@@ -252,6 +258,8 @@ ETA: 2 hours
 ```
 
 ### Timeout Warning Message
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {
@@ -287,6 +295,8 @@ If task not completed within timeout:
 
 When agent needs more time:
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "orchestrator-master",
@@ -314,6 +324,8 @@ Orchestrator grants extension if:
 - No higher-priority tasks need this agent
 
 ### Extension Response
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {

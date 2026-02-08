@@ -76,6 +76,8 @@ Can wait until morning:
 
 ### Urgent Escalation
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "orchestrator-master",
@@ -98,6 +100,8 @@ Can wait until morning:
 ```
 
 ### Deferred Escalation
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {
@@ -136,6 +140,8 @@ Can wait until morning:
 ```
 
 ### Blocker Escalation
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {

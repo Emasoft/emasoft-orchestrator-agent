@@ -354,6 +354,8 @@ Access these templates for exact response formats:
 
 When task is complete (success or blocked), send:
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "orchestrator-master",

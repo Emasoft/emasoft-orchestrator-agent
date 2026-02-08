@@ -53,7 +53,7 @@ Gather all information about the failed agent's work:
 
 **Tasks:**
 - GitHub Project issues assigned to failed agent
-- Current task status (in_progress, blocked, waiting_review)
+- Current task status (in-progress, blocked, waiting_review)
 - Task dependencies and blocking relationships
 
 **Progress:**
@@ -234,7 +234,7 @@ Track the replacement in `docs_dev/orchestration-state.json`:
 {
   "tasks": {
     "task-uuid-123": {
-      "status": "in_progress",
+      "status": "in-progress",
       "assigned_agent": "implementer-2",
       "replacements": [
         {

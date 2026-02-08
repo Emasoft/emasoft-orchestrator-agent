@@ -15,7 +15,7 @@
 
 ## Purpose
 
-Send official authorization for the implementer to begin work. PROCEED is the formal gate that transitions a task from "assigned" to "in_progress". Without PROCEED, the implementer must not start coding.
+Send official authorization for the implementer to begin work. PROCEED is the formal gate that transitions a task from "assigned" to "in-progress". Without PROCEED, the implementer must not start coding.
 
 ---
 
@@ -61,7 +61,7 @@ Send official authorization for the implementer to begin work. PROCEED is the fo
    **Verify**: confirm message delivery.
 
 4. **Update state file**:
-   - Module status: `pending` → `in_progress`
+   - Module status: `pending` → `in-progress`
    - Assignment status: `awaiting_repetition` → `authorized`
    - Instruction verification: `authorized_at: <timestamp>`
 
@@ -112,7 +112,7 @@ Good luck!
 ```yaml
 modules_status:
   - id: "<module_id>"
-    status: "in_progress"  # Changed from "assigned"
+    status: "in-progress"  # Changed from "assigned"
 ```
 
 ### Assignment Update
@@ -121,7 +121,7 @@ modules_status:
 active_assignments:
   - agent: "<implementer_agent_id>"
     module: "<module_id>"
-    status: "in_progress"  # Changed from "pending_verification"
+    status: "in-progress"  # Changed from "pending_verification"
     instruction_verification:
       status: "authorized"  # Changed from "awaiting_repetition"
       authorized_at: "<ISO_timestamp>"
@@ -144,7 +144,7 @@ active_assignments:
 
 - Implementer receives PROCEED message
 - Message contains all confirmed acceptance criteria
-- State file reflects `in_progress` status
+- State file reflects `in-progress` status
 - GitHub Issue has `status:in-progress` label
 - Handoff document records authorization
 

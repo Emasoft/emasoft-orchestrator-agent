@@ -21,7 +21,7 @@ Transfer a module from one implementer agent to another. This involves notifying
 
 ## Prerequisites
 
-- Module exists and is assigned or in_progress
+- Module exists and is assigned or in-progress
 - New agent is registered and available
 - AI Maestro running for notifications
 - Old agent's progress information accessible
@@ -66,7 +66,7 @@ Transfer a module from one implementer agent to another. This involves notifying
 ## Steps
 
 1. **Validate inputs**:
-   - Module exists and is assigned/in_progress
+   - Module exists and is assigned/in-progress
    - New agent is different from current
    - New agent is registered
 
@@ -88,7 +88,7 @@ Transfer a module from one implementer agent to another. This involves notifying
    ```yaml
    modules_status:
      - id: "<module_id>"
-       status: "assigned"  # Reset from in_progress if applicable
+       status: "assigned"  # Reset from in-progress if applicable
        assigned_to: "<new_agent_id>"
 
    active_assignments:

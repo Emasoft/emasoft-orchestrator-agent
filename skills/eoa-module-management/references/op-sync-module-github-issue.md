@@ -262,7 +262,7 @@ Sync should run automatically after:
 | `status:pending` | Not yet assigned |
 | `status:assigned` | Agent assigned |
 | `status:in-progress` | Work underway |
-| `status:needs-review` | PR awaiting review |
+| `status:ai-review` | PR awaiting review |
 | `status:complete` | Module finished |
 | `status:wontfix` | Module cancelled |
 

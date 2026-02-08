@@ -317,6 +317,8 @@ All AI Maestro messages follow JSON format with required fields: `from`, `to`, `
 
 **From ECOS or EAMA to EOA:**
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "from": "ecos-main",
@@ -362,6 +364,8 @@ Send a task assignment using the `agent-messaging` skill:
 
 **Sub-Agent Response (ACK):**
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "from": "[sub-agent-name]",
@@ -390,6 +394,8 @@ Send a status request using the `agent-messaging` skill:
 **Verify**: confirm message delivery.
 
 **Sub-Agent Response:**
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {

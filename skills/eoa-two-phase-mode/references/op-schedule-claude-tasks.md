@@ -105,7 +105,7 @@ As work progresses, update task status:
 
 ```
 # Starting work
-TaskUpdate(taskId=task_impl, status="in_progress")
+TaskUpdate(taskId=task_impl, status="in-progress")
 
 # Completed work
 TaskUpdate(taskId=task_impl, status="completed")
@@ -196,7 +196,7 @@ TaskUpdate(taskId=final_verify, addBlockedBy=[auth_tests])
 |-------|-------|------------|
 | Task not persisting | Context compacted | Use TaskList after compacting to recover state |
 | Dependency cycle | Circular blocking | Redesign task dependencies, break cycle |
-| Stale task status | Forgot to update | Always update to in_progress/completed |
+| Stale task status | Forgot to update | Always update to in-progress/completed |
 | Missing task | Not created | Verify all modules have corresponding tasks |
 
 ## Related Operations

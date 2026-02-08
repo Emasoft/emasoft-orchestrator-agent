@@ -65,7 +65,7 @@ Send post-task verification questions using the `agent-messaging` skill:
 
 **Step 2**: After implementer reports PR #123 created, update issue status:
 ```bash
-gh issue edit 42 --remove-label "status:in-progress" --add-label "status:needs-review"
+gh issue edit 42 --remove-label "status:in-progress" --add-label "status:ai-review"
 ```
 
 **Step 3**: Notify Integrator using the `agent-messaging` skill:

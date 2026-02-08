@@ -7,6 +7,7 @@ metadata:
   author: Emasoft
   version: 1.0.0
 context: fork
+user-invocable: false
 agent: eoa-main
 workflow-instruction: "Step 20"
 procedure: "proc-request-pr-review"
@@ -63,6 +64,8 @@ Copy this checklist and track your progress:
 ### Standard Message Structure
 
 All AI Maestro messages use this format:
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {

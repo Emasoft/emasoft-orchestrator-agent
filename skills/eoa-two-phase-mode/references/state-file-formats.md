@@ -51,11 +51,11 @@ requirements_file: "USER_REQUIREMENTS.md"
 requirements_complete: false
 requirements_sections:
   - name: "Functional Requirements"
-    status: "pending|in_progress|complete"
+    status: "pending|in-progress|complete"
   - name: "Non-Functional Requirements"
-    status: "pending|in_progress|complete"
+    status: "pending|in-progress|complete"
   - name: "Architecture Design"
-    status: "pending|in_progress|complete"
+    status: "pending|in-progress|complete"
 
 # Module Breakdown
 modules:
@@ -140,7 +140,7 @@ current_module: "module-id or null"
 modules_status:
   - id: "auth-core"
     name: "Core Authentication"
-    status: "pending|assigned|in_progress|pending_verification|complete"
+    status: "pending|assigned|in-progress|ai-review|complete"
     assigned_to: "agent-id or null"
     github_issue: "#42"
     pr: "#45 or null"
@@ -311,7 +311,7 @@ modules_status:
     priority: "high"                 # Priority level
     acceptance_criteria: "..."       # Completion criteria
     dependencies: ["other-module"]   # Dependencies
-    status: "in_progress"            # Current status
+    status: "in-progress"             # Current status
     assigned_to: "implementer-1"     # Assigned agent
     github_issue: "#42"              # GitHub Issue number
     pr: "#45"                        # PR number (if created)
@@ -325,8 +325,8 @@ modules_status:
 | `pending` | Not started, not assigned |
 | `planned` | In plan, not yet assigned |
 | `assigned` | Assigned but not started |
-| `in_progress` | Agent is implementing |
-| `pending_verification` | Awaiting review |
+| `in-progress` | Agent is implementing |
+| `ai-review` | Awaiting review |
 | `complete` | Verified and merged |
 
 ---

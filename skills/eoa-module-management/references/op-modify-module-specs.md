@@ -68,7 +68,7 @@ At least one of `name`, `criteria`, or `priority` must be provided.
 |---------------|------|----------|----------|
 | `pending` | Yes | Yes | Yes |
 | `assigned` | Yes | Yes | Yes |
-| `in_progress` | Yes* | Yes* | Yes |
+| `in-progress` | Yes* | Yes* | Yes |
 | `complete` | No | No | No |
 
 *Requires agent notification
@@ -86,7 +86,7 @@ At least one of `name`, `criteria`, or `priority` must be provided.
    - New values pass validation rules
 
 3. **Check if agent notification needed**:
-   - If status is `assigned` or `in_progress`, notify agent
+   - If status is `assigned` or `in-progress`, notify agent
 
 4. **Update state file**:
    ```yaml
@@ -160,7 +160,7 @@ gh issue edit <issue_number> --remove-label "priority-<OLD>" --add-label "priori
 |--------|--------|-------------|
 | State file updated | YAML changes | Modified fields |
 | GitHub Issue updated | Issue changes | Title/body/labels |
-| Agent notified | AI Maestro message | If assigned/in_progress |
+| Agent notified | AI Maestro message | If assigned/in-progress |
 | Console confirmation | Text | "Module '<id>' modified" |
 
 ---

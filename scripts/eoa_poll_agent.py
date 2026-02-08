@@ -152,7 +152,7 @@ def send_poll_to_agent(data: dict[str, Any], body: str, agent_id: str) -> int:
 
     # Check status
     status = assignment.get("status")
-    if status not in ("working", "in_progress"):
+    if status not in ("working", "in-progress", "in_progress"):
         print(f"ERROR: Agent status is '{status}', not actively working")
         return 1
 

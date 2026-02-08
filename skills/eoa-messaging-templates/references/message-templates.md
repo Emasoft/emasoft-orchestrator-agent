@@ -2,6 +2,8 @@
 
 This document provides the complete AI Maestro message templates for all common agent communication scenarios across emasoft plugins.
 
+> All message templates below should be sent using the `agent-messaging` skill, which handles the AI Maestro API format automatically.
+
 ## Table of Contents
 
 - [2.1 Task Assignment (EOA → Remote Agent)](#21-task-assignment-eoa--remote-agent)
@@ -21,6 +23,8 @@ This document provides the complete AI Maestro message templates for all common 
 ## 2.1 Task Assignment (EOA → Remote Agent)
 
 **When to use:** EOA assigning implementation task to remote agent
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {
@@ -46,6 +50,8 @@ This document provides the complete AI Maestro message templates for all common 
 
 **When to use:** Agent reporting task completion to orchestrator
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "from": "<agent-name>",
@@ -70,6 +76,8 @@ This document provides the complete AI Maestro message templates for all common 
 
 **When to use:** Orchestrator polling agent for status
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "from": "orchestrator",
@@ -92,6 +100,8 @@ This document provides the complete AI Maestro message templates for all common 
 
 **When to use:** Agent responding to status request
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "from": "<agent-name>",
@@ -103,7 +113,7 @@ This document provides the complete AI Maestro message templates for all common 
     "message": "[IN_PROGRESS] <task-id> - <progress-description>. Blockers: <none|blocker-list>. Next: <next-step>",
     "data": {
       "task_id": "<task-id>",
-      "status": "in_progress",
+      "status": "in-progress",
       "progress_percent": 60,
       "blockers": []
     }
@@ -116,6 +126,8 @@ This document provides the complete AI Maestro message templates for all common 
 ## 2.5 Approval Request (ECOS → EAMA)
 
 **When to use:** Chief of Staff requesting approval from Assistant Manager
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {
@@ -142,6 +154,8 @@ This document provides the complete AI Maestro message templates for all common 
 
 **When to use:** Assistant Manager responding to approval request
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "from": "assistant-manager",
@@ -165,6 +179,8 @@ This document provides the complete AI Maestro message templates for all common 
 ## 2.7 Escalation (Any Agent → ECOS/EAMA)
 
 **When to use:** Agent encountering blocker requiring escalation
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {
@@ -191,6 +207,8 @@ This document provides the complete AI Maestro message templates for all common 
 
 **When to use:** Acknowledging receipt of message
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "from": "<agent-name>",
@@ -213,6 +231,8 @@ This document provides the complete AI Maestro message templates for all common 
 ## 2.9 Design Handoff (EAA → EOA)
 
 **When to use:** Architect handing off design to Orchestrator
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {
@@ -239,6 +259,8 @@ This document provides the complete AI Maestro message templates for all common 
 
 **When to use:** Orchestrator requesting code integration/review
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "from": "orchestrator",
@@ -262,6 +284,8 @@ This document provides the complete AI Maestro message templates for all common 
 ## 2.11 Integration Result (EIA → EOA)
 
 **When to use:** Integrator reporting integration/review result
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {

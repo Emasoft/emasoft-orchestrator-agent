@@ -21,7 +21,7 @@ Module removal is restricted to prevent wasted work and maintain project integri
 |--------|-------------|--------|
 | `pending` | Yes | Work has not started |
 | `assigned` | No | Agent may have begun preparation |
-| `in_progress` | No | Work is ongoing |
+| `in-progress` | No | Work is ongoing |
 | `complete` | No | Work is finished and delivered |
 
 ### The Pending Status Requirement
@@ -49,7 +49,7 @@ When `/remove-module` is executed, the script validates:
 
 ```python
 # Validation logic
-if module.get("status") in ("in_progress", "complete"):
+if module.get("status") in ("in-progress", "complete"):
     print("ERROR: Cannot remove module with status '{status}'")
     return False
 
@@ -103,7 +103,7 @@ Instead of removing an in-progress module:
 ```bash
 # This will fail
 /remove-module oauth-google
-# ERROR: Cannot remove module with status 'in_progress'
+# ERROR: Cannot remove module with status 'in-progress'
 ```
 
 **Good approach** (reduce scope):
@@ -134,7 +134,7 @@ The module entry is deleted from `modules_status` array:
 ```yaml
 modules_status:
   - id: "auth-core"
-    status: "in_progress"
+    status: "in-progress"
   - id: "oauth-facebook"      # Module to remove
     status: "pending"
   - id: "oauth-google"
@@ -145,7 +145,7 @@ modules_status:
 ```yaml
 modules_status:
   - id: "auth-core"
-    status: "in_progress"
+    status: "in-progress"
   - id: "oauth-google"
     status: "pending"
 ```
@@ -327,7 +327,7 @@ This section covers error scenarios and how to handle them.
 
 ### Error: Status is In-Progress
 
-**Message**: `ERROR: Cannot remove module with status 'in_progress'`
+**Message**: `ERROR: Cannot remove module with status 'in-progress'`
 
 **Cause**: Trying to remove a module that has started.
 

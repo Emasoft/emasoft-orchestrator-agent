@@ -39,7 +39,7 @@ def parse_frontmatter(file_path: Path) -> tuple[dict[str, Any], bool]:
         return {}, True  # Not existing is not an error
 
     try:
-        content = file_path.read_text()
+        content = file_path.read_text(encoding="utf-8")
     except Exception as e:
         log_error(f"Failed to read file {file_path}: {e}")
         return {}, False

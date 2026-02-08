@@ -44,6 +44,8 @@ The `AIMAESTRO_API` environment variable defaults to `http://localhost:23000` if
 
 Every message in the AI Maestro system follows this schema:
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "id": "uuid-auto-generated",

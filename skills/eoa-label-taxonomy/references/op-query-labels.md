@@ -133,7 +133,7 @@ gh issue list --label "assign:implementer-1,status:ready" --json number,title
 
 ```bash
 # Count issues per status
-for status in needs-triage backlog ready in-progress review done; do
+for status in backlog ready in-progress blocked ai-review human-review merge-release done; do
   count=$(gh issue list --label "status:$status" --json number | jq 'length')
   echo "status:$status = $count"
 done

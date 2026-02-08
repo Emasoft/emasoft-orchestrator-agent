@@ -60,7 +60,7 @@ Remove a module from the orchestration plan that is no longer needed. Only pendi
 |---------------|-------------|--------|
 | `pending` | Yes | No work started |
 | `assigned` | No | Agent has accepted |
-| `in_progress` | No | Work underway |
+| `in-progress` | No | Work underway |
 | `complete` | No | Work finished |
 
 **Why in-progress modules cannot be removed:**
@@ -82,7 +82,7 @@ Remove a module from the orchestration plan that is no longer needed. Only pendi
 
 2. **Check status is `pending`**:
    - If not pending, reject with error
-   - Suggest alternatives if in_progress
+   - Suggest alternatives if in-progress
 
 3. **Confirm removal** (unless --force):
    ```
@@ -162,7 +162,7 @@ When you can't remove because status is not pending:
 | Situation | Alternative |
 |-----------|-------------|
 | `assigned` module | Unassign first, then remove |
-| `in_progress` module | Reduce scope with `/modify-module` |
+| `in-progress` module | Reduce scope with `/modify-module` |
 | `complete` module | Cannot undo; create correcting module |
 | Want to defer | Change priority to low instead |
 

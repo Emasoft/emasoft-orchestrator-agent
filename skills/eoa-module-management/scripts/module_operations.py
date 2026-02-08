@@ -263,7 +263,7 @@ def cmd_remove(args: argparse.Namespace, data: dict[str, Any], body: str) -> boo
         if module.get("id") == args.module_id:
             status = module.get("status", "pending")
 
-            if status in ("in_progress", "complete") and not args.force:
+            if status in ("in-progress", "in_progress", "complete") and not args.force:
                 print(f"ERROR: Cannot remove module with status '{status}'")
                 return False
 

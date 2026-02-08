@@ -89,7 +89,7 @@ Key field types:
 ```yaml
 name: Bug Report
 description: Report a bug or unexpected behavior
-labels: ["bug", "needs-triage"]
+labels: ["bug", "backlog"]
 assignees: []
 ```
 
@@ -287,13 +287,13 @@ For orchestrator-filed bugs, this checkbox reminds the orchestrator to search ex
 ### 4.1 Default labels for bug reports
 
 ```yaml
-labels: ["bug", "needs-triage"]
+labels: ["bug", "backlog"]
 ```
 
 ### 4.2 How labels integrate with triage workflows
 
 After filing, the orchestrator or a maintainer should:
-1. Remove `needs-triage` after review
+1. Remove `backlog` after review
 2. Add priority label (e.g., `priority-high`, `priority-low`)
 3. Add area label if different from the dropdown selection
 4. Assign to a milestone if applicable
@@ -376,7 +376,7 @@ Copy the following into `.github/ISSUE_TEMPLATE/bug_report.yml`:
 ```yaml
 name: Bug Report
 description: Report a bug or unexpected behavior
-labels: ["bug", "needs-triage"]
+labels: ["bug", "backlog"]
 assignees: []
 body:
   - type: checkboxes

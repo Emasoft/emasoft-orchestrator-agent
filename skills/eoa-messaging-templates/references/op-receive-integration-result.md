@@ -40,6 +40,9 @@ Process integration/review results received from Integrator (EIA) after a review
    | blocked | Escalate to user with details |
 
 4. **Send acknowledgment** to EIA:
+
+   > **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
    ```json
    {
      "from": "eoa-main",
@@ -72,6 +75,8 @@ Parsed integration result with fields:
 | Unknown status | Unexpected status value | Treat as "blocked" and escalate |
 
 ## Example Response Format
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {

@@ -27,10 +27,13 @@ EXEC_STATE_FILE = Path(".claude/orchestrator-exec-phase.local.md")
 
 # Status to column mapping
 STATUS_TO_COLUMN = {
-    "todo": "To Do",
+    "backlog": "Backlog",
+    "todo": "Todo",
     "assigned": "In Progress",
-    "in_progress": "In Progress",
     "in-progress": "In Progress",
+    "ai-review": "AI Review",
+    "human-review": "Human Review",
+    "merge-release": "Merge/Release",
     "blocked": "Blocked",
     "done": "Done",
     "complete": "Done",
@@ -361,7 +364,7 @@ def sync_module_to_project(
         # Update status
         status_field = fields.get("Status", {})
         if status_field:
-            column = STATUS_TO_COLUMN.get(status, "To Do")
+            column = STATUS_TO_COLUMN.get(status, "Todo")
             option_id = status_field.get("options", {}).get(column)
             if option_id:
                 update_project_item_field(
@@ -412,7 +415,7 @@ def sync_module_to_project(
             # Update fields
             status_field = fields.get("Status", {})
             if status_field:
-                column = STATUS_TO_COLUMN.get(status, "To Do")
+                column = STATUS_TO_COLUMN.get(status, "Todo")
                 option_id = status_field.get("options", {}).get(column)
                 if option_id:
                     update_project_item_field(

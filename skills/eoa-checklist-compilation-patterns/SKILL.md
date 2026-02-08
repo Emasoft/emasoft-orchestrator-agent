@@ -7,6 +7,7 @@ metadata:
   author: Emasoft
   version: 1.0.0
 context: fork
+user-invocable: false
 agent: eoa-main
 workflow-instruction: "support"
 procedure: "support-skill"

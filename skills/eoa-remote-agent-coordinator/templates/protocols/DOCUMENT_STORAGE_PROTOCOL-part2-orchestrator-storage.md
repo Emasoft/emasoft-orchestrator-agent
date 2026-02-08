@@ -114,7 +114,7 @@ design/index/
 {
   "task_id": "GH-42",
   "created": "2024-01-15T10:00:00Z",
-  "status": "in_progress",
+  "status": "in-progress",
   "assigned_agents": [
     {
       "agent": "helper-agent-macos-arm64",

@@ -84,7 +84,7 @@ TaskCreate(
 
 **Start work:**
 ```
-TaskUpdate(taskId="1", status="in_progress")
+TaskUpdate(taskId="1", status="in-progress")
 ```
 
 **Complete work:**

@@ -326,7 +326,7 @@ The `--force` flag bypasses certain safety checks. Use with caution.
 
 | Check | Behavior |
 |-------|----------|
-| Status is in_progress | Still blocked |
+| Status is in-progress | Still blocked |
 | Status is complete | Still blocked |
 | Module existence | Must exist |
 
@@ -341,7 +341,7 @@ The `--force` flag bypasses certain safety checks. Use with caution.
 **Inappropriate scenarios**:
 - Agent is actively working
 - You don't know if agent started
-- Trying to remove in_progress module
+- Trying to remove in-progress module
 - Avoiding proper communication
 
 ### Force Removal Process
@@ -437,7 +437,7 @@ When encountering any module management issue:
 | "Could not parse state file" | YAML syntax error | Recover from git/backup |
 | "Module not found" | Wrong ID | Check `/orchestration-status` |
 | "Cannot modify completed" | Module is done | Create new module instead |
-| "Cannot remove in_progress" | Work ongoing | Modify scope instead |
+| "Cannot remove in-progress" | Work ongoing | Modify scope instead |
 | "Agent not registered" | Unknown agent | Run `/register-agent` |
 | "Already assigned" | Module has agent | Use `/reassign-module` |
 | "gh: command not found" | CLI not installed | Install and auth gh |

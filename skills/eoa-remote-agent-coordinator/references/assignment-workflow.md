@@ -41,7 +41,7 @@ modules:
 # Invalid - module already assigned
 modules:
   auth-core:
-    status: "in_progress"
+    status: "in-progress"
     assigned_to: "implementer-2"
 ```
 
@@ -283,7 +283,7 @@ Respond to any questions the agent has.
 
 ### Step 4: Authorize Implementation
 
-Update status to "in_progress" and send authorization.
+Update status to "in-progress" and send authorization.
 
 ### Step 5: Begin Progress Polling
 

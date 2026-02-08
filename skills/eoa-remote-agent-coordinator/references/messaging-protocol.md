@@ -170,6 +170,8 @@ Use the `agent-messaging` skill for all messaging operations:
 
 ### Required Message Fields
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "recipient-session-name",

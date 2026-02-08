@@ -55,7 +55,7 @@
 3. Complete all assigned modules or reassign blocked ones
 4. After all modules complete, pass 4 verification loops
 
-### Issue: Module stuck in "in_progress" status
+### Issue: Module stuck in "in-progress" status
 
 **Cause**: Agent not responding or work blocked.
 
@@ -131,7 +131,7 @@
 **Solution**:
 1. Check AI Maestro server is running
 2. Verify target agent session name is correct
-3. Check message queue: `curl ${AIMAESTRO_API}/api/messages?agent=TARGET_AGENT`
+3. Check message queue using the `agent-messaging` skill. If the skill is unavailable, use the curl fallback: `curl ${AIMAESTRO_API}/api/messages?agent=TARGET_AGENT`
 4. Retry message with higher priority
 
 ### Issue: Human developer not receiving GitHub notifications
@@ -175,7 +175,7 @@
 **Solution**:
 1. Run `/orchestration-status` to see actual state
 2. If all modules are truly complete, update state file
-3. Clear any stuck "in_progress" modules
+3. Clear any stuck "in-progress" modules
 4. Re-run stop hook to verify
 
 ---

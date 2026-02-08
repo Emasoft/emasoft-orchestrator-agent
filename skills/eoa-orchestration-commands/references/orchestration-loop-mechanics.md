@@ -83,7 +83,7 @@ The orchestrator monitors 4 task sources. Priority is determined by the orchestr
 ### Source 1: Claude Tasks (Personal Tasks)
 
 **Location**: Claude Code TaskList API
-**Format**: Tasks with 'pending' or 'in_progress' status
+**Format**: Tasks with 'pending' or 'in-progress' status
 **Purpose**: Personal orchestrator tasks
 
 **Detection**:
@@ -126,13 +126,13 @@ in_progress = r"^\s*-\s*\[~\]"  # Tilde for in-progress
 ### Source 4: Claude TODO List (Session)
 
 **Location**: Claude's transcript JSON
-**Format**: TodoWrite tool output with `status: pending` or `status: in_progress`
+**Format**: TodoWrite tool output with `status: pending` or `status: in-progress`
 **Purpose**: Session-level tracking in Claude Code
 
 **Detection**:
 ```python
 # Searches transcript for latest todos array
-# Counts items with status "pending" or "in_progress"
+# Counts items with status "pending" or "in-progress"
 ```
 
 **Priority**: Normal - may include transient session tasks

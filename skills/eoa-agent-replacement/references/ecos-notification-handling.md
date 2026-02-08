@@ -142,6 +142,8 @@ Non-critical replacement, handle when convenient:
 
 ### ACK Message Format
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "ecos-controller",
@@ -194,6 +196,8 @@ If ECOS does not receive ACK within expected time:
 
 If notification cannot be parsed:
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "ecos-controller",
@@ -211,6 +215,8 @@ If notification cannot be parsed:
 ### Unknown Agent IDs
 
 If failed agent is not in orchestrator's roster:
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {
@@ -230,6 +236,8 @@ If failed agent is not in orchestrator's roster:
 
 If replacement agent is not available:
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "ecos-controller",
@@ -247,6 +255,8 @@ If replacement agent is not available:
 ### Multiple Failures
 
 If replacement agent also fails during handoff:
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {

@@ -290,7 +290,7 @@ Each task in the handoff MUST include these details:
 |--------|---------|-------------|
 | `pending` | Not started | Begin from scratch |
 | `pending_verification` | Assigned, not verified | Complete verification |
-| `in_progress` | Work started | Continue from checkpoint |
+| `in-progress` | Work started | Continue from checkpoint |
 | `blocked` | Cannot proceed | Resolve blocker first |
 | `review` | Waiting for review | Address review feedback |
 

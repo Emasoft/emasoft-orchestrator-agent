@@ -8,6 +8,8 @@
 
 ### 4.1.1 CORRECT: URL Only
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "libs-svg-svgbbox",
@@ -25,6 +27,8 @@
 ```
 
 ### 4.1.2 WRONG: Embedded Content
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {

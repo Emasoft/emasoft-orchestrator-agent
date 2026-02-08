@@ -173,7 +173,7 @@ def update_index(
         task_index = {
             "task_id": task_id,
             "created": timestamp,
-            "status": "in_progress",
+            "status": "in-progress",
             "assigned_agents": [],
             "documents": [],
         }

@@ -95,6 +95,9 @@ echo "Environment verification complete"
 ## 7. Agent Registration
 
 ### 7.1. Register with Orchestrator
+
+> **Note**: Use the `agent-messaging` skill to send messages instead of direct curl commands. If the skill is unavailable in the remote agent's environment, the curl format below can be used as fallback.
+
 ```bash
 # Send agent ready message via AI Maestro
 curl -X POST "{{AIMAESTRO_API}}/api/messages" \

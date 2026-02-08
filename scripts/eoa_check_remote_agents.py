@@ -225,7 +225,7 @@ def main() -> int:
     working_assignments = [
         a
         for a in assignments
-        if a.get("status") in ("working", "in_progress", "pending_verification")
+        if a.get("status") in ("working", "in-progress", "in_progress", "pending_verification")
     ]
 
     if not working_assignments:

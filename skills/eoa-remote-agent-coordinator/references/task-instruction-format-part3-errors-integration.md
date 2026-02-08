@@ -40,6 +40,8 @@ ACTIVE → timeout → REASSIGNED (if no extension)
 
 When task is blocked:
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "to": "orchestrator-master",
@@ -83,6 +85,8 @@ When task is blocked:
 ## 3.3 Failed Report Format
 
 When task cannot be completed:
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {

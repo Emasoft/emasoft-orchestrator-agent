@@ -259,7 +259,7 @@ Reassignment modifies multiple sections of the state file.
 ```yaml
 modules_status:
   - id: "auth-core"
-    status: "in_progress"
+    status: "in-progress"
     assigned_to: "implementer-1"
 ```
 
@@ -319,7 +319,7 @@ active_assignments:
 modules_status:
   - id: "auth-core"
     name: "Core Authentication"
-    status: "in_progress"
+    status: "in-progress"
     assigned_to: "implementer-1"
     github_issue: "#42"
 

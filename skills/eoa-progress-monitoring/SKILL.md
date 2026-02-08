@@ -7,6 +7,7 @@ metadata:
   author: Emasoft
   version: 1.0.0
 context: fork
+user-invocable: false
 agent: eoa-main
 workflow-instruction: "Step 17"
 procedure: "proc-execute-task"
@@ -85,6 +86,8 @@ Escalation follows a strict **order**, not time-based triggers:
 
 When state = No ACK or No Progress:
 
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
 ```json
 {
   "from": "orchestrator",
@@ -104,6 +107,8 @@ When state = No ACK or No Progress:
 ### 3.2 Urgent Reminder
 
 When state = Unresponsive (no response to first reminder):
+
+> **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
 
 ```json
 {

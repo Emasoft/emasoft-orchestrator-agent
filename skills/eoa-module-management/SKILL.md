@@ -202,7 +202,7 @@ Every module in EOA orchestration has a corresponding GitHub Issue. This relatio
 
 **Restrictions**:
 - `pending` modules: All fields modifiable
-- `in_progress` modules: Modifiable with agent notification
+- `in-progress` modules: Modifiable with agent notification
 - `complete` modules: Cannot modify
 
 **Example**:
@@ -221,7 +221,7 @@ Every module in EOA orchestration has a corresponding GitHub Issue. This relatio
 
 **Restrictions**:
 - Only `pending` modules can be removed
-- `in_progress` modules cannot be removed
+- `in-progress` modules cannot be removed
 - `complete` modules cannot be removed
 
 **Example**:
@@ -275,7 +275,7 @@ Module management commands modify the orchestration state file at `design/state/
 modules_status:
   - id: "auth-core"           # Kebab-case identifier
     name: "Core Authentication"  # Display name
-    status: "pending"         # pending|assigned|in_progress|complete
+    status: "pending"         # pending|assigned|in-progress|complete
     assigned_to: null         # Agent ID or null
     github_issue: "#42"       # Linked issue number
     pr: null                  # Linked PR when complete

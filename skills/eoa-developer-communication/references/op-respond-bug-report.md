@@ -129,8 +129,8 @@ Thanks again for reporting this - it helped improve the project!
 
 2. **Label the issue**:
    - `type:bug`
-   - `status:needs-triage` initially
-   - Update to `status:confirmed` or `status:needs-info`
+   - `status:backlog` initially
+   - Update to `status:confirmed` or `status:blocked`
 
 3. **Attempt reproduction** with documented steps
 
@@ -159,7 +159,7 @@ Thanks again for reporting this - it helped improve the project!
 |--------|--------|-------------|
 | Acknowledgment posted | GitHub comment | Initial response |
 | Issue labeled | GitHub labels | type:bug + status label |
-| Reproduction status | confirmed / cannot-reproduce / needs-info | Investigation result |
+| Reproduction status | confirmed / cannot-reproduce / blocked | Investigation result |
 | Resolution comment | GitHub comment | When fix is available |
 
 ---
@@ -178,7 +178,7 @@ Thanks again for reporting this - it helped improve the project!
 
 | Error | Cause | Recovery |
 |-------|-------|----------|
-| No response after 48h | Reporter inactive | Follow up once, then mark as needs-info |
+| No response after 48h | Reporter inactive | Follow up once, then mark as blocked |
 | Duplicate bug | Already reported | Link to original, close as duplicate |
 | Not a bug | Feature works as designed | Explain behavior, offer documentation |
 | Stale issue | No activity for 30+ days | Post update, close if no response |

@@ -99,7 +99,7 @@ if: |
 # Only in specific labels
 if: |
   contains(github.event.comment.body, '@claude') &&
-  contains(github.event.issue.labels.*.name, 'needs-review')
+  contains(github.event.issue.labels.*.name, 'ai-review')
 ```
 
 ### Step 5: Test the Workflow

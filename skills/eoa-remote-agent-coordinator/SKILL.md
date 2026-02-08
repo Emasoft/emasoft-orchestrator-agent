@@ -7,6 +7,7 @@ metadata:
   author: Emasoft
   version: 1.2.0
 context: fork
+user-invocable: false
 agent: eoa-main
 workflow-instruction: "Step 17"
 procedure: "proc-execute-task"

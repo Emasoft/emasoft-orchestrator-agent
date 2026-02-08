@@ -31,6 +31,9 @@ Send a request from Orchestrator (EOA) to Integrator (EIA) for code integration 
    - Review type needed (code review, CI check, merge readiness)
 
 2. **Prepare integration request message**:
+
+   > **Note**: Use the `agent-messaging` skill to send messages. The JSON structure below shows the message content.
+
    ```json
    {
      "from": "eoa-main",

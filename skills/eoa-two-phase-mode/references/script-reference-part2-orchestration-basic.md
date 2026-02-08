@@ -176,7 +176,7 @@ python3 eoa_reassign_module.py auth-core --to implementer-2
 
 **Exit codes:**
 - 0: Success
-- 1: Cannot reassign (in_progress, etc.)
+- 1: Cannot reassign (in-progress, etc.)
 
 ---
 
