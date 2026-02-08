@@ -267,7 +267,7 @@ Agent reports same progress percentage multiple times.
 
 **Symptom**:
 ```
-Error: Cannot connect to AI Maestro at http://localhost:23000
+Error: Cannot connect to AI Maestro messaging system
 ```
 
 **Solutions**:

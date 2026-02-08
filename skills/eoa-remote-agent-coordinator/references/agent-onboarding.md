@@ -157,7 +157,7 @@ Run the environment verification script:
 ```json
 {
   "aimaestro": {
-    "api_url": "${AIMAESTRO_API:-http://localhost:23000}",
+    "api_url": "managed by AI Maestro AMP (handles routing automatically)",
     "agent_session_name": "dev-<agent-id>-<project>",
     "poll_interval": 10
   }

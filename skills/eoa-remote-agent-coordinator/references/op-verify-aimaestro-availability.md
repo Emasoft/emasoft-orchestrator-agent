@@ -21,7 +21,7 @@ Verify that the AI Maestro messaging system is running and accessible before att
 
 | Input | Source | Required |
 |-------|--------|----------|
-| AIMAESTRO_API | Environment variable | Yes (default: http://localhost:23000) |
+| AI Maestro AMP | Messaging system | Yes (AMP handles routing automatically) |
 
 ## Outputs
 

@@ -19,7 +19,7 @@ Check for unread messages in your AI Maestro inbox.
 
 ## Prerequisites
 
-- AI Maestro running at http://localhost:23000
+- AI Maestro messaging system (AMP) running
 - `$SESSION_NAME` environment variable set (or known agent name)
 
 ## Steps

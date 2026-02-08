@@ -74,7 +74,7 @@ This checklist is organized into 4 parts for easier navigation. Click each part 
 | `AGENT_NAME` | Your agent/session name | `dev-agent-1` |
 | `SESSION_ID` | Current session ID | `session_20240115` |
 | `PLATFORM` | Target platform | `linux`, `darwin`, `windows` |
-| `AIMAESTRO_API` | AI Maestro API endpoint | `http://localhost:23000` |
+| `AIMAESTRO_API` | AI Maestro API endpoint (AMP handles routing automatically) | Managed by AMP |
 | `ORCHESTRATOR_AGENT` | Orchestrator agent name | `orchestrator-master` |
 
 ### Label Conventions

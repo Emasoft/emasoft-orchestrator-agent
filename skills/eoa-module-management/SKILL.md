@@ -340,7 +340,7 @@ active_assignments:
 | Module not found | Wrong ID used | Use `/orchestration-status` to see actual IDs |
 | Cannot remove module | Status not pending | Modify scope instead of removing |
 | GitHub Issue not created | gh CLI not authenticated | Run `gh auth login` |
-| Agent not notified | AI Maestro not running | Check `http://localhost:23000` |
+| Agent not notified | AI Maestro not running | Verify AI Maestro AMP messaging is running using the `agent-messaging` skill health check |
 | Priority not updating | Issue labels mismatch | Manually update GitHub Issue |
 
 **For detailed troubleshooting**: [troubleshooting.md](./references/troubleshooting.md)
@@ -458,7 +458,7 @@ Copy this checklist and track your progress:
 - [ ] Identify module management action needed (add/modify/remove/prioritize/reassign)
 - [ ] Verify Orchestration Phase is active
 - [ ] Confirm gh CLI is authenticated
-- [ ] Verify AI Maestro is running (http://localhost:23000)
+- [ ] Verify AI Maestro messaging system (AMP) is running
 - [ ] Execute appropriate command with required parameters
 - [ ] Check module state updated in design/state/exec-phase.md
 - [ ] Verify GitHub Issue created/updated with correct labels

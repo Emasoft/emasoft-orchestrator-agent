@@ -92,7 +92,7 @@ Send a document delivery notification using the `agent-messaging` skill:
 
 **Additional Variables:**
 - `{{RECIPIENT}}` - Full agent session name (e.g., libs-svg-svgbbox)
-- `${AIMAESTRO_API:-http://localhost:23000}` - AI Maestro API base URL with default fallback
+- AI Maestro AMP messaging (handles routing automatically)
 
 ---
 

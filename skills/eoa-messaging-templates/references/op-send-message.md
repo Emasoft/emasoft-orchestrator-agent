@@ -20,7 +20,7 @@ Send a message to another agent via AI Maestro messaging system.
 
 ## Prerequisites
 
-- AI Maestro running at http://localhost:23000
+- AI Maestro messaging system (AMP) running
 - Valid sender and recipient agent names
 - JSON payload prepared
 

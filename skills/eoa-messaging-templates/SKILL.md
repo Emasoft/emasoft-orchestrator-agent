@@ -21,7 +21,7 @@ This skill provides shared AI Maestro message templates and communication protoc
 
 ## Prerequisites
 
-1. AI Maestro messaging system running (http://localhost:23000)
+1. AI Maestro messaging system (AMP) running
 2. Understanding of emasoft agent roles (EOA, ECOS, EIA, EAMA)
 3. Access to AI Maestro API for sending/receiving messages
 4. Read **eoa-label-taxonomy** for GitHub label usage
@@ -44,7 +44,7 @@ Copy this checklist and track your progress:
 - [ ] Identify the communication scenario (task assignment, status report, approval, escalation, etc.)
 - [ ] Select the appropriate message template from section 2
 - [ ] Fill in all required template fields (from, to, subject, priority, content)
-- [ ] Verify AI Maestro API is running (http://localhost:23000)
+- [ ] Verify AI Maestro messaging system (AMP) is running
 - [ ] Send the message via AI Maestro using the `agent-messaging` skill
 - [ ] Wait for response according to message type and priority
 - [ ] Log the message exchange in the appropriate delegation/coordination log
@@ -294,5 +294,5 @@ All emasoft plugins follow consistent record-keeping standards for delegation lo
 - **eoa-label-taxonomy** - GitHub label usage
 - **eoa-task-distribution** - Task assignment protocol
 - **eoa-progress-monitoring** - Agent state tracking
-- **AI Maestro API** - http://localhost:23000
+- **AI Maestro AMP messaging**
 - [AI Maestro Message Templates](./references/ai-maestro-message-templates.md) - Curl command templates

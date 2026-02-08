@@ -10,8 +10,6 @@ Usage:
 """
 
 import argparse
-import json
-import os
 import subprocess
 import sys
 import uuid
@@ -90,39 +88,25 @@ def find_module(data: dict[str, Any], module_id: str) -> dict[str, Any] | None:
 
 
 def send_ai_maestro_message(session_name: str, subject: str, message: str) -> bool:
-    """Send a message via AI Maestro."""
+    """Send a message via AI Maestro AMP CLI."""
     try:
-        payload = {
-            "to": session_name,
-            "subject": subject,
-            "priority": "high",
-            "content": {"type": "task_assignment", "message": message},
-        }
-
-        api_url = os.getenv("AIMAESTRO_API", "http://localhost:23000")
         result = subprocess.run(
             [
-                "curl",
-                "-s",
-                "-X",
-                "POST",
-                f"{api_url}/api/messages",
-                "-H",
-                "Content-Type: application/json",
-                "-d",
-                json.dumps(payload),
+                "amp-send",
+                session_name,
+                subject,
+                message,
+                "--priority",
+                "high",
+                "--type",
+                "task",
             ],
             capture_output=True,
             text=True,
-            timeout=10,
+            timeout=30,
         )
-
-        if result.returncode == 0:
-            response: dict[str, Any] = json.loads(result.stdout)
-            return bool(response.get("success", False))
-        return False
-    except Exception as e:
-        print(f"Warning: Could not send AI Maestro message: {e}")
+        return result.returncode == 0
+    except Exception:
         return False
 
 

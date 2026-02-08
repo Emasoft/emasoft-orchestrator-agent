@@ -290,9 +290,10 @@ export GITHUB_PROFILE="https://github.com/Emasoft"
 
 ### AI Maestro Configuration
 
+AI Maestro AMP handles routing automatically. Use the `agent-messaging` skill to send and receive messages.
+
 ```bash
-# Set API URL (defaults to localhost if not configured)
-export AIMAESTRO_API="${AIMAESTRO_API:-http://localhost:23000}"
+# Agent session identification
 export AIMAESTRO_AGENT="<session-name>"
 export AIMAESTRO_POLL_INTERVAL="10"
 ```
@@ -314,7 +315,7 @@ source .env
 
 # Verify variables
 echo $GIT_AUTHOR
-echo $AIMAESTRO_API
+echo $AIMAESTRO_AGENT
 ```
 
 ## CI/CD Environment

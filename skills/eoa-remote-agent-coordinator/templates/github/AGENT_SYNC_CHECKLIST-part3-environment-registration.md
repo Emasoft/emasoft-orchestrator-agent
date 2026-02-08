@@ -96,38 +96,24 @@ echo "Environment verification complete"
 
 ### 7.1. Register with Orchestrator
 
-> **Note**: Use the `agent-messaging` skill to send messages instead of direct curl commands. If the skill is unavailable in the remote agent's environment, the curl format below can be used as fallback.
+Use the `agent-messaging` skill to send a registration confirmation message to the orchestrator agent. The message should include:
 
-```bash
-# Send agent ready message via AI Maestro
-curl -X POST "{{AIMAESTRO_API}}/api/messages" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "to": "{{ORCHESTRATOR_AGENT}}",
-    "subject": "Agent ready: {{TASK_ID}}",
-    "priority": "normal",
-    "content": {
-      "type": "status",
-      "message": "Agent {{AGENT_NAME}} completed pre-work checklist and is ready to start task {{TASK_ID}}",
-      "metadata": {
-        "issue": "{{ISSUE_NUMBER}}",
-        "branch": "'"$BRANCH_NAME"'",
-        "platform": "{{PLATFORM}}",
-        "session": "{{SESSION_ID}}"
-      }
-    }
-  }'
+- **Recipient**: `{{ORCHESTRATOR_AGENT}}`
+- **Subject**: `Agent ready: {{TASK_ID}}`
+- **Priority**: `normal`
+- **Type**: `status`
+- **Message body**: `Agent {{AGENT_NAME}} completed pre-work checklist and is ready to start task {{TASK_ID}}`
+- **Metadata to include**: issue number (`{{ISSUE_NUMBER}}`), branch name (`$BRANCH_NAME`), platform (`{{PLATFORM}}`), session ID (`{{SESSION_ID}}`)
 
-echo "Registered with orchestrator"
-```
+After sending, use the `agent-messaging` skill to verify the message was delivered successfully by checking sent messages.
 
 **Expected Output:**
-- Message sent successfully (HTTP 200/201)
+- Message delivered successfully via the AI Maestro messaging system (AMP)
 
 **If Failed:**
-- Verify AI Maestro API is accessible
-- Check orchestrator agent name
-- Verify API endpoint
+- Verify the AI Maestro messaging system (AMP) is running and accessible
+- Check orchestrator agent name is correct
+- Use the `agent-messaging` skill to check connectivity
 
 ### 7.2. Update Issue Status to "In Progress"
 ```bash

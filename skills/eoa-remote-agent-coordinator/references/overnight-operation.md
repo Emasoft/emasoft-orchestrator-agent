@@ -19,7 +19,7 @@ The EOA (Emasoft Orchestrator Agent) can coordinate remote developer agents auto
 Before initiating autonomous operation:
 
 ### Infrastructure
-- [ ] AI Maestro server running (`${AIMAESTRO_API:-http://localhost:23000}`)
+- [ ] AI Maestro messaging system (AMP) running
 - [ ] All remote agents online and responsive
 - [ ] GitHub access configured for all agents
 - [ ] Branch permissions verified

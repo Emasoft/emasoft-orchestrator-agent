@@ -23,11 +23,7 @@
 
 ### Base URL
 
-```bash
-${AIMAESTRO_API:-http://localhost:23000}/api
-```
-
-The `AIMAESTRO_API` environment variable defaults to `http://localhost:23000` if not set.
+AI Maestro AMP messaging (handles routing automatically). Use the `agent-messaging` skill to send and receive messages.
 
 ### Available Endpoints
 

@@ -257,7 +257,7 @@ When EAMA responds with the user's decision:
 ### Base API Endpoint
 
 ```
-http://localhost:23000/api/messages
+AI Maestro AMP messaging (handles routing automatically)
 ```
 
 > **Note**: Do not call this API endpoint directly. Use the `agent-messaging` skill which handles the API format automatically.

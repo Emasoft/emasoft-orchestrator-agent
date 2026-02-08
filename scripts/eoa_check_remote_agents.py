@@ -11,8 +11,6 @@ Usage:
 """
 
 import argparse
-import json
-import os
 import subprocess
 import sys
 from datetime import datetime, timezone, timedelta
@@ -95,34 +93,25 @@ Expected response time: 5 minutes"""
 
 
 def send_poll_message(session_name: str, module_name: str, poll_number: int) -> bool:
-    """Send poll message via AI Maestro."""
+    """Send poll message via AI Maestro AMP CLI."""
     try:
         message = create_poll_message(module_name, poll_number)
-        payload = {
-            "to": session_name,
-            "subject": f"[POLL] Module: {module_name} - Progress Check #{poll_number}",
-            "priority": "normal",
-            "content": {"type": "progress_poll", "message": message},
-        }
-
-        api_url = os.getenv("AIMAESTRO_API", "http://localhost:23000")
+        subject = f"[POLL] Module: {module_name} - Progress Check #{poll_number}"
         result = subprocess.run(
             [
-                "curl",
-                "-s",
-                "-X",
-                "POST",
-                f"{api_url}/api/messages",
-                "-H",
-                "Content-Type: application/json",
-                "-d",
-                json.dumps(payload),
+                "amp-send",
+                session_name,
+                subject,
+                message,
+                "--priority",
+                "normal",
+                "--type",
+                "request",
             ],
             capture_output=True,
             text=True,
-            timeout=10,
+            timeout=30,
         )
-
         return result.returncode == 0
     except Exception:
         return False
@@ -225,7 +214,8 @@ def main() -> int:
     working_assignments = [
         a
         for a in assignments
-        if a.get("status") in ("working", "in-progress", "in_progress", "pending_verification")
+        if a.get("status")
+        in ("working", "in-progress", "in_progress", "pending_verification")
     ]
 
     if not working_assignments:

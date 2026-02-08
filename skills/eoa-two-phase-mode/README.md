@@ -169,6 +169,6 @@ Both files use YAML frontmatter format and are gitignored (`.local.md` suffix).
 ## Requirements
 
 - EOA (Emasoft Orchestrator Agent) Plugin v2.4.0+
-- AI Maestro running (configurable via `AIMAESTRO_API` environment variable, default: `http://localhost:23000`)
+- AI Maestro messaging system (AMP) running (routing handled automatically)
 - GitHub CLI (`gh`) installed and authenticated
 - Python 3.8+ with PyYAML

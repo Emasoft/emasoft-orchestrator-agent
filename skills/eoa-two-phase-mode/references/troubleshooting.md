@@ -131,7 +131,7 @@
 **Solution**:
 1. Check AI Maestro server is running
 2. Verify target agent session name is correct
-3. Check message queue using the `agent-messaging` skill. If the skill is unavailable, use the curl fallback: `curl ${AIMAESTRO_API}/api/messages?agent=TARGET_AGENT`
+3. Check the message queue using the `agent-messaging` skill to list messages for the target agent
 4. Retry message with higher priority
 
 ### Issue: Human developer not receiving GitHub notifications

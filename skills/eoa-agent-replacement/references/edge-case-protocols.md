@@ -87,7 +87,7 @@ When AI Maestro is unavailable, follow this protocol:
 
 1. **Log the failure**:
    ```bash
-   echo "$(date -Iseconds) | AIMAESTRO_UNAVAILABLE | $AIMAESTRO_API | HTTP $STATUS_CODE" >> .claude/logs/maestro-failures.log
+   echo "$(date -Iseconds) | AIMAESTRO_UNAVAILABLE | AI Maestro AMP | HTTP $STATUS_CODE" >> .claude/logs/maestro-failures.log
    ```
 
 2. **Queue outgoing messages**:

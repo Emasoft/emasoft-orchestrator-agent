@@ -13,8 +13,6 @@ Usage:
 """
 
 import argparse
-import json
-import os
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -27,7 +25,7 @@ import yaml
 EXEC_STATE_FILE = Path(".claude/orchestrator-exec-phase.local.md")
 
 
-def parse_frontmatter(file_path: Path) -> tuple[dict, str]:
+def parse_frontmatter(file_path: Path) -> tuple[dict[str, Any], str]:
     """Parse YAML frontmatter and return (data, body)."""
     if not file_path.exists():
         return {}, ""
@@ -51,7 +49,7 @@ def parse_frontmatter(file_path: Path) -> tuple[dict, str]:
         return {}, content
 
 
-def write_state_file(file_path: Path, data: dict, body: str) -> bool:
+def write_state_file(file_path: Path, data: dict[str, Any], body: str) -> bool:
     """Write a state file with YAML frontmatter."""
     try:
         yaml_content = yaml.dump(
@@ -65,19 +63,19 @@ def write_state_file(file_path: Path, data: dict, body: str) -> bool:
         return False
 
 
-def find_assignment(data: dict, agent_id: str) -> dict[Any, Any] | None:
+def find_assignment(data: dict[str, Any], agent_id: str) -> dict[str, Any] | None:
     """Find active assignment for an agent."""
-    assignments: list[dict[Any, Any]] = data.get("active_assignments", [])
+    assignments: list[dict[str, Any]] = data.get("active_assignments", [])
     for assignment in assignments:
         if assignment.get("agent") == agent_id:
             return assignment
     return None
 
 
-def find_agent_session(data: dict, agent_id: str) -> str | None:
+def find_agent_session(data: dict[str, Any], agent_id: str) -> str | None:
     """Find the session name for an AI agent."""
-    agents: dict = data.get("registered_agents", {})
-    ai_agents: list = agents.get("ai_agents", [])
+    agents: dict[str, Any] = data.get("registered_agents", {})
+    ai_agents: list[dict[str, Any]] = agents.get("ai_agents", [])
     for agent in ai_agents:
         if agent.get("agent_id") == agent_id:
             session_name: str | None = agent.get("session_name")
@@ -86,37 +84,29 @@ def find_agent_session(data: dict, agent_id: str) -> str | None:
 
 
 def send_message(session: str, subject: str, message: str) -> bool:
-    """Send AI Maestro message."""
+    """Send AI Maestro message via AMP CLI."""
     try:
-        payload = {
-            "to": session,
-            "subject": subject,
-            "priority": "high",
-            "content": {"type": "instruction_verification", "message": message},
-        }
-        api_url = os.getenv("AIMAESTRO_API", "http://localhost:23000")
         result = subprocess.run(
             [
-                "curl",
-                "-s",
-                "-X",
-                "POST",
-                f"{api_url}/api/messages",
-                "-H",
-                "Content-Type: application/json",
-                "-d",
-                json.dumps(payload),
+                "amp-send",
+                session,
+                subject,
+                message,
+                "--priority",
+                "high",
+                "--type",
+                "request",
             ],
             capture_output=True,
             text=True,
-            timeout=10,
+            timeout=30,
         )
         return result.returncode == 0
     except Exception:
         return False
 
 
-def show_status(data: dict, agent_id: str) -> int:
+def show_status(data: dict[str, Any], agent_id: str) -> int:
     """Show verification status for an agent."""
     assignment = find_assignment(data, agent_id)
     if not assignment:
@@ -164,7 +154,9 @@ def show_status(data: dict, agent_id: str) -> int:
     return 0
 
 
-def record_repetition(data: dict, body: str, agent_id: str, correct: bool) -> int:
+def record_repetition(
+    data: dict[str, Any], body: str, agent_id: str, correct: bool
+) -> int:
     """Record that agent has repeated instructions."""
     assignment = find_assignment(data, agent_id)
     if not assignment:
@@ -203,7 +195,7 @@ def record_repetition(data: dict, body: str, agent_id: str, correct: bool) -> in
 
 
 def record_questions(
-    data: dict, body: str, agent_id: str, count: int, answered: int
+    data: dict[str, Any], body: str, agent_id: str, count: int, answered: int
 ) -> int:
     """Record questions asked by agent."""
     assignment = find_assignment(data, agent_id)
@@ -232,7 +224,7 @@ def record_questions(
     return 0
 
 
-def authorize_agent(data: dict, body: str, agent_id: str) -> int:
+def authorize_agent(data: dict[str, Any], body: str, agent_id: str) -> int:
     """Authorize agent to begin implementation."""
     assignment = find_assignment(data, agent_id)
     if not assignment:

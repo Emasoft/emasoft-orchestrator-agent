@@ -210,18 +210,12 @@ Instead of embedding large content:
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
-| `AIMAESTRO_API` | `http://localhost:23000` | API base URL |
+| `AIMAESTRO_API` | Managed by AMP | API base URL (AMP handles routing automatically) |
 | `AIMAESTRO_AGENT` | Auto-detected | Agent identifier override |
 
 ### Setting Environment Variables
 
-```bash
-# In your session or .bashrc
-export AIMAESTRO_API="http://localhost:23000"
-
-# For remote AI Maestro server
-export AIMAESTRO_API="http://maestro.internal:23000"
-```
+AI Maestro AMP handles routing automatically. No manual environment variable configuration is needed. Use the `agent-messaging` skill to send and receive messages.
 
 ---
 

@@ -10,8 +10,6 @@ Usage:
 """
 
 import argparse
-import json
-import os
 import subprocess
 import sys
 import uuid
@@ -83,29 +81,20 @@ def find_agent(
 def send_ai_maestro_message(session_name: str, subject: str, message: str) -> bool:
     """Send a message via AI Maestro."""
     try:
-        payload = {
-            "to": session_name,
-            "subject": subject,
-            "priority": "high",
-            "content": {"type": "notification", "message": message},
-        }
-
-        api_url = os.getenv("AIMAESTRO_API", "http://localhost:23000")
         result = subprocess.run(
             [
-                "curl",
-                "-s",
-                "-X",
-                "POST",
-                f"{api_url}/api/messages",
-                "-H",
-                "Content-Type: application/json",
-                "-d",
-                json.dumps(payload),
+                "amp-send",
+                session_name,
+                subject,
+                message,
+                "--priority",
+                "high",
+                "--type",
+                "notification",
             ],
             capture_output=True,
             text=True,
-            timeout=10,
+            timeout=30,
         )
 
         return result.returncode == 0

@@ -2,7 +2,7 @@
 name: eoa-remote-agent-coordinator
 description: "Use when coordinating remote AI agents. Trigger with task delegation or multi-agent coordination requests."
 license: Apache-2.0
-compatibility: Requires AI Maestro messaging system (configurable via AIMAESTRO_API env var, default http://localhost:23000). Python 3.9+ for LSP management scripts. Requires AI Maestro installed.
+compatibility: Requires AI Maestro messaging system (AMP, handles routing automatically). Python 3.9+ for LSP management scripts. Requires AI Maestro installed.
 metadata:
   author: Emasoft
   version: 1.2.0
@@ -23,7 +23,7 @@ The Remote Agent Coordinator enables the EOA (Emasoft Orchestrator Agent) to del
 
 ## Prerequisites
 
-- AI Maestro messaging system running (default: http://localhost:23000)
+- AI Maestro messaging system (AMP) running
 - Python 3.9+ for LSP management scripts
 - Remote agents registered and available
 - GitHub CLI (gh) for issue management

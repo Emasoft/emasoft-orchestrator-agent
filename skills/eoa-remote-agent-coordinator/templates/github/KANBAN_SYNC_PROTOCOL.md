@@ -168,7 +168,7 @@ gh issue edit {{ISSUE_NUMBER}} \
 | `ITEM_ID` | Project item ID | `PVTI_xxx` |
 | `STATUS_FIELD_ID` | Status field ID | `PVTSSF_xxx` |
 | `AGENT_NAME` | Agent session name | `worker-1` |
-| `AIMAESTRO_API` | AI Maestro API URL | `http://localhost:23000` |
+| `AIMAESTRO_API` | AI Maestro API URL (AMP handles routing automatically) | Managed by AMP |
 
 ---
 

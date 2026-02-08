@@ -20,7 +20,6 @@ import json
 import os
 import subprocess
 import sys
-import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, cast
@@ -29,9 +28,6 @@ from typing import Any, cast
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
 GITHUB_OWNER = os.environ.get("GITHUB_OWNER", "Emasoft")
 GITHUB_REPO = os.environ.get("GITHUB_REPO", "")
-
-# AI Maestro configuration
-AI_MAESTRO_API = os.environ.get("AIMAESTRO_API", "http://localhost:23000")
 
 # Project configuration
 PROJECT_ID = os.environ.get("GITHUB_PROJECT_ID", "")
@@ -105,24 +101,34 @@ def send_ai_maestro_message(
     priority: str = "normal",
     from_agent: str = "eoa-orchestrator",
 ) -> bool:
-    """Send a message via AI Maestro."""
-    message = {
-        "from": from_agent,
-        "to": to,
-        "subject": subject,
-        "priority": priority,
-        "content": content,
-    }
-
+    """Send a message via AI Maestro AMP CLI."""
     try:
-        req = urllib.request.Request(
-            f"{AI_MAESTRO_API}/api/messages",
-            data=json.dumps(message).encode("utf-8"),
-            headers={"Content-Type": "application/json"},
-            method="POST",
+        msg_type = (
+            content.get("type", "notification")
+            if isinstance(content, dict)
+            else "notification"
         )
-        with urllib.request.urlopen(req, timeout=10) as resp:
-            return bool(resp.status == 200 or resp.status == 201)
+        msg_text = (
+            content.get("message", str(content))
+            if isinstance(content, dict)
+            else str(content)
+        )
+        result = subprocess.run(
+            [
+                "amp-send",
+                to,
+                subject,
+                msg_text,
+                "--priority",
+                priority,
+                "--type",
+                msg_type,
+            ],
+            capture_output=True,
+            text=True,
+            timeout=30,
+        )
+        return result.returncode == 0
     except Exception as e:
         print(f"Failed to send message: {e}", file=sys.stderr)
         return False
