@@ -418,3 +418,27 @@ This protocol integrates with:
 3. Try alternative communication method if available
 4. Increase timeout temporarily if network is flaky
 5. Once connectivity restored, request status update to sync state
+
+---
+
+## Decision Trees for Acknowledgment Handling
+
+### ACK Evaluation Decision Tree
+
+```
+ACK received from agent
+├─ Does ACK echo back the correct task_id and instruction summary?
+│   ├─ Yes (correct understanding) → Log ACK → Proceed with monitoring
+│   └─ No (wrong understanding) → What kind of mismatch?
+│       ├─ Wrong task_id → Agent confused about which task → Resend with explicit task_id
+│       ├─ Wrong summary (misunderstood instructions) → Send correction message
+│       │   → Include: "Your understanding: X. Correct understanding: Y"
+│       │   → Request new ACK with corrected understanding
+│       │   ├─ Corrected ACK received → Proceed
+│       │   └─ Still wrong after 2 corrections → Escalate to ECOS
+│       │       → Possible agent capability mismatch
+│       └─ Partial summary (some items missing) → Send supplement with missing items
+│           → Request updated ACK confirming full scope
+```
+
+**Cross-reference**: For Stop Work ACK handling, see `task-lifecycle-templates.md` Section 5 (Agent Stop Work Notification).

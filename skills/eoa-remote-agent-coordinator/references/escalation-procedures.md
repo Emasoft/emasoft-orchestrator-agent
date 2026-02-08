@@ -332,3 +332,53 @@ Track escalation patterns:
 - High unclear spec count suggests need for better requirements
 - All security escalations resolved within first attempt (good)
 ```
+
+## Decision Trees for Escalation Handling
+
+### Cross-Reference
+
+For the core Escalate vs Retry decision tree, see `decision-trees-core.md` Section 1.
+
+### No Response Escalation Decision Tree
+
+When an escalation sent to ECOS, EAMA, or EAA gets no response, follow this decision tree:
+
+```
+Escalation sent, no response received
+├─ How long since escalation was sent?
+│   ├─ < 10 minutes → Wait (within normal response window)
+│   ├─ 10-30 minutes → Send follow-up reminder with original escalation context
+│   │   ├─ Response received → Process response normally
+│   │   └─ Still no response → Continue to next check
+│   ├─ 30-60 minutes → Re-send escalation with priority bumped up one level
+│   │   ├─ Was originally "normal" → Re-send as "high"
+│   │   ├─ Was originally "high" → Re-send as "urgent"
+│   │   └─ Was already "urgent" → Send to ALL available ECOS instances
+│   └─ > 60 minutes → Emergency protocol
+│       ├─ Is the blocked task critical path?
+│       │   ├─ Yes → Pause ALL dependent tasks → Document full state
+│       │   │         → Send emergency notification to ECOS with full audit trail
+│       │   └─ No → Continue other work → Log timeout incident
+│       └─ Record incident for post-mortem review
+```
+
+### User Response Processing Decision Tree
+
+When EOA receives a user decision relayed through EAMA or ECOS, follow this decision tree:
+
+```
+User decision received via ECOS/EAMA relay
+├─ Is the decision clear and actionable?
+│   ├─ Yes → Does it match one of the options EOA presented?
+│   │         ├─ Yes → Execute the chosen option
+│   │         │         → Send confirmation to ECOS: "Executing option X as directed"
+│   │         │         → Update affected agents with new direction
+│   │         │         → Resume paused tasks if applicable
+│   │         └─ No (user chose something different) → Is the alternative feasible?
+│   │             ├─ Yes → Adapt plan to user's choice → Execute
+│   │             └─ No → Send back explanation of why it's not feasible
+│   │                     → Provide revised options → Wait for new decision
+│   └─ No (ambiguous or incomplete) → Send clarification request through ECOS
+│       → Include: what was understood, what needs clarification, specific questions
+│       → Continue other unblocked work while waiting
+```

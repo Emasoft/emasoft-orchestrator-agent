@@ -363,3 +363,52 @@ Send messages using the `agent-messaging` skill with these fields:
 - `acknowledgment` - Acknowledging completion
 - `notification` - General notification
 - `urgent` - Urgent communication
+
+---
+
+## Decision Trees for Agent Communication
+
+### Reassignment Decision Tree
+
+When EOA needs to reassign a task from one agent to another, follow this decision tree:
+
+```
+Reassignment trigger (agent failure / agent overloaded / conflict detected)
+├─ Is original agent still responsive?
+│   ├─ Yes → Send Reassignment Notification to original agent (template 6.6)
+│   │         ├─ Agent ACKs and sends work summary within 5 min
+│   │         │   → Compile handoff context (work summary + original task + files touched)
+│   │         │   → Select new agent (check availability, no file conflicts)
+│   │         │   → Send Reassignment Assignment to new agent with full context
+│   │         │   → Update kanban: old agent removed, new agent assigned
+│   │         └─ Agent does not ACK within 5 min → Treat as unresponsive
+│   │             → Compile context from last known state (kanban, commit history)
+│   │             → Select new agent → Send assignment with partial context
+│   │             → Flag to ECOS that original agent is unresponsive
+│   └─ No (agent crashed/terminated) → Request ECOS for replacement agent
+│       → Compile context from kanban + commit history + task description
+│       → Wait for ECOS to spawn replacement
+│       → Send fresh Task Assignment to replacement with compiled context
+```
+
+### Issue Response Decision Tree
+
+When an agent reports an issue during implementation, follow this decision tree:
+
+```
+Agent reports issue (bug found / design question / requirement ambiguity)
+├─ What type of issue?
+│   ├─ Bug in existing code → Is it blocking the current task?
+│   │   ├─ Yes (blocking) → Can agent work around it temporarily?
+│   │   │   ├─ Yes → Instruct agent to document workaround and continue
+│   │   │   │         → Create separate bug issue on GitHub
+│   │   │   └─ No → Escalate to ECOS as blocker → Pause agent's task
+│   │   └─ No (non-blocking) → Log issue → Create GitHub issue → Agent continues
+│   ├─ Design question → Does EOA have authority to decide?
+│   │   ├─ Yes (minor design choice) → Provide guidance → Agent continues
+│   │   └─ No (architectural decision) → Escalate to ECOS for EAA review
+│   │       → Pause affected subtask → Continue other subtasks if possible
+│   └─ Requirement ambiguity → Is it an immutable requirement?
+│       ├─ Yes → Escalate to ECOS → ECOS routes to EAMA → Wait for user decision
+│       └─ No → Make pragmatic decision → Document decision rationale → Agent continues
+```

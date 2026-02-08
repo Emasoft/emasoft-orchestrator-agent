@@ -172,13 +172,21 @@ Claude Code's skill resolution system automatically finds skills by folder name 
 
 | Skill Folder Name | Purpose |
 |-------------------|---------|
+| `eoa-agent-replacement` | Handling agent failures and replacement handoff |
+| `eoa-checklist-compilation-patterns` | Compiling task checklists for implementers |
+| `eoa-developer-communication` | Communicating with human developers |
+| `eoa-github-action-integration` | CI/CD pipeline integration |
+| `eoa-implementer-interview-protocol` | Pre-task and post-task agent interviews |
+| `eoa-label-taxonomy` | GitHub label management and kanban column mapping |
+| `eoa-messaging-templates` | AI Maestro message templates and protocols |
+| `eoa-module-management` | Module lifecycle management |
+| `eoa-orchestration-commands` | Core orchestration slash commands |
 | `eoa-orchestration-patterns` | Task orchestration patterns and workflows |
+| `eoa-progress-monitoring` | Monitoring implementer agent progress |
+| `eoa-remote-agent-coordinator` | Coordinating remote AI agents |
 | `eoa-task-distribution` | Distributing tasks to implementer agents |
-| `eoa-kanban-management` | Managing GitHub Projects kanban boards |
-| `eoa-progress-monitoring` | Monitoring implementer progress |
-| `eoa-aimaestro-messaging` | AI Maestro messaging protocols |
-| `eoa-error-handling` | Handling implementer errors and blockers |
-| `eoa-status-reporting` | Reporting status to ECOS |
+| `eoa-two-phase-mode` | Two-phase planning and execution mode |
+| `eoa-verification-patterns` | Code and deliverable verification patterns |
 
 ### NEVER Reference Other Plugins
 ```markdown

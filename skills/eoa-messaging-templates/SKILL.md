@@ -120,6 +120,38 @@ For AI Maestro curl command templates with all message types, see **[references/
 - Complete JSON payloads with all required fields
 - Copy-paste templates for quick messaging
 
+### Extended Communication Templates
+
+For response templates FROM other agents TO EOA, see **[references/ecos-response-templates.md](references/ecos-response-templates.md)**:
+
+- ECOS response to EOA Task Completion Report (accept/rework/clarify)
+- EAMA response to EOA Blocker Escalation (user decision delivered/deferred/rejected)
+- EAA response to Design Issue Escalation (guidance/revised design/investigate)
+- Decision trees for each response type
+
+For session lifecycle messages (wake/hibernate/terminate), see **[references/session-lifecycle-templates.md](references/session-lifecycle-templates.md)**:
+
+- ECOS Wake message to EOA + EOA Wake ACK
+- ECOS Hibernate directive + EOA Hibernate ACK
+- ECOS Terminate directive + EOA Final Termination Report
+- EOA Periodic Status Report (30-min scheduled summary)
+- Decision trees for each lifecycle event
+
+For task lifecycle commands (cancel/pause/resume/broadcast/stop), see **[references/task-lifecycle-templates.md](references/task-lifecycle-templates.md)**:
+
+- Task Cancellation send + agent work-summary response
+- Task Pause/Resume send + agent state-checkpoint ACK
+- Broadcast Message send + individual ACKs
+- Agent Stop Work Notification + response
+- Decision trees: Cancel vs Pause vs Reassign; Broadcast vs Targeted
+
+For agent resource and skill requests, see **[references/resource-request-templates.md](references/resource-request-templates.md)**:
+
+- Agent Resource Request (tools/access/credentials) → EOA response (grant/deny/escalate)
+- Agent Skill Request (different capability) → EOA response
+- EOA formal ACK of ECOS Task assignment (JSON template)
+- Decision tree: Grant directly / Escalate to ECOS / Deny with alternative
+
 ---
 
 ## 3. Cross-Plugin Protocol Reference

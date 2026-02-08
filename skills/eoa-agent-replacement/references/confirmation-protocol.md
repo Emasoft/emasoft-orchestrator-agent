@@ -441,5 +441,59 @@ Complete checklist before marking replacement done:
 
 ---
 
+## Decision Trees for Confirmation Outcomes
+
+### Confirmation Outcome Decision Tree
+
+```
+Replacement agent confirmation check completed
+├─ Did replacement agent pass all confirmation criteria?
+│   ├─ Full pass (all criteria met)
+│   │   → Send confirmation success to ECOS
+│   │   → Mark replacement as permanent
+│   │   → Resume normal task monitoring
+│   │
+│   ├─ Partial pass (some criteria met, minor gaps)
+│   │   → Are gaps addressable with a quick fix?
+│   │   ├─ Yes → Send targeted fix instructions to replacement agent
+│   │   │         → Re-run confirmation after fix → If pass, proceed as full pass
+│   │   └─ No → Escalate to ECOS with gap details
+│   │           → ECOS decides: accept partial / spawn another replacement
+│   │
+│   └─ Fail (critical criteria not met)
+│       → Notify ECOS: replacement agent inadequate
+│       → Include: which criteria failed, agent's response quality, recommendation
+│       → ECOS options: try different agent / simplify task / escalate to EAA
+```
+
+### ECOS Confirmation Notification Template
+
+```json
+{
+  "to": "<ecos-session-name>",
+  "subject": "Replacement Agent Confirmation Result — Task <task_id>",
+  "priority": "high",
+  "content": {
+    "type": "report",
+    "message": "Replacement agent confirmation check completed.",
+    "data": {
+      "task_id": "<task-id>",
+      "replacement_agent": "<agent-session-name>",
+      "result": "FULL_PASS | PARTIAL_PASS | FAIL",
+      "criteria_results": {
+        "task_understanding": "pass | fail",
+        "toolchain_access": "pass | fail",
+        "handoff_comprehension": "pass | fail",
+        "initial_progress": "pass | fail"
+      },
+      "gaps": ["<description of any gaps>"],
+      "recommendation": "<EOA's recommended next action>"
+    }
+  }
+}
+```
+
+---
+
 **Version**: 1.0.0
 **Last Updated**: 2026-02-02

@@ -306,3 +306,65 @@ This document provides the complete AI Maestro message templates for all common 
   }
 }
 ```
+
+---
+
+## Decision Trees for Core Message Templates
+
+The following decision trees show the exact branching logic EOA follows when sending or receiving the most common message types. Each leaf node references the appropriate template from the sections above.
+
+### Task Assignment Decision Tree
+
+**When EOA needs to assign a task to an agent:**
+
+```
+Task assignment needed
+├─ Is agent registered in AI Maestro?
+│   ├─ Yes → Is agent currently idle (no in-progress tasks)?
+│   │         ├─ Yes → Does task conflict with agent's other assigned files?
+│   │         │         ├─ No conflict → Send Task Assignment (template 2.1) → Wait for ACK
+│   │         │         │                 ├─ ACK received within 2 min → Mark task "in-progress" on kanban
+│   │         │         │                 └─ No ACK within 2 min → Retry once → Still no ACK → Escalate to ECOS
+│   │         │         └─ Conflict detected → Choose different agent or wait for current task to complete
+│   │         └─ No (agent busy) → Is task priority higher than current task?
+│   │                               ├─ Yes (urgent) → Send Priority Override message → Reassign current task
+│   │                               └─ No → Queue task, assign when agent becomes available
+│   └─ No → Request ECOS to spawn new agent for this task
+```
+
+### Task Completion Report Decision Tree
+
+**When EOA receives a completion report from an agent:**
+
+```
+Completion report received from agent
+├─ Does report include all required fields (task_id, summary, files_changed, tests_passed)?
+│   ├─ Yes → Do self-reported tests show 100% pass rate?
+│   │         ├─ Yes → Are all checklist items marked complete?
+│   │         │         ├─ Yes → Move task to "ai-review" on kanban → Send Integration Request to EIA
+│   │         │         │         ├─ EIA accepts → Move to "merge-release" → Notify ECOS
+│   │         │         │         └─ EIA rejects → Send Rework Assignment (template 2.7) back to agent
+│   │         │         └─ No (incomplete checklist) → Send Clarification Request (template 2.6) to agent
+│   │         └─ No (test failures) → Send Rework Assignment with failure details → Agent retries
+│   └─ No (missing fields) → Send Clarification Request listing missing fields → Agent resubmits
+```
+
+### Status Request/Response Decision Tree
+
+**When EOA polls agents for status:**
+
+```
+Scheduled status check (every 15 min per active agent)
+├─ Send Status Request (template 2.3) to agent
+│   ├─ Response received within 3 min → Parse progress percentage
+│   │   ├─ Progress > 0% since last check → Log progress, continue monitoring
+│   │   ├─ Progress = 0% (stalled) → Is this the 2nd consecutive stall?
+│   │   │                             ├─ Yes → Send direct inquiry about blockers
+│   │   │                             │         ├─ Blocker reported → Triage blocker (see escalation-procedures.md)
+│   │   │                             │         └─ No blocker, just slow → Allow one more cycle, then escalate
+│   │   │                             └─ No (first stall) → Log warning, check again next cycle
+│   │   └─ Agent reports blocker → Triage immediately (see escalation-procedures.md)
+│   └─ No response within 3 min → Retry once after 2 min
+│       ├─ Second attempt succeeds → Process response as above
+│       └─ Second attempt fails → Mark agent as unresponsive → Escalate to ECOS
+```

@@ -352,3 +352,44 @@ When the agent requests PR permission for the 5th time (after completing all 4 v
 2. Consider breaking task into smaller PRs
 3. Review if acceptance criteria are clear
 4. Escalate to user if fundamentally misaligned
+
+---
+
+## Per-Loop Differentiated Criteria and Decision Trees
+
+### Per-Loop Focus Areas
+
+Each verification loop has a progressively narrower focus:
+
+| Loop | Focus Area | What to Check | Pass Criteria |
+|------|-----------|---------------|---------------|
+| 1 | Functional completeness | All requirements met, core logic works, tests pass | All checklist items verified |
+| 2 | Code quality | Style, naming, documentation, error handling | No major quality issues |
+| 3 | Edge cases | Boundary conditions, error paths, concurrency | No unhandled edge cases found |
+| 4 | Integration readiness | API compatibility, dependency versions, config | Ready for EIA review |
+
+### Verification Loop Outcome Decision Tree
+
+```
+Verification loop N completed (N = 1 to 4)
+├─ Did agent find issues in this loop?
+│   ├─ Yes → Are issues within agent's ability to fix?
+│   │         ├─ Yes → Send "Fix and re-verify" instruction
+│   │         │         → Agent fixes → Re-run same loop N
+│   │         │         ├─ Issues resolved → Proceed to loop N+1
+│   │         │         └─ Issues persist after 2 fix attempts → Escalate to ECOS
+│   │         └─ No (needs architectural change) → Escalate to ECOS for EAA
+│   │             → Pause verification → Wait for design guidance
+│   └─ No (clean loop) → Is this the final loop (loop 4)?
+│       ├─ Yes → All 4 loops passed → Move task to "ai-review" for EIA
+│       │         → Send completion summary with all loop results
+│       └─ No → Proceed to loop N+1 with narrower focus
+│
+After loop 4 fails for the 5th cumulative attempt:
+├─ Compile full failure history (all loops, all attempts)
+├─ Send detailed failure report to ECOS
+├─ Recommend: reassign to different agent OR request EAA architecture review
+└─ Do NOT attempt loop 5+ without ECOS approval
+```
+
+**Cross-reference**: For detailed verification feedback message templates for loops 2-4, see `verification-feedback-templates.md`.

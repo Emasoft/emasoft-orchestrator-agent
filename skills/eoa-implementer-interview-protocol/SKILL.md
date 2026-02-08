@@ -289,8 +289,8 @@ Copy this checklist and track your progress:
 
 ## Resources
 
-- **[interview-templates.md](./references/interview-templates.md)** - Question templates and evaluation
-- **[escalation-messages.md](./references/escalation-messages.md)** - Escalation and approval messages
+- **[interview-templates.md](./references/interview-templates.md)** - Question templates, evaluation, and decision trees (Pre-Task, Post-Task, REVISE Cycle Escalation)
+- **[escalation-messages.md](./references/escalation-messages.md)** - Escalation and approval messages, escalation path selection decision tree, EAA/EAMA response templates
 - **[exception-handling.md](./references/exception-handling.md)** - Exception procedures
 - **[examples.md](./references/examples.md)** - Complete curl examples
 - **AGENT_OPERATIONS.md** - Core orchestrator workflow

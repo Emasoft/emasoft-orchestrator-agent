@@ -326,5 +326,57 @@ If ACK doesn't contain required fields:
 
 ---
 
+---
+
+## Decision Trees for Handoff Delivery
+
+### Handoff Delivery Method Decision Tree
+
+```
+Handoff document compiled, ready to deliver to new agent
+├─ What is the size of the handoff document?
+│   ├─ Small (< 500 lines) → Deliver inline via AI Maestro message
+│   │   → Include full document in message content.data.handoff_document field
+│   │   → Fastest delivery, no external storage needed
+│   │
+│   ├─ Medium (500-2000 lines) → Create GitHub Gist
+│   │   → Use `gh gist create` with handoff document
+│   │   → Send AI Maestro message with gist URL in content.data.handoff_url
+│   │   → Agent reads gist content directly
+│   │
+│   └─ Large (> 2000 lines) → Create GitHub Issue on project repo
+│       → Attach handoff as issue body with structured sections
+│       → Link issue to original task issue
+│       → Send AI Maestro message with issue URL in content.data.handoff_url
+│       → Agent reads issue content for full context
+│
+In all cases:
+→ Wait for new agent ACK confirming handoff received and understood
+→ If no ACK within 5 min → Retry delivery → If still no ACK → Escalate to ECOS
+```
+
+### New Agent Handoff ACK Template
+
+```json
+{
+  "to": "<eoa-session-name>",
+  "subject": "Handoff ACK — Task <task_id>",
+  "priority": "high",
+  "content": {
+    "type": "ack",
+    "message": "Handoff document received and reviewed.",
+    "data": {
+      "task_id": "<task-id>",
+      "handoff_received": true,
+      "understood_scope": "<agent's 1-sentence summary of what it needs to do>",
+      "questions": ["<any clarifying questions, or empty array if none>"],
+      "estimated_start": "immediate | <reason for delay>"
+    }
+  }
+}
+```
+
+---
+
 **Version**: 1.0.0
 **Last Updated**: 2026-02-02

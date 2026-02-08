@@ -404,3 +404,34 @@ This protocol integrates with:
 3. If change is optional, explicitly mark it as skippable
 4. Help agent rollback to known-good state if needed
 5. Document which changes are mandatory vs optional
+
+## Decision Trees for Change Notifications
+
+### Module Modification Notification Dispatch Decision Tree
+
+```
+Module modification detected (dependency updated / API changed / config changed)
+├─ Which agents are currently working on tasks that use this module?
+│   ├─ None → Log the change → No notification needed
+│   ├─ One agent → Send Module Modification Notification directly
+│   │               → Agent ACKs → Agent adjusts work if needed
+│   └─ Multiple agents → Send Broadcast notification to all affected agents
+│       ├─ All ACK within 5 min → Continue monitoring
+│       └─ Some don't ACK → Retry non-responders → If still no ACK, escalate
+```
+
+### Priority Change Notification Dispatch Decision Tree
+
+```
+Priority change received from ECOS
+├─ Is the change an upgrade (e.g., normal → high) or downgrade (high → normal)?
+│   ├─ Upgrade → Is affected agent currently idle on this task?
+│   │   ├─ Yes → Send Priority Change Notification → Agent resumes immediately
+│   │   └─ No (agent working on something else) → Is new priority higher than current work?
+│   │       ├─ Yes → Send Priority Override → Agent pauses current, switches to this
+│   │       └─ No → Queue notification → Deliver when agent completes current task
+│   └─ Downgrade → Send Priority Change Notification (informational)
+│       → Agent continues at own pace → No immediate action required
+```
+
+**Cross-reference**: For detailed mid-task update message formats, see `mid-task-update-templates.md`.

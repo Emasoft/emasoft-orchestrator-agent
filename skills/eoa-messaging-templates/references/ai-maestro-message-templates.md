@@ -407,3 +407,52 @@ This ensures full traceability across the task lifecycle.
 - Priority `urgent` should be reserved for genuine urgent situations
 - Always wait for ACK after sending (timeout: 15 minutes)
 - If no ACK received, retry once, then escalate to ECOS
+
+---
+
+## Decision Trees for AI Maestro Message Handling
+
+### Receiving Task from ECOS Decision Tree
+
+When EOA receives a new task assignment from ECOS via AI Maestro, follow this decision tree:
+
+```
+New task message from ECOS received
+├─ Is message format valid (has task_id, description, priority, dependencies)?
+│   ├─ Yes → Are all dependencies satisfied (prerequisite tasks completed)?
+│   │         ├─ Yes → Does EOA have capacity (fewer than max concurrent tasks)?
+│   │         │         ├─ Yes → Send ACK to ECOS with estimated breakdown
+│   │         │         │         → Begin task decomposition into subtasks
+│   │         │         │         → Assign subtasks to implementers (see message-templates.md)
+│   │         │         └─ No (at capacity) → Send ACK with "queued" status
+│   │         │                               → Include current load and estimated start time
+│   │         └─ No (unmet dependencies) → Send ACK with "blocked" status
+│   │                                     → List which dependencies are unmet
+│   │                                     → Request ECOS to resolve or reprioritize
+│   └─ No (malformed message) → Send clarification request to ECOS
+│                                → List which required fields are missing
+│                                → Do NOT begin work until clarification received
+```
+
+### Reporting to ECOS Decision Tree
+
+When EOA needs to send a status report or task completion to ECOS, follow this decision tree:
+
+```
+Status report trigger (30-min interval OR milestone reached OR blocker found)
+├─ What triggered the report?
+│   ├─ Scheduled 30-min interval → Compile summary of all active tasks
+│   │   → Include: tasks completed since last report, tasks in-progress, tasks blocked
+│   │   → Send as type "status", priority "normal"
+│   ├─ Milestone reached (all subtasks of a task complete) → Verify all subtasks truly done
+│   │   ├─ All verified → Send completion report, type "report", priority "high"
+│   │   │                 → Include aggregated results from all implementers
+│   │   │                 → Request EIA review assignment from ECOS
+│   │   └─ Some failed verification → Send partial completion, list failures
+│   │                                 → Request guidance: retry vs reassign vs skip
+│   └─ Blocker found → Is blocker technical or external?
+│       ├─ Technical (code issue, dependency) → Send blocker report, priority "high"
+│       │   → Include: what's blocked, attempted workarounds, proposed resolution
+│       └─ External (needs user input, API access) → Send blocker report, priority "urgent"
+│           → Include: what's needed, who can provide it, impact if delayed
+```

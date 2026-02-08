@@ -123,3 +123,68 @@ Verification found issues that must be addressed:
 Do NOT create a PR until these are resolved.
 Report `[DONE]` again when ready for re-verification.
 ```
+
+## Decision Trees and Response Templates for Escalations
+
+### Escalation Path Selection Decision Tree
+
+```
+Agent reports concern during interview that requires escalation
+├─ What type of concern?
+│   ├─ Design concern (architecture, patterns, component boundaries)
+│   │   → Route to: ECOS → EAA (Architect Agent)
+│   │   → Message type: "request", priority: "high"
+│   │   → Include: agent's concern text, task context, affected components
+│   │   → Expected response: architectural guidance or revised design
+│   │   → Timeout: 30 min → If no response, send reminder
+│   │
+│   ├─ Requirement concern (ambiguous spec, contradictory requirements)
+│   │   → Is it an immutable requirement (user-specified, cannot change)?
+│   │   │   ├─ Yes → Route to: ECOS → EAMA → User
+│   │   │   │         → Priority: "urgent" (blocks agent work)
+│   │   │   │         → Include: exact ambiguity, proposed interpretations, impact of each
+│   │   │   └─ No (flexible requirement) → EOA decides pragmatically
+│   │   │       → Document decision rationale in task notes
+│   │   │       → Inform agent of decision → Agent continues
+│   │   │
+│   └─ Capability concern (agent lacks tools/skills/access needed)
+│       → Route to: ECOS
+│       → Priority: "high"
+│       → Include: what capability is needed, why, alternatives considered
+│       → ECOS options: provide access / spawn specialized agent / adjust task scope
+```
+
+### EAA Response Template (Design Issue Resolution)
+
+When EAA responds to a design escalation, EOA should expect this format and relay to the agent:
+
+```json
+{
+  "type": "response",
+  "message": "EAA has reviewed your design concern and provided guidance.",
+  "data": {
+    "original_concern": "<the concern text from agent>",
+    "decision": "APPROVED | REVISED | INVESTIGATE",
+    "guidance": "<EAA's architectural guidance text>",
+    "revised_approach": "<if decision=REVISED, the new approach to follow>",
+    "investigation_questions": "<if decision=INVESTIGATE, questions EAA needs answered>"
+  }
+}
+```
+
+### EAMA Response Template (Immutable Requirement Resolution)
+
+When EAMA relays user's decision on an immutable requirement question:
+
+```json
+{
+  "type": "response",
+  "message": "User has provided a decision on the requirement question.",
+  "data": {
+    "original_question": "<the requirement ambiguity reported>",
+    "user_decision": "<user's chosen interpretation or new requirement text>",
+    "additional_context": "<any extra context the user provided>",
+    "applies_to": ["<task_id_1>", "<task_id_2>"]
+  }
+}
+```

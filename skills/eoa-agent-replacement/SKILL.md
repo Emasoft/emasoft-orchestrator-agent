@@ -201,12 +201,12 @@ See: [examples.md](references/examples.md) - Standard replacement flow, emergenc
 
 | Reference | Description |
 |-----------|-------------|
-| [ecos-notification-handling.md](references/ecos-notification-handling.md) | ECOS message handling |
+| [ecos-notification-handling.md](references/ecos-notification-handling.md) | ECOS message handling + Agent Recovery decision tree and response template |
 | [context-compilation-workflow.md](references/context-compilation-workflow.md) | Gathering task context |
 | [handoff-document-format.md](references/handoff-document-format.md) | Handoff document structure |
 | [kanban-reassignment-protocol.md](references/kanban-reassignment-protocol.md) | GitHub Project updates |
-| [handoff-delivery-protocol.md](references/handoff-delivery-protocol.md) | Delivering to new agent |
-| [confirmation-protocol.md](references/confirmation-protocol.md) | Confirming replacement |
+| [handoff-delivery-protocol.md](references/handoff-delivery-protocol.md) | Delivering to new agent + Handoff delivery method decision tree and ACK template |
+| [confirmation-protocol.md](references/confirmation-protocol.md) | Confirming replacement + Confirmation outcome decision tree and ECOS notification template |
 | [handoff-protocols.md](references/handoff-protocols.md) | Handoff protocol procedures |
 | [design-document-protocol.md](references/design-document-protocol.md) | Design document protocol |
 | [edge-case-protocols.md](references/edge-case-protocols.md) | Edge case protocols |

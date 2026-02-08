@@ -297,5 +297,63 @@ ecos_notifications:
 
 ---
 
+## Decision Trees for Agent Recovery and Response
+
+### Agent Recovery Decision Tree
+
+When ECOS notifies EOA that the original failed agent has recovered:
+
+```
+ECOS sends "Agent Recovery Notification" — original agent is back online
+├─ Has replacement agent already started work?
+│   ├─ No (replacement not yet assigned or hasn't begun)
+│   │   → Cancel replacement assignment
+│   │   → Re-assign task to original agent (it has prior context)
+│   │   → Send ACK to ECOS: "Reverting to original agent, replacement cancelled"
+│   │
+│   ├─ Yes, replacement is in-progress but < 25% complete
+│   │   → Compare: original agent's prior progress vs replacement's current progress
+│   │   ├─ Original was further along → Revert to original agent
+│   │   │   → Send stop notice to replacement → Collect work summary
+│   │   │   → Send recovery context to original → Original resumes
+│   │   └─ Replacement is further along → Keep replacement
+│   │       → Notify original agent it's been superseded
+│   │       → Send ACK to ECOS: "Keeping replacement, original released"
+│   │
+│   └─ Yes, replacement is > 25% complete
+│       → Keep replacement agent (switching cost too high)
+│       → Notify original agent it's been superseded
+│       → Optionally: assign original to a different pending task
+│       → Send ACK to ECOS: "Keeping replacement (>25% progress), original available for other tasks"
+```
+
+### EOA Response to Recovery Notification Template
+
+```json
+{
+  "to": "<ecos-session-name>",
+  "subject": "Agent Recovery Decision",
+  "priority": "high",
+  "content": {
+    "type": "response",
+    "message": "EOA has processed the agent recovery notification.",
+    "data": {
+      "original_agent": "<original-agent-session-name>",
+      "replacement_agent": "<replacement-agent-session-name>",
+      "task_id": "<task-id>",
+      "decision": "REVERT_TO_ORIGINAL | KEEP_REPLACEMENT",
+      "reason": "<explanation of decision>",
+      "replacement_progress_pct": 15,
+      "original_prior_progress_pct": 40,
+      "action_taken": "<what EOA did: cancelled replacement / notified original / etc.>"
+    }
+  }
+}
+```
+
+**Cross-reference**: For the full recovery decision framework, see `decision-trees-core.md` Section 5 (Agent Recovery Decision).
+
+---
+
 **Version**: 1.0.0
 **Last Updated**: 2026-02-02
