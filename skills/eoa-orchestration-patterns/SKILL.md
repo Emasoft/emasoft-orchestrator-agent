@@ -302,7 +302,9 @@ Copy this checklist and track your progress:
 
 ---
 
-## Example: Decompose and Delegate a Feature
+## Examples
+
+### Decompose and Delegate a Feature
 
 This example shows how to decompose a feature request into tasks and delegate them.
 
