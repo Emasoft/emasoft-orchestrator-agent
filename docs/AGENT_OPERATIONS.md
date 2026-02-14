@@ -449,7 +449,7 @@ The following skills were added to EOA (2026-02-06 — 2026-02-07):
 |--------|---------|
 | `scripts/pre-push-hook.py` | Pre-push validation (manifest, hooks, lint, Unicode compliance) |
 | `scripts/eoa_kanban_manager.py` | Kanban column management |
-| `scripts/eoa_validate_plugin.py` | Plugin structure validation |
+| `scripts/validate_plugin.py` | Plugin structure validation |
 | `scripts/eoa_file_tracker.py` | File change tracking |
 | `scripts/eoa_download.py` | Plugin download utility |
 | `scripts/eoa_check_verification_status.py` | Verification status checking |

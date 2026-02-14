@@ -92,6 +92,6 @@ claude --plugin-dir ./OUTPUT_SKILLS/orchestrator-agent
 ## Validation
 
 ```bash
-cd OUTPUT_SKILLS/orchestrator-agent
-uv run python scripts/eoa_validate_plugin.py --verbose
+cd OUTPUT_SKILLS/emasoft-orchestrator-agent
+uv run python scripts/validate_plugin.py . --verbose
 ```
