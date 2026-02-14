@@ -9,6 +9,28 @@ version: 1.0.0
 
 # Approve Plan and Transition to Orchestration
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Validate Exit Criteria](#step-1-validate-exit-criteria)
+  - [Step 2: Run Validation Command](#step-2-run-validation-command)
+  - [Step 3: Create GitHub Issues](#step-3-create-github-issues)
+  - [Step 4: Initialize Orchestration State](#step-4-initialize-orchestration-state)
+  - [Step 5: Update Plan Phase State](#step-5-update-plan-phase-state)
+  - [Step 6: Output Transition Summary](#step-6-output-transition-summary)
+- [Plan Phase Complete](#plan-phase-complete)
+  - [Created GitHub Issues](#created-github-issues)
+  - [Next Steps](#next-steps)
+- [Checklist](#checklist)
+- [Examples](#examples)
+  - [Example: Successful Transition](#example-successful-transition)
+  - [Example: Failed Validation](#example-failed-validation)
+- [Error Handling](#error-handling)
+- [Related Operations](#related-operations)
+
 ## When to Use
 
 Trigger this operation when:

@@ -1,5 +1,16 @@
 # Operation: Receive Integration Result
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Steps](#steps)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Example Response Format](#example-response-format)
+
 ---
 procedure: proc-request-pr-review
 workflow-instruction: Step 20 - PR Review Request

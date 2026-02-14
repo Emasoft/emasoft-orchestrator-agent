@@ -1,5 +1,29 @@
 # Operation: Update GitHub Issue
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Verification Result to Issue Status](#verification-result-to-issue-status)
+- [Steps](#steps)
+  - [Step 1: Determine Issue Update Action](#step-1-determine-issue-update-action)
+  - [Step 2: Post Verification Comment](#step-2-post-verification-comment)
+  - [Step 3: Update Issue Labels](#step-3-update-issue-labels)
+  - [Step 4: Post Failure Details (if failed)](#step-4-post-failure-details-if-failed)
+  - [Required Actions](#required-actions)
+  - [Next Steps](#next-steps)
+  - [Step 5: Close Issue (if complete)](#step-5-close-issue-if-complete)
+- [Verification Report Format](#verification-report-format)
+- [Verification Report](#verification-report)
+- [Complete Workflow Example](#complete-workflow-example)
+  - [Required Actions](#required-actions)
+- [Label Reference](#label-reference)
+- [Status Transitions](#status-transitions)
+- [Exit Criteria](#exit-criteria)
+- [Related Operations](#related-operations)
+
 ---
 procedure: proc-complete-task
 workflow-instruction: Step 19 - Task Completion

@@ -1,5 +1,21 @@
 # Operation: Reassign Task to Different Agent
 
+
+## Contents
+
+- [Metadata](#metadata)
+- [Purpose](#purpose)
+- [Preconditions](#preconditions)
+- [When to Reassign](#when-to-reassign)
+- [Input](#input)
+- [Procedure](#procedure)
+- [Commands](#commands)
+- [Partial Progress Gathering](#partial-progress-gathering)
+- [Output](#output)
+- [Checklist](#checklist)
+- [Error Handling](#error-handling)
+- [Related Operations](#related-operations)
+
 ## Metadata
 
 | Field | Value |

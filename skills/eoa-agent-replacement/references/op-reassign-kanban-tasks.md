@@ -5,6 +5,25 @@ workflow-instruction: support
 
 # Operation: Reassign Kanban Tasks
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Find GitHub Project ID](#step-1-find-github-project-id)
+  - [Step 2: Find All Cards Assigned to Failed Agent](#step-2-find-all-cards-assigned-to-failed-agent)
+  - [Step 3: Get Item IDs for Reassignment](#step-3-get-item-ids-for-reassignment)
+  - [Step 4: Update Each Card's Assignee](#step-4-update-each-cards-assignee)
+  - [Step 5: Add Reassignment Comment](#step-5-add-reassignment-comment)
+  - [Step 6: Preserve Status Labels](#step-6-preserve-status-labels)
+  - [Step 7: Handle Partial Work](#step-7-handle-partial-work)
+  - [Step 8: Update Orchestrator State](#step-8-update-orchestrator-state)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Example](#example)
+- [Checklist](#checklist)
+
 ## When to Use
 
 Use this operation after generating the handoff document to update GitHub Project board assignments.

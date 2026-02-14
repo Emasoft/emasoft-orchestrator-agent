@@ -1,5 +1,27 @@
 # Operation: Generate Test Report
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Standard Report Structure](#standard-report-structure)
+- [Steps](#steps)
+  - [Step 1: Run Tests with JSON Output](#step-1-run-tests-with-json-output)
+  - [Step 2: Convert to Standard Format](#step-2-convert-to-standard-format)
+  - [Step 3: Write Standard Report](#step-3-write-standard-report)
+  - [Step 4: Generate Minimal Summary](#step-4-generate-minimal-summary)
+- [Report Locations](#report-locations)
+- [Failure Detail Levels](#failure-detail-levels)
+  - [Level 1: Minimal (default)](#level-1-minimal-default)
+  - [Level 2: With Error](#level-2-with-error)
+  - [Level 3: With Traceback](#level-3-with-traceback)
+- [Error Report Format](#error-report-format)
+- [Partial Results Format](#partial-results-format)
+- [Exit Criteria](#exit-criteria)
+- [Related Operations](#related-operations)
+
 ---
 procedure: proc-complete-task
 workflow-instruction: Step 19 - Task Completion

@@ -1,5 +1,23 @@
 # Operation: Assign Task to Agent
 
+
+## Contents
+
+- [Metadata](#metadata)
+- [Purpose](#purpose)
+- [Preconditions](#preconditions)
+- [Input](#input)
+- [Procedure](#procedure)
+- [Commands](#commands)
+  - [Step 1-3: Update Labels](#step-1-3-update-labels)
+  - [Step 4: Send AI Maestro Message](#step-4-send-ai-maestro-message)
+- [AI Maestro Message Format](#ai-maestro-message-format)
+- [Output](#output)
+- [Post-Assignment](#post-assignment)
+- [Error Handling](#error-handling)
+- [Checklist](#checklist)
+- [Related Operations](#related-operations)
+
 ## Metadata
 
 | Field | Value |

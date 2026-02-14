@@ -5,6 +5,39 @@ workflow-instruction: support
 
 # Operation: Compile Module Completion Checklist
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Gather Module Requirements](#step-1-gather-module-requirements)
+  - [Step 2: Create Implementation Section](#step-2-create-implementation-section)
+- [Implementation](#implementation)
+  - [Step 3: Create Testing Section](#step-3-create-testing-section)
+- [Testing](#testing)
+  - [Step 4: Create Documentation Section](#step-4-create-documentation-section)
+- [Documentation](#documentation)
+  - [Step 5: Create Type Safety Section](#step-5-create-type-safety-section)
+- [Type Safety](#type-safety)
+  - [Step 6: Add RULE 14 Compliance Section](#step-6-add-rule-14-compliance-section)
+- [Requirement Compliance (RULE 14)](#requirement-compliance-rule-14)
+  - [Step 7: Assemble Complete Checklist](#step-7-assemble-complete-checklist)
+- [Implementation](#implementation)
+- [Testing](#testing)
+- [Documentation](#documentation)
+- [Type Safety](#type-safety)
+- [Requirement Compliance (RULE 14)](#requirement-compliance-rule-14)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Example](#example)
+- [Implementation](#implementation)
+- [Testing](#testing)
+- [Documentation](#documentation)
+- [Type Safety](#type-safety)
+- [Requirement Compliance (RULE 14)](#requirement-compliance-rule-14)
+- [Checklist](#checklist)
+
 ## When to Use
 
 Use this operation when you need to create a checklist that verifies a module is ready for integration.

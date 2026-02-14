@@ -6,6 +6,31 @@ operation: handle-blocker-report
 
 # Operation: Handle Blocker Report
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [When to Use](#when-to-use)
+- [IRON RULE](#iron-rule)
+- [Inputs](#inputs)
+- [Outputs](#outputs)
+- [Blocker Categories](#blocker-categories)
+- [Steps](#steps)
+  - [Step 1: Parse Blocker Report](#step-1-parse-blocker-report)
+  - [Step 2: Verify Blocker Is Real](#step-2-verify-blocker-is-real)
+  - [Step 3: Record Previous Status](#step-3-record-previous-status)
+  - [Step 4: Update Task to Blocked Status](#step-4-update-task-to-blocked-status)
+  - [Step 5: Create Blocker Tracking Issue](#step-5-create-blocker-tracking-issue)
+- [Resolution](#resolution)
+- [Notes](#notes)
+  - [Step 6: Escalate to EAMA Immediately](#step-6-escalate-to-eama-immediately)
+  - [Step 7: Check for Alternative Work](#step-7-check-for-alternative-work)
+- [Blocker Lifecycle Checklist](#blocker-lifecycle-checklist)
+  - [When a task becomes blocked:](#when-a-task-becomes-blocked)
+- [Success Criteria](#success-criteria)
+- [Error Handling](#error-handling)
+- [Related Operations](#related-operations)
+
 ## Purpose
 
 Process a blocker report from an agent, create tracking issue, update task status, and escalate to user immediately.

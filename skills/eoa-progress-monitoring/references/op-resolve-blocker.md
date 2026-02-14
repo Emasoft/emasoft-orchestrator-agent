@@ -6,6 +6,28 @@ operation: resolve-blocker
 
 # Operation: Resolve Blocker
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [When to Use](#when-to-use)
+- [Inputs](#inputs)
+- [Outputs](#outputs)
+- [Steps](#steps)
+  - [Step 1: Verify Blocker Is Actually Resolved](#step-1-verify-blocker-is-actually-resolved)
+  - [Step 2: Retrieve Previous Status](#step-2-retrieve-previous-status)
+  - [Step 3: Close Blocker Issue](#step-3-close-blocker-issue)
+  - [Step 4: Restore Task Status](#step-4-restore-task-status)
+  - [Step 5: Get Assigned Agent](#step-5-get-assigned-agent)
+  - [Step 6: Notify Agent](#step-6-notify-agent)
+  - [Step 7: Log Resolution](#step-7-log-resolution)
+- [Blocker Resolution Checklist](#blocker-resolution-checklist)
+  - [When the blocker is resolved:](#when-the-blocker-is-resolved)
+- [Important Note: Restoring Correct Status](#important-note-restoring-correct-status)
+- [Success Criteria](#success-criteria)
+- [Error Handling](#error-handling)
+- [Related Operations](#related-operations)
+
 ## Purpose
 
 Process blocker resolution, restore task to previous status, close blocker issue, and notify assigned agent.

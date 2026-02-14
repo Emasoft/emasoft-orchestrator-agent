@@ -1,5 +1,28 @@
 # Operation: Modify Module Specifications
 
+
+## Contents
+
+- [Metadata](#metadata)
+- [Purpose](#purpose)
+- [Prerequisites](#prerequisites)
+- [Inputs](#inputs)
+- [Command Syntax](#command-syntax)
+- [Modification Restrictions by Status](#modification-restrictions-by-status)
+- [Steps](#steps)
+- [Agent Notification Template](#agent-notification-template)
+- [Module Modified: <module_id>](#module-modified-module_id)
+  - [Changes](#changes)
+  - [Updated Specifications](#updated-specifications)
+  - [Action Required](#action-required)
+- [GitHub Issue Update](#github-issue-update)
+- [Output](#output)
+- [Success Criteria](#success-criteria)
+- [Error Handling](#error-handling)
+- [Important Rules](#important-rules)
+- [Modification Audit](#modification-audit)
+- [Next Operations](#next-operations)
+
 ## Metadata
 
 | Field | Value |

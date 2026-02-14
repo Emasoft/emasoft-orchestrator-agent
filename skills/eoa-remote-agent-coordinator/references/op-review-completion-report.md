@@ -6,6 +6,24 @@ operation: review-completion-report
 
 # Operation: Review Completion Report
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [When to Use](#when-to-use)
+- [Inputs](#inputs)
+- [Outputs](#outputs)
+- [Steps](#steps)
+  - [Step 1: Retrieve Acceptance Criteria](#step-1-retrieve-acceptance-criteria)
+  - [Step 2: Check PR Existence](#step-2-check-pr-existence)
+  - [Step 3: Check CI Status](#step-3-check-ci-status)
+  - [Step 4: Verify Each Criterion](#step-4-verify-each-criterion)
+  - [Step 5: Make Verification Decision](#step-5-make-verification-decision)
+- [Verification Checklist](#verification-checklist)
+- [Success Criteria](#success-criteria)
+- [Error Handling](#error-handling)
+- [Related Operations](#related-operations)
+
 ## Purpose
 
 Review agent's completion report against the original acceptance criteria and verify all requirements are met.

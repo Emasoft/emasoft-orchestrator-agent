@@ -5,6 +5,29 @@ workflow-instruction: support
 
 # Operation: Compile Task Context
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Read Orchestrator State](#step-1-read-orchestrator-state)
+  - [Step 2: Collect Task Assignments](#step-2-collect-task-assignments)
+  - [Step 3: Collect GitHub Issue Status](#step-3-collect-github-issue-status)
+  - [Step 4: Collect Git Branch Progress](#step-4-collect-git-branch-progress)
+  - [Step 5: Collect Communication History](#step-5-collect-communication-history)
+  - [Step 6: Identify Blockers and Dependencies](#step-6-identify-blockers-and-dependencies)
+  - [Step 7: Create Progress Summary](#step-7-create-progress-summary)
+- [Task Assignments](#task-assignments)
+- [Current Progress](#current-progress)
+- [Blockers](#blockers)
+- [Communication Summary](#communication-summary)
+- [Uncommitted Work](#uncommitted-work)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Example](#example)
+- [Checklist](#checklist)
+
 ## When to Use
 
 Use this operation after receiving an ECOS notification to gather all context about the failed agent's work.

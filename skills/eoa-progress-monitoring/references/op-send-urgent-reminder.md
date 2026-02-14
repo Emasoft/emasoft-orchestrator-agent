@@ -6,6 +6,26 @@ operation: send-urgent-reminder
 
 # Operation: Send Urgent Reminder
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [When to Use](#when-to-use)
+- [Inputs](#inputs)
+- [Outputs](#outputs)
+- [Steps](#steps)
+  - [Step 1: Verify First Reminder Was Sent](#step-1-verify-first-reminder-was-sent)
+  - [Step 2: Verify No Response Received](#step-2-verify-no-response-received)
+  - [Step 3: Send Urgent Escalation](#step-3-send-urgent-escalation)
+  - [Step 4: Log Escalation](#step-4-log-escalation)
+  - [Step 5: Set Reassignment Timer](#step-5-set-reassignment-timer)
+- [Message Template](#message-template)
+- [Escalation Timeline](#escalation-timeline)
+- [Success Criteria](#success-criteria)
+- [Next Steps](#next-steps)
+- [Error Handling](#error-handling)
+- [Related Operations](#related-operations)
+
 ## Purpose
 
 Send a high-priority escalation message to an agent who did not respond to the first reminder.

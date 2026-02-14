@@ -9,6 +9,24 @@ version: 1.0.0
 
 # Decompose Goals to Modules
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Identify Natural Boundaries](#step-1-identify-natural-boundaries)
+  - [Step 2: Define Module Structure](#step-2-define-module-structure)
+  - [Step 3: Verify Module Independence](#step-3-verify-module-independence)
+  - [Step 4: Apply MECE Principle](#step-4-apply-mece-principle)
+  - [Step 5: Document in State File](#step-5-document-in-state-file)
+- [Checklist](#checklist)
+- [Examples](#examples)
+  - [Example: E-Commerce Feature](#example-e-commerce-feature)
+  - [Example: Authentication System](#example-authentication-system)
+- [Error Handling](#error-handling)
+- [Related Operations](#related-operations)
+
 ## When to Use
 
 Trigger this operation when:

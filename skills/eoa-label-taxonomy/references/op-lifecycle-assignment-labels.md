@@ -5,6 +5,26 @@ workflow-instruction: support
 
 # Operation: Set Labels During Assignment
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Verify Issue is Ready](#step-1-verify-issue-is-ready)
+  - [Step 2: Verify No Existing Assignment](#step-2-verify-no-existing-assignment)
+  - [Step 3: Determine Agent ID](#step-3-determine-agent-id)
+  - [Step 4: Apply Assignment Labels](#step-4-apply-assignment-labels)
+  - [Step 5: Notify Agent (if using AI Maestro)](#step-5-notify-agent-if-using-ai-maestro)
+  - [Step 6: Add Assignment Comment](#step-6-add-assignment-comment)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Examples](#examples)
+  - [Example 1: Standard Assignment](#example-1-standard-assignment)
+  - [Example 2: Assignment with Full Notification](#example-2-assignment-with-full-notification)
+  - [Example 3: Reassignment](#example-3-reassignment)
+- [Checklist](#checklist)
+
 ## When to Use
 
 Use this operation when assigning an issue to an agent for implementation.

@@ -214,8 +214,7 @@ gh issue edit $ISSUE --remove-label "$CURRENT_STATUS" --add-label "status:blocke
 
 # Create a GitHub issue for the blocker (the problem preventing progress)
 BLOCKER_ISSUE=$(gh issue create \
-  --title "BLOCKER: <one-line description of the blocking problem>" \
-  --label "type:blocker" \
+  --title "BLOCKER: <one-line description of the blocking problem>" --label "type:blocker" \
   --body "## Blocker
 
 This issue tracks a problem that is blocking task #$ISSUE.

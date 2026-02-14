@@ -1,5 +1,31 @@
 # Operation: Sync Module with GitHub Issue
 
+
+## Contents
+
+- [Metadata](#metadata)
+- [Purpose](#purpose)
+- [Prerequisites](#prerequisites)
+- [Inputs](#inputs)
+- [Command Syntax](#command-syntax)
+- [What Gets Synchronized](#what-gets-synchronized)
+- [Steps](#steps)
+- [Sync Verification Report](#sync-verification-report)
+- [Recovery from Desync](#recovery-from-desync)
+  - [Scenario 1: State file is source of truth](#scenario-1-state-file-is-source-of-truth)
+  - [Scenario 2: GitHub is source of truth](#scenario-2-github-is-source-of-truth)
+  - [Scenario 3: Conflict resolution](#scenario-3-conflict-resolution)
+- [Output](#output)
+- [Success Criteria](#success-criteria)
+- [Error Handling](#error-handling)
+- [Orphan Detection](#orphan-detection)
+  - [Orphaned Issue (issue without module)](#orphaned-issue-issue-without-module)
+  - [Orphaned Module (module without issue)](#orphaned-module-module-without-issue)
+- [Automatic Sync Triggers](#automatic-sync-triggers)
+- [Important Rules](#important-rules)
+- [Label Conventions](#label-conventions)
+- [Next Operations](#next-operations)
+
 ## Metadata
 
 | Field | Value |

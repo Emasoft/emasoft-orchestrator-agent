@@ -5,6 +5,23 @@ workflow-instruction: support
 
 # Operation: Validate Label Cardinality
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Get Issue Labels](#step-1-get-issue-labels)
+  - [Step 2: Check Each Category](#step-2-check-each-category)
+  - [Step 3: Validation Script](#step-3-validation-script)
+  - [Step 4: Fix Violations](#step-4-fix-violations)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Examples](#examples)
+  - [Example 1: Quick Validation Check](#example-1-quick-validation-check)
+  - [Example 2: Validate All Open Issues](#example-2-validate-all-open-issues)
+  - [Example 3: Pre-Update Validation](#example-3-pre-update-validation)
+
 ## When to Use
 
 Use this operation when you need to verify that an issue's labels comply with the cardinality rules, or before making label changes.

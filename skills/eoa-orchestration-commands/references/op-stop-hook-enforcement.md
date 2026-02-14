@@ -5,6 +5,26 @@ workflow-instruction: support
 
 # Operation: Stop Hook Enforcement
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [How the Stop Hook Works](#how-the-stop-hook-works)
+  - [Step 1: Hook Trigger Points](#step-1-hook-trigger-points)
+  - [Step 2: Hook Script Execution](#step-2-hook-script-execution)
+  - [Step 3: Blocking Conditions](#step-3-blocking-conditions)
+  - [Step 4: Verification Mode](#step-4-verification-mode)
+  - [Step 5: Hook Output Format](#step-5-hook-output-format)
+  - [Step 6: Completion Signals](#step-6-completion-signals)
+  - [Step 7: Fail-Safe Behavior](#step-7-fail-safe-behavior)
+  - [Step 8: Debugging Stop Hook](#step-8-debugging-stop-hook)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Overriding the Hook](#overriding-the-hook)
+- [Example](#example)
+- [Checklist](#checklist)
+
 ## When to Use
 
 Understand this operation to know how the orchestrator stop hook prevents premature exit and ensures task completion.

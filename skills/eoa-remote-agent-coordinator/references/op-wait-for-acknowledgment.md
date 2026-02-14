@@ -6,6 +6,24 @@ operation: wait-for-acknowledgment
 
 # Operation: Wait for Acknowledgment
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [When to Use](#when-to-use)
+- [Inputs](#inputs)
+- [Outputs](#outputs)
+- [Steps](#steps)
+  - [Step 1: Set Timeout](#step-1-set-timeout)
+  - [Step 2: Poll for ACK Message](#step-2-poll-for-ack-message)
+  - [Step 3: Parse ACK Content](#step-3-parse-ack-content)
+  - [Step 4: Handle Timeout](#step-4-handle-timeout)
+- [ACK Format Expected](#ack-format-expected)
+- [Success Criteria](#success-criteria)
+- [Error Handling](#error-handling)
+- [Escalation](#escalation)
+- [Related Operations](#related-operations)
+
 ## Purpose
 
 Wait for agent to acknowledge receipt of task assignment with a 5-minute timeout.

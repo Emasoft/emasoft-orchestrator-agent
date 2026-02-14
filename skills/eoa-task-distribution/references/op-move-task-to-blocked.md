@@ -1,5 +1,20 @@
 # Operation: Move Task to Blocked Column
 
+
+## Contents
+
+- [Metadata](#metadata)
+- [Purpose](#purpose)
+- [Preconditions](#preconditions)
+- [Blocker Verification (BEFORE Moving)](#blocker-verification-before-moving)
+- [Input](#input)
+- [Procedure](#procedure)
+- [Commands](#commands)
+- [Escalation Message to EAMA](#escalation-message-to-eama)
+- [Checklist](#checklist)
+- [Error Handling](#error-handling)
+- [Related Operations](#related-operations)
+
 ## Metadata
 
 | Field | Value |

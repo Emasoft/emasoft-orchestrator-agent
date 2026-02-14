@@ -1,5 +1,25 @@
 # Operation: Add Module Mid-Orchestration
 
+
+## Contents
+
+- [Metadata](#metadata)
+- [Purpose](#purpose)
+- [Prerequisites](#prerequisites)
+- [Inputs](#inputs)
+- [Command Syntax](#command-syntax)
+- [Steps](#steps)
+- [GitHub Issue Body Template](#github-issue-body-template)
+- [Module: <NAME>](#module-name)
+  - [Acceptance Criteria](#acceptance-criteria)
+- [Output](#output)
+- [Success Criteria](#success-criteria)
+- [State File Entry](#state-file-entry)
+- [Error Handling](#error-handling)
+- [Validation Rules](#validation-rules)
+- [Important Rules](#important-rules)
+- [Next Operations](#next-operations)
+
 ## Metadata
 
 | Field | Value |

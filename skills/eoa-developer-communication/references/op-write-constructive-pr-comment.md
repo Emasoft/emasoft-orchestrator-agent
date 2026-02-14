@@ -1,5 +1,24 @@
 # Operation: Write Constructive PR Comment
 
+
+## Contents
+
+- [Metadata](#metadata)
+- [Purpose](#purpose)
+- [Prerequisites](#prerequisites)
+- [Inputs](#inputs)
+- [Steps](#steps)
+- [Comment Templates](#comment-templates)
+  - [Blocking Issue (Request Changes)](#blocking-issue-request-changes)
+  - [Non-Blocking Suggestion (Comment)](#non-blocking-suggestion-comment)
+  - [Praise (Approve with Comment)](#praise-approve-with-comment)
+- [Tone Transformations](#tone-transformations)
+- [Output](#output)
+- [Success Criteria](#success-criteria)
+- [Pre-Send Checklist](#pre-send-checklist)
+- [Error Handling](#error-handling)
+- [Next Operations](#next-operations)
+
 ## Metadata
 
 | Field | Value |

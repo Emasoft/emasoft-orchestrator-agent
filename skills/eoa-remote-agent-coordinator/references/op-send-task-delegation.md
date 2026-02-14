@@ -6,6 +6,23 @@ operation: send-task-delegation
 
 # Operation: Send Task Delegation
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [When to Use](#when-to-use)
+- [Inputs](#inputs)
+- [Outputs](#outputs)
+- [Steps](#steps)
+  - [Step 1: Verify Agent Availability](#step-1-verify-agent-availability)
+  - [Step 2: Send Task Message](#step-2-send-task-message)
+  - [Step 3: Update GitHub Issue](#step-3-update-github-issue)
+  - [Step 4: Record Assignment in Tracking](#step-4-record-assignment-in-tracking)
+- [Success Criteria](#success-criteria)
+- [Error Handling](#error-handling)
+- [Next Operation](#next-operation)
+- [Related Operations](#related-operations)
+
 ## Purpose
 
 Send a prepared task delegation message to a remote agent via AI Maestro.

@@ -1,5 +1,27 @@
 # Operation: Send PROCEED Approval
 
+
+## Contents
+
+- [Metadata](#metadata)
+- [Purpose](#purpose)
+- [Prerequisites](#prerequisites)
+- [Inputs](#inputs)
+- [Steps](#steps)
+- [PROCEED Message Template](#proceed-message-template)
+- [PROCEED: <issue_number>](#proceed-issue_number)
+  - [Confirmed Acceptance Criteria](#confirmed-acceptance-criteria)
+  - [Expectations](#expectations)
+  - [On Completion](#on-completion)
+- [State Updates](#state-updates)
+  - [Module Status Update](#module-status-update)
+  - [Assignment Update](#assignment-update)
+- [Output](#output)
+- [Success Criteria](#success-criteria)
+- [Error Handling](#error-handling)
+- [Important Rules](#important-rules)
+- [Next Operations](#next-operations)
+
 ## Metadata
 
 | Field | Value |

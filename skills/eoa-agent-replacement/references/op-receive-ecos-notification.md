@@ -5,6 +5,23 @@ workflow-instruction: support
 
 # Operation: Receive ECOS Notification
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Detect ECOS Notification](#step-1-detect-ecos-notification)
+  - [Step 2: Check Message Queue](#step-2-check-message-queue)
+  - [Step 3: Identify Notification Type](#step-3-identify-notification-type)
+  - [Step 4: Acknowledge Notification](#step-4-acknowledge-notification)
+  - [Step 5: Pause New Assignments](#step-5-pause-new-assignments)
+  - [Step 6: Log Notification](#step-6-log-notification)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Example](#example)
+- [Checklist](#checklist)
+
 ## When to Use
 
 Use this operation when ECOS (Emergency Context-loss Operations System) sends a notification about agent failure or replacement.

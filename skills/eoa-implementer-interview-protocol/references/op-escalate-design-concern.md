@@ -1,5 +1,25 @@
 # Operation: Escalate Design Concern to Architect
 
+
+## Contents
+
+- [Metadata](#metadata)
+- [Purpose](#purpose)
+- [Prerequisites](#prerequisites)
+- [Inputs](#inputs)
+- [Steps](#steps)
+- [Escalation Message Template](#escalation-message-template)
+- [Design Review Request: <issue_number>](#design-review-request-issue_number)
+  - [Concern Description](#concern-description)
+  - [Current Context](#current-context)
+  - [Request](#request)
+- [Output](#output)
+- [Success Criteria](#success-criteria)
+- [Error Handling](#error-handling)
+- [Waiting State](#waiting-state)
+- [Post-Resolution Steps](#post-resolution-steps)
+- [Next Operations](#next-operations)
+
 ## Metadata
 
 | Field | Value |

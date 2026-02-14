@@ -5,6 +5,29 @@ workflow-instruction: support
 
 # Operation: Monitor Orchestration Status
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Execute Status Command](#step-1-execute-status-command)
+  - [Step 2: Interpret Phase Status Header](#step-2-interpret-phase-status-header)
+- [Orchestration Status](#orchestration-status)
+  - [Step 3: Read Module Status Table](#step-3-read-module-status-table)
+- [Module Status](#module-status)
+  - [Step 4: Review Agent Registry](#step-4-review-agent-registry)
+- [Agent Registry](#agent-registry)
+  - [Step 5: Check Active Assignments](#step-5-check-active-assignments)
+- [Active Assignments](#active-assignments)
+  - [Step 6: Review Polling History (Verbose)](#step-6-review-polling-history-verbose)
+- [Polling History](#polling-history)
+  - [Step 7: Identify Issues](#step-7-identify-issues)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Example](#example)
+- [Checklist](#checklist)
+
 ## When to Use
 
 Use this operation to check the current state of the orchestration phase, including module progress and agent assignments.

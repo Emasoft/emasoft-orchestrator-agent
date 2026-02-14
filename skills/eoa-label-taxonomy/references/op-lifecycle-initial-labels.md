@@ -5,6 +5,24 @@ workflow-instruction: support
 
 # Operation: Set Initial Labels on Issue Creation
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Determine Issue Type](#step-1-determine-issue-type)
+  - [Step 2: Identify Component (if known)](#step-2-identify-component-if-known)
+  - [Step 3: Apply Initial Labels](#step-3-apply-initial-labels)
+  - [Step 4: Verify Labels Applied](#step-4-verify-labels-applied)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Examples](#examples)
+  - [Example 1: Bug Report](#example-1-bug-report)
+  - [Example 2: Feature Request](#example-2-feature-request)
+  - [Example 3: Unknown Component](#example-3-unknown-component)
+- [Checklist](#checklist)
+
 ## When to Use
 
 Use this operation when a new issue is created and needs its initial labels set.

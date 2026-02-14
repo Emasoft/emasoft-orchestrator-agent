@@ -315,7 +315,15 @@ Documents are NEVER embedded in AI Maestro messages - only GitHub issue comment 
 
 ---
 
-## Configuration References
+## Orchestrator Rules
+
+**RULE 15 - No Implementation**: The orchestrator NEVER writes code, runs builds, edits source files, or sets up infrastructure. See [rule-15-no-implementation.md](./references/rule-15-no-implementation.md).
+
+**RULE 14 - Immutable Requirements**: Every task delegation MUST include requirement references, forbidden actions, and escalation protocol. See [rule-14-immutable-requirements.md](./references/rule-14-immutable-requirements.md).
+
+---
+
+## Additional References
 
 | Document | Use When |
 |----------|----------|
@@ -323,151 +331,25 @@ Documents are NEVER embedded in AI Maestro messages - only GitHub issue comment 
 | [change-notification-protocol.md](./references/change-notification-protocol.md) | Notifying agents of config changes |
 | [artifact-sharing-protocol.md](./references/artifact-sharing-protocol.md) | Sharing build artifacts between agents |
 | [bug-reporting-protocol.md](./references/bug-reporting-protocol.md) | Receiving and handling bug reports |
-
----
-
-## RULE 15: No Implementation by Orchestrator
-
-**The orchestrator NEVER**:
-- Writes code
-- Runs builds
-- Edits source files
-- Sets up infrastructure
-
-**Full rule**: [rule-15-no-implementation.md](./references/rule-15-no-implementation.md)
-- 1.0 What orchestrator never does
-- 2.0 Task delegation self-check
-- 3.0 Correct vs incorrect usage examples
-
----
-
-## RULE 14: User Requirements Are Immutable
-
-Every task delegation MUST include:
-1. **Requirement Reference** - Exact user quotes
-2. **Forbidden Actions** - What agents cannot change
-3. **Escalation Protocol** - What to do if requirements have issues
-
-**Full rule**: [rule-14-immutable-requirements.md](./references/rule-14-immutable-requirements.md)
-- 1.0 Mandatory delegation elements
-- 2.0 Violation handling
-- 3.0 User decision workflow
-
----
-
-## Skill Authoring References
-
-| Document | Use When |
-|----------|----------|
 | [skill-format-comparison.md](./references/skill-format-comparison.md) | Comparing Open Spec vs Claude Code Skills |
 | [skill-authoring-best-practices.md](./references/skill-authoring-best-practices.md) | Writing new skills |
-
----
-
-## Skill Files
-
-**Full directory structure**: [skill-directory-structure.md](./references/skill-directory-structure.md)
-- 1.0 Top-Level Structure
-- 2.0 References Directory (30+ files)
-- 3.0 Scripts Directory
-- 4.0 Templates Directory
-
----
-
-## ECOS Replacement Protocol
-
-When ECOS notifies EOA of agent failure or context loss:
-
-**See [ecos-replacement-protocol.md](./references/ecos-replacement-protocol.md) for:**
-- Replacement notification handling
-- Context compilation workflow
-- Handoff document generation
-- Replacement confirmation protocol
-
----
-
-## Agent Type Definitions
-
-**See [agent-types.md](./references/agent-types.md) for:**
-- Worker agent types (implementer, debugger, tester, reviewer)
-- Agent role boundaries and capabilities
-- Agent selection based on task requirements
-
----
-
-## Assignment Workflow
-
-**See [assignment-workflow.md](./references/assignment-workflow.md) for:**
-- Agent availability checking
-- Task-agent matching
-- Assignment protocol steps
-- Assignment failure handling
-
----
-
-## Agent Communication Templates
-
-**See [agent-communication-templates.md](./references/agent-communication-templates.md) for:**
-- Standard message templates for agent communication
-- Task delegation message format
-- Status update message format
-- Escalation message format
+| [skill-directory-structure.md](./references/skill-directory-structure.md) | Full skill directory structure |
+| [ecos-replacement-protocol.md](./references/ecos-replacement-protocol.md) | Agent failure or context loss replacement |
+| [agent-types.md](./references/agent-types.md) | Worker agent types and role boundaries |
+| [assignment-workflow.md](./references/assignment-workflow.md) | Agent availability and task-agent matching |
+| [agent-communication-templates.md](./references/agent-communication-templates.md) | Standard message templates for agent communication |
 
 ---
 
 ## Extended Coordination Protocols
 
-### Core Decision Trees
-
-**See [decision-trees-core.md](./references/decision-trees-core.md) for 7 core decision trees:**
-- Escalate vs Retry — agent reports issue: retry count, severity, time elapsed
-- Reassign vs Wait — agent unresponsive: time, task priority, available agents
-- Conflicting Multi-Agent Responses — two agents give contradictory results
-- Verification Loop Outcome — per-loop criteria for loops 1-4 + 5th decision
-- Agent Recovery Decision — original recovered after replacement: keep vs revert
-- Direct Handling vs Delegation — EOA handles vs delegates
-- Post-Task Interview Escalation — REVISE cycle count before escalation
-
-### Mid-Task Updates
-
-**See [mid-task-update-templates.md](./references/mid-task-update-templates.md) for:**
-- ECOS Mid-Task Requirement Update → EOA + relay to agent
-- Module Modification Notification + agent ACK
-- Priority Change Notification + agent ACK
-- EAMA user decision relay after immutable requirement escalation
-- Decision tree: Minor (relay) / Major (pause, re-verify) / Breaking (stop, escalate)
-
-### Reassignment Communication
-
-**See [reassignment-communication-templates.md](./references/reassignment-communication-templates.md) for:**
-- Reassignment Notification to Old Agent + work-summary response
-- Reassignment Assignment to New Agent (with context)
-- Agent Recovery Decision Notification (both agents) + EOA response
-- Decision tree: Old agent cooperates / unresponsive / disputes
-
-### Blocker Reports
-
-**See [blocker-report-templates.md](./references/blocker-report-templates.md) for:**
-- Agent Blocker Report → EOA (structured JSON: type, description, impact, workaround)
-- EOA Triage Response (unblock/escalate/workaround)
-- EOA Blocker Resolution Notification
-- Decision tree: Technical (fix/reroute) / External (escalate) / Requirement (escalate to user)
-
-### Multi-Project Coordination
-
-**See [multi-project-coordination-templates.md](./references/multi-project-coordination-templates.md) for:**
-- Cross-Project Dependency Notification (EOA→EOA via ECOS)
-- Cross-Project Status Request/Response
-- Human Developer Assignment (GitHub issue format) + completion report
-- Decision tree: Wait for dependency / Proceed independently / Escalate to ECOS
-
-### Verification Feedback (Loops 2-4)
-
-**See [verification-feedback-templates.md](./references/verification-feedback-templates.md) for:**
-- Loop 2-4 feedback templates with progressive focus areas
-- Verification restart notification (after failed 5th attempt)
-- Verification completion summary (audit trail of all loops)
-- Decision tree: Issues found / No issues / Agent skipping / Endless loop
+For decision trees, mid-task updates, reassignment, blockers, multi-project coordination, and verification feedback, see [extended-coordination-protocols.md](./references/extended-coordination-protocols.md):
+- 1. Core Decision Trees - When deciding whether to escalate, reassign, retry, or handle directly
+- 2. Mid-Task Updates - When relaying requirement changes or priority shifts to agents mid-task
+- 3. Reassignment Communication - When reassigning tasks between agents due to failure or recovery
+- 4. Blocker Reports - When agents report blockers and the orchestrator must triage
+- 5. Multi-Project Coordination - When tasks span multiple projects with cross-dependencies
+- 6. Verification Feedback (Loops 2-4) - When providing progressive feedback during the 4-verification-loop cycle
 
 ---
 

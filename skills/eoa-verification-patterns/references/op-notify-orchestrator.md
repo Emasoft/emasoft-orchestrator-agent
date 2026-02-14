@@ -1,5 +1,25 @@
 # Operation: Notify Orchestrator
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Steps](#steps)
+  - [Step 1: Prepare Notification Content](#step-1-prepare-notification-content)
+  - [Step 2: Send via AI Maestro](#step-2-send-via-ai-maestro)
+  - [Step 3: Wait for Acknowledgment](#step-3-wait-for-acknowledgment)
+- [Notification Content](#notification-content)
+- [Minimal Summary Format](#minimal-summary-format)
+- [Progress Updates](#progress-updates)
+- [Additional Attempts Request](#additional-attempts-request)
+- [Troubleshooting](#troubleshooting)
+  - [Notification Not Delivered](#notification-not-delivered)
+  - [Notification Format](#notification-format)
+- [Exit Criteria](#exit-criteria)
+- [Related Operations](#related-operations)
+
 ---
 procedure: proc-complete-task
 workflow-instruction: Step 19 - Task Completion

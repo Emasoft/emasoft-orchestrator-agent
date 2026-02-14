@@ -1,5 +1,31 @@
 # Operation: Reassign Module to Different Agent
 
+
+## Contents
+
+- [Metadata](#metadata)
+- [Purpose](#purpose)
+- [Prerequisites](#prerequisites)
+- [Inputs](#inputs)
+- [Command Syntax](#command-syntax)
+- [Reassignment Scenarios](#reassignment-scenarios)
+- [Steps](#steps)
+- [Old Agent STOP Message](#old-agent-stop-message)
+- [STOP: Module Reassigned](#stop-module-reassigned)
+- [New Agent Assignment Message](#new-agent-assignment-message)
+- [Module Assignment: <module_id>](#module-assignment-module_id)
+  - [Background](#background)
+  - [Previous Progress (if any)](#previous-progress-if-any)
+  - [Specifications](#specifications)
+  - [Instructions](#instructions)
+- [Output](#output)
+- [Success Criteria](#success-criteria)
+- [Error Handling](#error-handling)
+- [Important Rules](#important-rules)
+- [Instruction Verification Protocol Reset](#instruction-verification-protocol-reset)
+- [Reassignment Audit](#reassignment-audit)
+- [Next Operations](#next-operations)
+
 ## Metadata
 
 | Field | Value |

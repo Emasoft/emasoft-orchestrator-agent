@@ -6,6 +6,37 @@ operation: prepare-task-delegation
 
 # Operation: Prepare Task Delegation
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [When to Use](#when-to-use)
+- [Inputs](#inputs)
+- [Outputs](#outputs)
+- [Mandatory Elements](#mandatory-elements)
+  - [1. ACK Instructions Block (at top of message)](#1-ack-instructions-block-at-top-of-message)
+- [ACK PROTOCOL (MANDATORY)](#ack-protocol-mandatory)
+  - [2. PR Notification Requirement](#2-pr-notification-requirement)
+- [PR NOTIFICATION (MANDATORY)](#pr-notification-mandatory)
+  - [3. Context Section](#3-context-section)
+- [Context](#context)
+  - [4. Scope Section](#4-scope-section)
+- [Scope](#scope)
+  - [DO](#do)
+  - [DO NOT](#do-not)
+  - [5. Interface Contract](#5-interface-contract)
+- [Interface Contract](#interface-contract)
+  - [6. Files in Scope](#6-files-in-scope)
+- [Files to Modify](#files-to-modify)
+  - [7. Test Requirements](#7-test-requirements)
+- [Test Requirements](#test-requirements)
+  - [8. Completion Criteria](#8-completion-criteria)
+- [Completion Criteria](#completion-criteria)
+- [Template Assembly](#template-assembly)
+- [Success Criteria](#success-criteria)
+- [Error Handling](#error-handling)
+- [Related Operations](#related-operations)
+
 ## Purpose
 
 Prepare complete task delegation instructions that include all required elements for remote agent execution.

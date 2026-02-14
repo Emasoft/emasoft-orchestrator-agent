@@ -5,6 +5,57 @@ workflow-instruction: support
 
 # Operation: Generate Handoff Document
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Create Document Header](#step-1-create-document-header)
+  - [Step 2: Add Task Summary Section](#step-2-add-task-summary-section)
+- [Task Summary](#task-summary)
+  - [Step 3: Add Requirements Section](#step-3-add-requirements-section)
+- [User Requirements (Reference)](#user-requirements-reference)
+  - [From USER_REQUIREMENTS.md Section 3:](#from-user_requirementsmd-section-3)
+  - [Acceptance Criteria:](#acceptance-criteria)
+  - [Step 4: Add Progress Detail Section](#step-4-add-progress-detail-section)
+- [Work Progress](#work-progress)
+  - [Completed:](#completed)
+  - [In Progress:](#in-progress)
+  - [Not Started:](#not-started)
+  - [Step 5: Add Technical Context Section](#step-5-add-technical-context-section)
+- [Technical Context](#technical-context)
+  - [Files Modified:](#files-modified)
+  - [Branch:](#branch)
+  - [Dependencies:](#dependencies)
+  - [Architecture Notes:](#architecture-notes)
+  - [Step 6: Add Communication History Section](#step-6-add-communication-history-section)
+- [Communication History](#communication-history)
+  - [Last 5 Messages:](#last-5-messages)
+  - [Step 7: Add Next Steps Section](#step-7-add-next-steps-section)
+- [Next Steps](#next-steps)
+  - [Immediate (Resume Work):](#immediate-resume-work)
+  - [After Validation Complete:](#after-validation-complete)
+  - [Blocked On:](#blocked-on)
+  - [Step 8: Add Verification Requirements](#step-8-add-verification-requirements)
+- [Verification Requirements](#verification-requirements)
+  - [Instruction Verification (IVP):](#instruction-verification-ivp)
+  - [Step 9: Assemble Complete Document](#step-9-assemble-complete-document)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Example](#example)
+- [Task Summary](#task-summary)
+- [User Requirements (Reference)](#user-requirements-reference)
+- [Work Progress](#work-progress)
+  - [Completed:](#completed)
+  - [In Progress:](#in-progress)
+  - [Not Started:](#not-started)
+- [Technical Context](#technical-context)
+- [Communication History](#communication-history)
+- [Next Steps](#next-steps)
+- [Verification](#verification)
+- [Checklist](#checklist)
+
 ## When to Use
 
 Use this operation after compiling context to create a comprehensive handoff document for the replacement agent.

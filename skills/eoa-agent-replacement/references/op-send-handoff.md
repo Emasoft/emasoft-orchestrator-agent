@@ -5,6 +5,25 @@ workflow-instruction: support
 
 # Operation: Send Handoff to New Agent
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Upload Handoff to GitHub](#step-1-upload-handoff-to-github)
+  - [Step 2: Get Handoff URL](#step-2-get-handoff-url)
+  - [Step 3: Send AI Maestro Notification](#step-3-send-ai-maestro-notification)
+  - [Step 4: Include Urgency and Timeout](#step-4-include-urgency-and-timeout)
+  - [Step 5: Request Acknowledgment](#step-5-request-acknowledgment)
+- [Required Response](#required-response)
+  - [Step 6: Set ACK Timeout Monitor](#step-6-set-ack-timeout-monitor)
+  - [Step 7: Handle Missing ACK](#step-7-handle-missing-ack)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Example](#example)
+- [Checklist](#checklist)
+
 ## When to Use
 
 Use this operation after kanban tasks are reassigned to deliver the handoff document to the replacement agent.

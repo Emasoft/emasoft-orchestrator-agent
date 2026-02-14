@@ -9,6 +9,42 @@ version: 1.0.0
 
 # Create GitHub Issues
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Prepare Issue Content](#step-1-prepare-issue-content)
+- [Module: [Module Name]](#module-module-name)
+  - [Description](#description)
+  - [Acceptance Criteria](#acceptance-criteria)
+  - [Priority](#priority)
+  - [Dependencies](#dependencies)
+  - [Related](#related)
+  - [Step 2: Determine Labels](#step-2-determine-labels)
+  - [Step 3: Create Issues Using gh CLI](#step-3-create-issues-using-gh-cli)
+- [Module: Core Authentication](#module-core-authentication)
+  - [Description](#description)
+  - [Acceptance Criteria](#acceptance-criteria)
+  - [Priority](#priority)
+  - [Related](#related)
+  - [Step 4: Link Dependencies](#step-4-link-dependencies)
+  - [Step 5: Update State File](#step-5-update-state-file)
+- [Checklist](#checklist)
+- [Examples](#examples)
+  - [Example: Complete Module Issue](#example-complete-module-issue)
+- [Module: Google OAuth2 Integration](#module-google-oauth2-integration)
+  - [Description](#description)
+  - [Acceptance Criteria](#acceptance-criteria)
+  - [Priority](#priority)
+  - [Dependencies](#dependencies)
+  - [Technical Notes](#technical-notes)
+  - [Related](#related)
+  - [Example: Batch Issue Creation Script](#example-batch-issue-creation-script)
+- [Error Handling](#error-handling)
+- [Related Operations](#related-operations)
+
 ## When to Use
 
 Trigger this operation when:

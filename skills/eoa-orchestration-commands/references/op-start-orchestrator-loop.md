@@ -5,6 +5,27 @@ workflow-instruction: support
 
 # Operation: Start Orchestrator Loop
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Prepare Task Sources](#step-1-prepare-task-sources)
+  - [Step 2: Start the Loop](#step-2-start-the-loop)
+  - [Step 3: Understand Loop State File](#step-3-understand-loop-state-file)
+- [Current Iteration](#current-iteration)
+  - [Step 4: Understand Task Monitoring](#step-4-understand-task-monitoring)
+  - [Step 5: Monitor Loop Progress](#step-5-monitor-loop-progress)
+  - [Step 6: Understand Stop Hook Behavior](#step-6-understand-stop-hook-behavior)
+  - [Step 7: Provide Completion Promise (Optional)](#step-7-provide-completion-promise-optional)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Example](#example)
+- [Authentication Module](#authentication-module)
+- [API Routes](#api-routes)
+- [Checklist](#checklist)
+
 ## When to Use
 
 Use this operation to start the continuous task-driven development loop that monitors multiple task sources.

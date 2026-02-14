@@ -9,6 +9,25 @@ version: 1.0.0
 
 # Select Agent for Task
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Identify Task Category](#step-1-identify-task-category)
+  - [Step 2: Check Language Requirements](#step-2-check-language-requirements)
+  - [Step 3: Verify Parallelization Safety](#step-3-verify-parallelization-safety)
+  - [Step 4: Determine Output Requirements](#step-4-determine-output-requirements)
+  - [Step 5: Select Agent Using Formula](#step-5-select-agent-using-formula)
+- [Checklist](#checklist)
+- [Examples](#examples)
+  - [Example: Python API Development](#example-python-api-development)
+  - [Example: JavaScript Test Writing](#example-javascript-test-writing)
+  - [Example: Code Search](#example-code-search)
+- [Error Handling](#error-handling)
+- [Related Operations](#related-operations)
+
 ## When to Use
 
 Trigger this operation when:

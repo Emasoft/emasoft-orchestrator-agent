@@ -5,6 +5,46 @@ workflow-instruction: support
 
 # Operation: Compile Quality Gate Checklist
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Determine Gate Type](#step-1-determine-gate-type)
+  - [Step 2: Create Test Section](#step-2-create-test-section)
+- [Tests](#tests)
+  - [Step 3: Create Coverage Section](#step-3-create-coverage-section)
+- [Code Coverage](#code-coverage)
+  - [Step 4: Create Static Analysis Section](#step-4-create-static-analysis-section)
+- [Static Analysis](#static-analysis)
+  - [Step 5: Create Security Section](#step-5-create-security-section)
+- [Security](#security)
+  - [Step 6: Create Performance Section (if applicable)](#step-6-create-performance-section-if-applicable)
+- [Performance](#performance)
+  - [Step 7: Create Verification Loop Section](#step-7-create-verification-loop-section)
+- [Verification Loops](#verification-loops)
+  - [Step 8: Add RULE 14 Compliance Section](#step-8-add-rule-14-compliance-section)
+- [Requirement Compliance (RULE 14)](#requirement-compliance-rule-14)
+  - [Step 9: Assemble Complete Checklist](#step-9-assemble-complete-checklist)
+- [Tests](#tests)
+- [Code Coverage](#code-coverage)
+- [Static Analysis](#static-analysis)
+- [Security](#security)
+- [Performance](#performance)
+- [Verification Loops](#verification-loops)
+- [Requirement Compliance (RULE 14)](#requirement-compliance-rule-14)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Example](#example)
+- [Tests](#tests)
+- [Code Coverage](#code-coverage)
+- [Static Analysis](#static-analysis)
+- [Security](#security)
+- [Verification Loops](#verification-loops)
+- [Requirement Compliance (RULE 14)](#requirement-compliance-rule-14)
+- [Checklist](#checklist)
+
 ## When to Use
 
 Use this operation when you need to create a checklist that verifies quality standards before code progression (merge, release, deployment).

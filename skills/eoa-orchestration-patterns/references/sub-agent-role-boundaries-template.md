@@ -1,5 +1,50 @@
 # EOA Sub-Agent Role Boundaries Template
 
+
+## Contents
+
+- [YAML Frontmatter Structure](#yaml-frontmatter-structure)
+- [Purpose Section](#purpose-section)
+- [Purpose](#purpose)
+- [Purpose](#purpose)
+- [Role Boundaries with Orchestrator Section](#role-boundaries-with-orchestrator-section)
+- [Role Boundaries with Orchestrator](#role-boundaries-with-orchestrator)
+- [Role Boundaries with Orchestrator](#role-boundaries-with-orchestrator)
+- [What Agent Can/Cannot Do Section](#what-agent-cancannot-do-section)
+- [What This Agent Can Do](#what-this-agent-can-do)
+- [What This Agent CANNOT Do](#what-this-agent-cannot-do)
+- [What This Agent Can Do](#what-this-agent-can-do)
+- [What This Agent CANNOT Do](#what-this-agent-cannot-do)
+- [When Invoked Section](#when-invoked-section)
+- [When Invoked](#when-invoked)
+  - [Invocation Scenarios](#invocation-scenarios)
+- [When Invoked](#when-invoked)
+  - [Invocation Scenarios](#invocation-scenarios)
+- [Step-by-Step Procedure Section](#step-by-step-procedure-section)
+- [Step-by-Step Procedure](#step-by-step-procedure)
+  - [Step 1: [Action Name]](#step-1-action-name)
+  - [Step 2: [Action Name]](#step-2-action-name)
+  - [Step 3: [Action Name]](#step-3-action-name)
+- [Step-by-Step Procedure](#step-by-step-procedure)
+  - [Step 1: Receive Input](#step-1-receive-input)
+  - [Step 2: Analyze Content](#step-2-analyze-content)
+- [Output Format Section](#output-format-section)
+- [Output Format](#output-format)
+- [Output Format](#output-format)
+- [IRON RULES Section (Optional - for agents with strict requirements)](#iron-rules-section-optional-for-agents-with-strict-requirements)
+- [IRON RULES](#iron-rules)
+- [IRON RULES](#iron-rules)
+- [Examples Section](#examples-section)
+- [Examples](#examples)
+- [Examples](#examples)
+- [Additional Sections (Optional)](#additional-sections-optional)
+  - [AI Maestro Integration (if applicable)](#ai-maestro-integration-if-applicable)
+- [AI Maestro Integration](#ai-maestro-integration)
+  - [Docker Requirements (if applicable)](#docker-requirements-if-applicable)
+- [Docker Containerization](#docker-containerization)
+- [Template Usage Checklist](#template-usage-checklist)
+- [Design Philosophy](#design-philosophy)
+
 **Use this template for all EOA sub-agents to maintain consistent role definitions, output formats, and communication patterns.**
 
 ---

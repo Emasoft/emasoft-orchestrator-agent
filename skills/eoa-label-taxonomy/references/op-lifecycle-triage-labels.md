@@ -5,6 +5,27 @@ workflow-instruction: support
 
 # Operation: Set Labels During Triage
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Assess Priority](#step-1-assess-priority)
+  - [Step 2: Estimate Effort](#step-2-estimate-effort)
+  - [Step 3: Identify Platform/Toolchain (if applicable)](#step-3-identify-platformtoolchain-if-applicable)
+  - [Step 4: Determine Next Status](#step-4-determine-next-status)
+  - [Step 5: Apply Triage Labels](#step-5-apply-triage-labels)
+  - [Step 6: Add Component if Not Set](#step-6-add-component-if-not-set)
+  - [Step 7: Add Triage Comment](#step-7-add-triage-comment)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Examples](#examples)
+  - [Example 1: Standard Bug Triage](#example-1-standard-bug-triage)
+  - [Example 2: Feature to Backlog](#example-2-feature-to-backlog)
+  - [Example 3: Needs More Information](#example-3-needs-more-information)
+- [Checklist](#checklist)
+
 ## When to Use
 
 Use this operation when triaging an issue that has `status:backlog` label.

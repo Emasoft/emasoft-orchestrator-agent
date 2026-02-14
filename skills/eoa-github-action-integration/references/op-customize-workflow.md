@@ -5,6 +5,28 @@ workflow-instruction: support
 
 # Operation: Customize Workflow
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Change the Model](#step-1-change-the-model)
+  - [Step 2: Restrict Available Tools](#step-2-restrict-available-tools)
+  - [Step 3: Customize Prompts](#step-3-customize-prompts)
+  - [Step 4: Add Trigger Conditions](#step-4-add-trigger-conditions)
+  - [Step 5: Add Concurrency Control](#step-5-add-concurrency-control)
+  - [Step 6: Add Timeout and Retry](#step-6-add-timeout-and-retry)
+  - [Step 7: Add Labels Based on Review](#step-7-add-labels-based-on-review)
+  - [Step 8: Integrate with Other Actions](#step-8-integrate-with-other-actions)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Examples](#examples)
+  - [Example 1: Security-Focused Review](#example-1-security-focused-review)
+  - [Example 2: Documentation Check](#example-2-documentation-check)
+  - [Example 3: Performance Review](#example-3-performance-review)
+- [Checklist](#checklist)
+
 ## When to Use
 
 Use this operation when customizing Claude Code Action workflows for your specific project needs.

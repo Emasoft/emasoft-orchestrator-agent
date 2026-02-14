@@ -1,5 +1,26 @@
 # Operation: Format Verification Report
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Report Components](#report-components)
+- [Steps](#steps)
+  - [Step 1: Create Evidence Items](#step-1-create-evidence-items)
+  - [Step 2: Assemble Verification Record](#step-2-assemble-verification-record)
+  - [Step 3: Validate Before Submission](#step-3-validate-before-submission)
+  - [Step 4: Write to File](#step-4-write-to-file)
+- [Report Format Reference](#report-format-reference)
+  - [Full Verification Record](#full-verification-record)
+  - [Minimal Report for Orchestrator](#minimal-report-for-orchestrator)
+- [Status Values](#status-values)
+- [Handoff Phase Integration](#handoff-phase-integration)
+- [Output Locations](#output-locations)
+- [Exit Criteria](#exit-criteria)
+- [Related Operations](#related-operations)
+
 ---
 procedure: proc-complete-task
 workflow-instruction: Step 19 - Task Completion

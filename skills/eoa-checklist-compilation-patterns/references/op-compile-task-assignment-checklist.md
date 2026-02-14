@@ -5,6 +5,46 @@ workflow-instruction: support
 
 # Operation: Compile Task Assignment Checklist
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Create Objective Section](#step-1-create-objective-section)
+- [Task Objective](#task-objective)
+  - [Step 2: Create Acceptance Criteria Section](#step-2-create-acceptance-criteria-section)
+- [Acceptance Criteria](#acceptance-criteria)
+  - [Step 3: Create Context Section](#step-3-create-context-section)
+- [Context Information](#context-information)
+  - [Step 4: Create Constraints Section](#step-4-create-constraints-section)
+- [Constraints](#constraints)
+  - [Step 5: Create Resources Section](#step-5-create-resources-section)
+- [Resources](#resources)
+  - [Step 6: Create Handoff Section](#step-6-create-handoff-section)
+- [Assignment Handoff](#assignment-handoff)
+  - [Step 7: Add RULE 14 Compliance Section](#step-7-add-rule-14-compliance-section)
+- [Requirement Compliance (RULE 14)](#requirement-compliance-rule-14)
+  - [Step 8: Assemble Complete Checklist](#step-8-assemble-complete-checklist)
+- [Task Objective](#task-objective)
+- [Acceptance Criteria](#acceptance-criteria)
+- [Context Information](#context-information)
+- [Constraints](#constraints)
+- [Resources](#resources)
+- [Assignment Handoff](#assignment-handoff)
+- [Requirement Compliance (RULE 14)](#requirement-compliance-rule-14)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Example](#example)
+- [Task Objective](#task-objective)
+- [Acceptance Criteria](#acceptance-criteria)
+- [Context Information](#context-information)
+- [Constraints](#constraints)
+- [Resources](#resources)
+- [Assignment Handoff](#assignment-handoff)
+- [Requirement Compliance (RULE 14)](#requirement-compliance-rule-14)
+- [Checklist](#checklist)
+
 ## When to Use
 
 Use this operation when creating a checklist to verify a task is properly defined before assignment to an agent.

@@ -1,5 +1,31 @@
 # Operation: Change Module Priority
 
+
+## Contents
+
+- [Metadata](#metadata)
+- [Purpose](#purpose)
+- [Prerequisites](#prerequisites)
+- [Inputs](#inputs)
+- [Command Syntax](#command-syntax)
+- [Priority Levels](#priority-levels)
+- [Steps](#steps)
+- [Effects on Assignment Queue](#effects-on-assignment-queue)
+- [Agent Notification](#agent-notification)
+- [Priority Change: <module_id>](#priority-change-module_id)
+  - [Impact](#impact)
+  - [Action Required](#action-required)
+- [Output](#output)
+- [Success Criteria](#success-criteria)
+- [When to Escalate vs. Downgrade](#when-to-escalate-vs-downgrade)
+  - [Escalate (increase priority) when:](#escalate-increase-priority-when)
+  - [Downgrade (decrease priority) when:](#downgrade-decrease-priority-when)
+- [Error Handling](#error-handling)
+- [GitHub Label Conventions](#github-label-conventions)
+- [Important Rules](#important-rules)
+- [Priority Change Audit](#priority-change-audit)
+- [Next Operations](#next-operations)
+
 ## Metadata
 
 | Field | Value |

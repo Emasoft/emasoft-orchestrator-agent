@@ -5,6 +5,25 @@ workflow-instruction: support
 
 # Operation: Configure Repository Permissions
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Understand Permission Requirements](#step-1-understand-permission-requirements)
+  - [Step 2: Configure Workflow Permissions (Default)](#step-2-configure-workflow-permissions-default)
+  - [Step 3: Set Permissions in Workflow File](#step-3-set-permissions-in-workflow-file)
+  - [Step 4: Permission Reference](#step-4-permission-reference)
+  - [Step 5: Configure Branch Protection (Recommended)](#step-5-configure-branch-protection-recommended)
+  - [Step 6: Verify Permissions](#step-6-verify-permissions)
+  - [Step 7: Handle Permission Errors](#step-7-handle-permission-errors)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Security Considerations](#security-considerations)
+- [Example](#example)
+- [Checklist](#checklist)
+
 ## When to Use
 
 Use this operation when configuring GitHub repository permissions for Claude Code Action workflows.

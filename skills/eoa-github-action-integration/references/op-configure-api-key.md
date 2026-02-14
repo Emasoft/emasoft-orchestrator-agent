@@ -5,6 +5,25 @@ workflow-instruction: support
 
 # Operation: Configure API Key Secret
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Obtain API Key](#step-1-obtain-api-key)
+  - [Step 2: Add Secret via GitHub UI](#step-2-add-secret-via-github-ui)
+  - [Step 3: Alternative - Add Secret via CLI](#step-3-alternative-add-secret-via-cli)
+  - [Step 4: Verify Secret Exists](#step-4-verify-secret-exists)
+  - [Step 5: Reference in Workflow](#step-5-reference-in-workflow)
+  - [Step 6: Set Up Organization Secret (Optional)](#step-6-set-up-organization-secret-optional)
+  - [Step 7: Set Up Environment Secret (Optional)](#step-7-set-up-environment-secret-optional)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Security Best Practices](#security-best-practices)
+- [Example](#example)
+- [Checklist](#checklist)
+
 ## When to Use
 
 Use this operation when setting up the ANTHROPIC_API_KEY secret for Claude Code Action workflows.

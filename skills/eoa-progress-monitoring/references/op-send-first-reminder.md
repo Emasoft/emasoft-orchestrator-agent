@@ -6,6 +6,26 @@ operation: send-first-reminder
 
 # Operation: Send First Reminder
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [When to Use](#when-to-use)
+- [Inputs](#inputs)
+- [Outputs](#outputs)
+- [Steps](#steps)
+  - [Step 1: Prepare Reminder Message](#step-1-prepare-reminder-message)
+  - [Step 2: Send Status Request (No ACK State)](#step-2-send-status-request-no-ack-state)
+  - [Step 3: Send Progress Request (No Progress State)](#step-3-send-progress-request-no-progress-state)
+  - [Step 4: Log Reminder](#step-4-log-reminder)
+  - [Step 5: Set Follow-up Timer](#step-5-set-follow-up-timer)
+- [Message Template: No ACK](#message-template-no-ack)
+- [Message Template: No Progress](#message-template-no-progress)
+- [Success Criteria](#success-criteria)
+- [Next Steps](#next-steps)
+- [Error Handling](#error-handling)
+- [Related Operations](#related-operations)
+
 ## Purpose
 
 Send a normal priority reminder to an agent who has not acknowledged a task or has not provided progress updates.

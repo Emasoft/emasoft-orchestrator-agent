@@ -5,6 +5,21 @@ workflow-instruction: support
 
 # Operation: Create Label
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Determine Label Category](#step-1-determine-label-category)
+  - [Step 2: Choose Label Value](#step-2-choose-label-value)
+  - [Step 3: Select Color](#step-3-select-color)
+  - [Step 4: Create the Label](#step-4-create-the-label)
+  - [Step 5: Verify Creation](#step-5-verify-creation)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Example](#example)
+
 ## When to Use
 
 Use this operation when you need to create a new GitHub label following the emasoft label taxonomy.

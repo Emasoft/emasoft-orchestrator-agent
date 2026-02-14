@@ -5,6 +5,30 @@ workflow-instruction: support
 
 # Operation: Set Labels on Task Completion
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Verify Task Completion](#step-1-verify-task-completion)
+  - [Step 2: Determine Completion Path](#step-2-determine-completion-path)
+  - [Step 3: Handle PR Review Status (if applicable)](#step-3-handle-pr-review-status-if-applicable)
+  - [Step 4: Move to AI Review](#step-4-move-to-ai-review)
+  - [Step 5: Move to Human Review (BIG tasks only)](#step-5-move-to-human-review-big-tasks-only)
+  - [Step 6: Move to Merge-Release](#step-6-move-to-merge-release)
+  - [Step 7: Apply Completion Labels](#step-7-apply-completion-labels)
+  - [Step 8: Close Issue (if policy allows)](#step-8-close-issue-if-policy-allows)
+  - [Step 9: Notify Orchestrator](#step-9-notify-orchestrator)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Examples](#examples)
+  - [Example 1: Simple Completion](#example-1-simple-completion)
+  - [Example 2: Completion After PR Merge](#example-2-completion-after-pr-merge)
+  - [Example 3: Partial Completion with Handoff](#example-3-partial-completion-with-handoff)
+  - [Example 4: Completion with Blockers Found](#example-4-completion-with-blockers-found)
+- [Checklist](#checklist)
+
 ## When to Use
 
 Use this operation when an agent completes their assigned work and the task is done.

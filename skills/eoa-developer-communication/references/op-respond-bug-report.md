@@ -1,5 +1,25 @@
 # Operation: Respond to Bug Report
 
+
+## Contents
+
+- [Metadata](#metadata)
+- [Purpose](#purpose)
+- [Prerequisites](#prerequisites)
+- [Inputs](#inputs)
+- [Response Workflow](#response-workflow)
+  - [Phase 1: Acknowledgment (Within 24 hours)](#phase-1-acknowledgment-within-24-hours)
+  - [Phase 2: Reproduction Attempt](#phase-2-reproduction-attempt)
+  - [Phase 3: Status Update](#phase-3-status-update)
+  - [Phase 4: Resolution Communication](#phase-4-resolution-communication)
+- [Steps](#steps)
+- [Response Tone Guidelines](#response-tone-guidelines)
+- [Output](#output)
+- [Success Criteria](#success-criteria)
+- [Error Handling](#error-handling)
+- [Important Rules](#important-rules)
+- [Next Operations](#next-operations)
+
 ## Metadata
 
 | Field | Value |

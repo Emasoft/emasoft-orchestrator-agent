@@ -6,6 +6,34 @@ operation: query-progress-dashboard
 
 # Operation: Query Progress Dashboard
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [When to Use](#when-to-use)
+- [Inputs](#inputs)
+- [Outputs](#outputs)
+- [Steps](#steps)
+  - [Step 1: Query All In-Progress Tasks](#step-1-query-all-in-progress-tasks)
+  - [Step 2: Query Blocked Tasks](#step-2-query-blocked-tasks)
+  - [Step 3: Get Agent Assignments](#step-3-get-agent-assignments)
+  - [Step 4: Calculate Task Staleness](#step-4-calculate-task-staleness)
+  - [Step 5: Query Agent Message Activity](#step-5-query-agent-message-activity)
+  - [Step 6: Generate Dashboard Table](#step-6-generate-dashboard-table)
+- [Progress Dashboard](#progress-dashboard)
+  - [Summary](#summary)
+  - [Active Tasks](#active-tasks)
+- [Dashboard Output Format](#dashboard-output-format)
+- [Progress Dashboard](#progress-dashboard)
+  - [Summary](#summary)
+  - [Active Tasks](#active-tasks)
+  - [Blocked Tasks](#blocked-tasks)
+  - [Agent Status](#agent-status)
+- [Success Criteria](#success-criteria)
+- [Use Cases](#use-cases)
+- [Error Handling](#error-handling)
+- [Related Operations](#related-operations)
+
 ## Purpose
 
 Generate a comprehensive view of all active tasks, agent states, and progress metrics.

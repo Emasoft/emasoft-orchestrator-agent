@@ -9,6 +9,28 @@ version: 1.0.0
 
 # Define Scope Boundaries
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Identify Scope Dimensions](#step-1-identify-scope-dimensions)
+  - [Step 2: Document Explicit Boundaries](#step-2-document-explicit-boundaries)
+- [Task: [Task Name]](#task-task-name)
+  - [In Scope](#in-scope)
+  - [Out of Scope (DO NOT TOUCH)](#out-of-scope-do-not-touch)
+  - [Step 3: Verify Non-Overlapping Scopes](#step-3-verify-non-overlapping-scopes)
+  - [Step 4: Define Shared Resources Protocol](#step-4-define-shared-resources-protocol)
+  - [Step 5: Include Boundaries in Task Prompt](#step-5-include-boundaries-in-task-prompt)
+- [Scope Boundaries](#scope-boundaries)
+- [Checklist](#checklist)
+- [Examples](#examples)
+  - [Example: Parallel Authentication Implementation](#example-parallel-authentication-implementation)
+  - [Example: Line-Based Division](#example-line-based-division)
+- [Error Handling](#error-handling)
+- [Related Operations](#related-operations)
+
 ## When to Use
 
 Trigger this operation when:

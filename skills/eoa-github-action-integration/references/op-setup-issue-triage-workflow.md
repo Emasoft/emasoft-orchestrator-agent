@@ -5,6 +5,22 @@ workflow-instruction: support
 
 # Operation: Setup Issue Triage Workflow
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Ensure Labels Exist](#step-1-ensure-labels-exist)
+  - [Step 2: Create Workflow File](#step-2-create-workflow-file)
+  - [Step 3: Configure Permissions](#step-3-configure-permissions)
+  - [Step 4: Customize Triage Rules](#step-4-customize-triage-rules)
+  - [Step 5: Test the Workflow](#step-5-test-the-workflow)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Example](#example)
+- [Checklist](#checklist)
+
 ## When to Use
 
 Use this operation when setting up automated issue triage using Claude Code Action.

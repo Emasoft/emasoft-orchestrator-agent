@@ -1,5 +1,28 @@
 # Operation: Validate Evidence Record
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Validation Requirements](#validation-requirements)
+  - [Minimum Evidence Items](#minimum-evidence-items)
+  - [Exit Code Verification](#exit-code-verification)
+- [Steps](#steps)
+  - [Step 1: Validate Single Evidence Item](#step-1-validate-single-evidence-item)
+  - [Step 2: Collect Required Fields](#step-2-collect-required-fields)
+  - [Step 3: Build Verification Record](#step-3-build-verification-record)
+  - [Step 4: Validate Verification Record](#step-4-validate-verification-record)
+  - [Step 5: Submit to Orchestrator](#step-5-submit-to-orchestrator)
+- [Required Verification Record Fields](#required-verification-record-fields)
+- [Evidence Types Reference](#evidence-types-reference)
+- [Verification Statuses](#verification-statuses)
+- [Command-Line Validation](#command-line-validation)
+- [Common Validation Errors](#common-validation-errors)
+- [Exit Criteria](#exit-criteria)
+- [Related Operations](#related-operations)
+
 ---
 procedure: proc-complete-task
 workflow-instruction: Step 19 - Task Completion

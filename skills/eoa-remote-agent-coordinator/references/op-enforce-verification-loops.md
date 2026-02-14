@@ -6,6 +6,25 @@ operation: enforce-verification-loops
 
 # Operation: Enforce 4-Verification Loops
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [When to Use](#when-to-use)
+- [Inputs](#inputs)
+- [Outputs](#outputs)
+- [The 5 PR Requests Cycle](#the-5-pr-requests-cycle)
+- [Steps](#steps)
+  - [Step 1: Track PR Request Count](#step-1-track-pr-request-count)
+  - [Step 2: Respond Based on Count](#step-2-respond-based-on-count)
+  - [Step 3: Final Approval Decision (5th Request)](#step-3-final-approval-decision-5th-request)
+- [Enforcement Rules](#enforcement-rules)
+  - [MUST](#must)
+  - [MUST NOT](#must-not)
+- [Success Criteria](#success-criteria)
+- [Error Handling](#error-handling)
+- [Related Operations](#related-operations)
+
 ## Purpose
 
 Require agents to perform 4 self-verification cycles before approving PR creation. This ensures code quality through iterative self-review.

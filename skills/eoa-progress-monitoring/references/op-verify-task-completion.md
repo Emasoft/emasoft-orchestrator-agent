@@ -6,6 +6,28 @@ operation: verify-task-completion
 
 # Operation: Verify Task Completion
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [When to Use](#when-to-use)
+- [Inputs](#inputs)
+- [Outputs](#outputs)
+- [Expected Completion Report Format](#expected-completion-report-format)
+- [Steps](#steps)
+  - [Step 1: Parse Completion Report](#step-1-parse-completion-report)
+  - [Step 2: Check PR Existence](#step-2-check-pr-existence)
+  - [Step 3: Check CI Status](#step-3-check-ci-status)
+  - [Step 4: Check Test Status from Report](#step-4-check-test-status-from-report)
+  - [Step 5: Verify Issue Checklist](#step-5-verify-issue-checklist)
+  - [Step 6: Check Required Documentation](#step-6-check-required-documentation)
+  - [Step 7: Make Verification Decision](#step-7-make-verification-decision)
+- [Verification Checklist](#verification-checklist)
+- [Success Criteria](#success-criteria)
+- [Failure Handling](#failure-handling)
+- [Error Handling](#error-handling)
+- [Related Operations](#related-operations)
+
 ## Purpose
 
 Verify that an agent's completion report meets all acceptance criteria before closing the task.

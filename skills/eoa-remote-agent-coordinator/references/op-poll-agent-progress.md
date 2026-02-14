@@ -6,6 +6,24 @@ operation: poll-agent-progress
 
 # Operation: Poll Agent Progress
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [When to Use](#when-to-use)
+- [Inputs](#inputs)
+- [Outputs](#outputs)
+- [Steps](#steps)
+  - [Step 1: Check Time Since Last Update](#step-1-check-time-since-last-update)
+  - [Step 2: Send Proactive Status Request](#step-2-send-proactive-status-request)
+  - [Step 3: Mandatory Poll Questions](#step-3-mandatory-poll-questions)
+  - [Step 4: Process Response](#step-4-process-response)
+- [Polling Schedule](#polling-schedule)
+- [No-Response Escalation Timeline](#no-response-escalation-timeline)
+- [Success Criteria](#success-criteria)
+- [Error Handling](#error-handling)
+- [Related Operations](#related-operations)
+
 ## Purpose
 
 Proactively poll remote agents for progress updates every 10-15 minutes during active work.

@@ -1,5 +1,20 @@
 # Operation: Send Pre-Task Interview Questions
 
+
+## Contents
+
+- [Metadata](#metadata)
+- [Purpose](#purpose)
+- [Prerequisites](#prerequisites)
+- [Inputs](#inputs)
+- [Steps](#steps)
+- [Message Template](#message-template)
+- [Pre-Task Interview: <issue_number>](#pre-task-interview-issue_number)
+- [Output](#output)
+- [Success Criteria](#success-criteria)
+- [Error Handling](#error-handling)
+- [Next Operation](#next-operation)
+
 ## Metadata
 
 | Field | Value |

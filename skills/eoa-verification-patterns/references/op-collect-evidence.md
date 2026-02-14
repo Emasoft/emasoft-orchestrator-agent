@@ -1,5 +1,23 @@
 # Operation: Collect Evidence
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Steps](#steps)
+  - [Step 1: Define Expected Outcome](#step-1-define-expected-outcome)
+  - [Step 2: Run the Code](#step-2-run-the-code)
+  - [Step 3: Collect Evidence](#step-3-collect-evidence)
+  - [Step 4: Compare Evidence to Expectation](#step-4-compare-evidence-to-expectation)
+  - [Step 5: Document Results](#step-5-document-results)
+- [Output Format](#output-format)
+- [Common Evidence Types](#common-evidence-types)
+- [Verification Principles](#verification-principles)
+- [Exit Criteria](#exit-criteria)
+- [Related Operations](#related-operations)
+
 ---
 procedure: proc-complete-task
 workflow-instruction: Step 19 - Task Completion

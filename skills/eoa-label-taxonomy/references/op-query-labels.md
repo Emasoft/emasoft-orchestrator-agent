@@ -5,6 +5,23 @@ workflow-instruction: support
 
 # Operation: Query Labels
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Determine Query Type](#step-1-determine-query-type)
+  - [Step 2: Execute Query](#step-2-execute-query)
+  - [Step 3: Format Output](#step-3-format-output)
+  - [Step 4: View Issue Labels](#step-4-view-issue-labels)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Examples](#examples)
+  - [Example 1: Find Work for Agent](#example-1-find-work-for-agent)
+  - [Example 2: Workload Analysis](#example-2-workload-analysis)
+  - [Example 3: Find Unassigned Ready Work](#example-3-find-unassigned-ready-work)
+
 ## When to Use
 
 Use this operation when you need to find issues based on their labels, or list labels in a repository.

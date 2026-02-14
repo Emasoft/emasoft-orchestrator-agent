@@ -5,6 +5,23 @@ workflow-instruction: support
 
 # Operation: Setup PR Review Workflow
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Create Workflow Directory](#step-1-create-workflow-directory)
+  - [Step 2: Create Workflow File](#step-2-create-workflow-file)
+  - [Step 3: Configure Repository Secret](#step-3-configure-repository-secret)
+  - [Step 4: Configure Repository Permissions](#step-4-configure-repository-permissions)
+  - [Step 5: Verify Workflow](#step-5-verify-workflow)
+  - [Step 6: Test on a PR](#step-6-test-on-a-pr)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Example](#example)
+- [Checklist](#checklist)
+
 ## When to Use
 
 Use this operation when setting up automated PR code reviews using Claude Code Action.

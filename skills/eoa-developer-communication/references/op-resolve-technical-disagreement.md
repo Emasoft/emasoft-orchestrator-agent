@@ -1,5 +1,29 @@
 # Operation: Resolve Technical Disagreement
 
+
+## Contents
+
+- [Metadata](#metadata)
+- [Purpose](#purpose)
+- [Prerequisites](#prerequisites)
+- [Inputs](#inputs)
+- [Resolution Framework](#resolution-framework)
+  - [Step 1: Understand Before Responding](#step-1-understand-before-responding)
+  - [Step 2: Acknowledge Valid Points](#step-2-acknowledge-valid-points)
+  - [Step 3: Present Your View Without Attacking](#step-3-present-your-view-without-attacking)
+  - [Step 4: Propose Resolution Path](#step-4-propose-resolution-path)
+- [Escalation Criteria](#escalation-criteria)
+- [Steps](#steps)
+- [Tone Transformations](#tone-transformations)
+- [Output](#output)
+- [Success Criteria](#success-criteria)
+- [Anti-Patterns to Avoid](#anti-patterns-to-avoid)
+- [Error Handling](#error-handling)
+- [Important Rules](#important-rules)
+- [Resolution Documentation](#resolution-documentation)
+- [Decision Reached](#decision-reached)
+- [Next Operations](#next-operations)
+
 ## Metadata
 
 | Field | Value |

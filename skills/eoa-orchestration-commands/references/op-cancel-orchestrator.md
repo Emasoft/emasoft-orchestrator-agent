@@ -5,6 +5,26 @@ workflow-instruction: support
 
 # Operation: Cancel Orchestrator Loop
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Verify Loop is Active](#step-1-verify-loop-is-active)
+  - [Step 2: Consider Alternatives](#step-2-consider-alternatives)
+  - [Step 3: Execute Cancellation](#step-3-execute-cancellation)
+  - [Step 4: Understand What Happens](#step-4-understand-what-happens)
+  - [Step 5: Verify Cancellation](#step-5-verify-cancellation)
+  - [Step 6: Clean Up Manually (if needed)](#step-6-clean-up-manually-if-needed)
+  - [Step 7: Document Cancellation](#step-7-document-cancellation)
+  - [Step 8: Handle Incomplete Work](#step-8-handle-incomplete-work)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Example](#example)
+- [Recovery After Cancellation](#recovery-after-cancellation)
+- [Checklist](#checklist)
+
 ## When to Use
 
 Use this operation when you need to manually stop an active orchestrator loop.

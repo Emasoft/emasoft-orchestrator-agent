@@ -1,5 +1,23 @@
 # Archive Structure Specification
 
+
+## Contents
+
+- [Overview](#overview)
+- [Archive Location](#archive-location)
+- [Directory Structure](#directory-structure)
+- [File Descriptions](#file-descriptions)
+  - [status.md](#statusmd)
+  - [delegation-history.md](#delegation-historymd)
+  - [messages/](#messages)
+  - [artifacts/](#artifacts)
+  - [metadata.json](#metadatajson)
+- [Archive Trigger](#archive-trigger)
+- [Archive Process](#archive-process)
+- [Archive Retention](#archive-retention)
+- [Searching Archives](#searching-archives)
+- [Benefits of Structured Archives](#benefits-of-structured-archives)
+
 ## Overview
 
 The orchestrator maintains a standardized archive structure for long-term storage of completed task records. This ensures traceability, audit compliance, and recovery capabilities.

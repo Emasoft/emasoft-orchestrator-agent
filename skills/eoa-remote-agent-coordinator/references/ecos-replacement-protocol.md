@@ -1,5 +1,46 @@
 # ECOS Agent Replacement Protocol
 
+
+## Contents
+
+- [Overview](#overview)
+- [ECOS Notification Format](#ecos-notification-format)
+  - [Urgency Levels](#urgency-levels)
+- [Replacement Protocol Steps](#replacement-protocol-steps)
+  - [Step 1: Acknowledge ECOS Notification](#step-1-acknowledge-ecos-notification)
+  - [Step 2: Compile Context for Failed Agent](#step-2-compile-context-for-failed-agent)
+  - [Step 3: Generate Handoff Document](#step-3-generate-handoff-document)
+- [Task Assignment](#task-assignment)
+- [Work Completed](#work-completed)
+- [Work Remaining](#work-remaining)
+- [Context Transfer](#context-transfer)
+- [Critical Information](#critical-information)
+- [Verification Requirements](#verification-requirements)
+- [Contact](#contact)
+  - [Step 4: Reassign GitHub Project Tasks](#step-4-reassign-github-project-tasks)
+  - [Step 5: Send Handoff to Replacement Agent](#step-5-send-handoff-to-replacement-agent)
+  - [Step 6: Wait for Acknowledgment](#step-6-wait-for-acknowledgment)
+  - [Step 7: Confirm to ECOS](#step-7-confirm-to-ecos)
+- [Quick Command Reference](#quick-command-reference)
+- [Critical Rules](#critical-rules)
+  - [Rule 1: Preserve Task UUIDs](#rule-1-preserve-task-uuids)
+  - [Rule 2: Reset Instruction Verification](#rule-2-reset-instruction-verification)
+  - [Rule 3: Include ALL Context](#rule-3-include-all-context)
+  - [Rule 4: Update Orchestrator State File](#rule-4-update-orchestrator-state-file)
+  - [Rule 5: RULE 14 Applies Through Replacement](#rule-5-rule-14-applies-through-replacement)
+- [IRON RULE: USER REQUIREMENTS ARE IMMUTABLE](#iron-rule-user-requirements-are-immutable)
+- [Emergency Procedures](#emergency-procedures)
+  - [If Replacement Agent Also Fails](#if-replacement-agent-also-fails)
+  - [If Handoff Information Incomplete](#if-handoff-information-incomplete)
+  - [If Original Task Requirements Unclear](#if-original-task-requirements-unclear)
+- [Audit Trail](#audit-trail)
+- [Handoff Quality Checklist](#handoff-quality-checklist)
+- [Context Transfer Best Practices](#context-transfer-best-practices)
+  - [DO Include](#do-include)
+  - [DO NOT Include](#do-not-include)
+- [Success Criteria](#success-criteria)
+- [See Also](#see-also)
+
 ## Overview
 
 When ECOS (Emergency Context-loss Operations System) detects an agent failure or initiates a replacement, the orchestrator must execute a structured handoff protocol to transfer tasks and context to a replacement agent without losing work progress.

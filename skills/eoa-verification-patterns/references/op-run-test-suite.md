@@ -1,5 +1,28 @@
 # Operation: Run Test Suite
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Steps](#steps)
+  - [Step 1: Validate Scripts First](#step-1-validate-scripts-first)
+  - [Step 2: Run Tests with Result Collection](#step-2-run-tests-with-result-collection)
+  - [Step 3: Check Exit Code](#step-3-check-exit-code)
+  - [Step 4: Collect Test Evidence](#step-4-collect-test-evidence)
+- [Test Execution Options](#test-execution-options)
+  - [Basic Test Run](#basic-test-run)
+  - [Worktree Isolation Testing](#worktree-isolation-testing)
+  - [With Orchestrator Notification](#with-orchestrator-notification)
+- [Complete Workflow Example](#complete-workflow-example)
+- [Test Report Output Format](#test-report-output-format)
+- [Exit Codes Reference](#exit-codes-reference)
+- [Hang Prevention](#hang-prevention)
+- [Best Practices](#best-practices)
+- [Exit Criteria](#exit-criteria)
+- [Related Operations](#related-operations)
+
 ---
 procedure: proc-complete-task
 workflow-instruction: Step 19 - Task Completion

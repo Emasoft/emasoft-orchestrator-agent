@@ -1,5 +1,20 @@
 # Operation: Restore Task from Blocked Column
 
+
+## Contents
+
+- [Metadata](#metadata)
+- [Purpose](#purpose)
+- [Preconditions](#preconditions)
+- [Input](#input)
+- [Procedure](#procedure)
+- [Commands](#commands)
+- [Output](#output)
+- [Important Notes](#important-notes)
+- [Checklist](#checklist)
+- [Error Handling](#error-handling)
+- [Related Operations](#related-operations)
+
 ## Metadata
 
 | Field | Value |

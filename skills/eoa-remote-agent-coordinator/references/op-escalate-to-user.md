@@ -6,6 +6,32 @@ operation: escalate-to-user
 
 # Operation: Escalate to User
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [When to Use](#when-to-use)
+- [Inputs](#inputs)
+- [Outputs](#outputs)
+- [Escalation Categories](#escalation-categories)
+- [Steps](#steps)
+  - [Step 1: Prepare Escalation Message](#step-1-prepare-escalation-message)
+  - [Step 2: Send to EAMA (User Communication Channel)](#step-2-send-to-eama-user-communication-channel)
+  - [Step 3: Update Blocked Task (if applicable)](#step-3-update-blocked-task-if-applicable)
+  - [Step 4: Queue Management](#step-4-queue-management)
+- [Escalation Message Template](#escalation-message-template)
+- [User Decision Required](#user-decision-required)
+  - [Context](#context)
+  - [Decision Needed](#decision-needed)
+  - [Options](#options)
+  - [Recommendation](#recommendation)
+  - [Impact](#impact)
+- [Escalation Levels](#escalation-levels)
+- [Success Criteria](#success-criteria)
+- [Error Handling](#error-handling)
+- [Tracking Resolution](#tracking-resolution)
+- [Related Operations](#related-operations)
+
 ## Purpose
 
 Escalate decisions to the user when they exceed orchestrator authority (architecture, security, requirement changes).

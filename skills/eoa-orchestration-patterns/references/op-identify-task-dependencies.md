@@ -9,6 +9,25 @@ version: 1.0.0
 
 # Identify Task Dependencies
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: List All Tasks](#step-1-list-all-tasks)
+  - [Step 2: Identify Dependency Types](#step-2-identify-dependency-types)
+  - [Step 3: Build Dependency Matrix](#step-3-build-dependency-matrix)
+  - [Step 4: Identify Parallel Opportunities](#step-4-identify-parallel-opportunities)
+  - [Step 5: Document with Claude Tasks Blocking](#step-5-document-with-claude-tasks-blocking)
+- [Checklist](#checklist)
+- [Examples](#examples)
+  - [Example: API Feature Implementation](#example-api-feature-implementation)
+  - [Example: Microservices Feature](#example-microservices-feature)
+  - [Example: Circular Dependency Detection](#example-circular-dependency-detection)
+- [Error Handling](#error-handling)
+- [Related Operations](#related-operations)
+
 ## When to Use
 
 Trigger this operation when:

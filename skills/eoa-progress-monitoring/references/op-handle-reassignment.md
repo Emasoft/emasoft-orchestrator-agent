@@ -6,6 +6,30 @@ operation: handle-reassignment
 
 # Operation: Handle Reassignment
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [When to Use](#when-to-use)
+- [Inputs](#inputs)
+- [Outputs](#outputs)
+- [Steps](#steps)
+  - [Step 1: Check Reassignment Authorization](#step-1-check-reassignment-authorization)
+  - [Step 2: Find Available Agent](#step-2-find-available-agent)
+  - [Step 3: Compile Context for Transfer](#step-3-compile-context-for-transfer)
+  - [Original Task](#original-task)
+  - [Progress Updates (from previous agent)](#progress-updates-from-previous-agent)
+  - [Known Issues](#known-issues)
+  - [Instructions](#instructions)
+  - [Step 4: Notify Current Agent](#step-4-notify-current-agent)
+  - [Step 5: Update GitHub Issue Labels](#step-5-update-github-issue-labels)
+  - [Step 6: Send Task to New Agent](#step-6-send-task-to-new-agent)
+  - [Step 7: Log Reassignment](#step-7-log-reassignment)
+- [Decision Flow](#decision-flow)
+- [Success Criteria](#success-criteria)
+- [Error Handling](#error-handling)
+- [Related Operations](#related-operations)
+
 ## Purpose
 
 Reassign a task from an unresponsive agent to an available agent, ensuring proper context transfer.

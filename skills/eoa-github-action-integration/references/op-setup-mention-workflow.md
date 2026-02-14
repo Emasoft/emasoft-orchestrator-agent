@@ -5,6 +5,22 @@ workflow-instruction: support
 
 # Operation: Setup @claude Mention Workflow
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Create Workflow File](#step-1-create-workflow-file)
+  - [Step 2: Configure Repository Secret](#step-2-configure-repository-secret)
+  - [Step 3: Configure Permissions](#step-3-configure-permissions)
+  - [Step 4: Customize Triggers (Optional)](#step-4-customize-triggers-optional)
+  - [Step 5: Test the Workflow](#step-5-test-the-workflow)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Example](#example)
+- [Checklist](#checklist)
+
 ## When to Use
 
 Use this operation when setting up responses to @claude mentions in issues and PRs.

@@ -1,5 +1,25 @@
 # Operation: Evaluate Understanding Response
 
+
+## Contents
+
+- [Metadata](#metadata)
+- [Purpose](#purpose)
+- [Prerequisites](#prerequisites)
+- [Inputs](#inputs)
+- [Evaluation Criteria](#evaluation-criteria)
+  - [Question 1: Task Summary](#question-1-task-summary)
+  - [Question 2: Acceptance Criteria](#question-2-acceptance-criteria)
+  - [Question 3: Concerns](#question-3-concerns)
+  - [Question 4: Implementation Approach](#question-4-implementation-approach)
+  - [Question 5: Blockers](#question-5-blockers)
+- [Steps](#steps)
+- [Decision Matrix](#decision-matrix)
+- [Output](#output)
+- [Success Criteria](#success-criteria)
+- [Error Handling](#error-handling)
+- [Next Operations](#next-operations)
+
 ## Metadata
 
 | Field | Value |

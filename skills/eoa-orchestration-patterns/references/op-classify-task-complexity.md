@@ -9,6 +9,24 @@ version: 1.0.0
 
 # Classify Task Complexity
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Initial Assessment](#step-1-initial-assessment)
+  - [Step 2: Count Complexity Signals](#step-2-count-complexity-signals)
+  - [Step 3: Apply Classification](#step-3-apply-classification)
+  - [Step 4: Choose Action Pattern](#step-4-choose-action-pattern)
+- [Checklist](#checklist)
+- [Examples](#examples)
+  - [Example: Simple Task - Add Logging](#example-simple-task-add-logging)
+  - [Example: Medium Task - New API Endpoint](#example-medium-task-new-api-endpoint)
+  - [Example: Complex Task - Cross-Platform Feature](#example-complex-task-cross-platform-feature)
+- [Error Handling](#error-handling)
+- [Related Operations](#related-operations)
+
 ## When to Use
 
 Trigger this operation when:

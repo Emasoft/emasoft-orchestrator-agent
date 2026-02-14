@@ -1,5 +1,28 @@
 # Operation: Verify Exit Code
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Exit Code Convention](#exit-code-convention)
+- [Steps](#steps)
+  - [Step 1: Run the Process](#step-1-run-the-process)
+  - [Step 2: Check the Exit Code](#step-2-check-the-exit-code)
+  - [Step 3: Interpret the Result](#step-3-interpret-the-result)
+  - [Step 4: Act on the Result](#step-4-act-on-the-result)
+- [Examples](#examples)
+  - [Bash Script Example](#bash-script-example)
+  - [Python Script Example](#python-script-example)
+- [Setting Exit Codes in Your Code](#setting-exit-codes-in-your-code)
+  - [Bash](#bash)
+  - [Python](#python)
+- [Output Format](#output-format)
+- [Common Pitfalls](#common-pitfalls)
+- [Exit Criteria](#exit-criteria)
+- [Related Operations](#related-operations)
+
 ---
 procedure: proc-complete-task
 workflow-instruction: Step 19 - Task Completion

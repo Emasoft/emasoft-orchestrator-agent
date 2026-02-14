@@ -5,6 +5,25 @@ workflow-instruction: support
 
 # Operation: Start Orchestration Phase
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Verify Plan Phase Complete](#step-1-verify-plan-phase-complete)
+  - [Step 2: Execute Start Command](#step-2-execute-start-command)
+  - [Step 3: Verify State File Created/Updated](#step-3-verify-state-file-createdupdated)
+- [Modules](#modules)
+- [Agent Registry](#agent-registry)
+  - [Step 4: Register Agents](#step-4-register-agents)
+  - [Step 5: Assign First Module](#step-5-assign-first-module)
+  - [Step 6: Begin Monitoring](#step-6-begin-monitoring)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Example](#example)
+- [Checklist](#checklist)
+
 ## When to Use
 
 Use this operation after plan approval to begin the orchestration phase that coordinates agents implementing the approved plan.

@@ -1,5 +1,23 @@
 # Operation: Select Agent for Task
 
+
+## Contents
+
+- [Metadata](#metadata)
+- [Purpose](#purpose)
+- [Preconditions](#preconditions)
+- [Selection Criteria (Evaluation Order)](#selection-criteria-evaluation-order)
+  - [1. Availability Check](#1-availability-check)
+  - [2. Skill Match](#2-skill-match)
+  - [3. Capacity Check](#3-capacity-check)
+- [Input](#input)
+- [Procedure](#procedure)
+- [Command](#command)
+- [Output](#output)
+- [Specialization Preferences](#specialization-preferences)
+- [Error Handling](#error-handling)
+- [Related Operations](#related-operations)
+
 ## Metadata
 
 | Field | Value |

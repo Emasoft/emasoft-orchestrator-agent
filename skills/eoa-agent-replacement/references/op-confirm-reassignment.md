@@ -5,6 +5,28 @@ workflow-instruction: support
 
 # Operation: Confirm Reassignment
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Wait for ACK](#step-1-wait-for-ack)
+  - [Step 2: Verify ACK Content](#step-2-verify-ack-content)
+  - [Step 3: Handle Questions](#step-3-handle-questions)
+  - [Step 4: Update Orchestrator State](#step-4-update-orchestrator-state)
+- [Agent Replacement Record](#agent-replacement-record)
+  - [Step 5: Remove Failed Agent from Roster](#step-5-remove-failed-agent-from-roster)
+  - [Step 6: Notify ECOS of Completion](#step-6-notify-ecos-of-completion)
+  - [Step 7: Create Audit Log Entry](#step-7-create-audit-log-entry)
+  - [Step 8: Resume Normal Operations](#step-8-resume-normal-operations)
+  - [Step 9: Add Final GitHub Comment](#step-9-add-final-github-comment)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Example](#example)
+- [Agent Replacement Complete](#agent-replacement-complete)
+- [Checklist](#checklist)
+
 ## When to Use
 
 Use this operation after sending the handoff to verify the replacement is complete and notify all parties.

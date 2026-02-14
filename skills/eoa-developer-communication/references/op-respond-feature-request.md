@@ -1,5 +1,25 @@
 # Operation: Respond to Feature Request
 
+
+## Contents
+
+- [Metadata](#metadata)
+- [Purpose](#purpose)
+- [Prerequisites](#prerequisites)
+- [Inputs](#inputs)
+- [Response Workflow](#response-workflow)
+  - [Phase 1: Acknowledgment and Validation](#phase-1-acknowledgment-and-validation)
+  - [Phase 2: Assessment](#phase-2-assessment)
+  - [Phase 3: Response Based on Assessment](#phase-3-response-based-on-assessment)
+- [Steps](#steps)
+- [Response Tone Guidelines](#response-tone-guidelines)
+- [Output](#output)
+- [Success Criteria](#success-criteria)
+- [Error Handling](#error-handling)
+- [Important Rules](#important-rules)
+- [Decision Matrix](#decision-matrix)
+- [Next Operations](#next-operations)
+
 ## Metadata
 
 | Field | Value |

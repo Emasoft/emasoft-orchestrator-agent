@@ -1,5 +1,26 @@
 # Operation: Remove Pending Module
 
+
+## Contents
+
+- [Metadata](#metadata)
+- [Purpose](#purpose)
+- [Prerequisites](#prerequisites)
+- [Inputs](#inputs)
+- [Command Syntax](#command-syntax)
+- [Removal Restrictions](#removal-restrictions)
+- [Steps](#steps)
+- [Output](#output)
+- [Success Criteria](#success-criteria)
+- [GitHub Issue Closure](#github-issue-closure)
+- [Error Handling](#error-handling)
+- [Alternatives to Removal](#alternatives-to-removal)
+  - [Scope Reduction Example](#scope-reduction-example)
+- [Important Rules](#important-rules)
+- [Removal Audit](#removal-audit)
+- [Confirmation Dialog](#confirmation-dialog)
+- [Next Operations](#next-operations)
+
 ## Metadata
 
 | Field | Value |

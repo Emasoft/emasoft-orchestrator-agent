@@ -5,6 +5,25 @@ workflow-instruction: support
 
 # Operation: Update Label
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Check Cardinality Rules](#step-1-check-cardinality-rules)
+  - [Step 2: Add Labels](#step-2-add-labels)
+  - [Step 3: Remove Labels](#step-3-remove-labels)
+  - [Step 4: Replace Labels (Atomic Operation)](#step-4-replace-labels-atomic-operation)
+  - [Step 5: Modify Label Definition](#step-5-modify-label-definition)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Examples](#examples)
+  - [Example 1: Full Workflow Transition](#example-1-full-workflow-transition)
+  - [Example 2: Task Completion](#example-2-task-completion)
+  - [Example 3: Reassignment During Work](#example-3-reassignment-during-work)
+  - [Example 4: Bulk Update (with loop)](#example-4-bulk-update-with-loop)
+
 ## When to Use
 
 Use this operation when you need to change, add, or remove labels on an issue, or modify a label definition.

@@ -1,5 +1,19 @@
 # Interview Templates
 
+
+## Contents
+
+- [Pre-Task Interview Questions](#pre-task-interview-questions)
+- [Pre-Task Interview: {TASK_ID}](#pre-task-interview-task_id)
+- [Post-Task Interview Questions](#post-task-interview-questions)
+- [Post-Task Interview: {TASK_ID}](#post-task-interview-task_id)
+- [Evaluating Pre-Task Responses](#evaluating-pre-task-responses)
+- [Evaluating Post-Task Responses](#evaluating-post-task-responses)
+- [Decision Trees for Interview Evaluation](#decision-trees-for-interview-evaluation)
+  - [Pre-Task Interview Evaluation Decision Tree](#pre-task-interview-evaluation-decision-tree)
+  - [Post-Task Interview Evaluation Decision Tree](#post-task-interview-evaluation-decision-tree)
+  - [REVISE Cycle Escalation Decision Tree](#revise-cycle-escalation-decision-tree)
+
 ## Pre-Task Interview Questions
 
 The Orchestrator MUST ask these questions:

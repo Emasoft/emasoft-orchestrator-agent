@@ -6,6 +6,28 @@ operation: detect-agent-state
 
 # Operation: Detect Agent State
 
+
+## Contents
+
+- [Purpose](#purpose)
+- [When to Use](#when-to-use)
+- [Inputs](#inputs)
+- [Outputs](#outputs)
+- [Agent States](#agent-states)
+- [Steps](#steps)
+  - [Step 1: Get Task Assignment Time](#step-1-get-task-assignment-time)
+  - [Step 2: Get Agent's Last Message](#step-2-get-agents-last-message)
+  - [Step 3: Check for ACK](#step-3-check-for-ack)
+  - [Step 4: Check for Blocker Report](#step-4-check-for-blocker-report)
+  - [Step 5: Check for Completion Report](#step-5-check-for-completion-report)
+  - [Step 6: Calculate State Duration](#step-6-calculate-state-duration)
+  - [Step 7: Determine State](#step-7-determine-state)
+- [State Transition Diagram](#state-transition-diagram)
+- [Output Format](#output-format)
+- [Success Criteria](#success-criteria)
+- [Error Handling](#error-handling)
+- [Related Operations](#related-operations)
+
 ## Purpose
 
 Determine the current state of an assigned agent based on message history and task activity.

@@ -5,6 +5,29 @@ workflow-instruction: support
 
 # Operation: Check Orchestrator Loop Status
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Execute Status Command](#step-1-execute-status-command)
+  - [Step 2: Interpret Loop Status](#step-2-interpret-loop-status)
+- [Orchestrator Loop Status](#orchestrator-loop-status)
+  - [Step 3: Review Task Sources](#step-3-review-task-sources)
+- [Task Sources](#task-sources)
+  - [Step 4: View Current Task](#step-4-view-current-task)
+- [Current Task](#current-task)
+  - [Step 5: Check Verification State](#step-5-check-verification-state)
+- [Verification Status](#verification-status)
+  - [Step 6: Review Debug Info (Verbose)](#step-6-review-debug-info-verbose)
+- [Debug Information](#debug-information)
+  - [Step 7: Understand Blocking Behavior](#step-7-understand-blocking-behavior)
+- [Output](#output)
+- [Error Handling](#error-handling)
+- [Example](#example)
+- [Checklist](#checklist)
+
 ## When to Use
 
 Use this operation to check the status of the orchestrator loop, which monitors tasks across multiple sources.

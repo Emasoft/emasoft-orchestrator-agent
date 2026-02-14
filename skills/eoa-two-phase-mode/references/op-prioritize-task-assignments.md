@@ -9,6 +9,24 @@ version: 1.0.0
 
 # Prioritize Task Assignments
 
+
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+  - [Step 1: Apply Priority Criteria](#step-1-apply-priority-criteria)
+  - [Step 2: Calculate Priority Score](#step-2-calculate-priority-score)
+  - [Step 3: Apply Dependency Constraints](#step-3-apply-dependency-constraints)
+  - [Step 4: Group into Execution Phases](#step-4-group-into-execution-phases)
+  - [Step 5: Document Priority Decisions](#step-5-document-priority-decisions)
+- [Checklist](#checklist)
+- [Examples](#examples)
+  - [Example: E-Commerce Prioritization](#example-e-commerce-prioritization)
+  - [Example: Risk-Based Priority Adjustment](#example-risk-based-priority-adjustment)
+- [Error Handling](#error-handling)
+- [Related Operations](#related-operations)
+
 ## When to Use
 
 Trigger this operation when:
