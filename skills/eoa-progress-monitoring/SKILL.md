@@ -213,8 +213,7 @@ CURRENT_STATUS=$(gh issue view $ISSUE --json labels | jq -r '.labels[] | select(
 gh issue edit $ISSUE --remove-label "$CURRENT_STATUS" --add-label "status:blocked"
 
 # Create a GitHub issue for the blocker (the problem preventing progress)
-BLOCKER_ISSUE=$(gh issue create \
-  --title "BLOCKER: <one-line description of the blocking problem>" --label "type:blocker" \
+BLOCKER_ISSUE=$(gh issue create --title "BLOCKER: <one-line description of the blocking problem>" --label "type:blocker" \
   --body "## Blocker
 
 This issue tracks a problem that is blocking task #$ISSUE.
