@@ -64,6 +64,31 @@ def run_gh_command(args: list[str]) -> tuple[int, str, str]:
     return result.returncode, result.stdout, result.stderr
 
 
+def check_gh_project_scopes() -> bool:
+    """Verify gh auth has project scopes before kanban operations.
+
+    The default gh auth login does not include 'project' and 'read:project'
+    scopes. Without them, all GitHub Projects V2 operations will fail.
+    Scopes must be added by a human via interactive browser:
+        gh auth refresh -h github.com -s project,read:project
+    """
+    result = subprocess.run(
+        ["gh", "auth", "status"],
+        capture_output=True,
+        text=True,
+    )
+    combined = result.stdout + result.stderr
+    if "project" not in combined:
+        print(
+            "ERROR: gh auth is missing 'project' and 'read:project' scopes.\n"
+            "A human must run: gh auth refresh -h github.com -s project,read:project\n"
+            "This requires interactive browser approval and cannot be automated.",
+            file=sys.stderr,
+        )
+        return False
+    return True
+
+
 def load_team_registry(repo_path: str | None = None) -> dict[str, Any]:
     """Load team registry from repository."""
     if repo_path:
@@ -332,6 +357,57 @@ def update_task_status(issue_number: int, status: str) -> bool:
     returncode, _, stderr = run_gh_command(args)
     if returncode != 0:
         print(f"Failed to update status: {stderr}", file=sys.stderr)
+        return False
+
+    return True
+
+
+def close_issue_safely(issue_number: int, comment: str = "Task completed.") -> bool:
+    """Close an issue with a guard for Done-column auto-close.
+
+    GitHub Projects V2 auto-closes issues when moved to the Done column.
+    This function checks the issue state before attempting to close it,
+    preventing redundant close attempts and misleading error logs.
+    """
+    # Check current state
+    args = [
+        "issue",
+        "view",
+        str(issue_number),
+        "--repo",
+        f"{GITHUB_OWNER}/{GITHUB_REPO}",
+        "--json",
+        "state",
+    ]
+
+    returncode, stdout, _ = run_gh_command(args)
+    if returncode != 0:
+        print(f"Failed to check issue #{issue_number} state", file=sys.stderr)
+        return False
+
+    state = json.loads(stdout).get("state", "OPEN")
+
+    if state == "CLOSED":
+        print(
+            f"INFO: Issue #{issue_number} is already closed "
+            f"(likely auto-closed by Done column)"
+        )
+        return True
+
+    # Close with comment
+    args = [
+        "issue",
+        "close",
+        str(issue_number),
+        "--repo",
+        f"{GITHUB_OWNER}/{GITHUB_REPO}",
+        "--comment",
+        comment,
+    ]
+
+    returncode, _, stderr = run_gh_command(args)
+    if returncode != 0:
+        print(f"Failed to close issue #{issue_number}: {stderr}", file=sys.stderr)
         return False
 
     return True
@@ -663,6 +739,10 @@ def main() -> int:
 
     args = parser.parse_args()
 
+    # Pre-flight check: verify gh auth has project scopes
+    if not check_gh_project_scopes():
+        return 1
+
     # Load team registry
     try:
         registry = load_team_registry()
@@ -734,6 +814,10 @@ def main() -> int:
         elif args.command == "update-status":
             if update_task_status(args.issue, args.status):
                 print(f"Updated #{args.issue} status to {args.status}")
+                # When moving to "done", close the issue safely
+                # (guards against Done-column auto-close)
+                if args.status == "done":
+                    close_issue_safely(args.issue)
                 return 0
             return 1
 
