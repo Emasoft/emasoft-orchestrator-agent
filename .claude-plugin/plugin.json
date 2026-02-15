@@ -1,6 +1,6 @@
 {
   "name": "emasoft-orchestrator-agent",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Task distribution, agent coordination, progress monitoring - executes plans via subagents. Requires AI Maestro for inter-agent messaging.",
   "author": {
     "name": "Emasoft",
