@@ -172,7 +172,8 @@ def get_update(state: dict, update_id: str) -> dict | None:
     Returns:
         The update dictionary, or None if not found.
     """
-    return state.get("updates", {}).get(update_id)
+    result: dict | None = state.get("updates", {}).get(update_id)  # explicit type to satisfy mypy no-any-return
+    return result
 
 
 def transition_stage(
