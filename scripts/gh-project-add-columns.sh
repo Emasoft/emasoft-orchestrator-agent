@@ -87,6 +87,8 @@ fi
 echo "Querying project #${PROJECT_NUMBER} field '${FIELD_NAME}'..."
 
 # Step 1: Query existing field options with their IDs
+# GraphQL variables ($owner, $number) are not shell variables
+# shellcheck disable=SC2016
 FIELD_DATA=$(gh api graphql -f query='
   query($owner: String!, $number: Int!) {
     user(login: $owner) {
@@ -192,6 +194,8 @@ echo ""
 echo "Executing updateProjectV2Field mutation..."
 
 # Build full GraphQL request body with jq (gh api graphql does not support --argjson)
+# GraphQL variables ($fieldId, $name, $options) are not shell variables
+# shellcheck disable=SC2016
 MUTATION_QUERY='mutation($fieldId: ID!, $name: String!, $options: [ProjectV2SingleSelectFieldOptionInput!]!) {
     updateProjectV2Field(input: {
       fieldId: $fieldId
