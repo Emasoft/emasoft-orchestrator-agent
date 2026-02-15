@@ -199,9 +199,11 @@ def check_blocking_issues(state: dict, verbose: bool) -> tuple[bool, str, list]:
             print("    - {}".format(desc), file=sys.stderr)
 
     if active_blockers:
-        descriptions = []
+        descriptions: list[str] = []
         for b in active_blockers:
-            descriptions.append(b.get("description", b.get("id", str(b))))
+            # Extract a human-readable description from the blocker dict
+            desc = b.get("description") or b.get("id") or str(b)
+            descriptions.append(str(desc))
         reason = "{} blocking issue(s): {}".format(
             len(active_blockers), "; ".join(descriptions)
         )
